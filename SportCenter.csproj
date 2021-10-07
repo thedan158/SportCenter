@@ -84,9 +84,6 @@
     <Compile Include="ChooseSport.xaml.cs">
       <DependentUpon>ChooseSport.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Football_bill.xaml.cs">
-      <DependentUpon>Football_bill.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Good.xaml.cs">
       <DependentUpon>Good.xaml</DependentUpon>
     </Compile>
@@ -143,10 +140,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ChooseSport.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Football_bill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

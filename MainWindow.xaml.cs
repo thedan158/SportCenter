@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SportCentre
+namespace SportCenter
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -24,11 +24,6 @@ namespace SportCentre
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void ControlBarUC_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

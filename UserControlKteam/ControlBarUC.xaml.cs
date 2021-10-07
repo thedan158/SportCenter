@@ -1,4 +1,4 @@
-﻿using SportCentre.ViewModel;
+﻿using SportCenter.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SportCentre.UserControlKteam
+namespace SportCenter.UserControlKteam
 {
     /// <summary>
     /// Interaction logic for ControlBarUC.xaml

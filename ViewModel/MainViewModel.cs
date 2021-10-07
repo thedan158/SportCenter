@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace SportCentre.ViewModel
+namespace SportCenter.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {

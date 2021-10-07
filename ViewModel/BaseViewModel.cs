@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace SportCentre.ViewModel
+namespace SportCenter.ViewModel
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace SportCentre.ViewModel
+namespace SportCenter.ViewModel
 {
     public class ControlBarViewModel : BaseViewModel
     {
