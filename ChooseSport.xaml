@@ -1,0 +1,93 @@
+﻿<Window x:Class="SportCentre.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SportCentre"
+        mc:Ignorable="d"
+         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        
+        xmlns:uc="clr-namespace:SportCentre.UserControlKteam"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        
+        Name="mainWindow"
+      
+        Title="Phoenix Sport Center Managament" Height="500" Width="525">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}" Loaded="ControlBarUC_Loaded" Height="32" Margin="0,0,0.046,-0.246" VerticalAlignment="Top"></uc:ControlBarUC>
+        </Grid>
+        <Grid Grid.Row="1">
+            <TextBlock FontFamily="Bungee Inline" FontSize="25" Margin="127,56,127.046,-55.015"  >
+                Chọn môn thể thao
+            </TextBlock>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Button HorizontalAlignment="Left" Margin="40,91,0,133.415" Height="Auto" Width="120">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <materialDesign:PackIcon Grid.Row="0" FontWeight="ExtraBold" Kind="Soccer" FontSize="200" Height="109" Width="81"/>
+                    <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="13,105,13.231,4.277" Grid.RowSpan="2">
+                       Bóng đá
+                    </TextBlock>
+                </Grid>
+
+            </Button>
+            <Button HorizontalAlignment="Center" Margin="206,91,198.046,133.415" Height="Auto" Width="121">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <materialDesign:PackIcon Kind="Volleyball" FontSize="200" Height="109" Width="79" />
+                    <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="0,105,-0.338,4.277" Grid.RowSpan="2">
+                       Bóng chuyền
+                    </TextBlock>
+                </Grid>
+            </Button>
+            <Button HorizontalAlignment="Right" Margin="0,91,40.046,133.415" Height="Auto" Width="116">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="27*"/>
+                        <ColumnDefinition Width="56*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <materialDesign:PackIcon Kind="Basketball" Height="87" Width="82" Margin="0,10,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2" />
+                    <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="15,96,14.708,-0.277" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                       Bóng rổ
+                    </TextBlock>
+                </Grid>
+            </Button>
+        </Grid>
+        <Grid Grid.Row="2" Margin="31,340.754,31.046,53.938">
+            <ProgressBar
+  IsIndeterminate="True" Margin="0,-20,0,26.723" />
+        </Grid>
+    </Grid>
+</Window>

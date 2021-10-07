@@ -1,0 +1,376 @@
+﻿<Window x:Class="SportCentre.Good"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SportCentre"
+        mc:Ignorable="d"
+        
+        xmlns:uc="clr-namespace:SportCentre.UserControlKteam"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+    
+     FontFamily="{DynamicResource MaterialDesignFont}"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+       
+        
+        Title="HangHoa" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="image/exclusive_texture___2_by_sugar_sugar_bee_d97ycx2-fullview.jpg"/>
+    </Window.Background>
+
+    <Grid>
+        <!--Controlbar-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}" Loaded="ControlBarUC_Loaded"></uc:ControlBarUC>
+        </Grid>
+
+        <!--Main-->
+
+        <Grid Grid.Row="1" >
+
+
+
+            <!--Main-->
+
+
+
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                <ColumnDefinition  ></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <!--Danh sách hàng hóa-->
+            <Grid Grid.Column="0" Margin="10">
+
+
+                <!--Filter và search-->
+
+                <TabControl
+                    
+  Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
+  materialDesign:ColorZoneAssist.Mode="PrimaryDark"
+  TabStripPlacement="Top"
+  materialDesign:NavigationRailAssist.SelectionCornerRadius="50 10 10 10"
+  materialDesign:NavigationRailAssist.ShowSelectionBackground="True">
+                    <!--Nước uống-->
+                    <TabItem Width="119">
+                        <TabItem.Header>
+                            <StackPanel Height="auto" Width="auto">
+                                <materialDesign:PackIcon 
+                                    Kind="BottleSodaClassic" 
+                                    Width="24" Height="24" 
+                                    HorizontalAlignment="Center" />
+                                <TextBlock
+          Text="Nước uống"
+          HorizontalAlignment="Center" />
+                            </StackPanel>
+                        </TabItem.Header>
+                        <ScrollViewer >
+                            <ScrollViewer.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="Black"/>
+                                    <GradientStop Color="#FFC0E8E7"/>
+                                </LinearGradientBrush>
+                            </ScrollViewer.Background>
+
+                            <WrapPanel Orientation="Horizontal">
+                                <StackPanel Margin="20 0"  >
+                                    <Border Margin="20" Width="110" Height="160" >
+                                        <StackPanel >
+                                            <Border Width="100" Height="100" CornerRadius="5" Margin="5">
+                                                <Border.Effect>
+                                                    <DropShadowEffect ShadowDepth="1"/>
+                                                </Border.Effect>
+                                                <Border.Background>
+                                                    <ImageBrush ImageSource="image/sting-mot-cong-thuc-chat-luong-den-tu-pepsico165.jpg"/>
+                                                </Border.Background>
+
+                                            </Border>
+                                            <TextBlock Margin="5" Text="10.000 VNĐ" FontSize="14" FontFamily="Franklin Gothic Medium" />
+                                            <TextBlock Margin="5 0" Text="STING" FontSize="13"/>
+                                        </StackPanel>
+                                    </Border>
+
+                                </StackPanel>
+                                <StackPanel Margin="20 0" HorizontalAlignment="Right" >
+                                    <Border Margin="20" Width="110" Height="160" >
+                                        <StackPanel>
+                                            <Border Width="100" Height="100" CornerRadius="5" Margin="5">
+                                                <Border.Background>
+                                                    <ImageBrush ImageSource="image/7up-lon-7858.jpg"/>
+                                                </Border.Background>
+                                                <Border.Effect>
+                                                    <DropShadowEffect ShadowDepth="1"/>
+                                                </Border.Effect>
+                                            </Border>
+                                            <TextBlock Margin="5" Text="10.000 VNĐ" FontSize="14" FontFamily="Franklin Gothic Medium" />
+                                            <TextBlock Margin="5 0" Text="7UP" FontSize="13"/>
+                                        </StackPanel>
+                                    </Border>
+                                </StackPanel>
+                                <StackPanel Margin="20 0"  >
+                                    <Border Margin="20" Width="110" Height="160" >
+                                        <StackPanel >
+                                            <Border Width="100" Height="100" CornerRadius="5" Margin="5">
+                                                <Border.Effect>
+                                                    <DropShadowEffect ShadowDepth="1"/>
+                                                </Border.Effect>
+                                                <Border.Background>
+                                                    <ImageBrush ImageSource="image/sting-mot-cong-thuc-chat-luong-den-tu-pepsico165.jpg"/>
+                                                </Border.Background>
+
+                                            </Border>
+                                            <TextBlock Margin="5" Text="10.000 VNĐ" FontSize="14" FontFamily="Franklin Gothic Medium" />
+                                            <TextBlock Margin="5 0" Text="STING" FontSize="13"/>
+                                        </StackPanel>
+                                    </Border>
+
+                                </StackPanel>
+                                <StackPanel Margin="20 0"  >
+                                    <Border Margin="20" Width="110" Height="160" >
+                                        <StackPanel >
+                                            <Border Width="100" Height="100" CornerRadius="5" Margin="5">
+                                                <Border.Effect>
+                                                    <DropShadowEffect ShadowDepth="1"/>
+                                                </Border.Effect>
+                                                <Border.Background>
+                                                    <ImageBrush ImageSource="image/sting-mot-cong-thuc-chat-luong-den-tu-pepsico165.jpg"/>
+                                                </Border.Background>
+
+                                            </Border>
+                                            <TextBlock Margin="5" Text="10.000 VNĐ" FontSize="14" FontFamily="Franklin Gothic Medium" />
+                                            <TextBlock Margin="5 0" Text="STING" FontSize="13"/>
+                                        </StackPanel>
+                                    </Border>
+
+                                </StackPanel>
+                                <StackPanel Margin="20 0"  >
+                                    <Border Margin="20" Width="110" Height="160" >
+                                        <StackPanel >
+                                            <Border Width="100" Height="100" CornerRadius="5" Margin="5">
+                                                <Border.Effect>
+                                                    <DropShadowEffect ShadowDepth="1"/>
+                                                </Border.Effect>
+                                                <Border.Background>
+                                                    <ImageBrush ImageSource="image/sting-mot-cong-thuc-chat-luong-den-tu-pepsico165.jpg"/>
+                                                </Border.Background>
+
+                                            </Border>
+                                            <TextBlock Margin="5" Text="10.000 VNĐ" FontSize="14" FontFamily="Franklin Gothic Medium" />
+                                            <TextBlock Margin="5 0" Text="STING" FontSize="13"/>
+                                        </StackPanel>
+                                    </Border>
+
+                                </StackPanel>
+                                <StackPanel Margin="20 0"  >
+                                    <Border Margin="20" Width="110" Height="160" >
+                                        <StackPanel >
+                                            <Border Width="100" Height="100" CornerRadius="5" Margin="5">
+                                                <Border.Effect>
+                                                    <DropShadowEffect ShadowDepth="1"/>
+                                                </Border.Effect>
+                                                <Border.Background>
+                                                    <ImageBrush ImageSource="image/sting-mot-cong-thuc-chat-luong-den-tu-pepsico165.jpg"/>
+                                                </Border.Background>
+
+                                            </Border>
+                                            <TextBlock Margin="5" Text="10.000 VNĐ" FontSize="14" FontFamily="Franklin Gothic Medium" />
+                                            <TextBlock Margin="5 0" Text="STING" FontSize="13"/>
+                                        </StackPanel>
+                                    </Border>
+
+                                </StackPanel>
+
+                            </WrapPanel>
+
+                        </ScrollViewer>
+                    </TabItem>
+                    <!--Dụng cụ thể thao-->
+                    <TabItem Width="119">
+                        <TabItem.Header>
+                            <StackPanel
+        Height="auto"
+        Width="auto">
+                                <materialDesign:PackIcon
+          Kind="BaseballBat"
+          Width="24"
+          Height="24"
+          HorizontalAlignment="Center" 
+                                    />
+
+                                <TextBlock
+          Text="Dụng cụ thể thao"
+          HorizontalAlignment="Center" />
+                            </StackPanel>
+                        </TabItem.Header>
+                        <ScrollViewer >
+                            <ScrollViewer.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="Black"/>
+                                    <GradientStop Color="#FFC0E8E7"/>
+                                </LinearGradientBrush>
+                            </ScrollViewer.Background>
+
+                            <WrapPanel Orientation="Horizontal">
+                                <StackPanel Margin="20 0"  >
+                                    <Border Margin="20" Width="150" Height="160" >
+                                        <StackPanel >
+                                            <Border Width="100" Height="100" CornerRadius="5" Margin="5">
+                                                <Border.Background>
+                                                    <ImageBrush ImageSource="image/giay-da-bong-nike-4.jpg"/>
+                                                </Border.Background>
+
+
+                                            </Border>
+                                            <TextBlock Margin="5" Text="1.647.000 VNĐ" FontSize="14" FontFamily="Franklin Gothic Medium" HorizontalAlignment="Center"/>
+                                            <TextBlock Margin="5 0" Text="GIÀY THỂ THAO NIKE" FontSize="13" HorizontalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+
+                                </StackPanel>
+
+                            </WrapPanel>
+
+                        </ScrollViewer>
+                    </TabItem>
+
+
+
+                </TabControl>
+
+
+            </Grid>
+
+
+
+
+
+
+            <!--Đặt hàng-->
+            <Grid Grid.Column="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="8*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <!--Tên sân-->
+                <Grid Grid.Row="0">
+                    <StackPanel Margin="5">
+                        <ComboBox  materialDesign:HintAssist.Hint="Tên sân">
+                            <ComboBoxItem>Sân bóng đá 1</ComboBoxItem>
+                            <ComboBoxItem>Sân bóng chuyền 2</ComboBoxItem>
+                            <ComboBoxItem>Sân bóng rổ 4</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+
+                <!--Sản phẩm đã chọn-->
+                <Grid Grid.Row="1">
+
+                    <DataGrid
+                    Margin="5"  
+                   
+                    ItemsSource="{Binding Items1}"
+                    CanUserAddRows="False"
+                    AutoGenerateColumns="False"
+                    HeadersVisibility="All">
+
+                        <DataGrid.Columns>
+
+                            <!-- if you want to use the pop up style (MaterialDesignDataGridTextColumnPopupEditingStyle), you must use MaterialDataGridTextColumn -->
+                            <materialDesign:DataGridTextColumn
+      Header="Tên món"
+      ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+      EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
+                                <materialDesign:DataGridTextColumn.Binding>
+                                    <Binding
+          Path="Name">
+
+                                    </Binding>
+                                </materialDesign:DataGridTextColumn.Binding>
+                            </materialDesign:DataGridTextColumn>
+                            <!-- set a max length to get an indicator in the editor -->
+                            <DataGridTextColumn
+      Header="Đơn giá"
+      ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+      EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                                <DataGridTextColumn.Binding>
+                                    <Binding
+          Path="Description">
+
+                                    </Binding>
+                                </DataGridTextColumn.Binding>
+                            </DataGridTextColumn>
+                            <materialDesign:DataGridTextColumn
+      Binding="{Binding Numeric}"
+      Header="Số lượng"
+      Width="120"
+      EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style
+          TargetType="{x:Type DataGridColumnHeader}"
+          BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                                        <Setter
+            Property="HorizontalContentAlignment"
+            Value="Right" />
+                                        <Setter
+            Property="ContentTemplate">
+                                            <Setter.Value>
+                                                <DataTemplate>
+                                                    <TextBlock
+                  TextWrapping="Wrap"
+                  Text="{Binding}"
+                  TextAlignment="Right" />
+                                                </DataTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style
+          TargetType="{x:Type TextBlock}"
+          BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
+                                        <Setter
+            Property="HorizontalAlignment"
+            Value="Right" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </materialDesign:DataGridTextColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+
+                </Grid>
+
+                <!--Nút đặt hàng-->
+                <Grid Grid.Row="2" Margin="5">
+                    <Button
+  Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+  ToolTip="MaterialDesignFlatDarkButton"
+  Content="ĐẶT HÀNG"
+                        Background="#FF931C1C"
+  Width="{StaticResource ButtonWidth}"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                </Grid>
+
+
+            </Grid>
+        </Grid>
+
+
+    </Grid>
+</Window>
