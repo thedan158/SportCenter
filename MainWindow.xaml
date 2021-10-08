@@ -22,10 +22,10 @@
         
         Name="mainWindow"
         DataContext="{StaticResource MainVM}"
-        Title="Phoenix Sport Center Managament" Height="500" Width="525">
+        Title="Phoenix Sport Center Management" Height="500" Width="525">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName=mainWindow}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Grid>
@@ -34,7 +34,40 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}" Loaded="ControlBarUC_Loaded"></uc:ControlBarUC>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="541*"/>
+                <ColumnDefinition Width="459*"/>
+            </Grid.ColumnDefinitions>
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}" Grid.ColumnSpan="2"></uc:ControlBarUC>
+        </Grid>
+
+        <Grid Grid.Row="1">
+
+
+            <Grid HorizontalAlignment="Stretch"  Background="Transparent" VerticalAlignment="Stretch">
+                <Grid.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="2 4 2 4"></Setter>
+                        <Setter Property="Width" Value="40"></Setter>
+                    </Style>
+                </Grid.Resources>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="1" Margin="0,79,12.6,0" FontSize="30" FontWeight="DemiBold" Text="WELCOME" VerticalAlignment="Top" HorizontalAlignment="Right" TextAlignment="Center"                       
+                           Width="153" Height="50"/>
+                <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="12.4,284,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="169" Width="150"/>
+
+
+            </Grid>
+
+
+
         </Grid>
     </Grid>
+
+
 </Window>

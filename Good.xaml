@@ -18,7 +18,7 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
-       
+       Name="goodWindow"
         
         Title="HangHoa" Height="450" Width="800">
     <Window.Background>
@@ -32,7 +32,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}" Loaded="ControlBarUC_Loaded"></uc:ControlBarUC>
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=goodWindow}" Loaded="ControlBarUC_Loaded"></uc:ControlBarUC>
         </Grid>
 
         <!--Main-->

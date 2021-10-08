@@ -39,3 +39,4 @@ C:\Users\theda\source\repos\SportCenter\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\theda\source\repos\SportCenter\obj\Debug\Bill.baml
 C:\Users\theda\source\repos\SportCenter\obj\Debug\ChooseSport.baml
 C:\Users\theda\source\repos\SportCenter\obj\Debug\Good.baml
+C:\Users\theda\source\repos\SportCenter\obj\Debug\GeneratedInternalTypeHelper.g.cs

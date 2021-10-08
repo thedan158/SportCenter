@@ -18,7 +18,7 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
-        Name="loginWindow"
+        Name="BillWindow"
         Title="LOGIN" Height="500" Width="525">
 
     <Grid x:Name="Grid_Button">
@@ -36,7 +36,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Row="0" Grid.ColumnSpan="3">
-            <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}" Loaded="ControlBarUC_Loaded"></uc:ControlBarUC>
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=BillWindow}" Loaded="ControlBarUC_Loaded"></uc:ControlBarUC>
         </Grid>
         <Button x:Name="FB_button"
             Style="{DynamicResource MaterialDesignRaisedButton}"
