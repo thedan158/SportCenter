@@ -241,6 +241,7 @@
     <Resource Include="Image\sting-mot-cong-thuc-chat-luong-den-tu-pepsico165.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Image\a5ff21dc78b136b321e4e7a6e0f161aa.jpg_684x684q90.jpg" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>

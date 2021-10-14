@@ -20,10 +20,8 @@
         WindowStartupLocation="CenterScreen"
        Name="goodWindow"
         
-        Title="HangHoa" Height="450" Width="800">
-    <Window.Background>
-        <ImageBrush ImageSource="image/exclusive_texture___2_by_sugar_sugar_bee_d97ycx2-fullview.jpg"/>
-    </Window.Background>
+        Title="HangHoa" Height="450" Width="800" Background="#FFEEE9FA">
+
 
     <Grid>
         <!--Controlbar-->
@@ -60,10 +58,10 @@
                 <TabControl
                     
   Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
-  materialDesign:ColorZoneAssist.Mode="PrimaryDark"
+  materialDesign:ColorZoneAssist.Mode="PrimaryLight"
   TabStripPlacement="Top"
-  materialDesign:NavigationRailAssist.SelectionCornerRadius="50 10 10 10"
-  materialDesign:NavigationRailAssist.ShowSelectionBackground="True">
+  materialDesign:NavigationRailAssist.SelectionCornerRadius="30 30 0 0"
+  >
                     <!--Nước uống-->
                     <TabItem Width="119">
                         <TabItem.Header>
@@ -80,8 +78,7 @@
                         <ScrollViewer >
                             <ScrollViewer.Background>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop Color="Black"/>
-                                    <GradientStop Color="#FFC0E8E7"/>
+
                                 </LinearGradientBrush>
                             </ScrollViewer.Background>
 
@@ -90,16 +87,17 @@
                                     <Border Margin="20" Width="110" Height="160" >
                                         <StackPanel >
                                             <Border Width="100" Height="100" CornerRadius="5" Margin="5">
-                                                <Border.Effect>
-                                                    <DropShadowEffect ShadowDepth="1"/>
-                                                </Border.Effect>
                                                 <Border.Background>
-                                                    <ImageBrush ImageSource="image/sting-mot-cong-thuc-chat-luong-den-tu-pepsico165.jpg"/>
+                                                    <ImageBrush ImageSource="a5ff21dc78b136b321e4e7a6e0f161aa.jpg_684x684q90.jpg"/>
                                                 </Border.Background>
+
+
+
+
 
                                             </Border>
                                             <TextBlock Margin="5" Text="10.000 VNĐ" FontSize="14" FontFamily="Franklin Gothic Medium" />
-                                            <TextBlock Margin="5 0" Text="STING" FontSize="13"/>
+                                            <TextBlock Margin="5 0" Text="WARRIOR" FontSize="13"/>
                                         </StackPanel>
                                     </Border>
 
@@ -109,14 +107,13 @@
                                         <StackPanel>
                                             <Border Width="100" Height="100" CornerRadius="5" Margin="5">
                                                 <Border.Background>
-                                                    <ImageBrush ImageSource="image/7up-lon-7858.jpg"/>
+                                                    <ImageBrush ImageSource="a5ff21dc78b136b321e4e7a6e0f161aa.jpg_684x684q90.jpg"/>
                                                 </Border.Background>
-                                                <Border.Effect>
-                                                    <DropShadowEffect ShadowDepth="1"/>
-                                                </Border.Effect>
+
+
                                             </Border>
                                             <TextBlock Margin="5" Text="10.000 VNĐ" FontSize="14" FontFamily="Franklin Gothic Medium" />
-                                            <TextBlock Margin="5 0" Text="7UP" FontSize="13"/>
+                                            <TextBlock Margin="5 0" Text="WARRIOR" FontSize="13"/>
                                         </StackPanel>
                                     </Border>
                                 </StackPanel>
@@ -124,34 +121,15 @@
                                     <Border Margin="20" Width="110" Height="160" >
                                         <StackPanel >
                                             <Border Width="100" Height="100" CornerRadius="5" Margin="5">
-                                                <Border.Effect>
-                                                    <DropShadowEffect ShadowDepth="1"/>
-                                                </Border.Effect>
                                                 <Border.Background>
-                                                    <ImageBrush ImageSource="image/sting-mot-cong-thuc-chat-luong-den-tu-pepsico165.jpg"/>
+                                                    <ImageBrush ImageSource="a5ff21dc78b136b321e4e7a6e0f161aa.jpg_684x684q90.jpg"/>
                                                 </Border.Background>
+
+
 
                                             </Border>
                                             <TextBlock Margin="5" Text="10.000 VNĐ" FontSize="14" FontFamily="Franklin Gothic Medium" />
-                                            <TextBlock Margin="5 0" Text="STING" FontSize="13"/>
-                                        </StackPanel>
-                                    </Border>
-
-                                </StackPanel>
-                                <StackPanel Margin="20 0"  >
-                                    <Border Margin="20" Width="110" Height="160" >
-                                        <StackPanel >
-                                            <Border Width="100" Height="100" CornerRadius="5" Margin="5">
-                                                <Border.Effect>
-                                                    <DropShadowEffect ShadowDepth="1"/>
-                                                </Border.Effect>
-                                                <Border.Background>
-                                                    <ImageBrush ImageSource="image/sting-mot-cong-thuc-chat-luong-den-tu-pepsico165.jpg"/>
-                                                </Border.Background>
-
-                                            </Border>
-                                            <TextBlock Margin="5" Text="10.000 VNĐ" FontSize="14" FontFamily="Franklin Gothic Medium" />
-                                            <TextBlock Margin="5 0" Text="STING" FontSize="13"/>
+                                            <TextBlock Margin="5 0" Text="WARRIOR" FontSize="13"/>
                                         </StackPanel>
                                     </Border>
 
@@ -160,38 +138,21 @@
                                     <Border Margin="20" Width="110" Height="160" >
                                         <StackPanel >
                                             <Border Width="100" Height="100" CornerRadius="5" Margin="5">
-                                                <Border.Effect>
-                                                    <DropShadowEffect ShadowDepth="1"/>
-                                                </Border.Effect>
                                                 <Border.Background>
-                                                    <ImageBrush ImageSource="image/sting-mot-cong-thuc-chat-luong-den-tu-pepsico165.jpg"/>
+                                                    <ImageBrush ImageSource="a5ff21dc78b136b321e4e7a6e0f161aa.jpg_684x684q90.jpg"/>
                                                 </Border.Background>
+
+
 
                                             </Border>
                                             <TextBlock Margin="5" Text="10.000 VNĐ" FontSize="14" FontFamily="Franklin Gothic Medium" />
-                                            <TextBlock Margin="5 0" Text="STING" FontSize="13"/>
+                                            <TextBlock Margin="5 0" Text="WARRIOR" FontSize="13"/>
                                         </StackPanel>
                                     </Border>
 
                                 </StackPanel>
-                                <StackPanel Margin="20 0"  >
-                                    <Border Margin="20" Width="110" Height="160" >
-                                        <StackPanel >
-                                            <Border Width="100" Height="100" CornerRadius="5" Margin="5">
-                                                <Border.Effect>
-                                                    <DropShadowEffect ShadowDepth="1"/>
-                                                </Border.Effect>
-                                                <Border.Background>
-                                                    <ImageBrush ImageSource="image/sting-mot-cong-thuc-chat-luong-den-tu-pepsico165.jpg"/>
-                                                </Border.Background>
 
-                                            </Border>
-                                            <TextBlock Margin="5" Text="10.000 VNĐ" FontSize="14" FontFamily="Franklin Gothic Medium" />
-                                            <TextBlock Margin="5 0" Text="STING" FontSize="13"/>
-                                        </StackPanel>
-                                    </Border>
 
-                                </StackPanel>
 
                             </WrapPanel>
 
@@ -215,35 +176,16 @@
           HorizontalAlignment="Center" />
                             </StackPanel>
                         </TabItem.Header>
-                        <ScrollViewer >
-                            <ScrollViewer.Background>
-                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop Color="Black"/>
-                                    <GradientStop Color="#FFC0E8E7"/>
-                                </LinearGradientBrush>
-                            </ScrollViewer.Background>
-
-                            <WrapPanel Orientation="Horizontal">
-                                <StackPanel Margin="20 0"  >
-                                    <Border Margin="20" Width="150" Height="160" >
-                                        <StackPanel >
-                                            <Border Width="100" Height="100" CornerRadius="5" Margin="5">
-                                                <Border.Background>
-                                                    <ImageBrush ImageSource="image/giay-da-bong-nike-4.jpg"/>
-                                                </Border.Background>
-
-
-                                            </Border>
-                                            <TextBlock Margin="5" Text="1.647.000 VNĐ" FontSize="14" FontFamily="Franklin Gothic Medium" HorizontalAlignment="Center"/>
-                                            <TextBlock Margin="5 0" Text="GIÀY THỂ THAO NIKE" FontSize="13" HorizontalAlignment="Center"/>
-                                        </StackPanel>
-                                    </Border>
-
-                                </StackPanel>
-
-                            </WrapPanel>
-
-                        </ScrollViewer>
+                        <TextBlock>
+      <Run
+        Text="tab 2 content. Default look and behaviors." />
+      <LineBreak />
+      <LineBreak />
+      <Run
+        FontStyle="Italic">
+      Praesent sed dui arcu. Vivamus porta auctor sagittis
+    </Run>
+                        </TextBlock>
                     </TabItem>
 
 
@@ -282,6 +224,7 @@
 
                     <DataGrid
                     Margin="5"  
+                    IsReadOnly="True"  
                    
                     ItemsSource="{Binding Items1}"
                     CanUserAddRows="False"
@@ -358,14 +301,21 @@
 
                 <!--Nút đặt hàng-->
                 <Grid Grid.Row="2" Margin="5">
+
                     <Button
-  Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+  Style="{StaticResource MaterialDesignFlatMidBgButton}"
   ToolTip="MaterialDesignFlatDarkButton"
   Content="ĐẶT HÀNG"
-                        Background="#FF931C1C"
-  Width="{StaticResource ButtonWidth}"
-  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+  
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" >
+                        <Button.Effect>
+                            <DropShadowEffect/>
+                        </Button.Effect>
+                    </Button>
+
                 </Grid>
+
+
 
 
             </Grid>
