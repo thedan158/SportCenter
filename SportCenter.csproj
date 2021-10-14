@@ -78,6 +78,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BasketballField.xaml.cs">
+      <DependentUpon>BasketballField.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Bill.xaml.cs">
       <DependentUpon>Bill.xaml</DependentUpon>
     </Compile>
@@ -89,6 +92,9 @@
     </Compile>
     <Compile Include="Basketball_Field_Bill.xaml.cs">
       <DependentUpon>Basketball_Field_Bill.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SoccerField.xaml.cs">
+      <DependentUpon>SoccerField.xaml</DependentUpon>
     </Compile>
     <Compile Include="Volleyball_Court_Bill.xaml.cs">
       <DependentUpon>Volleyball_Court_Bill.xaml</DependentUpon>
@@ -144,6 +150,10 @@
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ControlBarViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Page Include="BasketballField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Bill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -157,6 +167,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Football_Field_Bill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SoccerField.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
