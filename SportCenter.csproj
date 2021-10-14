@@ -84,6 +84,15 @@
     <Compile Include="ChooseSport.xaml.cs">
       <DependentUpon>ChooseSport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Football_Field_Bill.xaml.cs">
+      <DependentUpon>Football_Field_Bill.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Basketball_Field_Bill.xaml.cs">
+      <DependentUpon>Basketball_Field_Bill.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Volleyball_Court_Bill.xaml.cs">
+      <DependentUpon>Volleyball_Court_Bill.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Good.xaml.cs">
       <DependentUpon>Good.xaml</DependentUpon>
     </Compile>
@@ -140,6 +149,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ChooseSport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Basketball_Field_Bill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Football_Field_Bill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Volleyball_Court_Bill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
