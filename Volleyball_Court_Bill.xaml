@@ -18,7 +18,7 @@
         Name="BillWindow"
         Title="LOGIN" Height="500" Width="525">
 
-    <ScrollViewer>
+    
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
@@ -39,7 +39,7 @@
             Content="{materialDesign:PackIcon ArrowLeftBoldBox }"
             ToolTip="Icon"
             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Left" Margin="20,0,0,0" />
-            <ScrollViewer Grid.Row="3">
+            <ScrollViewer Height="400" Grid.Row="3" VerticalAlignment="Top">
                 <Grid >
                     <materialDesign:Card  Margin="20,40">
                         <StackPanel>
@@ -434,5 +434,5 @@
                 </Grid>
             </ScrollViewer>
         </Grid>
-    </ScrollViewer>
+   
 </Page>
