@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         
         xmlns:uc="clr-namespace:SportCenter.UserControlKteam"
-         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
      TextElement.FontWeight="Regular"
      TextElement.FontSize="13"
@@ -18,6 +18,7 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
+        DataContext="{StaticResource LoginVM}"
         Name="loginWindow"
         Title="LOGIN" Height="300" Width="400">
     <Grid>
@@ -43,12 +44,22 @@
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <TextBox materialDesign:HintAssist.Hint="Username"
+                             Text="{Binding UserName}"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                 </Grid>
                 <Grid Grid.Row="1">
                     <PasswordBox x:Name="FloatingPasswordBox"
+                             
                                  materialDesign:HintAssist.Hint="Password"
-                                 Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
+                                 Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PasswordChanged">
+                                <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}" 
+                                                       CommandParameter="{Binding ElementName=FloatingPasswordBox}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
+                    </PasswordBox>
                 </Grid>
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
@@ -58,6 +69,8 @@
 
                     <Button Grid.Column="0"
                             Width="110" 
+                            Command="{Binding LoginCommand}"
+                            CommandParameter="{Binding ElementName=loginWindow}"
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             materialDesign:ButtonProgressAssist.Value="-1"
                             materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
@@ -66,6 +79,8 @@
                              IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" 
     Margin="2,0"></Button>
                     <Button Grid.Column="1"    
+                            Command="{Binding CloseCommand}"
+                            CommandParameter="{Binding ElementName=loginWindow}"
                             Style="{StaticResource MaterialDesignRaisedButton}"    
                             Width="110"    
                             Background="OrangeRed"
