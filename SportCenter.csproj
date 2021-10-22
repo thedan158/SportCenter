@@ -78,6 +78,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Add_Good.xaml.cs">
+      <DependentUpon>Add_Good.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BasketballField.xaml.cs">
       <DependentUpon>BasketballField.xaml</DependentUpon>
     </Compile>
@@ -93,48 +96,48 @@
     <Compile Include="Basketball_Field_Bill.xaml.cs">
       <DependentUpon>Basketball_Field_Bill.xaml</DependentUpon>
     </Compile>
+    <Compile Include="List_Good.xaml.cs">
+      <DependentUpon>List_Good.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\account.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>sportcenter.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\bill.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>sportcenter.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\bookingInfo.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>sportcenter.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\buyingInfo.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>sportcenter.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\DataProvider.cs" />
     <Compile Include="Model\field.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>sportcenter.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\fieldtype.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>sportcenter.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\good.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>sportcenter.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\image.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>sportcenter.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Model.Context.cs">
+    <Compile Include="Model\sportcenter.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model.Context.tt</DependentUpon>
+      <DependentUpon>sportcenter.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Model.cs">
+    <Compile Include="Model\sportcenter.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>sportcenter.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Model.Designer.cs">
+    <Compile Include="Model\sportcenter.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Model\sysdiagram.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>sportcenter.edmx</DependentUpon>
     </Compile>
     <Compile Include="SoccerField.xaml.cs">
       <DependentUpon>SoccerField.xaml</DependentUpon>
@@ -152,6 +155,10 @@
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ControlBarViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Page Include="Add_Good.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BasketballField.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -169,6 +176,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Football_Field_Bill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="List_Good.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -230,12 +241,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\Model.edmx">
+    <EntityDeploy Include="Model\sportcenter.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+      <LastGenOutput>sportcenter.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\Model.edmx.diagram">
-      <DependentUpon>Model.edmx</DependentUpon>
+    <None Include="Model\sportcenter.edmx.diagram">
+      <DependentUpon>sportcenter.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -262,15 +273,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\Model.Context.tt">
+    <Content Include="Model\sportcenter.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
+      <DependentUpon>sportcenter.edmx</DependentUpon>
+      <LastGenOutput>sportcenter.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\Model.tt">
+    <Content Include="Model\sportcenter.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.cs</LastGenOutput>
+      <DependentUpon>sportcenter.edmx</DependentUpon>
+      <LastGenOutput>sportcenter.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
