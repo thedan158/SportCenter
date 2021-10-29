@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fa7cdd755f78412cab94b148bd3a040f" Name="Diagram1" ZoomLevel="73">
-        <EntityTypeShape EntityType="sportcenterModel.account" Width="1.5" PointX="11.125" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="sportcenterModel.bill" Width="1.5" PointX="7.875" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="sportcenterModel.bookingInfo" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="sportcenterModel.buyingInfo" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="sportcenterModel.field" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="sportcenterModel.fieldtype" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="sportcenterModel.good" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="sportcenterModel.image" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+      <Diagram DiagramId="1b8e3e120f5249b2a8cdf6d01be5c14f" Name="Diagram1" ZoomLevel="92">
+        <EntityTypeShape EntityType="sportcenterModel.account" Width="1.5" PointX="9.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportcenterModel.bill" Width="1.5" PointX="8.875" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportcenterModel.bookingInfo" Width="1.5" PointX="5.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportcenterModel.buyingInfo" Width="1.5" PointX="5.375" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportcenterModel.field" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportcenterModel.fieldtype" Width="1.5" PointX="0.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportcenterModel.good" Width="1.5" PointX="2.875" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportcenterModel.image" Width="1.5" PointX="0.5" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="sportcenterModel.sysdiagram" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
         <AssociationConnector Association="sportcenterModel.fk01_bill" ManuallyRouted="false" />
         <AssociationConnector Association="sportcenterModel.fk02_bill" ManuallyRouted="false" />

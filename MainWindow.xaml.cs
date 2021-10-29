@@ -22,5 +22,20 @@ namespace SportCenter
     {
         //http://materialdesigninxaml.net/home
         public MainWindow() => InitializeComponent();
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void TabControl_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

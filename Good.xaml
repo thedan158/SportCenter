@@ -122,7 +122,7 @@
                                         <StackPanel >
                                             <Border Width="100" Height="100" CornerRadius="5" Margin="5">
                                                 <Border.Background>
-                                                    <ImageBrush ImageSource="a5ff21dc78b136b321e4e7a6e0f161aa.jpg_684x684q90.jpg"/>
+                                                    <ImageBrush ImageSource="image/a5ff21dc78b136b321e4e7a6e0f161aa.jpg_684x684q90.jpg"/>
                                                 </Border.Background>
 
 
@@ -139,7 +139,7 @@
                                         <StackPanel >
                                             <Border Width="100" Height="100" CornerRadius="5" Margin="5">
                                                 <Border.Background>
-                                                    <ImageBrush ImageSource="a5ff21dc78b136b321e4e7a6e0f161aa.jpg_684x684q90.jpg"/>
+                                                    <ImageBrush ImageSource="image/a5ff21dc78b136b321e4e7a6e0f161aa.jpg_684x684q90.jpg"/>
                                                 </Border.Background>
 
 

@@ -22,7 +22,7 @@
         
         Name="mainWindow"
         DataContext="{StaticResource MainVM}"
-        Title="Phoenix Sport Center Management" Height="500" Width="525">
+        Title="Phoenix Sport Center Management" Height="550" Width="650">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName=mainWindow}"/>
@@ -42,30 +42,533 @@
         </Grid>
 
         <Grid Grid.Row="1">
+            <TabControl
+  Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
+  BorderThickness="0"
+  BorderBrush="Transparent"
+  TabStripPlacement="Left"
+  materialDesign:ShadowAssist.ShadowDepth="Depth0"
+  materialDesign:ColorZoneAssist.Mode="Standard"
+  SnapsToDevicePixels="True"
+  materialDesign:NavigationRailAssist.ShowSelectionBackground="True" SelectionChanged="TabControl_SelectionChanged">
+
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+        Height="auto"
+        Width="auto">
+                            <materialDesign:PackIcon
+          Kind="Basketball"
+          Width="30"
+          Height="30"
+          HorizontalAlignment="Center" />
+                            <TextBlock
+          Text="Fields"
+          HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="50*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Button HorizontalAlignment="Center" Height="200" VerticalAlignment="Center" Width="120">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <materialDesign:PackIcon Grid.Row="0" FontWeight="ExtraBold" Kind="Soccer" FontSize="200" Height="109" Width="81"/>
+                                        <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="13,105,13.231,4.277" Grid.RowSpan="2">
+                       Bóng đá
+                                        </TextBlock>
+                                    </Grid>
+
+                                </Button>
+                            </Grid>
+                            <Grid Grid.Column="1">
+
+                                <Button HorizontalAlignment="Center" Height="200" VerticalAlignment="Center" Width="120">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <materialDesign:PackIcon Kind="Volleyball" FontSize="200" Height="109" Width="79" />
+                                        <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="0,105,-0.338,4.277" Grid.RowSpan="2">
+                       Bóng chuyền
+                                        </TextBlock>
+                                    </Grid>
+                                </Button>
+                            </Grid>
+                            <Grid Grid.Column="2">
+                                <Button HorizontalAlignment="Center" Height="200" VerticalAlignment="Center" Width="120">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="27*"/>
+                                            <ColumnDefinition Width="56*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <materialDesign:PackIcon Kind="Basketball" Height="87" Width="82" Margin="0,10,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2" />
+                                        <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="15,96,14.708,-0.277" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                       Bóng rổ
+                                        </TextBlock>
+                                    </Grid>
+                                </Button>
+                            </Grid>
 
 
-            <Grid HorizontalAlignment="Stretch"  Background="Transparent" VerticalAlignment="Stretch">
-                <Grid.Resources>
-                    <Style TargetType="Button">
-                        <Setter Property="Margin" Value="2 4 2 4"></Setter>
-                        <Setter Property="Width" Value="40"></Setter>
-                    </Style>
-                </Grid.Resources>
+                        </Grid>
+                        <Grid Grid.Row="1" Margin="31,340.754,31.046,53.938">
+                            <ProgressBar
+  IsIndeterminate="True" Margin="0,-20,0,26.723" />
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+        Height="auto"
+        Width="auto">
+                            <materialDesign:PackIcon
+          Kind="FoodForkDrink"
+          Width="30"
+          Height="30"
+          HorizontalAlignment="Center" />
+                            <TextBlock
+          Text="Drink"
+          HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <Grid>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="1" Margin="0,79,12.6,0" FontSize="30" FontWeight="DemiBold" Text="WELCOME" VerticalAlignment="Top" HorizontalAlignment="Right" TextAlignment="Center"                       
-                           Width="153" Height="50"/>
-                <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="12.4,284,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="169" Width="150"/>
 
+                        <!--Main-->
 
-            </Grid>
+                        <Grid Grid.Row="0" >
 
 
 
+                            <!--Main-->
+
+
+
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                                <ColumnDefinition  ></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <!--Danh sách hàng hóa-->
+                            <Grid Grid.Column="0" Margin="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="149*"/>
+                                    <RowDefinition Height="344*"/>
+                                </Grid.RowDefinitions>
+
+
+                                <!--Filter và search-->
+
+                                <TabControl
+                    
+  Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
+  materialDesign:ColorZoneAssist.Mode="PrimaryLight"
+  TabStripPlacement="Top"
+  materialDesign:NavigationRailAssist.SelectionCornerRadius="30 30 0 0" SelectionChanged="TabControl_SelectionChanged_1" Margin="0,0,-0.2,-0.4" Grid.RowSpan="2"
+  >
+                                    <!--Nước uống-->
+                                    <TabItem Width="119">
+                                        <TabItem.Header>
+                                            <StackPanel Height="auto" Width="auto">
+                                                <materialDesign:PackIcon 
+                                    Kind="BottleSodaClassic" 
+                                    Width="24" Height="24" 
+                                    HorizontalAlignment="Center" />
+                                                <TextBlock
+          Text="Drink"
+          HorizontalAlignment="Center" />
+                                            </StackPanel>
+                                        </TabItem.Header>
+                                        <ScrollViewer >
+                                            <ScrollViewer.Background>
+                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+
+                                                </LinearGradientBrush>
+                                            </ScrollViewer.Background>
+
+                                            <WrapPanel Orientation="Horizontal">
+                                                <StackPanel Margin="20 0"  >
+                                                    <Border Margin="20" Width="110" Height="160" >
+                                                        <StackPanel >
+                                                            <Border Width="100" Height="100" CornerRadius="5" Margin="5">
+                                                                <Border.Background>
+                                                                    <ImageBrush ImageSource="image/a5ff21dc78b136b321e4e7a6e0f161aa.jpg_684x684q90.jpg"/>
+                                                                </Border.Background>
+
+
+
+
+
+                                                            </Border>
+                                                            <TextBlock Margin="5" Text="10.000 VNĐ" FontSize="14" FontFamily="Franklin Gothic Medium" />
+                                                            <TextBlock Margin="5 0" Text="WARRIOR" FontSize="13"/>
+                                                        </StackPanel>
+                                                    </Border>
+
+                                                </StackPanel>
+                                                <StackPanel Margin="20 0" HorizontalAlignment="Right" >
+                                                    <Border Margin="20" Width="110" Height="160" >
+                                                        <StackPanel>
+                                                            <Border Width="100" Height="100" CornerRadius="5" Margin="5">
+                                                                <Border.Background>
+                                                                    <ImageBrush ImageSource="image/a5ff21dc78b136b321e4e7a6e0f161aa.jpg_684x684q90.jpg"/>
+                                                                </Border.Background>
+
+
+                                                            </Border>
+                                                            <TextBlock Margin="5" Text="10.000 VNĐ" FontSize="14" FontFamily="Franklin Gothic Medium" />
+                                                            <TextBlock Margin="5 0" Text="WARRIOR" FontSize="13"/>
+                                                        </StackPanel>
+                                                    </Border>
+                                                </StackPanel>
+                                                <StackPanel Margin="20 0"  >
+                                                    <Border Margin="20" Width="110" Height="160" >
+                                                        <StackPanel >
+                                                            <Border Width="100" Height="100" CornerRadius="5" Margin="5">
+                                                                <Border.Background>
+                                                                    <ImageBrush ImageSource="image/a5ff21dc78b136b321e4e7a6e0f161aa.jpg_684x684q90.jpg"/>
+                                                                </Border.Background>
+
+
+
+                                                            </Border>
+                                                            <TextBlock Margin="5" Text="10.000 VNĐ" FontSize="14" FontFamily="Franklin Gothic Medium" />
+                                                            <TextBlock Margin="5 0" Text="WARRIOR" FontSize="13"/>
+                                                        </StackPanel>
+                                                    </Border>
+
+                                                </StackPanel>
+                                                <StackPanel Margin="20 0"  >
+                                                    <Border Margin="20" Width="110" Height="160" >
+                                                        <StackPanel >
+                                                            <Border Width="100" Height="100" CornerRadius="5" Margin="5">
+                                                                <Border.Background>
+                                                                    <ImageBrush ImageSource="image/a5ff21dc78b136b321e4e7a6e0f161aa.jpg_684x684q90.jpg"/>
+                                                                </Border.Background>
+
+
+
+                                                            </Border>
+                                                            <TextBlock Margin="5" Text="10.000 VNĐ" FontSize="14" FontFamily="Franklin Gothic Medium" />
+                                                            <TextBlock Margin="5 0" Text="WARRIOR" FontSize="13"/>
+                                                        </StackPanel>
+                                                    </Border>
+
+                                                </StackPanel>
+
+
+
+                                            </WrapPanel>
+
+                                        </ScrollViewer>
+                                    </TabItem>
+                                    <!--Dụng cụ thể thao-->
+                                    <TabItem Width="119">
+                                        <TabItem.Header>
+                                            <StackPanel
+        Height="auto"
+        Width="auto">
+                                                <materialDesign:PackIcon
+          Kind="FastFood"
+          Width="24"
+          Height="24"
+          HorizontalAlignment="Center" 
+                                    />
+
+                                                <TextBlock
+          Text="Food"
+          HorizontalAlignment="Center" />
+                                            </StackPanel>
+                                        </TabItem.Header>
+                                        <TextBlock>
+      <Run
+        Text="tab 2 content. Default look and behaviors." />
+      <LineBreak />
+      <LineBreak />
+      <Run
+        FontStyle="Italic">
+      Praesent sed dui arcu. Vivamus porta auctor sagittis
+    </Run>
+                                        </TextBlock>
+                                    </TabItem>
+
+
+
+                                </TabControl>
+
+
+                            </Grid>
+
+
+
+
+
+
+                            <!--Đặt hàng-->
+                            <Grid Grid.Column="1">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                    <RowDefinition Height="8*"></RowDefinition>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <!--Tên sân-->
+                                <Grid Grid.Row="0">
+                                    <StackPanel Margin="5">
+                                        <ComboBox  materialDesign:HintAssist.Hint="Tên sân">
+                                            <ComboBoxItem>Sân bóng đá 1</ComboBoxItem>
+                                            <ComboBoxItem>Sân bóng chuyền 2</ComboBoxItem>
+                                            <ComboBoxItem>Sân bóng rổ 4</ComboBoxItem>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </Grid>
+
+                                <!--Sản phẩm đã chọn-->
+                                <Grid Grid.Row="1">
+
+                                    <DataGrid
+                    Margin="5"  
+                    IsReadOnly="True"  
+                   
+                    ItemsSource="{Binding Items1}"
+                    CanUserAddRows="False"
+                    AutoGenerateColumns="False"
+                    HeadersVisibility="All">
+
+                                        <DataGrid.Columns>
+
+                                            <!-- if you want to use the pop up style (MaterialDesignDataGridTextColumnPopupEditingStyle), you must use MaterialDataGridTextColumn -->
+                                            <materialDesign:DataGridTextColumn
+      Header="Tên món"
+      ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+      EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
+                                                <materialDesign:DataGridTextColumn.Binding>
+                                                    <Binding
+          Path="Name">
+
+                                                    </Binding>
+                                                </materialDesign:DataGridTextColumn.Binding>
+                                            </materialDesign:DataGridTextColumn>
+                                            <!-- set a max length to get an indicator in the editor -->
+                                            <DataGridTextColumn
+      Header="Đơn giá"
+      ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+      EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                                                <DataGridTextColumn.Binding>
+                                                    <Binding
+          Path="Description">
+
+                                                    </Binding>
+                                                </DataGridTextColumn.Binding>
+                                            </DataGridTextColumn>
+                                            <materialDesign:DataGridTextColumn
+      Binding="{Binding Numeric}"
+      Header="Số lượng"
+      Width="120"
+      EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
+                                                <DataGridTextColumn.HeaderStyle>
+                                                    <Style
+          TargetType="{x:Type DataGridColumnHeader}"
+          BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                                                        <Setter
+            Property="HorizontalContentAlignment"
+            Value="Right" />
+                                                        <Setter
+            Property="ContentTemplate">
+                                                            <Setter.Value>
+                                                                <DataTemplate>
+                                                                    <TextBlock
+                  TextWrapping="Wrap"
+                  Text="{Binding}"
+                  TextAlignment="Right" />
+                                                                </DataTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Style>
+                                                </DataGridTextColumn.HeaderStyle>
+                                                <DataGridTextColumn.ElementStyle>
+                                                    <Style
+          TargetType="{x:Type TextBlock}"
+          BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
+                                                        <Setter
+            Property="HorizontalAlignment"
+            Value="Right" />
+                                                    </Style>
+                                                </DataGridTextColumn.ElementStyle>
+                                            </materialDesign:DataGridTextColumn>
+
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+
+
+                                </Grid>
+
+                                <!--Nút đặt hàng-->
+                                <Grid Grid.Row="2" Margin="5">
+
+                                    <Button
+  Style="{StaticResource MaterialDesignFlatMidBgButton}"
+  ToolTip="MaterialDesignFlatDarkButton"
+  Content="ĐẶT HÀNG"
+  
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" >
+                                        <Button.Effect>
+                                            <DropShadowEffect/>
+                                        </Button.Effect>
+                                    </Button>
+
+                                </Grid>
+
+
+
+
+                            </Grid>
+                        </Grid>
+
+
+                    </Grid>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+        Height="auto"
+        Width="auto">
+                            <materialDesign:PackIcon
+          Kind="CurrencyUsd"
+          Width="30"
+          Height="30"
+          HorizontalAlignment="Center" />
+                            <TextBlock
+          Text="Payment"
+          HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <Grid x:Name="Grid_Button">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40*"></RowDefinition>
+                            <RowDefinition Height="70*"/>
+                            <RowDefinition Height="250*"/>
+                            <RowDefinition Height="100*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="133*" />
+                            <ColumnDefinition Width="133*"/>
+                            <ColumnDefinition Width="133*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="FB_button"
+            Style="{DynamicResource MaterialDesignRaisedButton}"
+            materialDesign:ShadowAssist.ShadowDepth="Depth4"
+            Content="FOOTBALL FIELD"
+            Width="150" Height="40"
+            Grid.Column="0" Grid.Row="3"
+            ToolTip="Resource name: MaterialDesignRaisedLightButton"            
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                        <Button x:Name="BKB_button"
+            Style="{DynamicResource MaterialDesignRaisedButton}"
+            materialDesign:ShadowAssist.ShadowDepth="Depth4"
+            Content="BASKETBALL COURT" FontSize="10"
+            Width="150" Height="40"            
+            Grid.Column="1" Grid.Row="3"
+            ToolTip="Resource name: MaterialDesignRaisedLightButton"            
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                        <Button x:Name="VLB_button"
+            Style="{DynamicResource MaterialDesignRaisedButton}"
+            materialDesign:ShadowAssist.ShadowDepth="Depth4"
+            Content="VOLLEYBALL COURT"  FontSize="10"
+            Width="150" Height="40" 
+            Grid.Column="2" Grid.Row="3"
+            ToolTip="Resource name: MaterialDesignRaisedLightButton"            
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Center" VerticalAlignment="Top" />
+
+
+                        <Image Source="image/5854088.png" 
+               Grid.Row="2"
+               Grid.Column="0"
+               HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="150" RenderTransformOrigin="0.557,0.517"
+               ></Image>
+                        <Image Source="image/7042198.png" 
+               Grid.Column="1"
+               Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="150"
+               ></Image>
+                        <Image Source="image/5854089.png" 
+               Grid.Column="2"
+               Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="150"
+               ></Image>
+
+                        <TextBlock
+            Text="PAYMENT" FontWeight="Bold" FontSize="25"
+            Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Bungee Inline"
+            ></TextBlock>
+                    </Grid>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+        Height="auto"
+        Width="auto">
+                            <materialDesign:PackIcon
+          Kind="ChartBar"
+          Width="30"
+          Height="30"
+          HorizontalAlignment="Center" />
+                            <TextBlock
+          Text="Statitics"
+          HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <TextBlock>
+      <Run
+        Text="tab 4 content. Default look and behaviors." />
+      <LineBreak />
+      <LineBreak />
+                    </TextBlock>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+        Height="auto"
+        Width="auto">
+                            <materialDesign:PackIcon
+          Kind="Settings"
+          Width="30"
+          Height="30"
+          HorizontalAlignment="Center" />
+                            <TextBlock
+          Text="Settings"
+          HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <TextBlock>
+      <Run
+        Text="tab 4 content. Default look and behaviors." />
+      <LineBreak />
+      <LineBreak />
+                    </TextBlock>
+                </TabItem>
+            </TabControl>
         </Grid>
     </Grid>
 
