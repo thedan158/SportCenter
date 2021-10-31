@@ -499,7 +499,7 @@
                             ToolTip="Resource name: MaterialDesignRaisedLightButton"
                             Command="{Binding _ShowWindowCommand_FB}"
                             CommandParameter="{Binding ElementName=FB_button}"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Center" VerticalAlignment="Top" Click="FB_button_Click" />
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Center" VerticalAlignment="Top" />
                         <Button x:Name="BKB_button"
                             Style="{DynamicResource MaterialDesignRaisedButton}"
                             materialDesign:ShadowAssist.ShadowDepth="Depth4"

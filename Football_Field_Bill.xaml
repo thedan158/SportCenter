@@ -30,7 +30,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" >
-            <uc:ControlBarUC Tag="{Binding Title, ElementName=BillWindow}" Loaded="ControlBarUC"></uc:ControlBarUC>
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=BillWindow}"></uc:ControlBarUC>
         </Grid>
 
         <TextBlock Text="---FOOTBALL FIELD PAYMENT---" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" FontFamily="Bungee Inline"></TextBlock>
