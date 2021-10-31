@@ -90,7 +90,7 @@
                                         </Grid.RowDefinitions>
                                         <materialDesign:PackIcon Grid.Row="0" FontWeight="ExtraBold" Kind="Soccer" FontSize="200" Height="109" Width="81"/>
                                         <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="13,105,13.231,4.277" Grid.RowSpan="2">
-                       Bóng đá
+                       Football
                                         </TextBlock>
                                     </Grid>
 
@@ -106,7 +106,7 @@
                                         </Grid.RowDefinitions>
                                         <materialDesign:PackIcon Kind="Volleyball" FontSize="200" Height="109" Width="79" />
                                         <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="0,105,-0.338,4.277" Grid.RowSpan="2">
-                       Bóng chuyền
+                       Volleyball
                                         </TextBlock>
                                     </Grid>
                                 </Button>
@@ -124,7 +124,7 @@
                                         </Grid.RowDefinitions>
                                         <materialDesign:PackIcon Kind="Basketball" Height="87" Width="82" Margin="0,10,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2" />
                                         <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="15,96,14.708,-0.277" Grid.RowSpan="2" Grid.ColumnSpan="2">
-                       Bóng rổ
+                       Basketball
                                         </TextBlock>
                                     </Grid>
                                 </Button>
@@ -136,17 +136,7 @@
                             <ProgressBar
   IsIndeterminate="True" Margin="0,-20,0,26.723" />
                         </Grid>
-                        <Grid Grid.Row="2">
-                            <Button
-                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                Width="160"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Right"
-                                
-                                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                Content="ADD FIELD"
-                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Margin="0,0,30,0" />
-                        </Grid>
+                        <Grid Grid.Row="2"/>
                     </Grid>
                 </TabItem>
                 <TabItem>
@@ -550,7 +540,7 @@
           Height="30"
           HorizontalAlignment="Center" />
                             <TextBlock
-          Text="Statitics"
+          Text="Statistics"
           HorizontalAlignment="Center" />
                         </StackPanel>
                     </TabItem.Header>
