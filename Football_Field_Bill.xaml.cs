@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SportCenter
@@ -18,7 +17,7 @@ namespace SportCenter
     /// <summary>
     /// Interaction logic for Football_Field_Bill.xaml
     /// </summary>
-    public partial class Football_Field_Bill : Page
+    public partial class Football_Field_Bill : Window
     {
         public Football_Field_Bill()
         {

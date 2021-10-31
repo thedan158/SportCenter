@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SportCenter
@@ -18,7 +17,7 @@ namespace SportCenter
     /// <summary>
     /// Interaction logic for Volleyball_Court_Bill.xaml
     /// </summary>
-    public partial class Volleyball_Court_Bill : Page
+    public partial class Volleyball_Court_Bill : Window
     {
         public Volleyball_Court_Bill()
         {

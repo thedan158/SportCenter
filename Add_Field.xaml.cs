@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace SportCenter
 {
     /// <summary>
-    /// Interaction logic for Basketball_Field_Bill.xaml
+    /// Interaction logic for Add_Field.xaml
     /// </summary>
-    public partial class Basketball_Field_Bill : Window
+    public partial class Add_Field : Window
     {
-        public Basketball_Field_Bill()
+        public Add_Field()
         {
             InitializeComponent();
         }

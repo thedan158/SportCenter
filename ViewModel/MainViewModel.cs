@@ -12,6 +12,10 @@ namespace SportCenter.ViewModel
     {
         public bool Isloaded = false;
         public ICommand LoadedWindowCommand { get; set; }
+        public ICommand _ShowWindowCommand_FB { get; set; }
+        public ICommand ShowWindowCommand_BK { get; set; }
+        public ICommand ShowWindowCommand_VL { get; set; }
+
 
         // mọi thứ xử lý sẽ nằm trong này
         public MainViewModel()
@@ -24,6 +28,28 @@ namespace SportCenter.ViewModel
                 p.Show();
             }
               );
+            _ShowWindowCommand_FB = new RelayCommand<object>((parameter) => true, (parameter) => _ShowWindowFuntion_FB());
+            ShowWindowCommand_BK = new RelayCommand<object>((parameter) => true, (parameter) => ShowWindowFuntion_BK());
+            ShowWindowCommand_VL = new RelayCommand<object>((parameter) => true, (parameter) => ShowWindowFuntion_VL());
         }
+
+        private void ShowWindowFuntion_VL()
+        {
+            Volleyball_Court_Bill Volleyball_Bill = new Volleyball_Court_Bill();
+            Volleyball_Bill.ShowDialog();
+        }
+
+        private void ShowWindowFuntion_BK()
+        {
+            Basketball_Field_Bill basketball_bill = new Basketball_Field_Bill();
+            basketball_bill.ShowDialog();
+        }
+
+        public void _ShowWindowFuntion_FB()
+        {
+            Football_Field_Bill football_bill = new Football_Field_Bill();
+            football_bill.ShowDialog();
+        }
+
     }
 }

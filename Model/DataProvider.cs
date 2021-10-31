@@ -22,10 +22,10 @@ namespace SportCenter.Model
                 _ins = value;
             }
         }
-        public sportcenterEntities5 DB { get; set; }
+        public sportcenterEntities DB { get; set; }
         private DataProvider()
         {
-            DB = new sportcenterEntities5();
+            DB = new sportcenterEntities();
         }
     }
 }
