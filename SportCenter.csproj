@@ -146,6 +146,9 @@
       <DependentUpon>SoccerField.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="VolleyballField.xaml.cs">
+      <DependentUpon>VolleyballField.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Volleyball_Court_Bill.xaml.cs">
       <DependentUpon>Volleyball_Court_Bill.xaml</DependentUpon>
     </Compile>
@@ -191,6 +194,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SoccerField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VolleyballField.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

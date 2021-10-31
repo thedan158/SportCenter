@@ -15,7 +15,9 @@ namespace SportCenter.ViewModel
         public ICommand _ShowWindowCommand_FB { get; set; }
         public ICommand ShowWindowCommand_BK { get; set; }
         public ICommand ShowWindowCommand_VL { get; set; }
-
+        public ICommand ShowFootballFieldCommand { get; set; }
+        public ICommand ShowVolleyballFieldCommand { get; set; }
+        public ICommand ShowBasketballFieldCommand { get; set; }
 
         // mọi thứ xử lý sẽ nằm trong này
         public MainViewModel()
@@ -31,6 +33,9 @@ namespace SportCenter.ViewModel
             _ShowWindowCommand_FB = new RelayCommand<object>((parameter) => true, (parameter) => _ShowWindowFuntion_FB());
             ShowWindowCommand_BK = new RelayCommand<object>((parameter) => true, (parameter) => ShowWindowFuntion_BK());
             ShowWindowCommand_VL = new RelayCommand<object>((parameter) => true, (parameter) => ShowWindowFuntion_VL());
+            ShowFootballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowFootballFieldFunction());
+            ShowVolleyballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowVolleyballFieldFunction());
+            ShowBasketballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowBasketballFieldFuction());
         }
 
         private void ShowWindowFuntion_VL()
@@ -50,6 +55,20 @@ namespace SportCenter.ViewModel
             Football_Field_Bill football_bill = new Football_Field_Bill();
             football_bill.ShowDialog();
         }
-
+        public void ShowFootballFieldFunction()
+        {
+            SoccerField soccerField = new SoccerField();
+            soccerField.ShowDialog();
+        }
+        public void ShowVolleyballFieldFunction()
+        {
+            VolleyballField volleyballField = new VolleyballField();
+            volleyballField.ShowDialog();
+        }
+        public void ShowBasketballFieldFuction()
+        {
+            BasketballField basketballField = new BasketballField();
+            basketballField.ShowDialog();
+        }
     }
 }

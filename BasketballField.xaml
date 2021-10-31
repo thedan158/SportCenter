@@ -37,7 +37,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <uc:ControlBarUC Tag="{Binding Title, ElementName=ChooseSportWindow}" Loaded="ControlBarUC_Loaded" Height="32" Margin="0,0,0.046,-0.246" VerticalAlignment="Top"></uc:ControlBarUC>
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=ChooseSportWindow}" Height="32" Margin="0,0,0.046,-0.246" VerticalAlignment="Top"></uc:ControlBarUC>
         </Grid>
         <TextBlock Grid.Row="1" FontFamily="Bungee Inline" FontSize="30" Margin="194,11.246,194.046,391.938" Grid.RowSpan="2"  >
                 Bóng rổ
