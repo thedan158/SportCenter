@@ -33,14 +33,8 @@ namespace SportCenter
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
+        
 
-        }
-
-        private void FB_button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
     }
 }

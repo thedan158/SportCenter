@@ -71,10 +71,11 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"></RowDefinition>
                             <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="14*"></RowDefinition>
+                            <RowDefinition Height="13*"/>
                         </Grid.RowDefinitions>
 
-                        <Grid Grid.Row="1">
+                        <Grid Grid.Row="1" Margin="0,0,-0.4,56.2" Grid.RowSpan="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50*"/>
                                 <ColumnDefinition Width="50*"/>
@@ -131,9 +132,20 @@
 
 
                         </Grid>
-                        <Grid Grid.Row="1" Margin="31,340.754,31.046,53.938">
+                        <Grid Grid.Row="1" Margin="31,341,30.6,53.8">
                             <ProgressBar
   IsIndeterminate="True" Margin="0,-20,0,26.723" />
+                        </Grid>
+                        <Grid Grid.Row="2">
+                            <Button
+                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                Width="160"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Right"
+                                
+                                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                Content="ADD FIELD"
+                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Margin="0,0,30,0" />
                         </Grid>
                     </Grid>
                 </TabItem>
