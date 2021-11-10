@@ -45,7 +45,7 @@ namespace SportCenter.ViewModel
             else
             {
                 IsLogin = false;
-                MessageBox.Show("Sai thông tin đăng nhập !");
+                MessageBox.Show("Incorrect Username or Password !");
             }
 
         }

@@ -73,9 +73,9 @@
                                                 <ColumnDefinition Width="200"></ColumnDefinition>
                                                 <ColumnDefinition></ColumnDefinition>
                                             </Grid.ColumnDefinitions>
-                                            <TextBox Grid.Row="1" Grid.ColumnSpan="2" Text="Thành tiền: X x 100000 = B VNĐ" Margin="40,0,0,0" FontSize="20"></TextBox>
+                                            <TextBox Grid.Row="1" Grid.ColumnSpan="2" Text="Price:" Margin="40,0,0,0" FontSize="20"></TextBox>
 
-                                            <TextBox Grid.Row="0" Grid.ColumnSpan="2" Text="1. Số giờ đã thuê sân: " FontSize="20"></TextBox>
+                                            <TextBox Grid.Row="0" Grid.ColumnSpan="2" Text="1. Hour Played: " FontSize="20"></TextBox>
                                             <TextBox Grid.Row="0" Grid.Column="1" Text="X" FontSize="20"></TextBox>
                                         </Grid>
                                         <Grid Grid.Row="1" Grid.ColumnSpan="2">
@@ -87,8 +87,8 @@
                                                 <ColumnDefinition Width="200*"></ColumnDefinition>
                                                 <ColumnDefinition></ColumnDefinition>
                                             </Grid.ColumnDefinitions>
-                                            <TextBox Grid.Row="1" Grid.ColumnSpan="2" Text="Tổng tiền: A + B VNĐ" Margin="40,0,0,0" FontSize="20" FontWeight="Bold"/>
-                                            <TextBox Grid.Row="0" Grid.ColumnSpan="2" Text="2. Số tiền phụ phí: " FontSize="20" ></TextBox>
+                                            <TextBox Grid.Row="1" Grid.ColumnSpan="2" Text="Total Payment: " Margin="40,0,0,0" FontSize="20" FontWeight="Bold"/>
+                                            <TextBox Grid.Row="0" Grid.ColumnSpan="2" Text="2. Goods Payment: " FontSize="20" TextChanged="TextBox_TextChanged" ></TextBox>
                                             <TextBox Grid.Row="0" Grid.Column="0" Text="A" FontSize="20" Margin="170,0,0,0"></TextBox>
                                         </Grid>
                                         <Grid Grid.Row="3" Grid.ColumnSpan="2">

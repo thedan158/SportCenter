@@ -345,7 +345,7 @@
                                 <!--Tên sân-->
                                 <Grid Grid.Row="0">
                                     <StackPanel Margin="5">
-                                        <ComboBox  materialDesign:HintAssist.Hint="Tên sân">
+                                        <ComboBox  materialDesign:HintAssist.Hint="Field Name">
                                             <ComboBoxItem>Sân bóng đá 1</ComboBoxItem>
                                             <ComboBoxItem>Sân bóng chuyền 2</ComboBoxItem>
                                             <ComboBoxItem>Sân bóng rổ 4</ComboBoxItem>
@@ -369,7 +369,7 @@
 
                                             <!-- if you want to use the pop up style (MaterialDesignDataGridTextColumnPopupEditingStyle), you must use MaterialDataGridTextColumn -->
                                             <materialDesign:DataGridTextColumn
-      Header="Tên món"
+      Header="Name"
       ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
       EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
                                                 <materialDesign:DataGridTextColumn.Binding>
@@ -381,7 +381,7 @@
                                             </materialDesign:DataGridTextColumn>
                                             <!-- set a max length to get an indicator in the editor -->
                                             <DataGridTextColumn
-      Header="Đơn giá"
+      Header="Price"
       ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
       EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
                                                 <DataGridTextColumn.Binding>
@@ -393,7 +393,7 @@
                                             </DataGridTextColumn>
                                             <materialDesign:DataGridTextColumn
       Binding="{Binding Numeric}"
-      Header="Số lượng"
+      Header="Unit"
       Width="120"
       EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
                                                 <DataGridTextColumn.HeaderStyle>
@@ -439,7 +439,7 @@
                                     <Button
   Style="{StaticResource MaterialDesignFlatMidBgButton}"
   ToolTip="MaterialDesignFlatDarkButton"
-  Content="ĐẶT HÀNG"
+  Content="BUY"
   
   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" >
                                         <Button.Effect>
@@ -572,12 +572,119 @@
           HorizontalAlignment="Center" />
                         </StackPanel>
                     </TabItem.Header>
-                    <TextBlock>
-      <Run
-        Text="tab 4 content. Default look and behaviors." />
-      <LineBreak />
-      <LineBreak />
-                    </TextBlock>
+                    <Grid HorizontalAlignment="Left" Margin="0,0,0,-0.4" Width="578">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40*"></RowDefinition>
+                            <RowDefinition Height="70*"/>
+                            <RowDefinition Height="500*"/>
+                            <RowDefinition Height="100*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="1">
+                            <TextBlock
+                                        Text="SPORT CENTER MANGEMENT" 
+                                        FontWeight="Bold" 
+                                        FontSize="25"
+                                        FontFamily="Bungee Inline"
+                                        HorizontalAlignment="Center"></TextBlock>
+
+                        </Grid>
+                        <Grid Grid.Row="2">
+                            <materialDesign:Card
+  Width="578">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition
+        Height="140" />
+                                        <RowDefinition
+        Height="150" />
+                                        <RowDefinition
+        Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Image
+      Source="Image/football.png"
+      Height="140"
+      Width="578"
+      Stretch="UniformToFill" />
+                                    <ToggleButton
+  Content="{materialDesign:PackIcon Kind=Heart, Size=21}"
+  Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Bottom"
+  ToolTip="MaterialDesignFlatPrimaryToggleButton"
+  IsChecked="True" />
+                                    <StackPanel
+      Grid.Row="1"
+      Margin="8 24 8 0">
+                                        <TextBlock
+        FontWeight="Bold">
+      Sport Center Management Application
+                                        </TextBlock>
+                                        <TextBlock
+        TextWrapping="Wrap"
+        VerticalAlignment="Center"
+        ><Run Text="Developped in 2021, SCMA helps solving business problem for sport center around the world including making reservation, selling, making invoice, revenue statistics reviewing and to be update continously.                "/><Run Text="                                                                                                              "/><LineBreak/><Run Text="For more infomation please contact us :                                                                 thedanfbdev@gmail.com                                                                                                                                       "/></TextBlock>
+                                    </StackPanel>
+                                    <StackPanel
+      Grid.Row="2"
+      Orientation="Horizontal"
+      HorizontalAlignment="Center"                              
+      Margin="10">
+
+                                        <Grid
+  Width="150"
+                                            Margin="10">
+                                            <Button
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    Height="30"
+    materialDesign:ButtonAssist.CornerRadius="10"
+    ToolTip="MaterialDesignRaisedButton with Round Corners"
+    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                                                <TextBlock
+      Text="CLEAR DATA" />
+                                            </Button>
+                                        </Grid>
+                                        <Grid
+  Width="150"
+                                            Margin="10">
+                                            <Button
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    Height="30"
+    materialDesign:ButtonAssist.CornerRadius="10"
+    ToolTip="MaterialDesignRaisedButton with Round Corners"
+    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                                                <TextBlock
+      Text="ABOUT US" />
+                                            </Button>
+                                        </Grid>
+                                        <Grid
+  Width="150"
+                                            Margin="10">
+                                            <Button
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    Height="30"
+    materialDesign:ButtonAssist.CornerRadius="10"
+    ToolTip="MaterialDesignRaisedButton with Round Corners"
+    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                                                <TextBlock
+      Text="LOG OUT" />
+                                            </Button>
+                                        </Grid>
+                                    </StackPanel>
+                                </Grid>
+                            </materialDesign:Card>
+
+                        </Grid>
+                        <Grid Grid.Row="3">
+                            <TextBlock
+                                        Text="SINCE 2021" 
+                                      
+                                
+                                        FontSize="15"
+                                VerticalAlignment="Center"
+                                        FontFamily="Bungee Inline"
+                                        HorizontalAlignment="Center"></TextBlock>
+                        </Grid>
+                    </Grid>
                 </TabItem>
             </TabControl>
         </Grid>
