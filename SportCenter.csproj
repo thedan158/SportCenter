@@ -93,6 +93,9 @@
     <Compile Include="Bill.xaml.cs">
       <DependentUpon>Bill.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Booking.xaml.cs">
+      <DependentUpon>Booking.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ChooseSport.xaml.cs">
       <DependentUpon>ChooseSport.xaml</DependentUpon>
     </Compile>
@@ -181,6 +184,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Bill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Booking.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
