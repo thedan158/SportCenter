@@ -1,4 +1,4 @@
-﻿<Window x:Class="Booking.ChooseSport"
+﻿<Window x:Class="SportCenter.Booking"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -20,7 +20,7 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         
-        Name="ChooseSportWindow"
+        Name="BookingWindow"
       
         Title="Phoenix Sport Center Managament" Height="418.062" Width="393.899">
     <Grid>
