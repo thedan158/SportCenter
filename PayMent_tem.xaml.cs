@@ -11,19 +11,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using SportCenter.ViewModel;
 
 namespace SportCenter
 {
     /// <summary>
-    /// Interaction logic for Basketball_Field_Bill.xaml
+    /// Interaction logic for PayMent_tem.xaml
     /// </summary>
-    public partial class Basketball_Field_Bill : Window
+    public partial class PayMent_tem : Window
     {
-        public Basketball_Field_Bill()
+        public PayMent_tem()
         {
             InitializeComponent();
-            
         }
     }
 }
