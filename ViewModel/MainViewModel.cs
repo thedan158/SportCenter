@@ -1,5 +1,7 @@
-﻿using System;
+﻿using SportCenter.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +12,8 @@ namespace SportCenter.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
+        private ObservableCollection<TonKho> _TonKhoList;
+        public ObservableCollection<TonKho> TonKhoList { get => _TonKhoList; set { _TonKhoList = value; OnPropertyChanged(); } }
         public bool Isloaded = false;
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand _ShowWindowCommand_FB { get; set; }
@@ -18,7 +22,7 @@ namespace SportCenter.ViewModel
         public ICommand ShowFootballFieldCommand { get; set; }
         public ICommand ShowVolleyballFieldCommand { get; set; }
         public ICommand ShowBasketballFieldCommand { get; set; }
-
+        public ICommand addGoodCommand { get; set; }
         // mọi thứ xử lý sẽ nằm trong này
         public MainViewModel()
         {
@@ -28,6 +32,7 @@ namespace SportCenter.ViewModel
                 LoginWindow loginWindow = new LoginWindow();
                 loginWindow.ShowDialog();
                 p.Show();
+                LoadTonKhoData();
             }
               );
             _ShowWindowCommand_FB = new RelayCommand<object>((parameter) => true, (parameter) => _ShowWindowFuntion_FB());
@@ -36,8 +41,30 @@ namespace SportCenter.ViewModel
             ShowFootballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowFootballFieldFunction());
             ShowVolleyballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowVolleyballFieldFunction());
             ShowBasketballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowBasketballFieldFuction());
-        }
+            addGoodCommand = new RelayCommand<object>((parameter) => true, (parameter) => AddGoodCommand());
 
+        }
+        private void AddGoodCommand()
+        {
+            Add_Good add_Good = new Add_Good();
+            add_Good.ShowDialog();
+
+        }
+        void LoadTonKhoData()
+        {
+            
+            TonKhoList = new ObservableCollection<TonKho>();
+            var listgood = DataProvider.Ins.DB.goods;
+            foreach (var item in listgood)
+            {
+                TonKho tonkho = new TonKho();
+               
+                tonkho.good = item;
+
+                TonKhoList.Add(tonkho);
+            }
+
+        }
         private void ShowWindowFuntion_VL()
         {
             Volleyball_Court_Bill Volleyball_Bill = new Volleyball_Court_Bill();

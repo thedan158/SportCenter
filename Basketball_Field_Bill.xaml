@@ -37,15 +37,15 @@
         </Grid>
 
         <TextBlock Text="---BASKETBALL COURT PAYMENT---" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" FontFamily="Bungee Inline"></TextBlock>
-        <Button
+        <!--<Button
             Width="50"
             Grid.Row="2"
             Content="{materialDesign:PackIcon ArrowLeftBoldBox }"
             ToolTip="Icon"
-            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Left" Margin="20,0,0,0" />
-
-        <Grid Grid.Row="3" >  
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Left" Margin="20,0,0,0" />-->
+        <ScrollViewer  Grid.Row="2">
+              
+            
                 <WrapPanel  Orientation="Horizontal">
                     <ItemsControl ItemsSource="{Binding Listfield}" >
                 <ItemsControl.ItemTemplate>
@@ -111,8 +111,9 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
                 </WrapPanel>
+       
+        
         </ScrollViewer>
-        </Grid>
     </Grid>
 
 </Window>
