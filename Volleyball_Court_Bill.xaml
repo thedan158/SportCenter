@@ -1,13 +1,15 @@
-﻿<Window x:Class="SportCenter.Volleyball_Court_Bill"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportCenter"
-        mc:Ignorable="d"
         
         xmlns:uc="clr-namespace:SportCenter.UserControlKteam"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:ViewModel="clr-namespace:SportCenter.ViewModel" x:Class="SportCenter.Volleyball_Court_Bill"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -17,424 +19,104 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         ResizeMode="NoResize"
         WindowStyle="None"
-        Name="BillWindow_VL"
+        x:Name="BillWindow_VL"
         Title="LOGIN" Height="500" Width="525">
+
+
+    <Window.DataContext>
+        <ViewModel:BillViewModel/>
+    </Window.DataContext>
 
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" >
-            <uc:ControlBarUC Tag="{Binding Title, ElementName=BillWindow}" ></uc:ControlBarUC>
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=BillWindow}" />
         </Grid>
 
-        <TextBlock Text="---VOLLEYBALL COURT PAYMENT---" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" FontFamily="Bungee Inline"></TextBlock>
+        <TextBlock Text="---VOLLEYBALL COURT PAYMENT---" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" FontFamily="Bungee Inline"/>
         <Button
             Width="50"
             Grid.Row="2"
-            Content="{materialDesign:PackIcon ArrowLeftBoldBox }"
+            Content="{materialDesign:PackIcon ArrowLeftBoldBox}"
             ToolTip="Icon"
-            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Left" Margin="20,0,0,0" />
-        <ScrollViewer Height="400" Grid.Row="3" VerticalAlignment="Top">
-            <Grid >
-                <materialDesign:Card  Margin="20,40">
-                    <StackPanel>
-                        <Expander
-                    HorizontalAlignment="Stretch"
-                    Header="Volleyball Court No1">
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" HorizontalAlignment="Left" Margin="20,0,0,0" />
+        <Grid Grid.Row="3" >
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <WrapPanel  Orientation="Horizontal">
+                    <ItemsControl ItemsSource="{Binding Listfield}" >
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0">
+                                    <materialDesign:Card  Margin="20,40">
+                                        <StackPanel>
+                                            <Expander
+                                        HorizontalAlignment="Stretch"
+                                        Header="{Binding field_name}"
+                                        >
+                                                <StackPanel
+                                                    Orientation="Vertical"
+                                                TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
+                                                Margin="24,8,24,16">
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto"></RowDefinition>
+                                                            <RowDefinition Height="auto"></RowDefinition>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid Grid.Row="0">
+                                                            <Rectangle 
+                                            HorizontalAlignment="Left" 
+                                            Height="34" 
+                                            Width="140" 
+                                            RadiusY="4" 
+                                            RadiusX="4"
+                                            Stroke="DarkBlue" 
+                                            Margin="0,0,5,0" 
+                                            StrokeThickness="1.5"/>
+                                                            <TextBlock 
+                                                            Text="{Binding starttime}"
+                                            Margin="10,10,0,5"
+                                            FontSize="20"
+                                            Foreground="Black"
+                                            FontStretch="Medium"
+                                            />
+                                                            <TextBlock Text=" - "
+                                                                       FontStretch="Medium"
+                                                                       Foreground="Black"
+                                                                       Margin="60,10,0,5" 
+                                                                       FontSize="20">
+                                                            </TextBlock>
+                                                            <TextBlock Text="{Binding endtime}"
+                                                                       FontStretch="Medium"
+                                                                       Foreground="Black"
+                                                                       Margin="80,10,0,5" 
+                                                                       FontSize="20"></TextBlock>
+                                                            <Button Width="100" Content="PAY" Command="{Binding Show_PaymentTemplate}" FontSize="20" FontWeight="Bold" Margin="200,0,0,0" >
 
-                            <StackPanel
-                        Orientation="Vertical"
-                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
-                        Margin="24,8,24,16">
-                                <materialDesign:Card HorizontalAlignment="Left" Width="440" Height="200" >
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="70*"></RowDefinition>
-                                            <RowDefinition Height="70*"></RowDefinition>
-                                            <RowDefinition Height="60*"></RowDefinition>
+                                                            </Button>
+                                                        </Grid>
 
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="220*"></ColumnDefinition>
-                                            <ColumnDefinition Width="220*"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid Grid.Row="0" Grid.ColumnSpan="2">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="auto"></RowDefinition>
-                                                <RowDefinition Height="auto"></RowDefinition>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="200"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBox Grid.Row="1" Grid.ColumnSpan="2" Text="Thành tiền: X x 100000 = B VNĐ" Margin="40,0,0,0" FontSize="20"></TextBox>
+                                                    </Grid>
+                                                </StackPanel>
 
-                                            <TextBox Grid.Row="0" Grid.ColumnSpan="2" Text="1. Số giờ đã thuê sân: " FontSize="20"></TextBox>
-                                            <TextBox Grid.Row="0" Grid.Column="1" Text="X" FontSize="20"></TextBox>
-                                        </Grid>
-                                        <Grid Grid.Row="1" Grid.ColumnSpan="2">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="auto"></RowDefinition>
-                                                <RowDefinition Height="auto"></RowDefinition>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="200*"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBox Grid.Row="1" Grid.ColumnSpan="2" Text="Tổng tiền: A + B VNĐ" Margin="40,0,0,0" FontSize="20" FontWeight="Bold"/>
-                                            <TextBox Grid.Row="0" Grid.ColumnSpan="2" Text="2. Số tiền phụ phí: " FontSize="20" ></TextBox>
-                                            <TextBox Grid.Row="0" Grid.Column="0" Text="A" FontSize="20" Margin="170,0,0,0"></TextBox>
-                                        </Grid>
-                                        <Grid Grid.Row="3" Grid.ColumnSpan="2">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Button
-                                        Margin="10,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                        Width="100"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                        Content="CANCEL"
-                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                                            </Expander>
+                                        </StackPanel>
+                                    </materialDesign:Card>
+                                </Grid>
 
-                                            <Button
-                                        Width="100" Margin="0,0,100,0"
-                                        Background="OrangeRed"
-                                        HorizontalAlignment="Right"
-                                        VerticalAlignment="Center"
-                                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                        Grid.Column="1"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                        Content="PAY"
-                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
-                                        </Grid>
-                                    </Grid>
-                                </materialDesign:Card>
-
-                            </StackPanel>
-                        </Expander>
-                        <Border/>
-                        <Expander
-                    HorizontalAlignment="Stretch"
-                    Header="Volleyball Court No2">
-                            <StackPanel
-                        Orientation="Vertical"
-                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
-                        Margin="24,8,24,16">
-                                <materialDesign:Card HorizontalAlignment="Left" Width="440" Height="200" >
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="70*"></RowDefinition>
-                                            <RowDefinition Height="70*"></RowDefinition>
-                                            <RowDefinition Height="60*"></RowDefinition>
-
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="220*"></ColumnDefinition>
-                                            <ColumnDefinition Width="220*"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid Grid.Row="0" Grid.ColumnSpan="2">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="auto"></RowDefinition>
-                                                <RowDefinition Height="auto"></RowDefinition>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="200"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBox Grid.Row="1" Grid.ColumnSpan="2" Text="Thành tiền: X x 100000 = B VNĐ" Margin="40,0,0,0" FontSize="20"></TextBox>
-
-                                            <TextBox Grid.Row="0" Grid.ColumnSpan="2" Text="1. Số giờ đã thuê sân: " FontSize="20"></TextBox>
-                                            <TextBox Grid.Row="0" Grid.Column="1" Text="X" FontSize="20"></TextBox>
-                                        </Grid>
-                                        <Grid Grid.Row="1" Grid.ColumnSpan="2">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="auto"></RowDefinition>
-                                                <RowDefinition Height="auto"></RowDefinition>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="200*"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBox Grid.Row="1" Grid.ColumnSpan="2" Text="Tổng tiền: A + B VNĐ" Margin="40,0,0,0" FontSize="20" FontWeight="Bold"/>
-                                            <TextBox Grid.Row="0" Grid.ColumnSpan="2" Text="2. Số tiền phụ phí: " FontSize="20" ></TextBox>
-                                            <TextBox Grid.Row="0" Grid.Column="0" Text="A" FontSize="20" Margin="170,0,0,0"></TextBox>
-                                        </Grid>
-                                        <Grid Grid.Row="3" Grid.ColumnSpan="2">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Button
-                                        Margin="10,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                        Width="100"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                        Content="CANCEL"
-                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
-
-                                            <Button
-                                        Width="100" Margin="0,0,100,0"
-                                        Background="OrangeRed"
-                                        HorizontalAlignment="Right"
-                                        VerticalAlignment="Center"
-                                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                        Grid.Column="1"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                        Content="PAY"
-                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
-                                        </Grid>
-                                    </Grid>
-                                </materialDesign:Card>
-                            </StackPanel>
-                        </Expander>
-                        <Border/>
-                        <Expander
-                    HorizontalAlignment="Stretch"
-                    Header="Volleyball Court No3">
-                            <StackPanel
-                        Orientation="Vertical"
-                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
-                        Margin="24,8,24,16">
-                                <materialDesign:Card HorizontalAlignment="Left" Width="440" Height="200" >
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="70*"></RowDefinition>
-                                            <RowDefinition Height="70*"></RowDefinition>
-                                            <RowDefinition Height="60*"></RowDefinition>
-
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="220*"></ColumnDefinition>
-                                            <ColumnDefinition Width="220*"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid Grid.Row="0" Grid.ColumnSpan="2">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="auto"></RowDefinition>
-                                                <RowDefinition Height="auto"></RowDefinition>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="200"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBox Grid.Row="1" Grid.ColumnSpan="2" Text="Thành tiền: X x 100000 = B VNĐ" Margin="40,0,0,0" FontSize="20"></TextBox>
-
-                                            <TextBox Grid.Row="0" Grid.ColumnSpan="2" Text="1. Số giờ đã thuê sân: " FontSize="20"></TextBox>
-                                            <TextBox Grid.Row="0" Grid.Column="1" Text="X" FontSize="20"></TextBox>
-                                        </Grid>
-                                        <Grid Grid.Row="1" Grid.ColumnSpan="2">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="auto"></RowDefinition>
-                                                <RowDefinition Height="auto"></RowDefinition>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="200*"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBox Grid.Row="1" Grid.ColumnSpan="2" Text="Tổng tiền: A + B VNĐ" Margin="40,0,0,0" FontSize="20" FontWeight="Bold"/>
-                                            <TextBox Grid.Row="0" Grid.ColumnSpan="2" Text="2. Số tiền phụ phí: " FontSize="20" ></TextBox>
-                                            <TextBox Grid.Row="0" Grid.Column="0" Text="A" FontSize="20" Margin="170,0,0,0"></TextBox>
-                                        </Grid>
-                                        <Grid Grid.Row="3" Grid.ColumnSpan="2">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Button
-                                        Margin="10,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                        Width="100"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                        Content="CANCEL"
-                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
-
-                                            <Button
-                                        Width="100" Margin="0,0,100,0"
-                                        Background="OrangeRed"
-                                        HorizontalAlignment="Right"
-                                        VerticalAlignment="Center"
-                                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                        Grid.Column="1"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                        Content="PAY"
-                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
-                                        </Grid>
-                                    </Grid>
-                                </materialDesign:Card>
-                            </StackPanel>
-                        </Expander>
-                        <Border/>
-                        <Expander
-                    HorizontalAlignment="Stretch"
-                    Header="Volleyball Court No4">
-                            <StackPanel
-                        Orientation="Vertical"
-                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
-                        Margin="24,8,24,16">
-                                <materialDesign:Card HorizontalAlignment="Left" Width="440" Height="200" >
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="70*"></RowDefinition>
-                                            <RowDefinition Height="70*"></RowDefinition>
-                                            <RowDefinition Height="60*"></RowDefinition>
-
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="220*"></ColumnDefinition>
-                                            <ColumnDefinition Width="220*"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid Grid.Row="0" Grid.ColumnSpan="2">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="auto"></RowDefinition>
-                                                <RowDefinition Height="auto"></RowDefinition>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="200"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBox Grid.Row="1" Grid.ColumnSpan="2" Text="Thành tiền: X x 100000 = B VNĐ" Margin="40,0,0,0" FontSize="20"></TextBox>
-
-                                            <TextBox Grid.Row="0" Grid.ColumnSpan="2" Text="1. Số giờ đã thuê sân: " FontSize="20"></TextBox>
-                                            <TextBox Grid.Row="0" Grid.Column="1" Text="X" FontSize="20"></TextBox>
-                                        </Grid>
-                                        <Grid Grid.Row="1" Grid.ColumnSpan="2">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="auto"></RowDefinition>
-                                                <RowDefinition Height="auto"></RowDefinition>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="200*"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBox Grid.Row="1" Grid.ColumnSpan="2" Text="Tổng tiền: A + B VNĐ" Margin="40,0,0,0" FontSize="20" FontWeight="Bold"/>
-                                            <TextBox Grid.Row="0" Grid.ColumnSpan="2" Text="2. Số tiền phụ phí: " FontSize="20" ></TextBox>
-                                            <TextBox Grid.Row="0" Grid.Column="0" Text="A" FontSize="20" Margin="170,0,0,0"></TextBox>
-                                        </Grid>
-                                        <Grid Grid.Row="3" Grid.ColumnSpan="2">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Button
-                                        Margin="10,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                        Width="100"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                        Content="CANCEL"
-                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
-
-                                            <Button
-                                        Width="100" Margin="0,0,100,0"
-                                        Background="OrangeRed"
-                                        HorizontalAlignment="Right"
-                                        VerticalAlignment="Center"
-                                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                        Grid.Column="1"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                        Content="PAY"
-                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
-                                        </Grid>
-                                    </Grid>
-                                </materialDesign:Card>
-                            </StackPanel>
-                        </Expander>
-                        <Border/>
-                        <Expander
-                    HorizontalAlignment="Stretch"
-                    Header="Volleyball Court No5">
-                            <StackPanel
-                        Orientation="Vertical"
-                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
-                        Margin="24,8,24,16">
-                                <materialDesign:Card HorizontalAlignment="Left" Width="440" Height="200" >
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="70*"></RowDefinition>
-                                            <RowDefinition Height="70*"></RowDefinition>
-                                            <RowDefinition Height="60*"></RowDefinition>
-
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="220*"></ColumnDefinition>
-                                            <ColumnDefinition Width="220*"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid Grid.Row="0" Grid.ColumnSpan="2">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="auto"></RowDefinition>
-                                                <RowDefinition Height="auto"></RowDefinition>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="200"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBox Grid.Row="1" Grid.ColumnSpan="2" Text="Thành tiền: X x 100000 = B VNĐ" Margin="40,0,0,0" FontSize="20"></TextBox>
-
-                                            <TextBox Grid.Row="0" Grid.ColumnSpan="2" Text="1. Số giờ đã thuê sân: " FontSize="20"></TextBox>
-                                            <TextBox Grid.Row="0" Grid.Column="1" Text="X" FontSize="20"></TextBox>
-                                        </Grid>
-                                        <Grid Grid.Row="1" Grid.ColumnSpan="2">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="auto"></RowDefinition>
-                                                <RowDefinition Height="auto"></RowDefinition>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="200*"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBox Grid.Row="1" Grid.ColumnSpan="2" Text="Tổng tiền: A + B VNĐ" Margin="40,0,0,0" FontSize="20" FontWeight="Bold"/>
-                                            <TextBox Grid.Row="0" Grid.ColumnSpan="2" Text="2. Số tiền phụ phí: " FontSize="20" ></TextBox>
-                                            <TextBox Grid.Row="0" Grid.Column="0" Text="A" FontSize="20" Margin="170,0,0,0"></TextBox>
-                                        </Grid>
-                                        <Grid Grid.Row="3" Grid.ColumnSpan="2">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Button
-                                        Margin="10,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                        Width="100"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                        Content="CANCEL"
-                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
-
-                                            <Button
-                                        Width="100" Margin="0,0,100,0"
-                                        Background="OrangeRed"
-                                        HorizontalAlignment="Right"
-                                        VerticalAlignment="Center"
-                                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                        Grid.Column="1"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                        Content="PAY"
-                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
-                                        </Grid>
-                                    </Grid>
-                                </materialDesign:Card>
-                            </StackPanel>
-                        </Expander>
-                    </StackPanel>
-                </materialDesign:Card>
-            </Grid>
-        </ScrollViewer>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </WrapPanel>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 
 </Window>

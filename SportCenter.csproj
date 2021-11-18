@@ -148,10 +148,20 @@
     <Compile Include="Model\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="PaymentTemplate.xaml.cs">
+      <DependentUpon>PaymentTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PayMent_tem.xaml.cs">
+      <DependentUpon>PayMent_tem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SoccerField.xaml.cs">
       <DependentUpon>SoccerField.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\BillViewModel.cs" />
+    <Compile Include="ViewModel\ListBillViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\PaymentTemplateViewModel.cs" />
     <Compile Include="VolleyballField.xaml.cs">
       <DependentUpon>VolleyballField.xaml</DependentUpon>
     </Compile>
@@ -164,7 +174,6 @@
     <Compile Include="UserControlKteam\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ControlBarViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Page Include="Add_Field.xaml">
@@ -200,6 +209,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="List_Good.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PaymentTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PayMent_tem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -298,6 +315,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Image\football.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="a5ff21dc78b136b321e4e7a6e0f161aa.jpg_684x684q90.jpg" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
