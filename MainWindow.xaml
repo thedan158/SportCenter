@@ -563,6 +563,199 @@
         Height="auto"
         Width="auto">
                             <materialDesign:PackIcon
+          Kind="PackageVariantClosed"
+          Width="30"
+          Height="30"
+          HorizontalAlignment="Center" />
+                            <TextBlock
+          Text="Goods"
+          HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <Grid>
+                        <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*"></RowDefinition>
+                                    <RowDefinition Height="8*" ></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <WrapPanel 
+            Orientation="Horizontal"
+            HorizontalAlignment="Center" 
+           
+            VerticalAlignment="Center">
+                                        <Button 
+                x:Name="btnCheckIn"
+                Content="Thêm hàng"
+                
+                Command="{Binding addGoodCommand}"
+                CommandParameter="{Binding ElementName=wdCheckAttendance}"
+                FocusVisualStyle="{x:Null}"
+                Height="35" 
+                Width="180"
+                ToolTip="Điểm danh" 
+                VerticalAlignment="Bottom" 
+                HorizontalAlignment="Right"
+                TabIndex="3" 
+                BorderThickness="0" 
+                BorderBrush="{x:Null}" 
+                FontSize="18" 
+                FontWeight="SemiBold"
+                Padding="0">
+                                            <Button.Effect>
+                                                <DropShadowEffect ShadowDepth="1"/>
+                                            </Button.Effect>
+                                        </Button>
+
+                                    </WrapPanel>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                <Grid 
+            Width="270" 
+            Height="40"
+            HorizontalAlignment="Right" 
+            VerticalAlignment="Top"
+            Margin="0,20,60,0">
+                                        <materialDesign:PackIcon 
+                Kind="Magnify" 
+                
+                Width="28" 
+                Height="28" 
+                VerticalAlignment="Bottom" 
+                Margin="0" />
+                                        <ComboBox
+                x:Name="cboSelectEmployee"
+                materialDesign:ComboBoxAssist.ClassicMode="true"
+                FontSize="18"
+                FontWeight="Medium"
+                
+                Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                materialDesign:HintAssist.Hint="Tìm kiếm"
+                ItemsSource="{Binding ItemSourceEmployee}" 
+                SelectedItem="{Binding SelectedEmployee}"
+                Width="220" 
+                Height="40" 
+                HorizontalAlignment="Right" 
+                HorizontalContentAlignment="Left"
+                VerticalContentAlignment="Center" 
+                Padding="3,0,0,0" 
+                TabIndex="1">
+
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal" Width="220">
+                                                        <TextBlock 
+                                x:Name="txbName"
+                                Text="{Binding Name}"
+                                Width="170"
+                                Height="Auto" 
+                                HorizontalAlignment="Left"/>
+                                                        <TextBlock 
+                                Text="{Binding IdEmployee}" 
+                                Width="50" 
+                                Height="Auto" 
+                                HorizontalAlignment="Right"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                                <Grid Grid.Row="1">
+                                    <DataGrid
+  ItemsSource="{Binding TonKhoList}"
+  CanUserAddRows="False"
+  AutoGenerateColumns="False"
+  HeadersVisibility="All"
+                
+                Margin="20 0 20 20">
+
+                                        <DataGrid.Resources>
+                                            <Style TargetType="DataGridColumnHeader">
+                                                <Setter Property="Background" Value="#FFBFA4F7"/>
+
+                                            </Style>
+                                        </DataGrid.Resources>
+                                        <DataGrid.Effect>
+                                            <DropShadowEffect ShadowDepth="2"/>
+                                        </DataGrid.Effect>
+                                        <DataGrid.Columns>
+                                            <DataGridCheckBoxColumn Width="1*"
+      Binding="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}"
+      ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
+      EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
+                                                <DataGridCheckBoxColumn.Header>
+                                                    <Border
+          Background="Transparent">
+                                                        <CheckBox
+             />
+                                                    </Border>
+                                                </DataGridCheckBoxColumn.Header>
+                                                <DataGridCheckBoxColumn.HeaderStyle>
+                                                    <Style
+          TargetType="{x:Type DataGridColumnHeader}"
+          BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                                                        <Setter
+            Property="HorizontalContentAlignment"
+            Value="Center" />
+                                                    </Style>
+                                                </DataGridCheckBoxColumn.HeaderStyle>
+                                            </DataGridCheckBoxColumn>
+                                            
+                                            <materialDesign:DataGridTextColumn Width="2*"
+      Header="Tên hàng hóa"
+                                                                               Binding="{Binding good.name}"
+      ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+      EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
+
+                                            </materialDesign:DataGridTextColumn>
+                                            <materialDesign:DataGridTextColumn Width="2*"
+      Header="Giá tiền"
+                                                                               Binding="{Binding good.price}"
+      ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+      EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
+
+                                            </materialDesign:DataGridTextColumn>
+                                        <materialDesign:DataGridTextColumn Width="2*"
+      Header="Đơn vị"
+                                                                               Binding="{Binding good.unit}"
+      ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+      EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
+
+                                        </materialDesign:DataGridTextColumn>
+                                        <DataGridTextColumn Width="1*"
+      Header="Số lượng"
+      ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+      EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                                                <DataGridTextColumn.Binding>
+                                                    <Binding
+          Path="Description">
+
+                                                    </Binding>
+                                                </DataGridTextColumn.Binding>
+                                            </DataGridTextColumn>
+
+
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Grid>
+                            </Grid>
+                        
+
+                    </Grid>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+        Height="auto"
+        Width="auto">
+                            <materialDesign:PackIcon
           Kind="Settings"
           Width="30"
           Height="30"
