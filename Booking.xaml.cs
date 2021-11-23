@@ -25,10 +25,7 @@ namespace SportCenter
         }
 
 
-        private void InitializeComponent()
-        {
-            throw new NotImplementedException();
-        }
+      
 
     }
 }

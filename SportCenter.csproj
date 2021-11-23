@@ -153,6 +153,8 @@
       <DependentUpon>SoccerField.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\BaseBill.cs" />
+    <Compile Include="ViewModel\BillViewModel_football.cs" />
     <Compile Include="ViewModel\BillViewModel.cs" />
     <Compile Include="ViewModel\ListBillViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
