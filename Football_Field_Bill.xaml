@@ -20,10 +20,9 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         x:Name="BillWindow_FB"
+        DataContext="{StaticResource BillVM_FB}"
         Title="LOGIN" Height="500" Width="525">
-    <Window.DataContext>
-        <ViewModel:BillViewModel/>
-    </Window.DataContext>
+        
 
     <Grid>
         <Grid.RowDefinitions>
@@ -74,7 +73,7 @@
                                             Margin="0,0,5,0" 
                                             StrokeThickness="1.5"/>
                                         <TextBlock 
-                                            Text="10:00"
+                                            Text="{Binding }"
                                             Margin="10,10,0,5"
                                             FontSize="20"
                                             Foreground="Black"

@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportCenter" xmlns:uc="clr-namespace:SportCenter.UserControlKteam"
-        xmlns:ViewModel="clr-namespace:SportCenter.ViewModel" x:Class="SportCenter.PayMent_tem"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"    
+        xmlns:ViewModel="clr-namespace:SportCenter.ViewModel" xmlns:i1="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:i2="http://schemas.microsoft.com/expression/2010/interactions" x:Class="SportCenter.PayMent_tem"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -18,7 +19,7 @@
         WindowStyle="None"
         x:Name="Pay1"
         
-        Title="PayMent_tem" Height="790" Width="592">
+        Title="PayMent_tem" Height="700" Width="592">
     <Window.DataContext>
         <ViewModel:PaymentTemplateViewModel/>
     </Window.DataContext>
@@ -26,7 +27,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="140"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="120"/>
             <RowDefinition/>
             <RowDefinition Height="180"/>
@@ -44,7 +45,7 @@
                 Text="BILL" 
                 FontWeight="Black"
                 HorizontalAlignment="Right" 
-                Margin="0,25,40,0"
+                Margin="0,0,40,0"
                 TextWrapping="Wrap" 
                 VerticalAlignment="Top" 
                 FontSize="32" 
@@ -385,7 +386,11 @@
                         <GradientStop Color="#FFEBE8E8"/>
                     </LinearGradientBrush>
                 </StackPanel.Background>
-
+                <ListView>
+                    
+                </ListView>
+                
+                
             </StackPanel>
         </Grid>
         <Grid
@@ -478,7 +483,7 @@
                 <TextBlock 
                     x:Name="txbPhoneNumber"
                     TextWrapping="Wrap" 
-                    Text="0123456789" 
+                    Text="09199999" 
                     FontWeight="SemiBold"
                     Margin="0"
                     Foreground="Black"/>
@@ -518,7 +523,26 @@
                 Width="100"
                 VerticalAlignment="Bottom" 
                 Padding="0" />
-            <Grid 
+            <Button x:Name="Cancelbtn"
+                    Command="{Binding CloseWindowCommand, Mode=OneWay}"
+                    CommandParameter="{Binding ElementName=Pay1}"
+                    Content="CANCEL"
+                    Grid.Column="1"
+                    HorizontalAlignment="Left"
+                    Margin="10,0,0,20"
+                    Height="25" 
+                    Width="100"
+                    VerticalAlignment="Bottom" Click="Cancelbtn_Click">
+                <i1:Interaction.Triggers>
+                    <i1:EventTrigger EventName="Click">
+                        <i2:CallMethodAction MethodName="Close"
+                           TargetObject="{Binding RelativeSource={RelativeSource
+                                                  Mode=FindAncestor,
+                                                  AncestorType=Window}}" />
+                    </i1:EventTrigger>
+                </i1:Interaction.Triggers>
+            </Button>
+                <Grid 
                 Grid.Column="1" 
                 HorizontalAlignment="Right"
                 Margin="0,15,0,0" 

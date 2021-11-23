@@ -26,6 +26,7 @@ namespace SportCenter.Model
         private DataProvider()
         {
             DB = new sportcenterEntities4();
+
         }
     }
 }

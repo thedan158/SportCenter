@@ -23,5 +23,10 @@ namespace SportCenter
         {
             InitializeComponent();
         }
+
+        private void Cancelbtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

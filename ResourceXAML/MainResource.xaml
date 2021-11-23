@@ -2,8 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:viewmodel="clr-namespace:SportCenter.ViewModel"
                     xmlns:local="clr-namespace:SportCenter.ResourceXAML">
+    
     <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
     <viewmodel:LoginViewModel x:Key="LoginVM"></viewmodel:LoginViewModel>
     <viewmodel:BillViewModel x:Key="BillVM"></viewmodel:BillViewModel>
     <viewmodel:PaymentTemplateViewModel x:Key="PaymentVM"></viewmodel:PaymentTemplateViewModel>
+    <viewmodel:BillViewModel_football x:Key="BillVM_FB"></viewmodel:BillViewModel_football>
 </ResourceDictionary>
