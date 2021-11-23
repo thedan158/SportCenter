@@ -1,14 +1,15 @@
-﻿<Window x:Class="SportCenter.SoccerField"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportCenter"
-        mc:Ignorable="d"
          xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         
         xmlns:uc="clr-namespace:SportCenter.UserControlKteam"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:ViewModel="clr-namespace:SportCenter.ViewModel" x:Class="SportCenter.SoccerField"
+        mc:Ignorable="d"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
      TextElement.FontWeight="Regular"
      TextElement.FontSize="13"
@@ -20,7 +21,7 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         
-        Name="SoccerFieldWindow"
+        x:Name="SoccerFieldWindow"
       
         Title="Phoenix Sport Center Managament" Height="500" Width="525">
     <i:Interaction.Triggers>
@@ -28,26 +29,25 @@
             <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
+    
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <uc:ControlBarUC Tag="{Binding Title, ElementName=ChooseSportWindow}" Height="32" Margin="0,0,0.046,-0.246" VerticalAlignment="Top"></uc:ControlBarUC>
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=ChooseSportWindow}" Height="32" Margin="0,0,0.046,-0.246" VerticalAlignment="Top"/>
         </Grid>
-        <TextBlock Grid.Row="1" FontFamily="Bungee Inline" FontSize="30" Margin="194,11.246,194.046,391.938" Grid.RowSpan="2"  >
-                Bóng đá
-        </TextBlock>
+        <TextBlock Grid.Row="1" FontFamily="Bungee Inline" FontSize="30" Margin="194,11.246,194.046,391.938" Grid.RowSpan="2"  ><Run Text="Bóng đá"/></TextBlock>
         <ScrollViewer Height="403" VerticalAlignment="Top" Grid.Row="2" Margin="0,65.246,0.046,-0.062">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <materialDesign:Card Grid.Row="0" Width="463" Padding="8" UniformCornerRadius="6" Height="113" Margin="23,23,22.061,321.846" Grid.RowSpan="3" Grid.ColumnSpan="3">
                     <Grid>
@@ -58,10 +58,10 @@
                          Foreground="#8c9aa1" FontSize="25" FontWeight="ExtraBold"       
                                    ><Run Text="Sân bóng số 1"/></TextBlock>
                         <Grid>
-                            <Button Margin="144,55,210.769,9.738">Thông tin</Button>
+                            <Button Margin="144,55,210.769,9.738" Content="Thông tin"/>
                         </Grid>
                         <Grid>
-                            <Button Margin="264,55,91.508,9.738">Đặt sân</Button>
+                            <Button Margin="264,55,91.508,9.738" Content="Đặt sân" />
                         </Grid>
 
                     </Grid>
@@ -75,10 +75,10 @@
                          Foreground="#8c9aa1" FontSize="25" FontWeight="ExtraBold"       
                                    ><Run Text="Sân bóng số 2"/></TextBlock>
                         <Grid>
-                            <Button Margin="144,55,210.769,9.738">Thông tin</Button>
+                            <Button Margin="144,55,210.769,9.738" Content="Thông tin"/>
                         </Grid>
                         <Grid>
-                            <Button Margin="264,55,91.508,9.738">Đặt sân</Button>
+                            <Button Margin="264,55,91.508,9.738" Content="Đặt sân"/>
                         </Grid>
 
                     </Grid>
@@ -92,10 +92,10 @@
                          Foreground="#8c9aa1" FontSize="25" FontWeight="ExtraBold"       
                                    ><Run Text="Sân bóng số 3"/></TextBlock>
                         <Grid>
-                            <Button Margin="144,55,210.769,9.738">Thông tin</Button>
+                            <Button Margin="144,55,210.769,9.738" Content="Thông tin"/>
                         </Grid>
                         <Grid>
-                            <Button Margin="264,55,91.508,9.738">Đặt sân</Button>
+                            <Button Margin="264,55,91.508,9.738" Content="Đặt sân"/>
                         </Grid>
 
                     </Grid>

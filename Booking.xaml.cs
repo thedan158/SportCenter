@@ -23,5 +23,6 @@ namespace SportCenter
         {
             InitializeComponent();
         }
+        
     }
 }
