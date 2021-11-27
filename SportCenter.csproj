@@ -142,6 +142,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="UserControlKteam\Expander_Bill.xaml.cs">
+      <DependentUpon>Expander_Bill.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\BaseBill2.cs" />
+    <Compile Include="ViewModel\BillViewModel_Football2.cs" />
+    <Compile Include="ViewModel\FormatDisplayGoodsBill.cs" />
     <Compile Include="ViewModel\BaseFieldBasketball.cs" />
     <Compile Include="ViewModel\BaseFieldSoccer.cs" />
     <Compile Include="ViewModel\BaseFieldVolleyball.cs" />
@@ -160,7 +166,6 @@
     <Compile Include="ViewModel\BillViewModel.cs" />
     <Compile Include="ViewModel\ListBillViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
-    <Compile Include="ViewModel\PaymentTemplateViewModel.cs" />
     <Compile Include="ViewModel\VolleyballFieldViewModel.cs" />
     <Compile Include="VolleyballField.xaml.cs">
       <DependentUpon>VolleyballField.xaml</DependentUpon>
@@ -217,6 +222,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SoccerField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlKteam\Expander_Bill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
