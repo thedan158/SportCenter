@@ -846,18 +846,20 @@
     ToolTip="MaterialDesignRaisedButton with Round Corners"
     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
                                                 <TextBlock
-      Text="ABOUT US" />
+      Text="CHANGE PASSWORD" />
                                             </Button>
                                         </Grid>
                                         <Grid
   Width="150"
                                             Margin="10">
                                             <Button
+                                                Command="{Binding LogoutCommand}"
+                                                CommandParameter="{Binding ElementName=mainWindow}"
     Style="{StaticResource MaterialDesignRaisedButton}"
     Height="30"
     materialDesign:ButtonAssist.CornerRadius="10"
     ToolTip="MaterialDesignRaisedButton with Round Corners"
-    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Click="Button_Click_1">
                                                 <TextBlock
       Text="LOG OUT" />
                                             </Button>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SportCenter.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,6 +37,28 @@ namespace SportCenter
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            
+          /**  LoginWindow loginWindow = new LoginWindow();
+            mainWindow.Hide();
+            loginWindow.ShowDialog();
+            if (loginWindow.DataContext == null)
+                return;
+            var loginVM = loginWindow.DataContext as LoginViewModel;
+            var mainVM = mainWindow.DataContext as MainViewModel;
+            if (loginVM.IsLogin)
+            {
+                mainWindow.Show();
+                mainVM.LoadTonKhoData();
+            }
+            else
+            {
+                loginWindow.Close();
+            }
+          **/
         }
     }
 }

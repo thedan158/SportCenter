@@ -23,10 +23,12 @@ namespace SportCenter.ViewModel
         public ICommand ShowVolleyballFieldCommand { get; set; }
         public ICommand ShowBasketballFieldCommand { get; set; }
         public ICommand addGoodCommand { get; set; }
+        public ICommand LogoutCommand { get; set; }
         // mọi thứ xử lý sẽ nằm trong này
         public MainViewModel()
         {
-            LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) => {
+            LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            {
                 Isloaded = true;
                 p.Hide();
                 LoginWindow loginWindow = new LoginWindow();
@@ -53,7 +55,29 @@ namespace SportCenter.ViewModel
             ShowVolleyballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowVolleyballFieldFunction());
             ShowBasketballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowBasketballFieldFuction());
             addGoodCommand = new RelayCommand<object>((parameter) => true, (parameter) => AddGoodCommand());
+            LogoutCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            {
 
+                p.Hide();
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.ShowDialog();
+                if (loginWindow.DataContext == null)
+                    return;
+                var loginVM = loginWindow.DataContext as LoginViewModel;
+
+                if (loginVM.IsLogin)
+                {
+                    p.Show();
+                    LoadTonKhoData();
+                }
+                else
+                {
+                    p.Close();
+                }
+            }
+
+
+        );
         }
         private void AddGoodCommand()
         {
@@ -61,7 +85,8 @@ namespace SportCenter.ViewModel
             add_Good.ShowDialog();
 
         }
-        void LoadTonKhoData()
+       
+        internal void LoadTonKhoData()
         {
             
             TonKhoList = new ObservableCollection<TonKho>();
