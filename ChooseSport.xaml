@@ -87,7 +87,7 @@
         </Grid>
         <Grid Grid.Row="2" Margin="31,340.754,31.046,53.938">
             <ProgressBar
-  IsIndeterminate="True" Margin="0,-20,0,26.723" />
+  IsIndeterminate="True" Margin="-3,24,3,-18.754" />
         </Grid>
     </Grid>
 </Window>
