@@ -148,6 +148,11 @@
     <Compile Include="ViewModel\BaseBill2.cs" />
     <Compile Include="ViewModel\BillViewModel_Football2.cs" />
     <Compile Include="ViewModel\FormatDisplayGoodsBill.cs" />
+    <Compile Include="ViewModel\BaseFieldBasketball.cs" />
+    <Compile Include="ViewModel\BaseFieldSoccer.cs" />
+    <Compile Include="ViewModel\BaseFieldVolleyball.cs" />
+    <Compile Include="ViewModel\BasketballFieldViewModel.cs" />
+    <Compile Include="ViewModel\SoccerFieldViewModel.cs" />
     <Compile Include="ViewModel\StorageViewModel.cs" />
     <Compile Include="PayMent_tem.xaml.cs">
       <DependentUpon>PayMent_tem.xaml</DependentUpon>
@@ -161,6 +166,7 @@
     <Compile Include="ViewModel\BillViewModel.cs" />
     <Compile Include="ViewModel\ListBillViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\VolleyballFieldViewModel.cs" />
     <Compile Include="VolleyballField.xaml.cs">
       <DependentUpon>VolleyballField.xaml</DependentUpon>
     </Compile>

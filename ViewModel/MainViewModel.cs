@@ -31,8 +31,19 @@ namespace SportCenter.ViewModel
                 p.Hide();
                 LoginWindow loginWindow = new LoginWindow();
                 loginWindow.ShowDialog();
-                p.Show();
-                LoadTonKhoData();
+                if (loginWindow.DataContext == null)
+                    return;
+                var loginVM = loginWindow.DataContext as LoginViewModel;
+
+                if (loginVM.IsLogin)
+                {
+                    p.Show();
+                    LoadTonKhoData();
+                }
+                else
+                {
+                    p.Close();
+                }
             }
               );
             _ShowWindowCommand_FB = new RelayCommand<object>((parameter) => true, (parameter) => _ShowWindowFuntion_FB());
