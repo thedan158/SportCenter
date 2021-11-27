@@ -22,15 +22,43 @@ namespace SportCenter.ViewModel
 
         public ICommand Show_Pay { get; set; }
 
-
+        private ObservableCollection<BaseBill2> _List_field_Booking;
+        public ObservableCollection<BaseBill2> List_field_Booking { get => _List_field_Booking; set
+            {
+                _List_field_Booking = value;
+                OnPropertyChanged();
+            } }
 
         public BillViewModel_football()
         {
             _List_fieldwithBooking = new ObservableCollection<ListBill>();
+            _List_field_Booking = new ObservableCollection<BaseBill2>();
             Get_field();
             Get_booking();
             //Booking_ex(); 
-            Show_Pay = new RelayCommand<object>((parameter) => true, (parameter) => Show_Payment());
+            Set_FieldwithBooking();
+            
+        }
+
+        private void Set_FieldwithBooking()
+        {
+            foreach (var item in _ListBooking)
+            {
+                BaseBill2 temp = new BaseBill2();
+                temp.b_field = new field();
+                temp.b_ListBooking = new List<bookingInfo>();
+                temp.b_ListBuying = new List<buyingInfo>();
+                foreach(var item2 in _Listfield)
+                {
+                    if(item2.List_Field.id == item.List_Booking.idField)
+                    {
+                        temp.b_field.name = item2.List_Field.name;
+                        temp.b_ListBooking.Add(item.List_Booking);
+                        _List_field_Booking.Add(temp);
+                    }
+                }
+                
+            }
         }
 
         //private void Booking_ex()
@@ -54,11 +82,7 @@ namespace SportCenter.ViewModel
         //    }
         //}
 
-        private void Show_Payment()
-        {
-            PayMent_tem Pay = new PayMent_tem();
-            Pay.Show();
-        }
+        
 
         private void Get_booking()
         {

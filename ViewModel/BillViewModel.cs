@@ -47,7 +47,7 @@ namespace SportCenter.ViewModel
             Device_ListBooking();
             
 
-            Show_PaymentTemplate = new RelayCommand<object>((parameter) => true, (parameter) => Show_Payment());
+
 
         }
 
@@ -186,10 +186,6 @@ namespace SportCenter.ViewModel
             }
         }
 
-        private void Show_Payment()
-        {
-            PayMent_tem Pay = new PayMent_tem();
-            Pay.Show();
-        }
+        
     }
 }
