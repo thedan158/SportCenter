@@ -38,6 +38,7 @@ namespace SportCenter.ViewModel
         public ICommand ShowFootballFieldCommand { get; set; }
         public ICommand ShowVolleyballFieldCommand { get; set; }
         public ICommand ShowBasketballFieldCommand { get; set; }
+        public ICommand LogoutCommand { get; set; }
 
         // Good VM
         public ICommand addCommand { get; set; } 
@@ -66,11 +67,12 @@ namespace SportCenter.ViewModel
 
         
 
-
-        public ICommand addGoodCommand { get; set; }
-        public ICommand LogoutCommand { get; set; }
+       
+        
         // mọi thứ xử lý sẽ nằm trong này
-        public MainViewModel()
+       
+           
+                public MainViewModel()
         {
             LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
@@ -93,15 +95,33 @@ namespace SportCenter.ViewModel
                     p.Close();
                 }
 
-            }
-              );
-            _ShowWindowCommand_FB = new RelayCommand<object>((parameter) => true, (parameter) => _ShowWindowFuntion_FB());
+                  });
+               _ShowWindowCommand_FB = new RelayCommand<object>((parameter) => true, (parameter) => _ShowWindowFuntion_FB());
             ShowWindowCommand_BK = new RelayCommand<object>((parameter) => true, (parameter) => ShowWindowFuntion_BK());
             ShowWindowCommand_VL = new RelayCommand<object>((parameter) => true, (parameter) => ShowWindowFuntion_VL());
             ShowFootballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowFootballFieldFunction());
             ShowVolleyballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowVolleyballFieldFunction());
             ShowBasketballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowBasketballFieldFuction());
+            LogoutCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            {
 
+                p.Hide();
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.ShowDialog();
+                if (loginWindow.DataContext == null)
+                    return;
+                var loginVM = loginWindow.DataContext as LoginViewModel;
+
+                if (loginVM.IsLogin)
+                {
+                    p.Show();
+                    LoadTonKhoData();
+                }
+                else
+                {
+                    p.Close();
+                }
+            });
 
             // Add goods
             addCommand = new RelayCommand<object>((parameter) =>
@@ -178,31 +198,12 @@ namespace SportCenter.ViewModel
                 }
             });
 
-        }
+        
         
         
 
            
-            LogoutCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
-            {
-
-                p.Hide();
-                LoginWindow loginWindow = new LoginWindow();
-                loginWindow.ShowDialog();
-                if (loginWindow.DataContext == null)
-                    return;
-                var loginVM = loginWindow.DataContext as LoginViewModel;
-
-                if (loginVM.IsLogin)
-                {
-                    p.Show();
-                    LoadTonKhoData();
-                }
-                else
-                {
-                    p.Close();
-                }
-            }     );
+            
         }
        
        

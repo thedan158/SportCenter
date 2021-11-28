@@ -142,7 +142,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-
     <Compile Include="UserControlKteam\Expander_Bill.xaml.cs">
       <DependentUpon>Expander_Bill.xaml</DependentUpon>
     </Compile>
@@ -154,8 +153,6 @@
     <Compile Include="ViewModel\BaseFieldVolleyball.cs" />
     <Compile Include="ViewModel\BasketballFieldViewModel.cs" />
     <Compile Include="ViewModel\SoccerFieldViewModel.cs" />
-    <Compile Include="ViewModel\StorageViewModel.cs" />
-
     <Compile Include="PayMent_tem.xaml.cs">
       <DependentUpon>PayMent_tem.xaml</DependentUpon>
     </Compile>

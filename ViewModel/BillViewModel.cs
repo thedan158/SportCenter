@@ -49,8 +49,6 @@ namespace SportCenter.ViewModel
             Load_Listfield();
             Load_ListBooking();
             Device_ListBooking();
-            >>>>>>> master
-
 
 
         }
