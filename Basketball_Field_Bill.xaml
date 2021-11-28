@@ -19,108 +19,142 @@
         WindowStyle="None"
         
         Name="BillWindow_BK"
-        DataContext="{StaticResource BillVM}"
-        Title="LOGIN" Height="500" Width="600">
+        DataContext="{StaticResource BillVM_FB2}"
+        Title="LOGIN" Height="770" Width="1000">
 
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+        <Style TargetType="Rectangle">
+            <Setter Property="Stroke" Value="DarkBlue" ></Setter>
 
+        </Style>
+    </Window.Resources>
+    <!--<ContentPresenter>
+        <ContentPresenter.Content>
+            
+        </ContentPresenter.Content>
+    </ContentPresenter>-->
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
+
+
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" >
+        <Grid Grid.Row="0" Margin="0,0,0,0" Grid.RowSpan="2" >
             <uc:ControlBarUC Tag="{Binding Title, ElementName=BillWindow}" ></uc:ControlBarUC>
         </Grid>
 
+
         <TextBlock Text="---BASKETBALL COURT PAYMENT---" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" FontFamily="Bungee Inline"></TextBlock>
-        <!--<Button
-            Width="50"
-            Grid.Row="2"
-            Content="{materialDesign:PackIcon ArrowLeftBoldBox }"
-            ToolTip="Icon"
-            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Left" Margin="20,0,0,0" />-->
 
-        <Grid  Grid.Row="2">
-            <GroupBox>
-         
-            <ListBox ScrollViewer.CanContentScroll="True" ItemsSource="{Binding ListBill}" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 
-                    <ListBox.ItemTemplate>
+        <Grid Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="0">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
 
-                        <DataTemplate>
-                            <Border BorderBrush="White" BorderThickness="1" CornerRadius="5" >
-                                <!--<ScrollViewer VerticalScrollBarVisibility="Auto">-->
+                </Grid.ColumnDefinitions>
+                <Grid  Grid.Column="0">
+                    <Border Background="Snow" CornerRadius="20" Height="auto" Margin="20,0,20,0" Width="auto">
+                        <Border.BitmapEffect>
+                            <DropShadowBitmapEffect Opacity="0.6" Softness="0.3" Direction="330" Color="Red"/>
+                        </Border.BitmapEffect>
 
-                                    <materialDesign:Card  Margin="20,40">
-                                        <StackPanel >
-                                    <Expander IsExpanded="True"
-                                      
-                                        Header="{Binding List_Field.name}"
-                                              MaxHeight="200"
-                                        >
-                                                <StackPanel
-                                                    Orientation="Vertical"
-                                                TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
-                                                Margin="24,8,24,16">
-                                                    <Grid>
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition Height="Auto"></RowDefinition>
-                                                            <RowDefinition Height="auto"></RowDefinition>
-                                                        </Grid.RowDefinitions>
-                                                        <Grid Grid.Row="0">
-                                                            <Rectangle 
-                                            HorizontalAlignment="Left" 
-                                            Height="34" 
-                                            Width="140" 
-                                            RadiusY="4" 
-                                            RadiusX="4"
-                                            Stroke="DarkBlue" 
-                                            Margin="0,0,5,0" 
-                                            StrokeThickness="1.5"/>
-                                                            <TextBlock 
-                                                            Text="{Binding starttime}"
-                                            Margin="10,10,0,5"
-                                            FontSize="20"
-                                            Foreground="Black"
-                                            FontStretch="Medium"
-                                            />
-                                                            <TextBlock Text=" - "
-                                                                       FontStretch="Medium"
-                                                                       Foreground="Black"
-                                                                       Margin="60,10,0,5" 
-                                                                       FontSize="20">
-                                                            </TextBlock>
-                                                            <TextBlock Text="{Binding endtime}"
-                                                                       FontStretch="Medium"
-                                                                       Foreground="Black"
-                                                                       Margin="80,10,0,5" 
-                                                                       FontSize="20"></TextBlock>
-                                                            <Button Width="100" Content="PAY" Command="{Binding Show_PaymentTemplate}" FontSize="20" FontWeight="Bold" Margin="200,0,0,0" >
+                        <GroupBox Background="{x:Null}" Header="Booking Information" Margin="0" FontSize="22" BorderThickness="0" >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="1.3*"></ColumnDefinition>
+                                    <ColumnDefinition ></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Width="130" Height="150" >
+                                    <Label Height="50">Booking id</Label>
+                                    <Label Height="50" FontSize="16">Customer Name</Label>
+                                    <Label Height="50" FontSize="16" Margin="0,0,-0.4,0">Customer Phone</Label>
+                                </StackPanel>
+                                <StackPanel Width="155" Grid.Column="1">
+                                    <TextBox x:Name="Booking_id"   Height="40" Text="{Binding Booking_id}" IsReadOnly="True"  />
+                                    <TextBox x:Name="C_name" Margin="0,0,0,0" Width="auto" Height="50" Text="{Binding CustomerName}" IsReadOnly="True"/>
+                                    <TextBox x:Name="C_phone"  Height="50"  Text="{Binding CustomerPhoneNum}"   IsReadOnly="True"/>
 
-                                                            </Button>
-                                                        </Grid>
+                                </StackPanel>
+                                <StackPanel Height="150" Grid.Column="2" >
+                                    <Label Height="50" Margin="28,0,-0.4,0">Start time</Label>
+                                    <Label Height="50" Margin="28,0,-0.4,0">End time</Label>
+                                    <Label Height="50" Margin="2,0,-1,0">Date booking</Label>
+                                </StackPanel>
+                                <StackPanel  Width="155" Grid.Column="3" >
+                                    <TextBox x:Name="Starttime"   Height="40" Width="180" Text="{Binding StartTime, StringFormat='{}{0:h:mm tt}'}" IsReadOnly="True"></TextBox>
+                                    <TextBox  x:Name="EndTime"  Height="50" Width="180" Text="{Binding EndTime, StringFormat='{}{0:h:mm tt}'}" IsReadOnly="True"></TextBox>
+                                    <TextBox  x:Name="DateBooking"  Height="50" Width="180" Text="{Binding DateBooking, StringFormat='{}{0:MM/dd/yyyy}'}" IsReadOnly="True"></TextBox>
+                                </StackPanel>
+                            </Grid>
+                        </GroupBox>
+                    </Border>
+                </Grid>
+                <Grid Grid.Column="1">
 
-                                                    </Grid>
-                                                </StackPanel>
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label FontSize="68" FontFamily="Algerian"  Grid.Row="0" Content="  TOTAL" Margin="0,0,0,0.4" Height="110" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="255" />
+                        <TextBlock
+                                   x:Name="txbTotalMoney"
+                                   Text="{Binding FieldPrice, StringFormat=0}"
+                                   Height="92" FontSize="55" Margin="0,0,100,0" TextAlignment="Justify" HorizontalAlignment="Right" Width="auto" VerticalAlignment="Bottom" Grid.Row="1" FontFamily="Algerian"  />
 
-                                            </Expander>
-                                        </StackPanel>
-                                    </materialDesign:Card>
+                    </Grid>
 
-                                <!--</ScrollViewer>-->
-                            </Border>
-                        </DataTemplate>
 
-                    </ListBox.ItemTemplate>
+                </Grid>
+            </Grid>
+            <Grid Height="350" Grid.Row="1" Margin="0,30,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Border Margin="20,60,0,0" Background="Snow" Grid.Column="0" Height="auto" Width="auto" CornerRadius="20">
+                    <Border.BitmapEffect>
+                        <DropShadowBitmapEffect Opacity="0.6" Color="#FFFF0303" Softness="0.3"/>
+                    </Border.BitmapEffect>
 
-                </ListBox>
-      
-            </GroupBox>
+                    <DataGrid IsReadOnly="True" HeadersVisibility="Column" BorderBrush="{x:Null}" Background="Transparent" ItemsSource="{Binding DayList}" AutoGenerateColumns="False" SelectedValue="{Binding SelectedItem}" FontSize="12" Margin="0,0,0,0" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Customer Name" Binding="{Binding Customer_name}"/>
+                            <DataGridTextColumn Header="Phone" Binding="{Binding Customer_PhoneNum, StringFormat=0, Mode=OneTime}"/>
+                            <DataGridTextColumn Header="Booking id" Binding="{Binding id}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Field name" Binding="{Binding field.name}"/>
+                            <DataGridTextColumn Header="Day Booking" Binding="{Binding datePlay, StringFormat='{}{0:MM/dd/yyyy}', Mode=OneTime}"/>
+                            <DataGridTextColumn Header="Start time" Binding="{Binding start_time, StringFormat='{}{0:h:mm tt}', Mode=OneTime}"/>
+                            <DataGridTextColumn Header="End time" Binding="{Binding end_time, StringFormat='{}{0:h:mm tt}'}"/>
+                            <DataGridTextColumn Header="Field Price" Binding="{Binding field.fieldtype.price, StringFormat=0}"/>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+                </Border>
+                <Grid Width="auto" Grid.Column="1">
+                    <Button VerticalAlignment="Bottom" Content="PAY" Foreground="White" Background="OrangeRed"   FontSize="20"  Margin="65,10,64.6,0"  Height="76" Click="Button_Click_3"></Button>
+                    <Button Content="Edit"    FontSize="20" Click="Button_Click_1"       VerticalAlignment="Top"  Margin="65,180,64.6,0" Height="76" />
+
+                </Grid>
+            </Grid>
+
         </Grid>
+
 
     </Grid>
 

@@ -10,22 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SportCenter
+namespace SportCenter.UserControlKteam
 {
     /// <summary>
-    /// Interaction logic for Booking.xaml
+    /// Interaction logic for Expander_Bill.xaml
     /// </summary>
-    public partial class Booking : Window
+    public partial class Expander_Bill : UserControl
     {
-        public Booking()
+        public Expander_Bill()
         {
             InitializeComponent();
         }
-
-
-      
-
     }
 }

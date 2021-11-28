@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportCenter" xmlns:uc="clr-namespace:SportCenter.UserControlKteam"
-        xmlns:ViewModel="clr-namespace:SportCenter.ViewModel" x:Class="SportCenter.PayMent_tem"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"    
+        xmlns:ViewModel="clr-namespace:SportCenter.ViewModel" xmlns:i1="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:i2="http://schemas.microsoft.com/expression/2010/interactions" x:Class="SportCenter.PayMent_tem"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -17,16 +18,13 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         x:Name="Pay1"
-        
-        Title="PayMent_tem" Height="790" Width="592">
-    <Window.DataContext>
-        <ViewModel:PaymentTemplateViewModel/>
-    </Window.DataContext>
+        Title="PayMent_tem" Height="700" Width="592">
+    
     <Grid>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="140"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="120"/>
             <RowDefinition/>
             <RowDefinition Height="180"/>
@@ -39,12 +37,12 @@
         <Grid
             Grid.Row="1" 
             Margin="0"
-            Background="#FFEAEAEA">
+            Background="Transparent">
             <TextBlock 
                 Text="BILL" 
                 FontWeight="Black"
                 HorizontalAlignment="Right" 
-                Margin="0,25,40,0"
+                Margin="0,0,50,0"
                 TextWrapping="Wrap" 
                 VerticalAlignment="Top" 
                 FontSize="32" 
@@ -68,14 +66,15 @@
                     Height="60"
                     />
                 <StackPanel
+                    Margin="0,0,0,0"
                     Grid.Column="1">
                     <TextBlock 
                         x:Name="txbFieldNameBrand"
                         Grid.Column="1"
                         HorizontalAlignment="Left" 
-                        Margin="10,8,0,0"
+                        Margin="0,8,0,0"
                         TextWrapping="Wrap"
-                        Text="Brand Name" 
+                        Text="Trúma Hề Center" 
                         VerticalAlignment="Bottom" 
                         FontSize="22" 
                         FontWeight="Bold" 
@@ -84,9 +83,9 @@
                     <TextBlock 
                         Grid.Column="1"
                         HorizontalAlignment="Left" 
-                        Margin="10,0,0,0"
+                        Margin="0,0,0,0"
                         TextWrapping="Wrap"
-                        Text="Tagline space here" 
+                        Text="#ThicklaChoi" 
                         VerticalAlignment="Bottom" 
                         FontWeight="Medium" 
                         Foreground="Gray"/>
@@ -121,17 +120,17 @@
                 HorizontalAlignment="Left"
                 Margin="30,0,0,3" 
                 TextWrapping="Wrap" 
-                Text="Bill id: " 
+                Text="Booking id: " 
                 VerticalAlignment="Bottom"
                 FontSize="14" 
                 FontWeight="SemiBold" 
                 Foreground="Black"/>
             <TextBlock 
-                x:Name="txbIdBill"
+                x:Name="txbIdBooking"
                 HorizontalAlignment="Left"
                 Margin="129,0,0,3" 
-                TextWrapping="Wrap" 
-                Text="#123" 
+                        
+                TextWrapping="Wrap"
                 VerticalAlignment="Bottom"
                 FontSize="14" 
                 FontWeight="SemiBold" 
@@ -174,10 +173,10 @@
                 <StackPanel 
                     Grid.Column="1">
                     <TextBlock
-                        x:Name="txbInvoiceDate"
+                        x:Name="txbDateBooking"
                         Margin="0" 
+                        Text="{Binding DateBooking}"
                         TextWrapping="Wrap" 
-                        Text="01/12/2020" 
                         VerticalAlignment="Bottom" 
                         FontWeight="SemiBold" 
                         Foreground="Black"
@@ -187,7 +186,6 @@
                         x:Name="txbCheckInTime"
                         Margin="0" 
                         TextWrapping="Wrap" 
-                        Text="18:00" 
                         VerticalAlignment="Bottom" 
                         FontWeight="SemiBold" 
                         Foreground="Black" 
@@ -196,8 +194,7 @@
                     <TextBlock
                         x:Name="txbCheckOutTime"
                         Margin="0" 
-                        TextWrapping="Wrap" 
-                        Text="19:00" 
+                        TextWrapping="Wrap"  
                         VerticalAlignment="Bottom" 
                         FontWeight="SemiBold" 
                         Foreground="Black"
@@ -222,22 +219,25 @@
             <TextBlock 
                 x:Name="txbCustomerName"
                 TextWrapping="Wrap"
-                Text="Phan Ngọc Quang"  
                 FontWeight="Bold" 
                 FontSize="16" 
                 Foreground="Black"/>
             <TextBlock 
                 x:Name="txbCustomerPhoneNumber"
-                TextWrapping="Wrap"
-                Text="0123456789" 
+                TextWrapping="Wrap" 
                 FontWeight="SemiBold" 
                 Margin="0,2,0,0"
                 FontSize="13" 
                 Foreground="Black"/>
         </StackPanel>
+        <StackPanel Grid.Row="2" Height="35" Width="250" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0">
+            <TextBlock Width="200" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" x:Name="txbNameField" FontStretch="SemiExpanded" Foreground="Black" FontWeight="SemiBold" FontSize="30">
+                
+            </TextBlock>
+        </StackPanel>
         <Grid
             Grid.Row="5" 
-            Background="#FFEAEAEA">
+            Background="Transparent">
             <Rectangle 
                 HorizontalAlignment="Left"  
                 StrokeThickness="0" 
@@ -266,7 +266,7 @@
                 HorizontalAlignment="Left"
                 Margin="30,0,0,0" 
                 TextWrapping="Wrap" 
-                Text="Ok bye bye" 
+                Text="Have a nice day" 
                 VerticalAlignment="Center"
                 FontSize="14" 
                 FontWeight="SemiBold" 
@@ -274,119 +274,25 @@
         </Grid>
         <Grid
             Grid.Row="3">
-            <Rectangle 
-                HorizontalAlignment="Left"
-                Height="25"  
-                StrokeThickness="0"
-                VerticalAlignment="Top" 
-                Width="220" 
-                Fill="MediumPurple"
-                Margin="30,0,0,0"/>
-            <Rectangle 
-                Fill="MediumPurple"
-                HorizontalAlignment="Left" 
-                Height="18" 
-                StrokeThickness="0" 
-                VerticalAlignment="Top" 
-                Width="18" 
-                Margin="242,3,0,0"
-                RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="225"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle 
-                HorizontalAlignment="Right"
-                Height="25"  
-                StrokeThickness="0"
-                VerticalAlignment="Top" 
-                Width="396" 
-                Fill="#FFDADADA"
-                Margin="0,0,29.6,0" 
-                Panel.ZIndex="-1"/>
-            <Grid 
-                VerticalAlignment="Top" 
-                Height="25"
-                Margin="30,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.5*"/>
-                    <ColumnDefinition Width="180"/>
-                    <ColumnDefinition Width="1.2*"/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="1.2*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock 
-                    Grid.Column="0"
-                    Text="STT"
-                    HorizontalAlignment="Center" 
-                    Margin="0" 
-                    TextWrapping="Wrap" 
-                    VerticalAlignment="Center" 
-                    FontWeight="SemiBold" 
-                    Foreground="White"/>
-                <TextBlock 
-                    Grid.Column="1"
-                    Text="Tên hàng hóa"
-                    HorizontalAlignment="Left" 
-                    Margin="10,0,0,0" 
-                    TextWrapping="Wrap" 
-                    VerticalAlignment="Center" 
-                    FontWeight="SemiBold" 
-                    Foreground="White"/>
-                <TextBlock 
-                    Grid.Column="2"
-                    Text="Đơn giá"
-                    HorizontalAlignment="Center" 
-                    Margin="0" 
-                    TextWrapping="Wrap" 
-                    VerticalAlignment="Center" 
-                    FontWeight="SemiBold" 
-                    Foreground="Black"/>
-                <TextBlock 
-                    Grid.Column="3"
-                    Text="Số lượng"
-                    HorizontalAlignment="Center" 
-                    Margin="0" 
-                    TextWrapping="Wrap" 
-                    VerticalAlignment="Center" 
-                    FontWeight="SemiBold" 
-                    Foreground="Black"/>
-                <TextBlock 
-                    Grid.Column="4"
-                    Text="Đơn vị tính"
-                    HorizontalAlignment="Center" 
-                    Margin="0" 
-                    TextWrapping="Wrap" 
-                    VerticalAlignment="Center" 
-                    FontWeight="SemiBold" 
-                    Foreground="Black"/>
-                <TextBlock 
-                    Grid.Column="5"
-                    Text="Thành tiền"
-                    HorizontalAlignment="Center" 
-                    Margin="0" 
-                    TextWrapping="Wrap" 
-                    VerticalAlignment="Center" 
-                    FontWeight="SemiBold" 
-                    Foreground="Black"/>
-            </Grid>
-            <StackPanel 
+            <Border Margin="10,0,20,10" CornerRadius="20" Height="auto" Width="auto" Background="Snow">
+                <Border.BitmapEffect>
+                    <DropShadowBitmapEffect Color="#FF4F00FF" Opacity="1.2" Softness="0.4" ShadowDepth="3"></DropShadowBitmapEffect>
+                </Border.BitmapEffect>
+                <Grid 
                 x:Name="stkBillInfo"
-                Margin="30,25,30,0">
-                <StackPanel.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black" Offset="0"/>
-                        <GradientStop Color="#FFEBE8E8"/>
-                    </LinearGradientBrush>
-                </StackPanel.Background>
+                Background="{x:Null}"
+                
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Height="auto"
+                Width="auto">
 
-            </StackPanel>
+                <DataGrid IsReadOnly="True" Width="550" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="35,0,50,0" x:Name="DG_goodListbooking" Background="Transparent">
+                </DataGrid>
+
+
+            </Grid>
+            </Border>
         </Grid>
         <Grid
             Grid.Row="4">
@@ -401,7 +307,7 @@
                 HorizontalAlignment="Right"
                 Margin="0,69,0,0" 
                 TextWrapping="Wrap" 
-                Text="1.100.000" 
+                
                 VerticalAlignment="Top"
                 FontSize="16" 
                 FontWeight="SemiBold" 
@@ -441,7 +347,7 @@
                 HorizontalAlignment="Right"
                 Margin="0,70,130,0" 
                 TextWrapping="Wrap" 
-                Text="Thực thanh toán:" 
+                Text="Total payment:" 
                 VerticalAlignment="Top"
                 FontSize="14" 
                 FontWeight="SemiBold" 
@@ -455,14 +361,14 @@
                 Width="260" >
                 <TextBlock 
                     TextWrapping="Wrap" 
-                    Text="Thông tin:" 
+                    Text="About" 
                     FontSize="16" 
                     FontWeight="Black" 
                     Foreground="Black"/>
                 <TextBlock 
                     x:Name="txbFieldName"
                     TextWrapping="Wrap" 
-                    Text="Sân liên hợp" 
+                    Text="SportCenter: Trúma Hề" 
                     FontWeight="Bold" 
                     Margin="0,2,0,0" 
                     Foreground="Black"/>
@@ -473,12 +379,12 @@
                     FontWeight="SemiBold"
                     Margin="0,0,0,2" 
                     Foreground="Black" 
-                    Text="Song Hành, khu phố 6, Thủ Đức, Thành phố Hồ Chí Minh"
+                    Text="324 St. Hòa Hưng, Ward 12, District 10,   Ho Chi Minh City"
                     MaxHeight="48" />
                 <TextBlock 
                     x:Name="txbPhoneNumber"
                     TextWrapping="Wrap" 
-                    Text="0123456789" 
+                    Text="09199999" 
                     FontWeight="SemiBold"
                     Margin="0"
                     Foreground="Black"/>
@@ -508,7 +414,7 @@
             </StackPanel>
             <Button 
                 x:Name="btnConfirm"
-                Command="{Binding Confirm_Btn}"
+                Click="Confirm_Click"
                 Background="OrangeRed"
                 Content="CONFIRM"
                 Grid.Column="1"
@@ -518,7 +424,25 @@
                 Width="100"
                 VerticalAlignment="Bottom" 
                 Padding="0" />
-            <Grid 
+            <Button x:Name="Cancelbtn"
+                    CommandParameter="{Binding ElementName=Pay1}"
+                    Content="CANCEL"
+                    Grid.Column="1"
+                    HorizontalAlignment="Left"
+                    Margin="10,0,0,20"
+                    Height="25" 
+                    Width="100"
+                    VerticalAlignment="Bottom" Click="Cancelbtn_Click">
+                <i1:Interaction.Triggers>
+                    <i1:EventTrigger EventName="Click">
+                        <i2:CallMethodAction MethodName="Close"
+                           TargetObject="{Binding RelativeSource={RelativeSource
+                                                  Mode=FindAncestor,
+                                                  AncestorType=Window}}" />
+                    </i1:EventTrigger>
+                </i1:Interaction.Triggers>
+            </Button>
+                <Grid 
                 Grid.Column="1" 
                 HorizontalAlignment="Right"
                 Margin="0,15,0,0" 
@@ -530,13 +454,15 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel 
                     Grid.Column="0" 
+                    Width="100"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top" >
                     <TextBlock 
+                        Width="auto"
                         HorizontalAlignment="Left"
                         Margin="0" 
                         TextWrapping="Wrap" 
-                        Text="Tổng cộng" 
+                        Text="Good total" 
                         VerticalAlignment="Top"
                         FontSize="14" 
                         FontWeight="SemiBold" 
@@ -546,7 +472,7 @@
                         HorizontalAlignment="Left"
                         Margin="0" 
                         TextWrapping="Wrap" 
-                        Text="Giảm" 
+                        Text="Field price" 
                         VerticalAlignment="Top"
                         FontSize="14" 
                         FontWeight="SemiBold" 
@@ -558,22 +484,21 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top" >
                     <TextBlock 
-                        x:Name="txbTotalBefore"
+                        x:Name="txbgoodspricetotal"
                         HorizontalAlignment="Right"
                         Margin="0" 
+                        Text="{Binding Good_total}"
                         TextWrapping="Wrap" 
-                        Text="1.300.000" 
                         VerticalAlignment="Top"
                         FontSize="14" 
                         FontWeight="SemiBold" 
                         Foreground="Black" 
                         TextAlignment="Right"/>
                     <TextBlock 
-                        x:Name="txbDiscount"
+                        x:Name="txbfieldprice"
                         HorizontalAlignment="Right"
                         Margin="0" 
                         TextWrapping="Wrap" 
-                        Text="200.000" 
                         VerticalAlignment="Top"
                         FontSize="14" 
                         FontWeight="SemiBold" 

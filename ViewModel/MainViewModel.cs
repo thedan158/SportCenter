@@ -38,12 +38,12 @@ namespace SportCenter.ViewModel
         public ICommand ShowFootballFieldCommand { get; set; }
         public ICommand ShowVolleyballFieldCommand { get; set; }
         public ICommand ShowBasketballFieldCommand { get; set; }
-
+        public ICommand LogoutCommand { get; set; }
         // Good VM
         public ICommand addCommand { get; set; } 
         public ICommand editCommand { get; set; }
         public ICommand deleteCommand { get; set; }
-
+        
         private good _SelectedItem;
         public good SelectedItem
         {
@@ -69,17 +69,25 @@ namespace SportCenter.ViewModel
         // mọi thứ xử lý sẽ nằm trong này
         public MainViewModel()
         {
-            LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) => {
+            LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            {
                 Isloaded = true;
                 p.Hide();
                 LoginWindow loginWindow = new LoginWindow();
                 loginWindow.ShowDialog();
-                p.Show();
-                LoadTonKhoData();
+                if (loginWindow.DataContext == null)
+                    return;
+                var loginVM = loginWindow.DataContext as LoginViewModel;
 
-                
-                
-                
+                if (loginVM.IsLogin)
+                {
+                    p.Show();
+                    LoadTonKhoData();
+                }
+                else
+                {
+                    p.Close();
+                }
             }
               );
             _ShowWindowCommand_FB = new RelayCommand<object>((parameter) => true, (parameter) => _ShowWindowFuntion_FB());
@@ -88,6 +96,7 @@ namespace SportCenter.ViewModel
             ShowFootballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowFootballFieldFunction());
             ShowVolleyballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowVolleyballFieldFunction());
             ShowBasketballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowBasketballFieldFuction());
+
 
 
             // Add goods
@@ -164,20 +173,43 @@ namespace SportCenter.ViewModel
 
                 }
             });
-
-
-
-
-
-
-
-
-
-
         }
         
-        void LoadTonKhoData()
+       
+
+            
+            LogoutCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            {
+
+                p.Hide();
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.ShowDialog();
+                if (loginWindow.DataContext == null)
+                    return;
+                var loginVM = loginWindow.DataContext as LoginViewModel;
+
+                if (loginVM.IsLogin)
+                {
+                    p.Show();
+                    LoadTonKhoData();
+                }
+                else
+                {
+                    p.Close();
+                }
+            }
+
+
+        );
+        }
+        private void AddGoodCommand()
         {
+            Add_Good add_Good = new Add_Good();
+            add_Good.ShowDialog();
+
+        }
+       
+        internal void LoadTonKhoData()      {
             
             Listgood = new ObservableCollection<good>();
             var listgood = DataProvider.Ins.DB.goods;

@@ -17,9 +17,9 @@
         <AssociationConnector Association="sportcenterModel.fk01_bill" ManuallyRouted="false" />
         <AssociationConnector Association="sportcenterModel.fk02_bill" ManuallyRouted="false" />
         <AssociationConnector Association="sportcenterModel.fk01_bi" ManuallyRouted="false" />
+        <AssociationConnector Association="sportcenterModel.fk02_idBooking" ManuallyRouted="false" />
         <AssociationConnector Association="sportcenterModel.fk01_buy" ManuallyRouted="false" />
         <AssociationConnector Association="sportcenterModel.fk01_ac" ManuallyRouted="false" />
-        <AssociationConnector Association="sportcenterModel.fk01_gd" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

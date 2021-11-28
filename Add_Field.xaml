@@ -17,17 +17,57 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         x:Name="Add_Filed"
-        Title="Add_Field" Height="450" Width="800">
+        Title="Add_Field" Height="300" Width="600">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-        </Grid.RowDefinitions>
-
-        <Grid Grid.Row="0">
-            <uc:ControlBarUC Tag="{Binding Title, ElementName=BillWindow}" ></uc:ControlBarUC>
-        </Grid>
-        
-        
+        <GroupBox Height="auto" VerticalAlignment="Top">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"></RowDefinition>
+                    <RowDefinition Height="150"></RowDefinition>
+                    <RowDefinition Height="150"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0"
+            x:Name="txbSetField" 
+	        Margin="191,10,159.908,0.154" 
+            TextWrapping="Wrap" 
+            Text="Thêm sân" 
+            FontSize="40"
+            HorizontalAlignment="Center" 
+            FontWeight="Bold" Width="231" />
+                <Grid Grid.Row="1">
+                    <StackPanel Margin="40,25,40.631,-25.092">
+                        <WrapPanel>
+                            <Label Content="Tên sân:" Width="87"/>
+                            <TextBox   Width="402"/>
+                        </WrapPanel>
+                        <WrapPanel >
+                            <Label Content="Loại sân:" Width="96"/>
+                            <ComboBox   Width="391" Name="txbPgDXs" RenderTransformOrigin="0.434,0.517"/>
+                        </WrapPanel>
+                        <WrapPanel >
+                            <Label Content="Tình trạng:" Width="88"/>
+                            <ComboBox   Width="400" x:Name="txboosgDXs"/>
+                        </WrapPanel>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="30">
+                            <Button Background="Green" Opacity="0.7" Name="btnXacNhan" 
+                            Margin="10" Width="150">
+                                <WrapPanel>
+                                    <materialDesign:PackIcon Kind="Tick" Margin="-10 0 10 0" Width="20" Height="20"/>
+                                    <TextBlock>Xác nhận</TextBlock>
+                                </WrapPanel>
+                            </Button>
+                            <Button Background="red" Opacity="0.7" Name="btnThoat" 
+                             Margin="10" Width="150">
+                                <WrapPanel>
+                                    <materialDesign:PackIcon Kind="No" Margin="-10 0 10 0" Width="20" Height="20"/>
+                                    <TextBlock>Hủy</TextBlock>
+                                </WrapPanel>
+                            </Button>
+                        </WrapPanel>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </GroupBox>
     </Grid>
 </Window>
