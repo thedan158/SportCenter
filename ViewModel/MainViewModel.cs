@@ -207,6 +207,16 @@ namespace SportCenter.ViewModel
             Add_Good add_Good = new Add_Good();
             add_Good.ShowDialog();
 
+                if (loginVM.IsLogin)
+                {
+                    p.Show();
+                    LoadTonKhoData();
+                }
+                else
+                {
+                    p.Close();
+                }
+            }     );
         }
        
         internal void LoadTonKhoData()      {
