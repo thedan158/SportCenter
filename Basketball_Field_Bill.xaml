@@ -22,6 +22,7 @@
         DataContext="{StaticResource BillVM_FB2}"
         Title="LOGIN" Height="770" Width="1000">
 
+
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="Black" />
@@ -37,6 +38,7 @@
             
         </ContentPresenter.Content>
     </ContentPresenter>-->
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
@@ -52,6 +54,93 @@
 
 
         <TextBlock Text="---BASKETBALL COURT PAYMENT---" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" FontFamily="Bungee Inline"></TextBlock>
+
+        <!--<Button
+            Width="50"
+            Grid.Row="2"
+            Content="{materialDesign:PackIcon ArrowLeftBoldBox }"
+            ToolTip="Icon"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Left" Margin="20,0,0,0" />-->
+
+        <Grid  Grid.Row="2">
+            <GroupBox>
+         
+            <ListBox ScrollViewer.CanContentScroll="True" ItemsSource="{Binding ListBill}" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+                    <ListBox.ItemTemplate>
+
+                        <DataTemplate>
+                            <Border BorderBrush="White" BorderThickness="1" CornerRadius="5" >
+                                <!--<ScrollViewer VerticalScrollBarVisibility="Auto">-->
+
+                                    <materialDesign:Card  Margin="20,40">
+                                        <StackPanel >
+                                    <Expander IsExpanded="True"
+                                      
+                                        Header="{Binding List_Field.name}"
+                                              MaxHeight="200"
+                                        >
+                                                <StackPanel
+                                                    Orientation="Vertical"
+                                                TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
+                                                Margin="24,8,24,16">
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto"></RowDefinition>
+                                                            <RowDefinition Height="auto"></RowDefinition>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid Grid.Row="0">
+                                                            <Rectangle 
+                                            HorizontalAlignment="Left" 
+                                            Height="34" 
+                                            Width="140" 
+                                            RadiusY="4" 
+                                            RadiusX="4"
+                                            Stroke="DarkBlue" 
+                                            Margin="0,0,5,0" 
+                                            StrokeThickness="1.5"/>
+                                                            <TextBlock 
+                                                            Text="{Binding starttime}"
+                                            Margin="10,10,0,5"
+                                            FontSize="20"
+                                            Foreground="Black"
+                                            FontStretch="Medium"
+                                            />
+                                                            <TextBlock Text=" - "
+                                                                       FontStretch="Medium"
+                                                                       Foreground="Black"
+                                                                       Margin="60,10,0,5" 
+                                                                       FontSize="20">
+                                                            </TextBlock>
+                                                            <TextBlock Text="{Binding endtime}"
+                                                                       FontStretch="Medium"
+                                                                       Foreground="Black"
+                                                                       Margin="80,10,0,5" 
+                                                                       FontSize="20"></TextBlock>
+                                                            <Button Width="100" Content="PAY" Command="{Binding Show_PaymentTemplate}" FontSize="20" FontWeight="Bold" Margin="200,0,0,0" >
+
+                                                            </Button>
+                                                        </Grid>
+
+                                                    </Grid>
+                                                </StackPanel>
+
+                                            </Expander>
+                                        </StackPanel>
+                                    </materialDesign:Card>
+
+                                <!--</ScrollViewer>-->
+                            </Border>
+                        </DataTemplate>
+
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+      
+            </GroupBox>
+        </Grid>
+
+
 
 
         <Grid Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="0">
@@ -154,6 +243,7 @@
             </Grid>
 
         </Grid>
+
 
 
     </Grid>

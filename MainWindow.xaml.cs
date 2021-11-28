@@ -12,7 +12,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Shapes; 
+using System.Linq;
+using SportCenter.Model;
+using System.Collections.ObjectModel;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace SportCenter
 {
@@ -38,27 +43,28 @@ namespace SportCenter
         {
 
         }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        // search good
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
-          /**  LoginWindow loginWindow = new LoginWindow();
-            mainWindow.Hide();
-            loginWindow.ShowDialog();
-            if (loginWindow.DataContext == null)
-                return;
-            var loginVM = loginWindow.DataContext as LoginViewModel;
-            var mainVM = mainWindow.DataContext as MainViewModel;
-            if (loginVM.IsLogin)
+            var listgoood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
+            var tbx = sender as TextBox;
+            if (tbx.Text != "")
             {
-                mainWindow.Show();
-                mainVM.LoadTonKhoData();
+                var goodList = listgoood.Where(x => x.name.ToLower().Contains(tbx.Text.ToLower()));
+                
+                DataGrid.ItemsSource = goodList;
             }
             else
             {
-                loginWindow.Close();
+                DataGrid.ItemsSource= listgoood ;
             }
-          **/
         }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+       
+
     }
 }
