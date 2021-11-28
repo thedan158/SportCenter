@@ -22,8 +22,8 @@
         DataContext="{StaticResource BillVM}"
         Title="LOGIN" Height="500" Width="600">
 
-    
-        <Grid>
+
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
@@ -43,21 +43,26 @@
             Content="{materialDesign:PackIcon ArrowLeftBoldBox }"
             ToolTip="Icon"
             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Left" Margin="20,0,0,0" />-->
-        <ScrollViewer  Grid.Row="2">
-              
-            
-                <WrapPanel  Orientation="Horizontal">
-                    <ItemsControl ItemsSource="{Binding Listfield}" >
-                <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Margin="0">
-                            <materialDesign:Card  Margin="20,40">
-                                <StackPanel>
-                                    <Expander
-                                        HorizontalAlignment="Stretch"
-                                        Header="{Binding field_name}"
+
+        <Grid  Grid.Row="2">
+            <GroupBox>
+         
+            <ListBox ScrollViewer.CanContentScroll="True" ItemsSource="{Binding ListBill}" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+                    <ListBox.ItemTemplate>
+
+                        <DataTemplate>
+                            <Border BorderBrush="White" BorderThickness="1" CornerRadius="5" >
+                                <!--<ScrollViewer VerticalScrollBarVisibility="Auto">-->
+
+                                    <materialDesign:Card  Margin="20,40">
+                                        <StackPanel >
+                                    <Expander IsExpanded="True"
+                                      
+                                        Header="{Binding List_Field.name}"
+                                              MaxHeight="200"
                                         >
-                                            <StackPanel
+                                                <StackPanel
                                                     Orientation="Vertical"
                                                 TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
                                                 Margin="24,8,24,16">
@@ -100,20 +105,23 @@
                                                         </Grid>
 
                                                     </Grid>
-                                            </StackPanel>
+                                                </StackPanel>
 
                                             </Expander>
-                                </StackPanel>
-                            </materialDesign:Card>
-                                </Grid>
-                            
+                                        </StackPanel>
+                                    </materialDesign:Card>
+
+                                <!--</ScrollViewer>-->
+                            </Border>
                         </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-                </WrapPanel>
-       
-        
-        </ScrollViewer>
+
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+      
+            </GroupBox>
+        </Grid>
+
     </Grid>
 
 </Window>

@@ -6,4 +6,5 @@
     <viewmodel:LoginViewModel x:Key="LoginVM"></viewmodel:LoginViewModel>
     <viewmodel:BillViewModel x:Key="BillVM"></viewmodel:BillViewModel>
     <viewmodel:PaymentTemplateViewModel x:Key="PaymentVM"></viewmodel:PaymentTemplateViewModel>
+
 </ResourceDictionary>
