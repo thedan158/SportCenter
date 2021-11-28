@@ -66,20 +66,33 @@ namespace SportCenter.ViewModel
 
         
 
+
+        public ICommand addGoodCommand { get; set; }
+        public ICommand LogoutCommand { get; set; }
         // mọi thứ xử lý sẽ nằm trong này
         public MainViewModel()
         {
-            LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) => {
+            LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            {
                 Isloaded = true;
                 p.Hide();
                 LoginWindow loginWindow = new LoginWindow();
                 loginWindow.ShowDialog();
-                p.Show();
-                LoadTonKhoData();
 
-                
-                
-                
+                if (loginWindow.DataContext == null)
+                    return;
+                var loginVM = loginWindow.DataContext as LoginViewModel;
+
+                if (loginVM.IsLogin)
+                {
+                    p.Show();
+                    LoadTonKhoData();
+                }
+                else
+                {
+                    p.Close();
+                }
+
             }
               );
             _ShowWindowCommand_FB = new RelayCommand<object>((parameter) => true, (parameter) => _ShowWindowFuntion_FB());
@@ -165,18 +178,35 @@ namespace SportCenter.ViewModel
                 }
             });
 
-
-
-
-
-
-
-
-
-
         }
         
-        void LoadTonKhoData()
+        
+
+           
+            LogoutCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            {
+
+                p.Hide();
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.ShowDialog();
+                if (loginWindow.DataContext == null)
+                    return;
+                var loginVM = loginWindow.DataContext as LoginViewModel;
+
+                if (loginVM.IsLogin)
+                {
+                    p.Show();
+                    LoadTonKhoData();
+                }
+                else
+                {
+                    p.Close();
+                }
+            }     );
+        }
+       
+       
+        internal void LoadTonKhoData()
         {
             
             Listgood = new ObservableCollection<good>();

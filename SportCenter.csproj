@@ -127,9 +127,6 @@
     <Compile Include="Model\good.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\image.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -145,9 +142,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\sysdiagram.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+
+    <Compile Include="UserControlKteam\Expander_Bill.xaml.cs">
+      <DependentUpon>Expander_Bill.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\BaseBill2.cs" />
+    <Compile Include="ViewModel\BillViewModel_Football2.cs" />
+    <Compile Include="ViewModel\FormatDisplayGoodsBill.cs" />
+    <Compile Include="ViewModel\BaseFieldBasketball.cs" />
+    <Compile Include="ViewModel\BaseFieldSoccer.cs" />
+    <Compile Include="ViewModel\BaseFieldVolleyball.cs" />
+    <Compile Include="ViewModel\BasketballFieldViewModel.cs" />
+    <Compile Include="ViewModel\SoccerFieldViewModel.cs" />
+    <Compile Include="ViewModel\StorageViewModel.cs" />
+
     <Compile Include="PayMent_tem.xaml.cs">
       <DependentUpon>PayMent_tem.xaml</DependentUpon>
     </Compile>
@@ -155,10 +163,12 @@
       <DependentUpon>SoccerField.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\BaseBill.cs" />
+    <Compile Include="ViewModel\BillViewModel_football.cs" />
     <Compile Include="ViewModel\BillViewModel.cs" />
     <Compile Include="ViewModel\ListBillViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
-    <Compile Include="ViewModel\PaymentTemplateViewModel.cs" />
+    <Compile Include="ViewModel\VolleyballFieldViewModel.cs" />
     <Compile Include="VolleyballField.xaml.cs">
       <DependentUpon>VolleyballField.xaml</DependentUpon>
     </Compile>
@@ -214,6 +224,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SoccerField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlKteam\Expander_Bill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

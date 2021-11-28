@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace SportCenter.ViewModel
@@ -18,7 +19,7 @@ namespace SportCenter.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
-    class RelayCommand<T> : ICommand
+    public class RelayCommand<T> : ICommand
     {
         private readonly Predicate<T> _canExecute;
         private readonly Action<T> _execute;
@@ -29,6 +30,11 @@ namespace SportCenter.ViewModel
                 throw new ArgumentNullException("execute");
             _canExecute = canExecute;
             _execute = execute;
+        }
+
+        public RelayCommand(Action<Window> closeWindow)
+        {
+            
         }
 
         public bool CanExecute(object parameter)
