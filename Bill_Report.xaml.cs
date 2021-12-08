@@ -11,29 +11,22 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using SportCenter.ViewModel;
-using SportCenter.Model;
 
 namespace SportCenter
 {
     /// <summary>
-    /// Interaction logic for Basketball_Field_Bill.xaml
+    /// Interaction logic for Bill_Report.xaml
     /// </summary>
-    public partial class Basketball_Field_Bill : Window
+    public partial class Bill_Report : Window
     {
-        public Basketball_Field_Bill()
+        public Bill_Report()
         {
             InitializeComponent();
-            
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        private void TextBlock_SizeChanged(object sender, SizeChangedEventArgs e)
         {
 
         }
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-        
     }
 }

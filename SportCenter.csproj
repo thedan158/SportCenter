@@ -93,8 +93,11 @@
     <Compile Include="BasketballField.xaml.cs">
       <DependentUpon>BasketballField.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Basketball_Field_Bill.xaml.cs">
-      <DependentUpon>Basketball_Field_Bill.xaml</DependentUpon>
+    <Compile Include="Bill_Report.xaml.cs">
+      <DependentUpon>Bill_Report.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Football_Field_Bill.xaml.cs">
+      <DependentUpon>Football_Field_Bill.xaml</DependentUpon>
     </Compile>
     <Compile Include="Bill.xaml.cs">
       <DependentUpon>Bill.xaml</DependentUpon>
@@ -105,8 +108,8 @@
     <Compile Include="ChooseSport.xaml.cs">
       <DependentUpon>ChooseSport.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Football_Field_Bill.xaml.cs">
-      <DependentUpon>Football_Field_Bill.xaml</DependentUpon>
+    <Compile Include="Basketball_Field_Bill.xaml.cs">
+      <DependentUpon>Basketball_Field_Bill.xaml</DependentUpon>
     </Compile>
     <Compile Include="List_Good.xaml.cs">
       <DependentUpon>List_Good.xaml</DependentUpon>
@@ -152,7 +155,10 @@
       <DependentUpon>Expander_Bill.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\BaseBill2.cs" />
+    <Compile Include="ViewModel\BillReportViewModel.cs" />
+    <Compile Include="ViewModel\BillViewModel_BasketBall.cs" />
     <Compile Include="ViewModel\BillViewModel_Football2.cs" />
+    <Compile Include="ViewModel\BillViewModel_VolleyBall.cs" />
     <Compile Include="ViewModel\FormatDisplayGoodsBill.cs" />
     <Compile Include="ViewModel\BaseFieldBasketball.cs" />
     <Compile Include="ViewModel\BaseFieldSoccer.cs" />
@@ -167,7 +173,6 @@
     </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BaseBill.cs" />
-    <Compile Include="ViewModel\BillViewModel_football.cs" />
     <Compile Include="ViewModel\BillViewModel.cs" />
     <Compile Include="ViewModel\ListBillViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
@@ -198,7 +203,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Basketball_Field_Bill.xaml">
+    <Page Include="Bill_Report.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Football_Field_Bill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -214,7 +223,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Football_Field_Bill.xaml">
+    <Page Include="Basketball_Field_Bill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -333,6 +342,8 @@
     <Resource Include="Image\money.png" />
     <Resource Include="Image\tags.png" />
     <Resource Include="Image\dollar.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

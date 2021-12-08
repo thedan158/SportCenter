@@ -8,9 +8,8 @@
     <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
     <viewmodel:LoginViewModel x:Key="LoginVM"></viewmodel:LoginViewModel>
     <viewmodel:BillViewModel x:Key="BillVM"></viewmodel:BillViewModel>
-
-    <viewmodel:BillViewModel_football x:Key="BillVM_FB"></viewmodel:BillViewModel_football>
     <viewmodel:BillViewModel_Football2 x:Key="BillVM_FB2"></viewmodel:BillViewModel_Football2>
-    
-
+    <viewmodel:BillViewModel_BasketBall x:Key="BillVM_BKB"></viewmodel:BillViewModel_BasketBall>
+    <viewmodel:BillViewModel_VolleyBall x:Key="BillVM_VLB"></viewmodel:BillViewModel_VolleyBall>
+    <viewmodel:BillReportViewModel x:Key="BillReportVM"></viewmodel:BillReportViewModel>
 </ResourceDictionary>

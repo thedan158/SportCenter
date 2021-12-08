@@ -38,6 +38,9 @@ namespace SportCenter.ViewModel
         public ICommand ShowFootballFieldCommand { get; set; }
         public ICommand ShowVolleyballFieldCommand { get; set; }
         public ICommand ShowBasketballFieldCommand { get; set; }
+        public ICommand addGoodCommand { get; set; }
+        public ICommand OpenBillReportWindow { get; set; }
+
         public ICommand LogoutCommand { get; set; }
 
         // Good VM
@@ -46,24 +49,24 @@ namespace SportCenter.ViewModel
         public ICommand deleteCommand { get; set; }
 
         private good _SelectedItem;
-        public good SelectedItem
-        {
-            get => _SelectedItem;
-            set
-            {
-                _SelectedItem = value;
-                OnPropertyChanged();
-                if (SelectedItem != null)
-                {
-                    idgood = SelectedItem.id;
-                    namegood = SelectedItem.name;
-                    pricegood = SelectedItem.price;
-                    quantitygood = SelectedItem.quantity;
-                    unitgood = SelectedItem.unit;
-                }
+        //public good SelectedItem
+        //{
+        //    get => _SelectedItem;
+        //    set
+        //    {
+        //        _SelectedItem = value;
+        //        OnPropertyChanged();
+        //        if (SelectedItem != null)
+        //        {
+        //            idgood = SelectedItem.id;
+        //            namegood = SelectedItem.name;
+        //            pricegood = SelectedItem.price;
+        //            quantitygood = SelectedItem.quantity;
+        //            unitgood = SelectedItem.unit;
+        //        }
 
-            }
-        }
+        //    }
+        //}
 
         
 
@@ -102,6 +105,20 @@ namespace SportCenter.ViewModel
             ShowFootballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowFootballFieldFunction());
             ShowVolleyballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowVolleyballFieldFunction());
             ShowBasketballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowBasketballFieldFuction());
+            addGoodCommand = new RelayCommand<object>((parameter) => true, (parameter) => AddGoodCommand());
+            OpenBillReportWindow = new RelayCommand<object>((parameter) => true, (parameter) => f_Open_Bill_Report());
+        }
+
+        private void f_Open_Bill_Report()
+        {
+            Bill_Report rp = new Bill_Report();
+            rp.Show();
+        }
+
+        private void AddGoodCommand()
+        {
+            Add_Good add_Good = new Add_Good();
+            add_Good.ShowDialog();
             LogoutCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
 
@@ -145,7 +162,7 @@ namespace SportCenter.ViewModel
             {
                 Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
 
-                var good = new good() { name = namegood, id = idgood, price = pricegood,unit=unitgood, quantity = quantitygood };
+                var good = new good() { name = namegood, id = idgood, price = pricegood,unit=unitgood/*, quantity = quantitygood*/ };
                 DataProvider.Ins.DB.goods.Add(good);
                 DataProvider.Ins.DB.SaveChanges();
                 Listgood.Add(good);
@@ -156,7 +173,7 @@ namespace SportCenter.ViewModel
             editCommand = new RelayCommand<object>((parameter) =>
             {
 
-                if (string.IsNullOrEmpty(namegood)||SelectedItem==null)
+                if (string.IsNullOrEmpty(namegood)/*||SelectedItem==null*/)
                     return false;
                 var nameList = DataProvider.Ins.DB.goods.Where(p => p.id == idgood);
                 if (nameList != null && nameList.Count() != 0)
@@ -166,16 +183,16 @@ namespace SportCenter.ViewModel
             {
                 MessageBoxResult result = MessageBox.Show("Xác nhận sửa hàng hóa?", "Thông báo", MessageBoxButton.YesNo);
                 Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
-                if (result == MessageBoxResult.Yes)
-                {
-                    var good = DataProvider.Ins.DB.goods.Where(x => x.id == SelectedItem.id).SingleOrDefault();
-                    good.name = namegood;
-                    good.price = pricegood;
-                    good.quantity = quantitygood;
-                    good.unit = unitgood;
+                //if (result == MessageBoxResult.Yes)
+                //{
+                //    var good = DataProvider.Ins.DB.goods.Where(x => x.id == SelectedItem.id).SingleOrDefault();
+                //    good.name = namegood;
+                //    good.price = pricegood;
+                //    good.quantity = quantitygood;
+                //    good.unit = unitgood;
 
-                    DataProvider.Ins.DB.SaveChanges();
-                }
+                //    DataProvider.Ins.DB.SaveChanges();
+                //}
                 
             });
 
@@ -185,17 +202,17 @@ namespace SportCenter.ViewModel
             {
                 MessageBoxResult result = MessageBox.Show("Xác nhận xóa hàng hóa?","Thông báo", MessageBoxButton.YesNo);
 
-                Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
-                if (result == MessageBoxResult.Yes)
-                {
-                    var good = DataProvider.Ins.DB.goods.Where(x => x.id == SelectedItem.id).SingleOrDefault();
-                    DataProvider.Ins.DB.goods.Remove(good);
+                //Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
+                //if (result == MessageBoxResult.Yes)
+                //{
+                //    var good = DataProvider.Ins.DB.goods.Where(x => x.id == SelectedItem.id).SingleOrDefault();
+                //    DataProvider.Ins.DB.goods.Remove(good);
 
 
-                    DataProvider.Ins.DB.SaveChanges();
-                    Listgood.Remove(good);
+                //    DataProvider.Ins.DB.SaveChanges();
+                //    Listgood.Remove(good);
 
-                }
+                //}
             });
 
         
