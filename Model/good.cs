@@ -23,8 +23,7 @@ namespace SportCenter.Model
         public int id { get; set; }
         public string name { get; set; }
         public string unit { get; set; }
-        public Nullable<int> price { get; set; }
-        public Nullable<int> quantity { get; set; }
+        public Nullable<decimal> price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<buyingInfo> buyingInfoes { get; set; }

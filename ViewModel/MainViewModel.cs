@@ -49,24 +49,24 @@ namespace SportCenter.ViewModel
         public ICommand deleteCommand { get; set; }
 
         private good _SelectedItem;
-        public good SelectedItem
-        {
-            get => _SelectedItem;
-            set
-            {
-                _SelectedItem = value;
-                OnPropertyChanged();
-                if (SelectedItem != null)
-                {
-                    idgood = SelectedItem.id;
-                    namegood = SelectedItem.name;
-                    pricegood = SelectedItem.price;
-                    quantitygood = SelectedItem.quantity;
-                    unitgood = SelectedItem.unit;
-                }
+        //public good SelectedItem
+        //{
+        //    get => _SelectedItem;
+        //    set
+        //    {
+        //        _SelectedItem = value;
+        //        OnPropertyChanged();
+        //        if (SelectedItem != null)
+        //        {
+        //            idgood = SelectedItem.id;
+        //            namegood = SelectedItem.name;
+        //            pricegood = SelectedItem.price;
+        //            quantitygood = SelectedItem.quantity;
+        //            unitgood = SelectedItem.unit;
+        //        }
 
-            }
-        }
+        //    }
+        //}
 
         
 
@@ -162,7 +162,7 @@ namespace SportCenter.ViewModel
             {
                 Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
 
-                var good = new good() { name = namegood, id = idgood, price = pricegood,unit=unitgood, quantity = quantitygood };
+                var good = new good() { name = namegood, id = idgood, price = pricegood,unit=unitgood/*, quantity = quantitygood*/ };
                 DataProvider.Ins.DB.goods.Add(good);
                 DataProvider.Ins.DB.SaveChanges();
                 Listgood.Add(good);
@@ -173,7 +173,7 @@ namespace SportCenter.ViewModel
             editCommand = new RelayCommand<object>((parameter) =>
             {
 
-                if (string.IsNullOrEmpty(namegood)||SelectedItem==null)
+                if (string.IsNullOrEmpty(namegood)/*||SelectedItem==null*/)
                     return false;
                 var nameList = DataProvider.Ins.DB.goods.Where(p => p.id == idgood);
                 if (nameList != null && nameList.Count() != 0)
@@ -183,16 +183,16 @@ namespace SportCenter.ViewModel
             {
                 MessageBoxResult result = MessageBox.Show("Xác nhận sửa hàng hóa?", "Thông báo", MessageBoxButton.YesNo);
                 Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
-                if (result == MessageBoxResult.Yes)
-                {
-                    var good = DataProvider.Ins.DB.goods.Where(x => x.id == SelectedItem.id).SingleOrDefault();
-                    good.name = namegood;
-                    good.price = pricegood;
-                    good.quantity = quantitygood;
-                    good.unit = unitgood;
+                //if (result == MessageBoxResult.Yes)
+                //{
+                //    var good = DataProvider.Ins.DB.goods.Where(x => x.id == SelectedItem.id).SingleOrDefault();
+                //    good.name = namegood;
+                //    good.price = pricegood;
+                //    good.quantity = quantitygood;
+                //    good.unit = unitgood;
 
-                    DataProvider.Ins.DB.SaveChanges();
-                }
+                //    DataProvider.Ins.DB.SaveChanges();
+                //}
                 
             });
 
@@ -202,17 +202,17 @@ namespace SportCenter.ViewModel
             {
                 MessageBoxResult result = MessageBox.Show("Xác nhận xóa hàng hóa?","Thông báo", MessageBoxButton.YesNo);
 
-                Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
-                if (result == MessageBoxResult.Yes)
-                {
-                    var good = DataProvider.Ins.DB.goods.Where(x => x.id == SelectedItem.id).SingleOrDefault();
-                    DataProvider.Ins.DB.goods.Remove(good);
+                //Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
+                //if (result == MessageBoxResult.Yes)
+                //{
+                //    var good = DataProvider.Ins.DB.goods.Where(x => x.id == SelectedItem.id).SingleOrDefault();
+                //    DataProvider.Ins.DB.goods.Remove(good);
 
 
-                    DataProvider.Ins.DB.SaveChanges();
-                    Listgood.Remove(good);
+                //    DataProvider.Ins.DB.SaveChanges();
+                //    Listgood.Remove(good);
 
-                }
+                //}
             });
 
         
