@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SportCenter.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Shapes; 
+using System.Linq;
+using SportCenter.Model;
+using System.Collections.ObjectModel;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace SportCenter
 {
@@ -37,5 +43,28 @@ namespace SportCenter
         {
 
         }
+        // search good
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var listgoood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
+            var tbx = sender as TextBox;
+            if (tbx.Text != "")
+            {
+                var goodList = listgoood.Where(x => x.name.ToLower().Contains(tbx.Text.ToLower()));
+                
+                DataGrid.ItemsSource = goodList;
+            }
+            else
+            {
+                DataGrid.ItemsSource= listgoood ;
+            }
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+       
+
     }
 }

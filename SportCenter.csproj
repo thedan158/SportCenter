@@ -43,6 +43,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=2.0.3.2, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>packages\MaterialDesignColors.2.0.3\lib\net452\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -159,7 +165,6 @@
     <Compile Include="ViewModel\BaseFieldVolleyball.cs" />
     <Compile Include="ViewModel\BasketballFieldViewModel.cs" />
     <Compile Include="ViewModel\SoccerFieldViewModel.cs" />
-    <Compile Include="ViewModel\StorageViewModel.cs" />
     <Compile Include="PayMent_tem.xaml.cs">
       <DependentUpon>PayMent_tem.xaml</DependentUpon>
     </Compile>
@@ -334,6 +339,9 @@
     <Resource Include="a5ff21dc78b136b321e4e7a6e0f161aa.jpg_684x684q90.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Image\money.png" />
+    <Resource Include="Image\tags.png" />
+    <Resource Include="Image\dollar.png" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

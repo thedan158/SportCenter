@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="sportcenterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="account">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="100" />
+          <Property Name="password" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="bill">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idBookinginfo" Type="int" />
+          <Property Name="idBuyinginfo" Type="int" />
+          <Property Name="totalmoney" Type="money" />
+        </EntityType>
+        <EntityType Name="bookingInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idField" Type="int" />
+          <Property Name="starttime" Type="datetime" />
+          <Property Name="endtime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="buyingInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idGood" Type="int" />
+          <Property Name="quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="field">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idType" Type="int" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="condition" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="fieldtype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="price" Type="money" />
+        </EntityType>
+        <EntityType Name="good">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="unit" Type="nvarchar" MaxLength="100" />
+          <Property Name="price" Type="money" />
+          <Property Name="idImage" Type="int" />
+        </EntityType>
+        <EntityType Name="image">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="url" Type="varchar" MaxLength="100" />
+          <Property Name="idGood" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="fk01_ac">
+          <End Role="fieldtype" Type="Self.fieldtype" Multiplicity="0..1" />
+          <End Role="field" Type="Self.field" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fieldtype">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="field">
+              <PropertyRef Name="idType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_bi">
+          <End Role="field" Type="Self.field" Multiplicity="0..1" />
+          <End Role="bookingInfo" Type="Self.bookingInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="field">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bookingInfo">
+              <PropertyRef Name="idField" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_bill">
+          <End Role="bookingInfo" Type="Self.bookingInfo" Multiplicity="0..1" />
+          <End Role="bill" Type="Self.bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bookingInfo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bill">
+              <PropertyRef Name="idBookinginfo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_buy">
+          <End Role="good" Type="Self.good" Multiplicity="0..1" />
+          <End Role="buyingInfo" Type="Self.buyingInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="good">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="buyingInfo">
+              <PropertyRef Name="idGood" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_gd">
+          <End Role="image" Type="Self.image" Multiplicity="0..1" />
+          <End Role="good" Type="Self.good" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="image">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="good">
+              <PropertyRef Name="idImage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk02_bill">
+          <End Role="buyingInfo" Type="Self.buyingInfo" Multiplicity="0..1" />
+          <End Role="bill" Type="Self.bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="buyingInfo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bill">
+              <PropertyRef Name="idBuyinginfo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="sportcenterModelStoreContainer">
+          <EntitySet Name="account" EntityType="Self.account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bill" EntityType="Self.bill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bookingInfo" EntityType="Self.bookingInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="buyingInfo" EntityType="Self.buyingInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="field" EntityType="Self.field" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="fieldtype" EntityType="Self.fieldtype" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="good" EntityType="Self.good" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="image" EntityType="Self.image" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk01_ac" Association="Self.fk01_ac">
+            <End Role="fieldtype" EntitySet="fieldtype" />
+            <End Role="field" EntitySet="field" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_bi" Association="Self.fk01_bi">
+            <End Role="field" EntitySet="field" />
+            <End Role="bookingInfo" EntitySet="bookingInfo" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_bill" Association="Self.fk01_bill">
+            <End Role="bookingInfo" EntitySet="bookingInfo" />
+            <End Role="bill" EntitySet="bill" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_buy" Association="Self.fk01_buy">
+            <End Role="good" EntitySet="good" />
+            <End Role="buyingInfo" EntitySet="buyingInfo" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_gd" Association="Self.fk01_gd">
+            <End Role="image" EntitySet="image" />
+            <End Role="good" EntitySet="good" />
+          </AssociationSet>
+          <AssociationSet Name="fk02_bill" Association="Self.fk02_bill">
+            <End Role="buyingInfo" EntitySet="buyingInfo" />
+            <End Role="bill" EntitySet="bill" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sportcenterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="account">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="bill">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idBookinginfo" Type="Int32" />
+          <Property Name="idBuyinginfo" Type="Int32" />
+          <Property Name="totalmoney" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="bookingInfo" Relationship="Self.fk01_bill" FromRole="bill" ToRole="bookingInfo" />
+          <NavigationProperty Name="buyingInfo" Relationship="Self.fk02_bill" FromRole="bill" ToRole="buyingInfo" />
+        </EntityType>
+        <EntityType Name="bookingInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idField" Type="Int32" />
+          <Property Name="starttime" Type="DateTime" Precision="3" />
+          <Property Name="endtime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="bills" Relationship="Self.fk01_bill" FromRole="bookingInfo" ToRole="bill" />
+          <NavigationProperty Name="field" Relationship="Self.fk01_bi" FromRole="bookingInfo" ToRole="field" />
+        </EntityType>
+        <EntityType Name="buyingInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idGood" Type="Int32" />
+          <Property Name="quantity" Type="Int32" />
+          <NavigationProperty Name="bills" Relationship="Self.fk02_bill" FromRole="buyingInfo" ToRole="bill" />
+          <NavigationProperty Name="good" Relationship="Self.fk01_buy" FromRole="buyingInfo" ToRole="good" />
+        </EntityType>
+        <EntityType Name="field">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idType" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="condition" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="bookingInfoes" Relationship="Self.fk01_bi" FromRole="field" ToRole="bookingInfo" />
+          <NavigationProperty Name="fieldtype" Relationship="Self.fk01_ac" FromRole="field" ToRole="fieldtype" />
+        </EntityType>
+        <EntityType Name="fieldtype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="fields" Relationship="Self.fk01_ac" FromRole="fieldtype" ToRole="field" />
+        </EntityType>
+        <EntityType Name="good">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="unit" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="idImage" Type="Int32" />
+          <NavigationProperty Name="buyingInfoes" Relationship="Self.fk01_buy" FromRole="good" ToRole="buyingInfo" />
+          <NavigationProperty Name="image" Relationship="Self.fk01_gd" FromRole="good" ToRole="image" />
+        </EntityType>
+        <EntityType Name="image">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="idGood" Type="Int32" />
+          <NavigationProperty Name="goods" Relationship="Self.fk01_gd" FromRole="image" ToRole="good" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="fk01_bill">
+          <End Role="bookingInfo" Type="Self.bookingInfo" Multiplicity="0..1" />
+          <End Role="bill" Type="Self.bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bookingInfo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bill">
+              <PropertyRef Name="idBookinginfo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk02_bill">
+          <End Role="buyingInfo" Type="Self.buyingInfo" Multiplicity="0..1" />
+          <End Role="bill" Type="Self.bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="buyingInfo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bill">
+              <PropertyRef Name="idBuyinginfo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_bi">
+          <End Role="field" Type="Self.field" Multiplicity="0..1" />
+          <End Role="bookingInfo" Type="Self.bookingInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="field">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bookingInfo">
+              <PropertyRef Name="idField" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_buy">
+          <End Role="good" Type="Self.good" Multiplicity="0..1" />
+          <End Role="buyingInfo" Type="Self.buyingInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="good">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="buyingInfo">
+              <PropertyRef Name="idGood" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_ac">
+          <End Role="fieldtype" Type="Self.fieldtype" Multiplicity="0..1" />
+          <End Role="field" Type="Self.field" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fieldtype">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="field">
+              <PropertyRef Name="idType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_gd">
+          <End Role="image" Type="Self.image" Multiplicity="0..1" />
+          <End Role="good" Type="Self.good" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="image">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="good">
+              <PropertyRef Name="idImage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="sportcenterEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="accounts" EntityType="Self.account" />
+          <EntitySet Name="bills" EntityType="Self.bill" />
+          <EntitySet Name="bookingInfoes" EntityType="Self.bookingInfo" />
+          <EntitySet Name="buyingInfoes" EntityType="Self.buyingInfo" />
+          <EntitySet Name="fields" EntityType="Self.field" />
+          <EntitySet Name="fieldtypes" EntityType="Self.fieldtype" />
+          <EntitySet Name="goods" EntityType="Self.good" />
+          <EntitySet Name="images" EntityType="Self.image" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="fk01_bill" Association="Self.fk01_bill">
+            <End Role="bookingInfo" EntitySet="bookingInfoes" />
+            <End Role="bill" EntitySet="bills" />
+          </AssociationSet>
+          <AssociationSet Name="fk02_bill" Association="Self.fk02_bill">
+            <End Role="buyingInfo" EntitySet="buyingInfoes" />
+            <End Role="bill" EntitySet="bills" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_bi" Association="Self.fk01_bi">
+            <End Role="field" EntitySet="fields" />
+            <End Role="bookingInfo" EntitySet="bookingInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_buy" Association="Self.fk01_buy">
+            <End Role="good" EntitySet="goods" />
+            <End Role="buyingInfo" EntitySet="buyingInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_ac" Association="Self.fk01_ac">
+            <End Role="fieldtype" EntitySet="fieldtypes" />
+            <End Role="field" EntitySet="fields" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_gd" Association="Self.fk01_gd">
+            <End Role="image" EntitySet="images" />
+            <End Role="good" EntitySet="goods" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="sportcenterModelStoreContainer" CdmEntityContainer="sportcenterEntities3">
+          <EntitySetMapping Name="accounts">
+            <EntityTypeMapping TypeName="sportcenterModel.account">
+              <MappingFragment StoreEntitySet="account">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bills">
+            <EntityTypeMapping TypeName="sportcenterModel.bill">
+              <MappingFragment StoreEntitySet="bill">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idBookinginfo" ColumnName="idBookinginfo" />
+                <ScalarProperty Name="idBuyinginfo" ColumnName="idBuyinginfo" />
+                <ScalarProperty Name="totalmoney" ColumnName="totalmoney" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bookingInfoes">
+            <EntityTypeMapping TypeName="sportcenterModel.bookingInfo">
+              <MappingFragment StoreEntitySet="bookingInfo">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idField" ColumnName="idField" />
+                <ScalarProperty Name="starttime" ColumnName="starttime" />
+                <ScalarProperty Name="endtime" ColumnName="endtime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="buyingInfoes">
+            <EntityTypeMapping TypeName="sportcenterModel.buyingInfo">
+              <MappingFragment StoreEntitySet="buyingInfo">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idGood" ColumnName="idGood" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fields">
+            <EntityTypeMapping TypeName="sportcenterModel.field">
+              <MappingFragment StoreEntitySet="field">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idType" ColumnName="idType" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="condition" ColumnName="condition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fieldtypes">
+            <EntityTypeMapping TypeName="sportcenterModel.fieldtype">
+              <MappingFragment StoreEntitySet="fieldtype">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="goods">
+            <EntityTypeMapping TypeName="sportcenterModel.good">
+              <MappingFragment StoreEntitySet="good">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="idImage" ColumnName="idImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="images">
+            <EntityTypeMapping TypeName="sportcenterModel.image">
+              <MappingFragment StoreEntitySet="image">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="idGood" ColumnName="idGood" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="sportcenterModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

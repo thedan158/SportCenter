@@ -12,6 +12,7 @@ namespace SportCenter.ViewModel
 {
     public class BillViewModel : BaseViewModel
     {
+
         private ObservableCollection<ListBill> _ListBill;
         public ObservableCollection<ListBill> ListBill { get => _ListBill; set { _ListBill = value; OnPropertyChanged(); } }
         private ObservableCollection<ListBill> _Listbooking;
@@ -22,6 +23,7 @@ namespace SportCenter.ViewModel
         protected List<ListBill> List_field_fb;
         protected List<ListBill> List_field_bk;
         protected List<ListBill> List_field_vl;
+
 
         private ObservableCollection<ListBill> _ListBooking_soccer;
         public ObservableCollection<ListBill> ListBooking_soccer { get => _ListBooking_soccer; set { _ListBooking_soccer = value; OnPropertyChanged(); } }
@@ -34,6 +36,8 @@ namespace SportCenter.ViewModel
         
         public BillViewModel()
         {
+
+
             _Listbooking = new ObservableCollection<ListBill>();
             _ListBill = new ObservableCollection<ListBill>();
             List_Booking_idfb = new List<ListBill>();
@@ -45,8 +49,6 @@ namespace SportCenter.ViewModel
             Load_Listfield();
             Load_ListBooking();
             Device_ListBooking();
-            
-
 
 
         }
@@ -166,6 +168,7 @@ namespace SportCenter.ViewModel
         }
 
         private void Load_Field()
+
         {
             _ListBill = new ObservableCollection<ListBill>();
             var Ex = DataProvider.Ins.DB.fields;

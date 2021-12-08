@@ -23,6 +23,29 @@
         DataContext="{StaticResource BillVM_BKB}"
         Title="LOGIN" Height="770" Width="1000" >
         
+<<<<<<< HEAD
+=======
+        Name="BillWindow_BK"
+        DataContext="{StaticResource BillVM_FB2}"
+        Title="LOGIN" Height="770" Width="1000">
+
+
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+        <Style TargetType="Rectangle">
+            <Setter Property="Stroke" Value="DarkBlue" ></Setter>
+
+        </Style>
+    </Window.Resources>
+    <!--<ContentPresenter>
+        <ContentPresenter.Content>
+            
+        </ContentPresenter.Content>
+    </ContentPresenter>-->
+>>>>>>> master
 
     <Grid>
         <Grid.RowDefinitions>

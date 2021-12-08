@@ -12,8 +12,24 @@ namespace SportCenter.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
-        private ObservableCollection<TonKho> _TonKhoList;
-        public ObservableCollection<TonKho> TonKhoList { get => _TonKhoList; set { _TonKhoList = value; OnPropertyChanged(); } }
+        private ObservableCollection<good> _Listgood;
+        public ObservableCollection<good> Listgood { get => _Listgood; set { _Listgood = value; OnPropertyChanged(); } }
+
+        private int _idgood;
+        public int idgood { get => _idgood; set { _idgood = value; OnPropertyChanged(); } }
+
+        private string _namegood;
+        public string namegood { get => _namegood; set { _namegood = value; OnPropertyChanged(); } }
+
+        private int? _pricegood;
+        public int? pricegood { get => _pricegood; set { _pricegood = value; OnPropertyChanged(); } }
+
+        private int? _quantitygood;
+        public int? quantitygood { get => _quantitygood; set { _quantitygood = value; OnPropertyChanged(); } }
+
+        private string _unitgood;
+        public string unitgood { get => _unitgood; set { _unitgood = value; OnPropertyChanged(); } }
+
         public bool Isloaded = false;
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand _ShowWindowCommand_FB { get; set; }
@@ -25,15 +41,49 @@ namespace SportCenter.ViewModel
         public ICommand addGoodCommand { get; set; }
         public ICommand OpenBillReportWindow { get; set; }
 
-        // mọi thứ xử lý sẽ nằm trong này
-        public MainViewModel()
+        public ICommand LogoutCommand { get; set; }
+
+        // Good VM
+        public ICommand addCommand { get; set; } 
+        public ICommand editCommand { get; set; }
+        public ICommand deleteCommand { get; set; }
+
+        private good _SelectedItem;
+        public good SelectedItem
         {
-            LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) => 
+            get => _SelectedItem;
+            set
+            {
+                _SelectedItem = value;
+                OnPropertyChanged();
+                if (SelectedItem != null)
+                {
+                    idgood = SelectedItem.id;
+                    namegood = SelectedItem.name;
+                    pricegood = SelectedItem.price;
+                    quantitygood = SelectedItem.quantity;
+                    unitgood = SelectedItem.unit;
+                }
+
+            }
+        }
+
+        
+
+       
+        
+        // mọi thứ xử lý sẽ nằm trong này
+       
+           
+                public MainViewModel()
+        {
+            LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
                 Isloaded = true;
                 p.Hide();
                 LoginWindow loginWindow = new LoginWindow();
                 loginWindow.ShowDialog();
+
                 if (loginWindow.DataContext == null)
                     return;
                 var loginVM = loginWindow.DataContext as LoginViewModel;
@@ -47,9 +97,9 @@ namespace SportCenter.ViewModel
                 {
                     p.Close();
                 }
-            }
-              );
-            _ShowWindowCommand_FB = new RelayCommand<object>((parameter) => true, (parameter) => _ShowWindowFuntion_FB());
+
+                  });
+               _ShowWindowCommand_FB = new RelayCommand<object>((parameter) => true, (parameter) => _ShowWindowFuntion_FB());
             ShowWindowCommand_BK = new RelayCommand<object>((parameter) => true, (parameter) => ShowWindowFuntion_BK());
             ShowWindowCommand_VL = new RelayCommand<object>((parameter) => true, (parameter) => ShowWindowFuntion_VL());
             ShowFootballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowFootballFieldFunction());
@@ -69,20 +119,123 @@ namespace SportCenter.ViewModel
         {
             Add_Good add_Good = new Add_Good();
             add_Good.ShowDialog();
+            LogoutCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            {
 
+                p.Hide();
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.ShowDialog();
+                if (loginWindow.DataContext == null)
+                    return;
+                var loginVM = loginWindow.DataContext as LoginViewModel;
+
+                if (loginVM.IsLogin)
+                {
+                    p.Show();
+                    LoadTonKhoData();
+                }
+                else
+                {
+                    p.Close();
+                }
+            });
+
+            // Add goods
+            addCommand = new RelayCommand<object>((parameter) =>
+            {
+
+                if (string.IsNullOrEmpty(namegood))
+                {
+                    return false;
+                }
+                
+                var nameList = DataProvider.Ins.DB.goods.Where(p => p.name == namegood);
+                if (nameList == null || nameList.Count() != 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }, (parameter) =>
+            {
+                Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
+
+                var good = new good() { name = namegood, id = idgood, price = pricegood,unit=unitgood, quantity = quantitygood };
+                DataProvider.Ins.DB.goods.Add(good);
+                DataProvider.Ins.DB.SaveChanges();
+                Listgood.Add(good);
+
+            });
+
+            //Edit goods
+            editCommand = new RelayCommand<object>((parameter) =>
+            {
+
+                if (string.IsNullOrEmpty(namegood)||SelectedItem==null)
+                    return false;
+                var nameList = DataProvider.Ins.DB.goods.Where(p => p.id == idgood);
+                if (nameList != null && nameList.Count() != 0)
+                    return true;
+                return false;
+            }, (parameter) =>
+            {
+                MessageBoxResult result = MessageBox.Show("Xác nhận sửa hàng hóa?", "Thông báo", MessageBoxButton.YesNo);
+                Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
+                if (result == MessageBoxResult.Yes)
+                {
+                    var good = DataProvider.Ins.DB.goods.Where(x => x.id == SelectedItem.id).SingleOrDefault();
+                    good.name = namegood;
+                    good.price = pricegood;
+                    good.quantity = quantitygood;
+                    good.unit = unitgood;
+
+                    DataProvider.Ins.DB.SaveChanges();
+                }
+                
+            });
+
+            //Delete goods
+            deleteCommand = new RelayCommand<object>((parameter) =>true, 
+            (parameter) =>
+            {
+                MessageBoxResult result = MessageBox.Show("Xác nhận xóa hàng hóa?","Thông báo", MessageBoxButton.YesNo);
+
+                Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
+                if (result == MessageBoxResult.Yes)
+                {
+                    var good = DataProvider.Ins.DB.goods.Where(x => x.id == SelectedItem.id).SingleOrDefault();
+                    DataProvider.Ins.DB.goods.Remove(good);
+
+
+                    DataProvider.Ins.DB.SaveChanges();
+                    Listgood.Remove(good);
+
+                }
+            });
+
+        
+        
+        
+
+           
+            
         }
-        void LoadTonKhoData()
+       
+       
+        internal void LoadTonKhoData()
         {
             
-            TonKhoList = new ObservableCollection<TonKho>();
+            Listgood = new ObservableCollection<good>();
             var listgood = DataProvider.Ins.DB.goods;
             foreach (var item in listgood)
             {
-                TonKho tonkho = new TonKho();
+                good tonkho = new good();
                
-                tonkho.good = item;
+                tonkho = item;
 
-                TonKhoList.Add(tonkho);
+                Listgood.Add(tonkho);
             }
 
         }
@@ -118,5 +271,14 @@ namespace SportCenter.ViewModel
             BasketballField basketballField = new BasketballField();
             basketballField.ShowDialog();
         }
+
+
+      
+
+      
+        
     }
+
+
+   
 }
