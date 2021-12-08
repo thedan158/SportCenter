@@ -23,10 +23,13 @@ namespace SportCenter.ViewModel
         public ICommand ShowVolleyballFieldCommand { get; set; }
         public ICommand ShowBasketballFieldCommand { get; set; }
         public ICommand addGoodCommand { get; set; }
+        public ICommand OpenBillReportWindow { get; set; }
+
         // mọi thứ xử lý sẽ nằm trong này
         public MainViewModel()
         {
-            LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) => {
+            LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) => 
+            {
                 Isloaded = true;
                 p.Hide();
                 LoginWindow loginWindow = new LoginWindow();
@@ -53,8 +56,15 @@ namespace SportCenter.ViewModel
             ShowVolleyballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowVolleyballFieldFunction());
             ShowBasketballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowBasketballFieldFuction());
             addGoodCommand = new RelayCommand<object>((parameter) => true, (parameter) => AddGoodCommand());
-
+            OpenBillReportWindow = new RelayCommand<object>((parameter) => true, (parameter) => f_Open_Bill_Report());
         }
+
+        private void f_Open_Bill_Report()
+        {
+            Bill_Report rp = new Bill_Report();
+            rp.Show();
+        }
+
         private void AddGoodCommand()
         {
             Add_Good add_Good = new Add_Good();

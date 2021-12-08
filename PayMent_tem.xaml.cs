@@ -22,12 +22,12 @@ namespace SportCenter
     /// <summary>
     /// Interaction logic for PayMent_tem.xaml
     /// </summary>
-    public partial class PayMent_tem : Window
+    public partial class PayMent_tem
     {
         //global para for adding to DB
         int idbooking_DB_add;
         decimal? totalmoney_DB_add;
-        public PayMent_tem(int id_booking, string CustomerName, string CustomerPhone , string Booking_date, string start_time, string end_time, string Field_price)
+        public PayMent_tem(int id_booking, string CustomerName, string CustomerPhone , string Booking_date, string start_time, string end_time, decimal Field_price) 
         {
             InitializeComponent();
             // Generate
@@ -36,8 +36,8 @@ namespace SportCenter
             string _txtbookingdate = Booking_date;
             string _txtstarttime = start_time;
             string _txtendtime = end_time;
-            string _txtfieldprice = Field_price;
-            string _txtidbooking = id_booking.ToString();
+            string _txtfieldprice = (Decimal.ToInt32(Field_price)).ToString();
+;           string _txtidbooking = id_booking.ToString();
             int _goodtotalvalue = 0;
             idbooking_DB_add = id_booking;
             
@@ -66,7 +66,7 @@ namespace SportCenter
                     _Listgoodbooking.Add(temp_good_add);
                 }
             }
-            int _totalbillvalue = (int.Parse(Field_price) + _goodtotalvalue);
+            int _totalbillvalue = (Decimal.ToInt32(Field_price) + _goodtotalvalue);
             totalmoney_DB_add = _totalbillvalue;
             foreach(var item in _Listgoodbooking)
             {
@@ -94,7 +94,6 @@ namespace SportCenter
             txbTotal.Text = _totalbillvalue.ToString();
             txbCustomerName.Text = _cName;
             txbCustomerPhoneNumber.Text = _cPhone;
-
 
             // --------- Setup datagrid value for binding to .xaml ----------
             DG_goodListbooking.ItemsSource = ListgoodBook;
@@ -133,6 +132,15 @@ namespace SportCenter
                 adding_DB.idBookingInfo = idbooking_DB_add;
                 adding_DB.totalmoney = totalmoney_DB_add;
             }
+            List<bookingInfo> Update_bookigStatus = new List<bookingInfo>(DataProvider.Ins.DB.bookingInfoes);
+            foreach (var item in Update_bookigStatus)
+            {
+                if (item.id == adding_DB.idBookingInfo)
+                {
+                    item.Status = "Pay";
+                }
+            }
+            
             DataProvider.Ins.DB.bills.Add(adding_DB);
             DataProvider.Ins.DB.SaveChanges();
             this.Close();

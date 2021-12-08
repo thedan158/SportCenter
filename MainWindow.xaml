@@ -489,17 +489,17 @@
                         <Button x:Name="FB_button"
                             Style="{DynamicResource MaterialDesignRaisedButton}"
                             materialDesign:ShadowAssist.ShadowDepth="Depth4"
-                            Content="FOOTBALL FIELD"
+                            Content="BASKETBALL COURT"
                             Width="150" Height="40"
                             Grid.Column="0" Grid.Row="3"
                             ToolTip="Resource name: MaterialDesignRaisedLightButton"
                             Command="{Binding _ShowWindowCommand_FB}"
                             CommandParameter="{Binding ElementName=FB_button}"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="12" />
                         <Button x:Name="BKB_button"
                             Style="{DynamicResource MaterialDesignRaisedButton}"
                             materialDesign:ShadowAssist.ShadowDepth="Depth4"
-                            Content="BASKETBALL COURT" FontSize="10"
+                            Content="FOOTBALL FIELD" FontSize="10"
                             Width="150" Height="40"            
                             Grid.Column="1" Grid.Row="3"
                             Command="{Binding ShowWindowCommand_BK}"
@@ -515,12 +515,12 @@
                             ToolTip="Resource name: MaterialDesignRaisedLightButton"            
                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Center" VerticalAlignment="Top" />
 
-                        <Image Source="image/5854088.png" 
+                        <Image Source="image/7042198.png" 
                Grid.Row="2"
                Grid.Column="0"
                HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="150" RenderTransformOrigin="0.557,0.517"
                ></Image>
-                        <Image Source="image/7042198.png" 
+                        <Image Source="image/5854088.png"
                Grid.Column="1"
                Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="150"
                ></Image>
@@ -550,12 +550,14 @@
           HorizontalAlignment="Center" />
                         </StackPanel>
                     </TabItem.Header>
-                    <TextBlock>
-      <Run
-        Text="tab 4 content. Default look and behaviors." />
-      <LineBreak />
-      <LineBreak />
-                    </TextBlock>
+                    <Button
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        Width="150"
+                        Command="{Binding OpenBillReportWindow}"
+                        ToolTip="Resource name: MaterialDesignRaisedButton"
+                        Content="BILL REPORT"
+                        Height="80"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
                 </TabItem>
                 <TabItem>
                     <TabItem.Header>
