@@ -4,14 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c2cf73eb8a14489ba3fec0e77b4d899e" Name="Diagram1">
+      <Diagram DiagramId="796d3c7c825a44b4ad904274082f5424" Name="Diagram1">
         <EntityTypeShape EntityType="sportcenterModel.account" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="sportcenterModel.bill" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="sportcenterModel.bookingInfo" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="sportcenterModel.buyingInfo" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="sportcenterModel.field" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="sportcenterModel.fieldtype" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="sportcenterModel.good" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportcenterModel.good" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportcenterModel.sysdiagram" Width="1.5" PointX="7.75" PointY="7.125" IsExpanded="true" />
         <AssociationConnector Association="sportcenterModel.fk01_idBooking" ManuallyRouted="false" />
         <AssociationConnector Association="sportcenterModel.fk01_bi" ManuallyRouted="false" />
         <AssociationConnector Association="sportcenterModel.fk02_idBooking" ManuallyRouted="false" />
