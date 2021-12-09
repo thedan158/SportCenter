@@ -66,31 +66,45 @@ namespace SportCenter.ViewModel
         
       
 
-        public ICommand addCommand { get; set; }
+        public bool Isloaded = false;
+        public ICommand LoadedWindowCommand { get; set; }
+        public ICommand _ShowWindowCommand_FB { get; set; }
+        public ICommand ShowWindowCommand_BK { get; set; }
+        public ICommand ShowWindowCommand_VL { get; set; }
+        public ICommand ShowFootballFieldCommand { get; set; }
+        public ICommand ShowVolleyballFieldCommand { get; set; }
+        public ICommand ShowBasketballFieldCommand { get; set; }
+        
+        public ICommand OpenBillReportWindow { get; set; }
+
+        public ICommand LogoutCommand { get; set; }
+
+        // Good VM
+        public ICommand addCommand { get; set; } 
         public ICommand editCommand { get; set; }
         public ICommand deleteCommand { get; set; }
 
         public ICommand SelectImageCommand { get; set; }
 
         private good _SelectedItem;
-        public good SelectedItem
-        {
-            get => _SelectedItem;
-            set
-            {
-                _SelectedItem = value;
-                OnPropertyChanged();
-                if (SelectedItem != null)
-                {
-                    idgood = SelectedItem.id;
-                    namegood = SelectedItem.name;
-                    pricegood = SelectedItem.price;
-                    quantitygood = SelectedItem.quantity;
-                    unitgood = SelectedItem.unit;
-                }
+        //public good SelectedItem
+        //{
+        //    get => _SelectedItem;
+        //    set
+        //    {
+        //        _SelectedItem = value;
+        //        OnPropertyChanged();
+        //        if (SelectedItem != null)
+        //        {
+        //            idgood = SelectedItem.id;
+        //            namegood = SelectedItem.name;
+        //            pricegood = SelectedItem.price;
+        //            quantitygood = SelectedItem.quantity;
+        //            unitgood = SelectedItem.unit;
+        //        }
 
-            }
-        }
+        //    }
+        //}
 
 
         //Order VM
@@ -160,9 +174,8 @@ namespace SportCenter.ViewModel
             ShowFootballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowFootballFieldFunction());
             ShowVolleyballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowVolleyballFieldFunction());
             ShowBasketballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowBasketballFieldFuction());
-            SelectImageCommand = new RelayCommand<Grid>((parameter) => true, (parameter) => ChooseImage(parameter));
-           
             
+            OpenBillReportWindow = new RelayCommand<object>((parameter) => true, (parameter) => f_Open_Bill_Report());
             LogoutCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
 
@@ -183,6 +196,14 @@ namespace SportCenter.ViewModel
                     p.Close();
                 }
             });
+
+            
+        
+
+        
+
+ 
+            
             // Add goods
             addCommand = new RelayCommand<object>((parameter) =>
             {
@@ -204,7 +225,7 @@ namespace SportCenter.ViewModel
             {
                 Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
 
-                var good = new good() { name = namegood, id = idgood, price = pricegood, unit = unitgood, quantity = quantitygood };
+                var good = new good() { name = namegood, id = idgood, price = pricegood,unit=unitgood/*, quantity = quantitygood*/ };
                 DataProvider.Ins.DB.goods.Add(good);
                 DataProvider.Ins.DB.SaveChanges();
                 Listgood.Add(good);
@@ -215,7 +236,7 @@ namespace SportCenter.ViewModel
             editCommand = new RelayCommand<object>((parameter) =>
             {
 
-                if (string.IsNullOrEmpty(namegood) || SelectedItem == null)
+                if (string.IsNullOrEmpty(namegood)/*||SelectedItem==null*/)
                     return false;
                 var nameList = DataProvider.Ins.DB.goods.Where(p => p.id == idgood);
                 if (nameList != null && nameList.Count() != 0)
@@ -223,12 +244,19 @@ namespace SportCenter.ViewModel
                 return false;
             }, (parameter) =>
             {
-                var good = DataProvider.Ins.DB.goods.Where(x => x.id == SelectedItem.id).SingleOrDefault();
-                good.name = namegood;
-                good.price = pricegood;
-                good.quantity = quantitygood;
-                good.unit = unitgood;
-                DataProvider.Ins.DB.SaveChanges();
+                MessageBoxResult result = MessageBox.Show("Xác nhận sửa hàng hóa?", "Thông báo", MessageBoxButton.YesNo);
+                Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
+                //if (result == MessageBoxResult.Yes)
+                //{
+                //    var good = DataProvider.Ins.DB.goods.Where(x => x.id == SelectedItem.id).SingleOrDefault();
+                //    good.name = namegood;
+                //    good.price = pricegood;
+                //    good.quantity = quantitygood;
+                //    good.unit = unitgood;
+
+                //    DataProvider.Ins.DB.SaveChanges();
+                //}
+                
             });
 
             //Delete goods
@@ -273,6 +301,12 @@ namespace SportCenter.ViewModel
                     Listorder.Clear();
                 }
             });
+        }
+        
+        private void f_Open_Bill_Report()
+        {
+            Bill_Report rp = new Bill_Report();
+            rp.Show();
         }
 
         private void ChooseImage(Grid parameter)

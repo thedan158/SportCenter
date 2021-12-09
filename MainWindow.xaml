@@ -8,7 +8,7 @@
          xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         
         xmlns:uc="clr-namespace:SportCenter.UserControlKteam"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
      TextElement.FontWeight="Regular"
      TextElement.FontSize="13"
@@ -23,7 +23,6 @@
         Name="mainWindow"
         DataContext="{StaticResource MainVM}"
         Title="Phoenix Sport Center Management" Height="700" Width="1300">
-
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName=mainWindow}"/>
@@ -43,6 +42,10 @@
         </Grid>
 
         <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="99*"/>
+                <ColumnDefinition Width="101*"/>
+            </Grid.ColumnDefinitions>
             <TabControl
   Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
   BorderThickness="0"
@@ -50,9 +53,9 @@
                Background="#FFF5EDF7"
   TabStripPlacement="Left"
   materialDesign:ShadowAssist.ShadowDepth="Depth0"
-  materialDesign:ColorZoneAssist.Mode="Standard"
+  materialDesign:ColorZoneAssist.Mode="PrimaryMid"
   SnapsToDevicePixels="True"
-   SelectionChanged="TabControl_SelectionChanged">
+   SelectionChanged="TabControl_SelectionChanged" Grid.ColumnSpan="2" Margin="0,0,0,0.2">
 
                 <TabItem>
                     <TabItem.Header>
@@ -60,91 +63,135 @@
         Height="auto"
         Width="auto">
                             <materialDesign:PackIcon
-          Kind="Basketball"
+          Kind="ViewDashboard"
           Width="30"
           Height="30"
           HorizontalAlignment="Center" />
                             <TextBlock
-          Text="Fields"
+          Text="Main"
           HorizontalAlignment="Center" />
                         </StackPanel>
                     </TabItem.Header>
+                    <!--MainUI start here-->
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="14*"></RowDefinition>
-                            <RowDefinition Height="13*"/>
+                            <RowDefinition Height="250"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            
                         </Grid.RowDefinitions>
-
-                        <Grid Grid.Row="1" Margin="0,0,-0.4,56.2" Grid.RowSpan="2">
+                        <Grid Grid.Row="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="50*"/>
-                                <ColumnDefinition Width="50*"/>
-                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="400"></ColumnDefinition>
+                                <ColumnDefinition Width="400"></ColumnDefinition>
+                                <ColumnDefinition Width="400"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
-                                <Button x:Name="FB" HorizontalAlignment="Center" Height="200" VerticalAlignment="Center" Width="120"
-                                        Command="{Binding ShowFootballFieldCommand}"
-                            CommandParameter="{Binding ElementName=FB}">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="auto"></RowDefinition>
-                                            <RowDefinition></RowDefinition>
-                                        </Grid.RowDefinitions>
-                                        <materialDesign:PackIcon Grid.Row="0" FontWeight="ExtraBold" Kind="Soccer" FontSize="200" Height="109" Width="81"/>
-                                        <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="13,105,13.231,4.277" Grid.RowSpan="2">
-                       Football
-                                        </TextBlock>
-                                    </Grid>
-
-                                </Button>
+                                <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth5"
+            Padding="8" Margin="25" Foreground="{x:Null}">
+                                     
+                                    <materialDesign:Card.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF7D27FF" Offset="1"/>
+                                            <GradientStop Color="#FFBB2086"/>
+                                        </LinearGradientBrush>
+                                    </materialDesign:Card.Background>
+                                   
+                                </materialDesign:Card>
+                                <Label x:Name="label_money" HorizontalAlignment="Left" Content="" Height="64" Margin="150,147,0,0" VerticalAlignment="Top" Width="93">
+                                    <Label.Background>
+                                        <ImageBrush ImageSource="image/money.png" Stretch="Uniform"/>
+                                    </Label.Background>
+                                </Label>
+                                <Label x:Name="label_income" Content="ALL INCOME IN VND" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="39" FontWeight="Bold" Margin="26,39,0,0" VerticalAlignment="Top" Width="346" FontSize="24" Foreground="#DDF9F9F9"/>
+                                <Label x:Name="income" Content="1,000,000 VND" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="31" Margin="28,105,0,0" VerticalAlignment="Top" Width="344" FontSize="18" Foreground="#DDF9F9F9" FontWeight="Bold" />
                             </Grid>
                             <Grid Grid.Column="1">
+                                <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth5"
+            Padding="8" Margin="25" Foreground="{x:Null}">
 
-                                <Button x:Name="VL" HorizontalAlignment="Center" Height="200" VerticalAlignment="Center" Width="120"
-                                        Command="{Binding ShowVolleyballFieldCommand}"
-                            CommandParameter="{Binding ElementName=VL}">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="auto"></RowDefinition>
-                                            <RowDefinition></RowDefinition>
-                                        </Grid.RowDefinitions>
-                                        <materialDesign:PackIcon Kind="Volleyball" FontSize="200" Height="109" Width="79" />
-                                        <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="0,105,-0.338,4.277" Grid.RowSpan="2">
-                       Volleyball
-                                        </TextBlock>
-                                    </Grid>
-                                </Button>
+                                    <materialDesign:Card.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFF51C40"/>
+                                            <GradientStop Color="#FFD89B65" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </materialDesign:Card.Background>
+
+                                </materialDesign:Card>
+                                <Label x:Name="label_guesttext" Content="THIS MONTH" HorizontalAlignment="Left" Height="39" Margin="27,39,0,0" VerticalAlignment="Top" Width="347" FontSize="24" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="#DDF9F9F9"/>
+                                <Label x:Name="label_guest" Content="" HorizontalAlignment="Left" Height="64" VerticalAlignment="Top" Width="93" Margin="147,149,0,0">
+                                    <Label.Background>
+                                        <ImageBrush ImageSource="image/tags.png" Stretch="Uniform"/>
+                                    </Label.Background>
+                                </Label>
+                                <Label x:Name="guest" HorizontalContentAlignment="Center" Content="500,000 VND" HorizontalAlignment="Left" Height="33" Margin="29,104,0,0" VerticalAlignment="Top" Width="344" FontSize="18" Foreground="#DDF9F9F9" FontWeight="Bold"/>
                             </Grid>
                             <Grid Grid.Column="2">
-                                <Button x:Name="BS" HorizontalAlignment="Center" Height="200" VerticalAlignment="Center" Width="120"
-                                        Command="{Binding ShowBasketballFieldCommand}"
-                            CommandParameter="{Binding ElementName=BS}">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="27*"/>
-                                            <ColumnDefinition Width="56*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="auto"></RowDefinition>
-                                            <RowDefinition></RowDefinition>
-                                        </Grid.RowDefinitions>
-                                        <materialDesign:PackIcon Kind="Basketball" Height="87" Width="82" Margin="0,10,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2" />
-                                        <TextBlock  FontWeight="Bold" HorizontalAlignment="Center" Margin="15,96,14.708,-0.277" Grid.RowSpan="2" Grid.ColumnSpan="2">
-                       Basketball
-                                        </TextBlock>
-                                    </Grid>
-                                </Button>
+                                <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth5"
+            Padding="8" Margin="25" Foreground="{x:Null}">
+
+                                    <materialDesign:Card.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF016CFD" Offset="1"/>
+                                            <GradientStop Color="#FF00E4FF"/>
+                                        </LinearGradientBrush>
+                                    </materialDesign:Card.Background>
+
+                                </materialDesign:Card>
+                                <Label x:Name="label1_Copy" Content="" HorizontalAlignment="Left" Height="64" VerticalAlignment="Top" Width="93" Margin="156,145,0,0">
+                                    <Label.Background>
+                                        <ImageBrush ImageSource="image/dollar.png" Stretch="Uniform"/>
+                                    </Label.Background>
+                                </Label>
+                                <Label x:Name="label_Copy4" Content="ALL INCOME IN $" HorizontalAlignment="Left" Height="39" Margin="30,39,0,0" VerticalAlignment="Top" Width="342" FontSize="24" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="#DDF9F9F9"/>
+                                <Label x:Name="usd" HorizontalContentAlignment="Center" Content="546 $" HorizontalAlignment="Left" Height="33" Margin="29,104,0,0" VerticalAlignment="Top" Width="344" FontSize="18" Foreground="#DDF9F9F9" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
+                                    <Label.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform Angle="-0.549"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </Label.RenderTransform>
+                                </Label>
                             </Grid>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="350"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" Margin="25">
+                                <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" UniformCornerRadius="10"
+            Padding="8"  Foreground="{x:Null}">
+                                </materialDesign:Card>
+                                <!--<Wpf:PieChart LegendLocation="Bottom" Hoverable="False" DataTooltip="{x:Null}" >
+                                    <Wpf:PieChart.Series>
+                                        <Wpf:PieSeries Title="Football" Values="50" DataLabels="True"
+                               LabelPoint="{Binding PointLabel}"/>
+                                        <Wpf:PieSeries Title="Volleyball" Values="35" DataLabels="True" 
+                               LabelPoint="{Binding PointLabel}"/>
+                                        <Wpf:PieSeries Title="Basketball" Values="15" DataLabels="True" 
+                               LabelPoint="{Binding PointLabel}"/>
+     
+                                    </Wpf:PieChart.Series>
 
 
+                                </Wpf:PieChart>-->
+                            </Grid>
+                            <Grid Grid.Column="1" Margin="25">
+                                <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" UniformCornerRadius="10"
+            Padding="8"  Foreground="{x:Null}">
+                                </materialDesign:Card>
+                                <!--<Wpf:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Right" >
+                                <Wpf:CartesianChart.AxisY>
+                                    <Wpf:Axis Title="Income" LabelFormatter="{Binding YFormatter}"/>
+                                </Wpf:CartesianChart.AxisY>
+                                <Wpf:CartesianChart.AxisX>
+                                    <Wpf:Axis Title="Month" Labels="{Binding Labels}"/>
+                                </Wpf:CartesianChart.AxisX>
+                            </Wpf:CartesianChart>-->
+                            </Grid>
                         </Grid>
-                        <Grid Grid.Row="1" Margin="31,341,30.6,53.8">
-                            <ProgressBar
-  IsIndeterminate="True" Margin="0,-20,0,26.723" />
-                        </Grid>
-                        <Grid Grid.Row="2"/>
                     </Grid>
                 </TabItem>
                 <TabItem>
@@ -573,17 +620,17 @@
                         <Button x:Name="FB_button"
                             Style="{DynamicResource MaterialDesignRaisedButton}"
                             materialDesign:ShadowAssist.ShadowDepth="Depth4"
-                            Content="FOOTBALL FIELD"
+                            Content="BASKETBALL COURT"
                             Width="150" Height="40"
                             Grid.Column="0" Grid.Row="3"
                             ToolTip="Resource name: MaterialDesignRaisedLightButton"
                             Command="{Binding _ShowWindowCommand_FB}"
                             CommandParameter="{Binding ElementName=FB_button}"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="12" />
                         <Button x:Name="BKB_button"
                             Style="{DynamicResource MaterialDesignRaisedButton}"
                             materialDesign:ShadowAssist.ShadowDepth="Depth4"
-                            Content="BASKETBALL COURT" FontSize="10"
+                            Content="FOOTBALL FIELD" FontSize="10"
                             Width="150" Height="40"            
                             Grid.Column="1" Grid.Row="3"
                             Command="{Binding ShowWindowCommand_BK}"
@@ -599,12 +646,12 @@
                             ToolTip="Resource name: MaterialDesignRaisedLightButton"            
                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Center" VerticalAlignment="Top" />
 
-                        <Image Source="image/5854088.png" 
+                        <Image Source="image/7042198.png" 
                Grid.Row="2"
                Grid.Column="0"
                HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="150" RenderTransformOrigin="0.557,0.517"
                ></Image>
-                        <Image Source="image/7042198.png" 
+                        <Image Source="image/5854088.png"
                Grid.Column="1"
                Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="150"
                ></Image>
@@ -625,21 +672,92 @@
         Height="auto"
         Width="auto">
                             <materialDesign:PackIcon
-          Kind="ChartBar"
+          Kind="Basketball"
           Width="30"
           Height="30"
           HorizontalAlignment="Center" />
                             <TextBlock
-          Text="Statistics"
+          Text="Booking"
           HorizontalAlignment="Center" />
                         </StackPanel>
                     </TabItem.Header>
-                    <TextBlock>
-      <Run
-        Text="tab 4 content. Default look and behaviors." />
-      <LineBreak />
-      <LineBreak />
-                    </TextBlock>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="14*"></RowDefinition>
+                            <RowDefinition Height="13*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="1" Margin="0,0,-0.4,56.2" Grid.RowSpan="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="50*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Button x:Name="FB" HorizontalAlignment="Center" Height="200" VerticalAlignment="Center" Width="120"
+                                        Command="{Binding ShowFootballFieldCommand}"
+                            CommandParameter="{Binding ElementName=FB}">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <materialDesign:PackIcon Grid.Row="0" FontWeight="ExtraBold" Kind="Soccer" FontSize="200" Height="109" Width="81"/>
+                                        <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="13,105,13.231,4.277" Grid.RowSpan="2">
+                       Football
+                                        </TextBlock>
+                                    </Grid>
+
+                                </Button>
+                            </Grid>
+                            <Grid Grid.Column="1">
+
+                                <Button x:Name="VL" HorizontalAlignment="Center" Height="200" VerticalAlignment="Center" Width="120" Click="Button_Click"
+                                        Command="{Binding ShowVolleyballFieldCommand}"
+                            CommandParameter="{Binding ElementName=VL}">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <materialDesign:PackIcon Kind="Volleyball" FontSize="200" Height="109" Width="79" />
+                                        <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="0,105,-0.338,4.277" Grid.RowSpan="2">
+                       Volleyball
+                                        </TextBlock>
+                                    </Grid>
+                                </Button>
+                            </Grid>
+                            <Grid Grid.Column="2">
+                                <Button x:Name="BS" HorizontalAlignment="Center" Height="200" VerticalAlignment="Center" Width="120"
+                                        Command="{Binding ShowBasketballFieldCommand}"
+                            CommandParameter="{Binding ElementName=BS}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="27*"/>
+                                            <ColumnDefinition Width="56*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <materialDesign:PackIcon Kind="Basketball" Height="87" Width="82" Margin="0,10,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2" />
+                                        <TextBlock  FontWeight="Bold" HorizontalAlignment="Center" Margin="15,96,14.708,-0.277" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                       Basketball
+                                        </TextBlock>
+                                    </Grid>
+                                </Button>
+                            </Grid>
+
+
+                        </Grid>
+                        <Grid Grid.Row="1" Margin="31,341,30.6,53.8">
+                            <ProgressBar
+  IsIndeterminate="True" Margin="0,-20,0,26.723" />
+                        </Grid>
+                        <Grid Grid.Row="2"/>
+                    </Grid>
                 </TabItem>
                 <TabItem>
                     <TabItem.Header>

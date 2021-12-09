@@ -10,15 +10,15 @@ using System.Windows.Input;
 
 namespace SportCenter.ViewModel
 {
-    public class BillViewModel_Football2 : BaseViewModel
+    class BillViewModel_BasketBall : BaseViewModel
     {
         private ObservableCollection<bookingInfo> _BookigList;
         public ObservableCollection<bookingInfo> BookingList_footballVM { get => _BookigList; set { _BookigList = value; OnPropertyChanged(); } }
         private ObservableCollection<bookingInfo> _DayList;
         public ObservableCollection<bookingInfo> DayList { get => _DayList; set { _DayList = value; OnPropertyChanged(); } }
 
-        public int _idbooking_Payment;
-        public int idbooking_Payment { get => _idbooking_Payment; set { _idbooking_Payment = SelectedItem.id;OnPropertyChanged(); } }
+        private int _idbooking_Payment;
+        public int idbooking_Payment { get => _idbooking_Payment; set { _idbooking_Payment = SelectedItem.id; OnPropertyChanged(); } }
 
         private string _CustomerName;
         public string CustomerName { get => _CustomerName; set { _CustomerName = value; OnPropertyChanged(); } }
@@ -29,11 +29,11 @@ namespace SportCenter.ViewModel
         private int? _Field_id;
         public int? Field_id { get => _Field_id; set { _Field_id = value; OnPropertyChanged(); } }
         public int _Booking_id;
-        public int Booking_id { get => _Booking_id; set { _Booking_id = value;OnPropertyChanged(); } }
+        public int Booking_id { get => _Booking_id; set { _Booking_id = value; OnPropertyChanged(); } }
         private decimal? _FieldPrice;
         public decimal? FieldPrice { get => _FieldPrice; set { _FieldPrice = value; OnPropertyChanged(); } }
         private DateTime? _DateBooking;
-        public DateTime? DateBooking { get => _DateBooking; set { _DateBooking = value; OnPropertyChanged();} }
+        public DateTime? DateBooking { get => _DateBooking; set { _DateBooking = value; OnPropertyChanged(); } }
         private DateTime? _StartTime;
         public DateTime? StartTime { get => _StartTime; set { _StartTime = value; OnPropertyChanged(); } }
         private DateTime? _EndTime;
@@ -44,17 +44,18 @@ namespace SportCenter.ViewModel
 
         private bookingInfo _SelectedItem;
 
-        public BillViewModel_Football2()
+        public BillViewModel_BasketBall()
         {
             _DayList = new ObservableCollection<bookingInfo>();
             _BookigList = new ObservableCollection<bookingInfo>(DataProvider.Ins.DB.bookingInfoes);
-            Load_List_footballPayment();
+            Load_List_BasketballPayment();
+            
             PaymentCMD = new RelayCommand<Window>((p) => { return true; }, (p) => {
                 var temp_check = DataProvider.Ins.DB.bookingInfoes;
                 decimal fieldprice = 0;
-                foreach (var item in temp_check)
+                foreach(var item in temp_check)
                 {
-                    if (item.id == Booking_id)
+                    if(item.id == Booking_id)
                     {
                         fieldprice = item.field.fieldtype.price.Value;
                     }
@@ -65,28 +66,29 @@ namespace SportCenter.ViewModel
                 PayMent_tem WD_pay = new PayMent_tem(Booking_id, CustomerName, CustomerPhoneNum.ToString(), date, starttiem, endtiem, fieldprice);
                 WD_pay.ShowDialog();
                 Update_DatagridView();
-                Load_List_footballPayment();
+                Load_List_BasketballPayment();
             });
-
-
+            
+            
 
         }
 
         private void Update_DatagridView()
         {
-            foreach (var item in _DayList.ToList())
+            foreach(var item in _DayList.ToList())
             {
                 _DayList.Remove(item);
             }
 
         }
-        private void Load_List_footballPayment()
+
+        private void Load_List_BasketballPayment()
         {
-            foreach(var info in _BookigList)
+            foreach (var info in _BookigList)
             {
-                if (info.field.idType == 1)
+                if (info.field.idType == 3)
                 {
-                    int count = info.Status.Length;
+                    
                     if (info.Status != "Pay")
                     {
                         bookingInfo temp = new bookingInfo();
@@ -105,7 +107,7 @@ namespace SportCenter.ViewModel
                 _SelectedItem = value;
                 OnPropertyChanged();
                 if (SelectedItem != null)
-                {                    
+                {
                     Booking_id = SelectedItem.id;
                     idbooking_Payment = SelectedItem.id;
                     NameField = SelectedItem.field.name;
@@ -116,10 +118,11 @@ namespace SportCenter.ViewModel
                     EndTime = SelectedItem.end_time;
                     CustomerName = SelectedItem.Customer_name;
                     CustomerPhoneNum = SelectedItem.Customer_PhoneNum.Value;
-                    
+
                 }
             }
         }
 
     }
 }
+

@@ -11,39 +11,39 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using SportCenter.ViewModel;
 
 namespace SportCenter
 {
     /// <summary>
-    /// Interaction logic for Basketball_Field_Bill.xaml
+    /// Interaction logic for Football_Field_Bill.xaml
     /// </summary>
-    public partial class Basketball_Field_Bill : Window
+    public partial class Football_Field_Bill : Window
     {
-        public Basketball_Field_Bill()
+        public Football_Field_Bill()
         {
             InitializeComponent();
-            
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            int id_booking = int.Parse(Booking_id.Text);
-            string CustomerName = C_name.Text;
-            string CustomerPhone = C_phone.Text;
-            string datebooking = DateBooking.Text;
-            string starttime = Starttime.Text;
-            string endtime = EndTime.Text;
-            string fieldprice = txbTotalMoney.Text;
-            PayMent_tem P_window = new PayMent_tem(id_booking, CustomerName, CustomerPhone, datebooking, starttime, endtime, fieldprice);
-            P_window.Show();
-        }
+        //private void Button_Click_3(object sender, RoutedEventArgs e)
+        //{
+        //    int id_booking = int.Parse(Booking_id.Text);
+        //    string CustomerName = C_name.Text;
+        //    string CustomerPhone = C_phone.Text;
+        //    string datebooking = DateBooking.Text;
+        //    string starttime = Starttime.Text;
+        //    string endtime = EndTime.Text;
+        //    string fieldprice = txbTotalMoney.Text;
+        //    if (id_booking == 0)
+        //    {
+        //        MessageBox.Show("Select the section in list payment.");
+        //        return;
+        //    }
+        //    PayMent_tem P_window = new PayMent_tem(id_booking, CustomerName, CustomerPhone, datebooking, starttime, endtime, fieldprice);
+        //    P_window.Show();
+        //}
     }
 }
