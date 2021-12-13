@@ -15,17 +15,13 @@ using System.Windows.Shapes;
 namespace SportCenter
 {
     /// <summary>
-    /// Interaction logic for Add_Field.xaml
+    /// Interaction logic for DeleteField.xaml
     /// </summary>
-    public partial class Add_Field : Window
+    public partial class DeleteField : Window
     {
-        public Add_Field()
+        public DeleteField()
         {
             InitializeComponent();
-        }
-        private void btnThoat_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 }
