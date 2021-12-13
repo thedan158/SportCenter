@@ -61,6 +61,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -161,10 +162,12 @@
       <DependentUpon>Expander_Bill.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\BaseBill2.cs" />
+    <Compile Include="ViewModel\BaseGood.cs" />
     <Compile Include="ViewModel\BillReportViewModel.cs" />
     <Compile Include="ViewModel\BillViewModel_BasketBall.cs" />
     <Compile Include="ViewModel\BillViewModel_Football2.cs" />
     <Compile Include="ViewModel\BillViewModel_VolleyBall.cs" />
+    <Compile Include="ViewModel\Converter.cs" />
     <Compile Include="ViewModel\FormatDisplayGoodsBill.cs" />
     <Compile Include="ViewModel\BaseFieldBasketball.cs" />
     <Compile Include="ViewModel\BaseFieldSoccer.cs" />

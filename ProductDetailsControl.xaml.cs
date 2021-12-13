@@ -39,24 +39,20 @@ namespace SportCenter
 
         //}
 
-        private void tb_main_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
+        //private void tb_main_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if (e.Key == Key.Enter)
+        //    {
 
-                _totalmoney = Int32.Parse(txbPriceSingle.Text) * Int32.Parse(tb_main.Text);
-                txbPrice.Text = _totalmoney.ToString();
+        //        _totalmoney = Int32.Parse(txbPriceSingle.Text) * Int32.Parse(tb_main.Text);
+        //        txbPrice.Text = _totalmoney.ToString();
+        //        MainViewModel vm = this.DataContext as MainViewModel;
+        //        vm = new MainViewModel();
+        //        vm.total = vm.Calc();
+               
+        //    }
+        //}
 
-            }
-        }
-
-        private void tb_main_MouseLeave(object sender, MouseEventArgs e)
-        {
-
-            _totalmoney = Int32.Parse(txbPriceSingle.Text) * Int32.Parse(tb_main.Text);
-            txbPrice.Text = _totalmoney.ToString();
-
-        }
         private void tb_main_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");

@@ -3,6 +3,7 @@ using SportCenter.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,69 +56,59 @@ namespace SportCenter.ViewModel
         private string _namegood;
         public string namegood { get => _namegood; set { _namegood = value; OnPropertyChanged(); } }
 
-        private int? _pricegood;
-        public int? pricegood { get => _pricegood; set { _pricegood = value; OnPropertyChanged(); } }
-
-        private int? _quantitygood;
-        public int? quantitygood { get => _quantitygood; set { _quantitygood = value; OnPropertyChanged(); } }
+        private decimal? _pricegood;
+        public decimal? pricegood { get => _pricegood; set { _pricegood = value; OnPropertyChanged(); } }
 
         private string _unitgood;
         public string unitgood { get => _unitgood; set { _unitgood = value; OnPropertyChanged(); } }
         
       
 
-        public bool Isloaded = false;
-        public ICommand LoadedWindowCommand { get; set; }
-        public ICommand _ShowWindowCommand_FB { get; set; }
-        public ICommand ShowWindowCommand_BK { get; set; }
-        public ICommand ShowWindowCommand_VL { get; set; }
-        public ICommand ShowFootballFieldCommand { get; set; }
-        public ICommand ShowVolleyballFieldCommand { get; set; }
-        public ICommand ShowBasketballFieldCommand { get; set; }
+       
         
         public ICommand OpenBillReportWindow { get; set; }
 
-        public ICommand LogoutCommand { get; set; }
+        
 
         // Good VM
         public ICommand addCommand { get; set; } 
         public ICommand editCommand { get; set; }
         public ICommand deleteCommand { get; set; }
-
+       
         public ICommand SelectImageCommand { get; set; }
 
         private good _SelectedItem;
-        //public good SelectedItem
-        //{
-        //    get => _SelectedItem;
-        //    set
-        //    {
-        //        _SelectedItem = value;
-        //        OnPropertyChanged();
-        //        if (SelectedItem != null)
-        //        {
-        //            idgood = SelectedItem.id;
-        //            namegood = SelectedItem.name;
-        //            pricegood = SelectedItem.price;
-        //            quantitygood = SelectedItem.quantity;
-        //            unitgood = SelectedItem.unit;
-        //        }
+        public good SelectedItem
+        {
+            get => _SelectedItem;
+            set
+            {
+                _SelectedItem = value;
+                OnPropertyChanged();
+                if (SelectedItem != null)
+                {
+                    idgood = SelectedItem.id;
+                    namegood = SelectedItem.name;
+                    pricegood = SelectedItem.price;
+                    unitgood = SelectedItem.unit;
+                }
 
-        //    }
-        //}
+            }
+        }
 
 
         //Order VM
+     
+
+        private decimal? _total = 0;
+        public decimal? total { get => _total; set { _total = value; OnPropertyChanged(); } }
+
         
-
-        private int? _total = 0;
-        public int? total { get => _total; set { _total = value; OnPropertyChanged(); } }
-
         public ICommand AddbuyingCommand => new RelayCommand<object>(CanExecuted, AddExecuted);
         public ICommand DelbuyingCommand => new RelayCommand<object>(CanExecuted, DelExecuted);
         public ICommand PlusCommand => new RelayCommand<object>(Plus_CanExecuted, Plus_Executed);      
         public ICommand MinusCommand => new RelayCommand<object>(Minus_CanExecuted, Minus_Executed);
-        
+        public ICommand ClearAllCommand { get; set; }
         public ICommand OrderCommand { get; set; }
 
         private int _Selectedidbooking;
@@ -174,7 +165,7 @@ namespace SportCenter.ViewModel
             ShowFootballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowFootballFieldFunction());
             ShowVolleyballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowVolleyballFieldFunction());
             ShowBasketballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowBasketballFieldFuction());
-            
+            SelectImageCommand = new RelayCommand<Grid>((parameter) => true, (parameter) => ChooseImage(parameter));
             OpenBillReportWindow = new RelayCommand<object>((parameter) => true, (parameter) => f_Open_Bill_Report());
             LogoutCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
@@ -224,8 +215,9 @@ namespace SportCenter.ViewModel
             }, (parameter) =>
             {
                 Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
-
-                var good = new good() { name = namegood, id = idgood, price = pricegood,unit=unitgood/*, quantity = quantitygood*/ };
+                byte[] imgByteArr;
+                imgByteArr = Converter.Instance.ConvertImageToBytes(imageFileName);
+                var good = new good() { name = namegood, id = idgood, price = pricegood,unit=unitgood,imageFile=imgByteArr };
                 DataProvider.Ins.DB.goods.Add(good);
                 DataProvider.Ins.DB.SaveChanges();
                 Listgood.Add(good);
@@ -278,28 +270,40 @@ namespace SportCenter.ViewModel
             OrderCommand = new RelayCommand<object>((parameter) => true,
             (parameter) =>
             {
+                if(FieldSelectedItem==null)
+                {
+                    MessageBox.Show("Vui lòng chọn sân!!");
+                }
+                else { 
                 MessageBoxResult result = MessageBox.Show("Xác nhận đặt hàng?", "Thông báo", MessageBoxButton.YesNo);
 
-                
-                if (result == MessageBoxResult.Yes)
-                {
-                    
-                    foreach(var item in Listorder)
-                    {
-                        //buyingInfo buying = new buyingInfo {idGood=item.idGood,quantity=item.quantity,idBookingInfo=Selectedidbooking,};
-                        buyingInfo buying = new buyingInfo();
-                        buying.idGood = item.idGood;
-                        buying.quantity = item.quantity;
-                        buying.good.quantity = buying.good.quantity - item.quantity;
-                        buying.idBookingInfo = Selectedidbooking;
-                        
-                        DataProvider.Ins.DB.buyingInfoes.Add(buying);
-                        DataProvider.Ins.DB.SaveChanges();
-                    }
 
-                    
-                    Listorder.Clear();
+                    if (result == MessageBoxResult.Yes)
+                    {
+
+                        foreach (var item in Listorder)
+                        {
+                            //buyingInfo buying = new buyingInfo {idGood=item.idGood,quantity=item.quantity,idBookingInfo=Selectedidbooking,};
+                            buyingInfo buying = new buyingInfo();
+                            buying.idGood = item.good.id;
+                            buying.quantity = item.quantity;
+                            buying.orderprice = item.orderprice;
+                            buying.idBookingInfo = Selectedidbooking;
+
+                            DataProvider.Ins.DB.buyingInfoes.Add(buying);
+                            DataProvider.Ins.DB.SaveChanges();
+                        }
+
+
+                        Listorder.Clear();
+                    }
                 }
+            });
+            ClearAllCommand = new RelayCommand<object>((parameter) => true,
+            (parameter) =>
+            {
+                Listorder.Clear();
+                total = 0;
             });
         }
         
@@ -339,6 +343,7 @@ namespace SportCenter.ViewModel
         private bool CanExecuted(object sender)
         {
             return true;
+            
         }
 
         private void AddExecuted(object sender)
@@ -346,13 +351,26 @@ namespace SportCenter.ViewModel
             
                 
                 good good = sender as good;
-
-            Listorder.Add(new buyingInfo { idGood = good.id, name = good.name, quantity = 1, price = good.price, order_price = good.price });
-
-            total = Calc();
-
+            buyingInfo buys = new buyingInfo();
+            buys.good = new good();
+            buys.good = good;
             
-            
+            buys.idGood = good.id;
+            foreach(var item in Listgood)
+            {
+                if(item.id==buys.idGood)
+                {
+                    buys.orderprice = item.price;
+                }
+            }
+            buys.quantity = 1;
+            Listorder.Add(buys);
+
+            total = Calc() ;
+
+
+
+
         }
         private void DelExecuted(object sender)
         {
@@ -363,23 +381,44 @@ namespace SportCenter.ViewModel
                 total = Calc();
             }
         }
-        private int? Calc()
+        public decimal? Calc()
         {
-            return Listorder.Sum(p => p.quantity * p.price);
+            return Listorder.Sum(p => p.quantity * p.good.price);
         }
 
         private void Minus_Executed(object sender)
         {
             buyingInfo order = sender as buyingInfo;
-            order.quantity--;
-            order.order_price = order.quantity * order.price;
+            BaseGood buys = new BaseGood();
+            buys.g_basebuying = new buyingInfo();
+            buys.g_basegood = new good();
+            buys.g_basebuying = order;
+            order.quantity = buys.g_basebuying.quantity--;
+            order.good.price = buys.g_basegood.price * buys.g_basebuying.quantity;
+
+
             total = Calc();
         }
         private void Plus_Executed(object sender)
         {
+           
             buyingInfo order = sender as buyingInfo;
+            BaseGood buys = new BaseGood();
+            buys.g_basebuying = new buyingInfo();
+            buys.g_basegood = new good();
+            buys.g_basebuying = order;
             order.quantity++;
-            order.order_price = order.quantity * order.price;
+            foreach (var item in Listgood)
+            {
+                if(item.id==order.idGood)
+                {
+                    order.orderprice = order.quantity * item.price;
+                }
+
+            }
+            
+            
+            
             total = Calc();
         }
 
