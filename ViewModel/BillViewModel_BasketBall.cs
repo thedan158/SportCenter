@@ -60,6 +60,11 @@ namespace SportCenter.ViewModel
                         fieldprice = item.field.fieldtype.price.Value;
                     }
                 }
+                if (DateBooking == null || StartTime == null || EndTime == null)
+                {
+                    MessageBox.Show("Select bill for Payment.");
+                    return;
+                }
                 string date = DateBooking.Value.ToString("MM/dd/yyyy");
                 string starttiem = StartTime.Value.ToString("hh:mm tt");
                 string endtiem = EndTime.Value.ToString("hh:mm tt");
@@ -75,6 +80,13 @@ namespace SportCenter.ViewModel
 
         private void Update_DatagridView()
         {
+            Booking_id = 0;
+            CustomerName = null;
+            CustomerPhoneNum = 0;
+            StartTime = null;
+            EndTime = null;
+            DateBooking = null;
+            FieldPrice = null;
             foreach(var item in _DayList.ToList())
             {
                 _DayList.Remove(item);

@@ -155,6 +155,7 @@
       <DependentUpon>Expander_Bill.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\BaseBill2.cs" />
+    <Compile Include="ViewModel\BaseCustomerInfo.cs" />
     <Compile Include="ViewModel\BillReportViewModel.cs" />
     <Compile Include="ViewModel\BillViewModel_BasketBall.cs" />
     <Compile Include="ViewModel\BillViewModel_Football2.cs" />
