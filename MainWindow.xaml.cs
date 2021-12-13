@@ -26,9 +26,17 @@ namespace SportCenter
     /// </summary>
     public partial class MainWindow : Window
     {
-        //http://materialdesigninxaml.net/home
-        public MainWindow() => InitializeComponent();
+        int? Total = 0;
 
+        //http://materialdesigninxaml.net/home
+       
+            public MainWindow()
+            {
+            
+                InitializeComponent();
+                
+            }
+        
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -39,10 +47,24 @@ namespace SportCenter
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
+        //Order good
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
+            
+        //    Button btn = sender as Button;
+        //    var item = btn.DataContext as buyingInfo;
+            
+        //    order.Items.Add(item);
+        //    if (order.Items.Count > 0)
+        //    {
+        //        Total += item.price;
+        //        total.Text = Total.ToString() + " VNĐ";
+        //        item.order_quantity = 1;
+        //    }
 
-        }
+
+
+        //}
         // search good
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -64,7 +86,44 @@ namespace SportCenter
         {
 
         }
-       
 
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        ////Delete all order
+        //private void Button_Click_1(object sender, RoutedEventArgs e)
+        //{
+
+
+        //    order.Items.Clear();
+        //    Total = 0;
+        //    total.Text = "";
+        //}
+
+        //Delete selected item on order
+        //private void Button_Click_2(object sender, RoutedEventArgs e)
+        //{
+        //    var item = order.SelectedItem as good;
+        //    order.Items.Remove(item);
+
+        //    if (order.Items.Count > 0)
+        //    {
+        //        Total -= item.price;
+        //        total.Text = Total.ToString() + " VNĐ";
+        //    }
+        //    else
+        //    {
+        //        Total = 0;
+        //        total.Text = "";
+        //    }
+        //}
+
+        // Booking
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -50,6 +50,7 @@
   Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
   BorderThickness="0"
   BorderBrush="Transparent"
+               Background="#FFF5EDF7"
   TabStripPlacement="Left"
   materialDesign:ShadowAssist.ShadowDepth="Depth0"
   materialDesign:ColorZoneAssist.Mode="PrimaryMid"
@@ -204,7 +205,7 @@
           Height="30"
           HorizontalAlignment="Center" />
                             <TextBlock
-          Text="Drink"
+          Text="Order"
           HorizontalAlignment="Center" />
                         </StackPanel>
                     </TabItem.Header>
@@ -229,152 +230,117 @@
 
                             <!--Danh sách hàng hóa-->
                             <Grid Grid.Column="0" Margin="10">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="149*"/>
-                                    <RowDefinition Height="344*"/>
-                                </Grid.RowDefinitions>
+
 
 
                                 <!--Filter và search-->
 
                                 <TabControl
                     
-  Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
-  materialDesign:ColorZoneAssist.Mode="PrimaryLight"
-  TabStripPlacement="Top"
-  materialDesign:NavigationRailAssist.SelectionCornerRadius="30 30 0 0" SelectionChanged="TabControl_SelectionChanged_1" Margin="0,0,-0.2,-0.4" Grid.RowSpan="2"
-  >
+      Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
+      materialDesign:ColorZoneAssist.Mode="PrimaryLight"
+      TabStripPlacement="Top"
+      SelectionChanged="TabControl_SelectionChanged_1" Margin="0,0,-0.2,-0.4" Grid.RowSpan="2"
+      >
+
                                     <!--Nước uống-->
-                                    <TabItem Width="119">
+                                    <TabItem Width="840">
                                         <TabItem.Header>
                                             <StackPanel Height="auto" Width="auto">
-                                                <materialDesign:PackIcon 
-                                    Kind="BottleSodaClassic" 
-                                    Width="24" Height="24" 
-                                    HorizontalAlignment="Center" />
+
                                                 <TextBlock
-          Text="Drink"
-          HorizontalAlignment="Center" />
+                                                    FontSize="30"
+                                                    FontWeight="bold"
+              Text="MENU"
+              HorizontalAlignment="Center" />
                                             </StackPanel>
                                         </TabItem.Header>
-                                        <ScrollViewer >
-                                            <ScrollViewer.Background>
-                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-
-                                                </LinearGradientBrush>
-                                            </ScrollViewer.Background>
-
-                                            <WrapPanel Orientation="Horizontal">
-                                                <StackPanel Margin="20 0"  >
-                                                    <Border Margin="20" Width="110" Height="160" >
-                                                        <StackPanel >
-                                                            <Border Width="100" Height="100" CornerRadius="5" Margin="5">
-                                                                <Border.Background>
-                                                                    <ImageBrush ImageSource="image/a5ff21dc78b136b321e4e7a6e0f161aa.jpg_684x684q90.jpg"/>
-                                                                </Border.Background>
-
-
-
-
-
-                                                            </Border>
-                                                            <TextBlock Margin="5" Text="10.000 VNĐ" FontSize="14" FontFamily="Franklin Gothic Medium" />
-                                                            <TextBlock Margin="5 0" Text="WARRIOR" FontSize="13"/>
-                                                        </StackPanel>
-                                                    </Border>
-
-                                                </StackPanel>
-                                                <StackPanel Margin="20 0" HorizontalAlignment="Right" >
-                                                    <Border Margin="20" Width="110" Height="160" >
+                                        <!--<ListView ItemsSource="{Binding Listgood}">
+                                                <ListView.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <WrapPanel IsItemsHost="true"/>
+                                                    </ItemsPanelTemplate>
+                                                </ListView.ItemsPanel>
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Button Height="100" Background="White">
                                                         <StackPanel>
-                                                            <Border Width="100" Height="100" CornerRadius="5" Margin="5">
-                                                                <Border.Background>
-                                                                    <ImageBrush ImageSource="image/a5ff21dc78b136b321e4e7a6e0f161aa.jpg_684x684q90.jpg"/>
-                                                                </Border.Background>
+                                                            <TextBlock Text="{Binding name}" FontSize="18" Foreground="#FFA30F0F" />
+                                                            <Image Height="50" Source="image/a5ff21dc78b136b321e4e7a6e0f161aa.jpg_684x684q90.jpg"></Image>
+                                                                <TextBlock Text="{Binding price}" FontSize="22" Foreground="#FFA30F0F"/>
+                                                            </StackPanel>
+                                                        </Button>
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>-->
+                                        <!--<ScrollViewer >
+                                                <ScrollViewer.Background>
+                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 
-
-                                                            </Border>
-                                                            <TextBlock Margin="5" Text="10.000 VNĐ" FontSize="14" FontFamily="Franklin Gothic Medium" />
-                                                            <TextBlock Margin="5 0" Text="WARRIOR" FontSize="13"/>
-                                                        </StackPanel>
-                                                    </Border>
-                                                </StackPanel>
-                                                <StackPanel Margin="20 0"  >
-                                                    <Border Margin="20" Width="110" Height="160" >
-                                                        <StackPanel >
-                                                            <Border Width="100" Height="100" CornerRadius="5" Margin="5">
-                                                                <Border.Background>
-                                                                    <ImageBrush ImageSource="image/a5ff21dc78b136b321e4e7a6e0f161aa.jpg_684x684q90.jpg"/>
-                                                                </Border.Background>
-
-
-
-                                                            </Border>
-                                                            <TextBlock Margin="5" Text="10.000 VNĐ" FontSize="14" FontFamily="Franklin Gothic Medium" />
-                                                            <TextBlock Margin="5 0" Text="WARRIOR" FontSize="13"/>
-                                                        </StackPanel>
-                                                    </Border>
-
-                                                </StackPanel>
-                                                <StackPanel Margin="20 0"  >
-                                                    <Border Margin="20" Width="110" Height="160" >
-                                                        <StackPanel >
-                                                            <Border Width="100" Height="100" CornerRadius="5" Margin="5">
-                                                                <Border.Background>
-                                                                    <ImageBrush ImageSource="image/a5ff21dc78b136b321e4e7a6e0f161aa.jpg_684x684q90.jpg"/>
-                                                                </Border.Background>
+                                                    </LinearGradientBrush>
+                                                </ScrollViewer.Background>
+                                                <ListView Background="White" ItemsSource="{Binding Listgood}" SelectionChanged="ListView_SelectionChanged">
+                                                    <ListView.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel IsItemsHost="true"/>
+                                                        </ItemsPanelTemplate>
+                                                    </ListView.ItemsPanel>
+                                                    <ListView.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <WrapPanel Orientation="Horizontal" >
 
 
 
-                                                            </Border>
-                                                            <TextBlock Margin="5" Text="10.000 VNĐ" FontSize="14" FontFamily="Franklin Gothic Medium" />
-                                                            <TextBlock Margin="5 0" Text="WARRIOR" FontSize="13"/>
-                                                        </StackPanel>
-                                                    </Border>
+                                                                <StackPanel Margin="25 0"   >
+                                                                    <Button Click="Button_Click" Height="200" Background="White" BorderBrush="White" Foreground="White">
+                                                                        <Border Margin="0" Width="110" Height="160" >
 
-                                                </StackPanel>
+                                                                            <StackPanel >
+                                                                                <Border Width="100" Height="100" CornerRadius="5" Margin="5">
+                                                                                    <Border.Background>
+                                                                                        <ImageBrush ImageSource="image/a5ff21dc78b136b321e4e7a6e0f161aa.jpg_684x684q90.jpg"/>
+                                                                                    </Border.Background>
 
 
 
-                                            </WrapPanel>
 
-                                        </ScrollViewer>
+
+                                                                                </Border>
+                                                                                <TextBlock TextAlignment="Center" Foreground="Purple" Margin="5" Text="{Binding name}" FontWeight="Bold" FontSize="15"  />
+                                                                            <TextBlock TextAlignment="Center" Foreground="Purple" Margin="5 0" Text="{Binding price}" FontSize="18"/>
+                                                                            </StackPanel>
+
+                                                                        </Border>
+                                                                    </Button>
+                                                                </StackPanel>
+
+                                                            </WrapPanel>
+                                                        </DataTemplate>
+                                                    </ListView.ItemTemplate>
+                                                </ListView>
+                                            </ScrollViewer>-->
+                                        <ItemsControl ItemsSource="{Binding Listgood}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel Orientation="Horizontal" Background="white"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <local:SellGoodsControl/>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                            <ItemsControl.Template>
+                                                <ControlTemplate>
+                                                    <ScrollViewer Padding="{TemplateBinding Padding}">
+                                                        <ItemsPresenter/>
+                                                    </ScrollViewer>
+
+                                                </ControlTemplate>
+                                            </ItemsControl.Template>
+                                        </ItemsControl>
                                     </TabItem>
-                                    <!--Dụng cụ thể thao-->
-                                    <TabItem Width="119">
-                                        <TabItem.Header>
-                                            <StackPanel
-        Height="auto"
-        Width="auto">
-                                                <materialDesign:PackIcon
-          Kind="FastFood"
-          Width="24"
-          Height="24"
-          HorizontalAlignment="Center" 
-                                    />
-
-                                                <TextBlock
-          Text="Food"
-          HorizontalAlignment="Center" />
-                                            </StackPanel>
-                                        </TabItem.Header>
-                                        <TextBlock>
-      <Run
-        Text="tab 2 content. Default look and behaviors." />
-      <LineBreak />
-      <LineBreak />
-      <Run
-        FontStyle="Italic">
-      Praesent sed dui arcu. Vivamus porta auctor sagittis
-    </Run>
-                                        </TextBlock>
-                                    </TabItem>
-
-
-
                                 </TabControl>
-
-
                             </Grid>
 
 
@@ -389,58 +355,145 @@
                                     <RowDefinition Height="1*"></RowDefinition>
                                     <RowDefinition Height="8*"></RowDefinition>
                                     <RowDefinition Height="1*"></RowDefinition>
+                                    <RowDefinition Height="1.5*"></RowDefinition>
+
                                 </Grid.RowDefinitions>
                                 <!--Tên sân-->
-                                <Grid Grid.Row="0">
-                                    <StackPanel Margin="5">
-                                        <ComboBox  materialDesign:HintAssist.Hint="Field Name">
-                                            <ComboBoxItem>Sân bóng đá 1</ComboBoxItem>
-                                            <ComboBoxItem>Sân bóng chuyền 2</ComboBoxItem>
-                                            <ComboBoxItem>Sân bóng rổ 4</ComboBoxItem>
-                                        </ComboBox>
-                                    </StackPanel>
-                                </Grid>
+                                <Grid Grid.Row="0" >
 
-                                <!--Sản phẩm đã chọn-->
+
+
+
+                                    <Rectangle
+                    Width="auto" 
+                                            Margin="5 5 15 5"
+                    Height="40"
+                    RadiusY="6"
+                    RadiusX="6" 
+                    
+                    Stroke="Gray" 
+                    />
+                                    <ComboBox Width="300" Height="25" ItemsSource="{Binding Listbooking}" SelectedItem="{Binding FieldSelectedItem}" materialDesign:HintAssist.Hint="Field Name">
+
+
+
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+
+                                                    <TextBlock Text="{Binding field.name}"/>
+                                                    <TextBlock Text="   |   "/>
+                                                    <TextBlock Text="{Binding start_time,StringFormat='{}{0:h:mm tt}'}"/>
+                                                    <TextBlock Text=" - "/>
+                                                    <TextBlock Text="{Binding end_time,StringFormat='{}{0:h:mm tt}'}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+
+
+                                </Grid>
                                 <Grid Grid.Row="1">
+                                    <Border CornerRadius="30">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="1*"></RowDefinition>
+                                                <RowDefinition Height="8*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid Grid.Row="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="6*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid Grid.Column="0">
+                                                    <TextBlock FontWeight="DemiBold" FontSize="20" Text="Current Order" VerticalAlignment="Center" Margin="20 10 10 10"/>
+                                                </Grid>
+                                                <Grid Grid.Column="1">
+                                                   
+                                                    <Button
+  
+  Width="100"
+ Command="{Binding ClearAllCommand}"
+  Content="Clear all"
+                                                        Foreground="Red"
+   BorderBrush="#FFFFDDDD" BorderThickness="0" SnapsToDevicePixels="True" Background="#FFFFDDDD" />
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Grid.Row="1">
+                                                <ItemsControl ItemsSource="{Binding Listorder}">
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <StackPanel Orientation="Vertical" Background="White"/>
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <local:ProductDetailsControl/>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                    <ItemsControl.Template>
+                                                        <ControlTemplate>
+                                                            <ScrollViewer Padding="{TemplateBinding Padding}">
+                                                                <ItemsPresenter/>
+                                                            </ScrollViewer>
+
+                                                        </ControlTemplate>
+                                                    </ItemsControl.Template>
+                                                </ItemsControl>
+                                            </Grid>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                                <!--<Grid Grid.Row="1" Margin="10 0 10 0">
+                                    <Border Background="White" CornerRadius="20"  >
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="1"/>
+                                    </Border.Effect>
+                                    -->
+                                <!--Sản phẩm đã chọn-->
+                                <!--
+                                       
 
                                     <DataGrid
-                    Margin="5"  
+                     
                     IsReadOnly="True"  
-                   
-                    ItemsSource="{Binding Items1}"
+                    x:Name="order"         
                     CanUserAddRows="False"
                     AutoGenerateColumns="False"
                     HeadersVisibility="All">
 
                                         <DataGrid.Columns>
-
-                                            <!-- if you want to use the pop up style (MaterialDesignDataGridTextColumnPopupEditingStyle), you must use MaterialDataGridTextColumn -->
+                                                <DataGridComboBoxColumn>
+                                                    
+                                                </DataGridComboBoxColumn>
+                                            
                                             <materialDesign:DataGridTextColumn
+                   Binding="{Binding name}"                           
       Header="Name"
       ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
       EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
-                                                <materialDesign:DataGridTextColumn.Binding>
-                                                    <Binding
-          Path="Name">
-
-                                                    </Binding>
-                                                </materialDesign:DataGridTextColumn.Binding>
+                                               
                                             </materialDesign:DataGridTextColumn>
-                                            <!-- set a max length to get an indicator in the editor -->
+                              
                                             <DataGridTextColumn
+                                                Binding="{Binding price}"
       Header="Price"
       ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
       EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
-                                                <DataGridTextColumn.Binding>
-                                                    <Binding
-          Path="Description">
+                                                
+                                            </DataGridTextColumn>
 
-                                                    </Binding>
-                                                </DataGridTextColumn.Binding>
+                                                
+                                                
+                                            <DataGridTextColumn
+                                                Binding="{Binding _quantity}"
+      Header="Quantity"
+      ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+      EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                                                
                                             </DataGridTextColumn>
                                             <materialDesign:DataGridTextColumn
-      Binding="{Binding Numeric}"
+     Binding="{Binding unit}"
       Header="Unit"
       Width="120"
       EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
@@ -479,23 +532,92 @@
                                     </DataGrid>
 
 
+                               
+                                    </Border>
+                                </Grid>-->
+                                <!--Tong tien-->
+
+                                <Grid Grid.Row="2" Margin="10 20 10 0">
+
+                                    <TextBlock 
+                                        Text="Total"
+                                        FontWeight="Bold"
+                       Margin="20 5 10 0"
+                       FontSize="24"
+                       TextAlignment="Left"/>
+                                    <TextBlock x:Name="total"
+                                               Text="{Binding total, StringFormat= {}{0:N0} VND}"
+                       Margin="20 5 10 0"
+                       FontSize="24"
+                       Foreground="White"
+                       TextAlignment="Right"
+                                               Panel.ZIndex="1"/>
+                                    <Rectangle
+                    Fill="#FF5656E7"
+                    Height="30" 
+                    Width="200" 
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Margin="0" 
+                    RadiusX="4"
+                    RadiusY="4"/>
+
+
+
                                 </Grid>
-
-                                <!--Nút đặt hàng-->
-                                <Grid Grid.Row="2" Margin="5">
-
+                                <Grid Grid.Row="3">
+                                    
+                                   
                                     <Button
+                                        
+                                           Grid.Column="0"
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    Height="45"
+                                            Width="300"
+    materialDesign:ButtonAssist.CornerRadius="5"
+    ToolTip="MaterialDesignRaisedButton with Round Corners"
+    Command="{Binding OrderCommand}" >
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                            <materialDesign:PackIcon  Kind="CurrencyUsd" Width="auto" Height="20" />
+                                            <TextBlock
+      Text="PAY"  FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+
+                                        </StackPanel>
+                                    </Button>
+                                    
+                                    <!--<Button 
+                    x:Name="btnPay"
+                    Grid.Column="0"
+                    Height="40"
+                    Background="green"
+                    Command="{Binding OrderCommand}"                    
+                    materialDesign:ButtonAssist.CornerRadius="4"
+                    BorderThickness="2"
+                    Margin="20,0,20,0"  
+                    FontSize="18" 
+                    Content="Thanh toán"
+                    VerticalAlignment="Center" 
+                    Width="320" 
+                    FontWeight="Bold" 
+                    HorizontalAlignment="Center"
+                    IsTabStop="False" BorderBrush="Green"/>-->
+
+                                    <!--<Button
   Style="{StaticResource MaterialDesignFlatMidBgButton}"
   ToolTip="MaterialDesignFlatDarkButton"
-  Content="BUY"
-  
-  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" >
+  Content="ĐẶT HÀNG"
+  Command="{Binding OrderCommand}"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Click="Button_Click_3" Grid.ColumnSpan="2" Margin="0,18,-0.2,17.2" >
                                         <Button.Effect>
                                             <DropShadowEffect BlurRadius="4"/>
                                         </Button.Effect>
-                                    </Button>
+                                    </Button>-->
+
 
                                 </Grid>
+                                <!--Nút đặt hàng-->
+
 
 
 
@@ -672,7 +794,7 @@
                             </Grid>
                             <Grid Grid.Column="1">
 
-                                <Button x:Name="VL" HorizontalAlignment="Center" Height="200" VerticalAlignment="Center" Width="120" Click="Button_Click"
+                                <Button x:Name="VL" HorizontalAlignment="Center" Height="200" VerticalAlignment="Center" Width="120" 
                                         Command="{Binding ShowVolleyballFieldCommand}"
                             CommandParameter="{Binding ElementName=VL}">
                                     <Grid>
@@ -728,7 +850,7 @@
           Height="30"
           HorizontalAlignment="Center" />
                             <TextBlock
-          Text="Goods"
+          Text="Storage"
           HorizontalAlignment="Center" />
                         </StackPanel>
                     </TabItem.Header>
@@ -759,7 +881,7 @@
                 Height="20"
                 VerticalAlignment="Center"
                                 
-                Margin="190 20 20 20" />
+                Margin="120 20 20 20" />
                                             <Rectangle
                     Width="500" 
                     Height="40"
@@ -774,7 +896,7 @@
                    
                     IsTabStop="False"
                     
-                    materialDesign:HintAssist.Hint="Tìm tên hàng"  
+                    materialDesign:HintAssist.Hint="Search"  
                     Width="430" 
                     FontSize="17" 
                     BorderThickness="0" 
@@ -795,7 +917,7 @@
 
 
                                             <DataGrid
-                                                AlternatingRowBackground="#FFF8EBF9"
+   AlternatingRowBackground="#FFF8EBF9"
   ItemsSource="{Binding Listgood}"
   CanUserAddRows="False"
   AutoGenerateColumns="False"
@@ -804,7 +926,7 @@
                 Background="{x:Null}"
                                                
                                                 IsReadOnly="True"
-                                Margin="10,10,10,10" SelectionChanged="DataGrid_SelectionChanged" IsSynchronizedWithCurrentItem="True" Focusable="False"  
+                                Margin="10,10,10,10" SelectionChanged="DataGrid_SelectionChanged" IsSynchronizedWithCurrentItem="False" Focusable="False"  
               >
 
 
@@ -818,7 +940,7 @@
                                                         </DataGridTextColumn.ElementStyle>
                                                     </DataGridTextColumn>
                                                     <materialDesign:DataGridTextColumn Width="2*"
-      Header="Mã hàng hóa"
+      Header="ID"
       Binding="{Binding id}"
       FontSize="15"
       FontWeight="Bold"
@@ -828,34 +950,26 @@
 
                                                     </materialDesign:DataGridTextColumn>
                                                     <materialDesign:DataGridTextColumn Width="2*"
-      Header="Tên hàng hóa"
+      Header="Name"
       Binding="{Binding name}"
       ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
       EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
 
                                                     </materialDesign:DataGridTextColumn>
-                                                    <materialDesign:DataGridTextColumn Width="2*"
-      Header="Đơn vị"
+                                                    <materialDesign:DataGridTextColumn Width="1.5*"
+      Header="Unit"
       Binding="{Binding unit}"
       ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
       EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
 
                                                     </materialDesign:DataGridTextColumn>
-                                                    <materialDesign:DataGridTextColumn Width="2*"
-      Header="Giá tiền"
-      Binding="{Binding price}"
+                                                    <materialDesign:DataGridTextColumn Width="1.5*"
+      Header="Price"
+      Binding="{Binding price, StringFormat= {}{0:N0}}"
       ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
       EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
 
                                                     </materialDesign:DataGridTextColumn>
-
-                                                    <DataGridTextColumn Width="1*"
-      Header="Số lượng"
-      Binding="{Binding quantity}"
-      ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
-      EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
-
-                                                    </DataGridTextColumn>
 
 
                                                 </DataGrid.Columns>
@@ -873,21 +987,21 @@
 
 
                             <Grid Grid.Column="1">
-                                <Border  Grid.RowSpan="3" Background="Transparent" Visibility="{Binding Visibility}">
+                                <Border Background="Transparent" Visibility="{Binding Visibility}">
                                     <Border Background="White" CornerRadius="20" Margin="10 20 20 20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                         <Border.Effect>
                                             <DropShadowEffect ShadowDepth="1"/>
                                         </Border.Effect>
                                         <Grid>
                                             <Grid.RowDefinitions>
-                                                <RowDefinition Height="3*"/>
-                                                <RowDefinition Height="6*"/>
-                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="204*"/>
+                                                <RowDefinition Height="325*"/>
+                                                <RowDefinition Height="94*"/>
                                             </Grid.RowDefinitions>
-                                            <Grid Grid.Row="0">
+                                            <Grid Grid.Row="0" Margin="0,0,-0.2,1">
                                                 <Grid
             x:Name="grdSelectImg"
-            Margin="10,70,0,0" 
+            Margin="10,30,0,0" 
             VerticalAlignment="Top"
             Width="150"
             Height="150" 
@@ -900,21 +1014,21 @@
                 RadiusX="4" 
                 RadiusY="4"
                 Width="150"
-                Height="150" 
+                Height="142" 
                 HorizontalAlignment="Left" 
-                VerticalAlignment="Top"/>
+                VerticalAlignment="Top" Margin="0,10,0,-2"/>
                                                     <Button 
                 x:Name="btnSelectImage"
                 Command="{Binding SelectImageCommand}"
                 CommandParameter="{Binding ElementName=grdSelectImg}"
-              
+                
                 Height="35" 
-                Width="100" 
-                Content="Chọn ảnh" 
+                Width="120" 
+                Content="Select Image" 
                 FontSize="16"
                 FontWeight="SemiBold" 
                 ToolTip="Chọn ảnh"
-                Margin="0,0,0,12" 
+                Margin="0,0,0,-56" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom"
                 FocusVisualStyle="{x:Null}"
@@ -926,24 +1040,24 @@
                 Width="64" Height="54"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"  
-                Margin="0,25,0,0"/>
+                Margin="43,49,43,0" RenderTransformOrigin="0.444,1.03"/>
 
                                                 </Grid>
                                             </Grid>
                                             <Grid  Grid.Row="1"
             x:Name="grdInfo"
             HorizontalAlignment="Center"
-            Height="300"
-            Margin="0,60,0,0"
+            Height="290"
+            Margin="20,55,20.8,0"
             VerticalAlignment="Top" 
-            Width="420">
+            Width="420" Grid.RowSpan="2">
                                                 <Grid 
                 Margin="0" 
                 VerticalAlignment="Top" 
-                Width="420" 
+                Width="350" 
                 Height="40">
                                                     <Label 
-                    Content="Mã hàng hóa"
+                    Content="ID"
                     HorizontalAlignment="Left"
                     FontSize="18"
                     FontWeight="SemiBold" 
@@ -963,7 +1077,7 @@
                                                         Text="{Binding idgood, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
                     x:Name="txtId"
                     Cursor="IBeam"
-                    materialDesign:HintAssist.Hint="Mã hàng hóa"
+                    materialDesign:HintAssist.Hint="ID"
                     Height="40"  
                     Width="210" 
                     FontSize="14" 
@@ -981,10 +1095,10 @@
                                                 <Grid 
                 Margin="0,60,0,0" 
                 VerticalAlignment="Top" 
-                Width="420" 
+                Width="350" 
                 Height="40">
                                                     <Label 
-                    Content="Tên hàng hóa"
+                    Content="Name"
                     HorizontalAlignment="Left"
                     FontSize="18"
                     FontWeight="SemiBold" 
@@ -1004,7 +1118,7 @@
                                                         Text="{Binding namegood, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
                     x:Name="txtName"
                     Cursor="IBeam"
-                    materialDesign:HintAssist.Hint="Tên hàng hóa"
+                    materialDesign:HintAssist.Hint="Name"
                     Height="40"  
                     Width="210" 
                     FontSize="14" 
@@ -1021,10 +1135,10 @@
                                                 <Grid 
                 Margin="0,120,0,0"
                 VerticalAlignment="Top" 
-                Width="420" 
+                Width="350" 
                 Height="40">
                                                     <Label 
-                    Content="Đơn vị tính"
+                    Content="Unit"
                     HorizontalAlignment="Left"  
                     FontSize="18" 
                     FontWeight="SemiBold" 
@@ -1044,7 +1158,7 @@
                                                         Text="{Binding unitgood, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
                     x:Name="txtUnit"
                     Cursor="IBeam"
-                    materialDesign:HintAssist.Hint="Đơn vị tính"
+                    materialDesign:HintAssist.Hint="Unit"
                     Height="40"  
                     Width="210" 
                     FontSize="14" 
@@ -1061,10 +1175,10 @@
                                                 <Grid 
                 Margin="0,180,0,0" 
                 VerticalAlignment="Top" 
-                Width="420" 
+                Width="350" 
                 Height="40">
                                                     <Label 
-                    Content="Đơn giá"
+                    Content="Price"
                     HorizontalAlignment="Left"
                     FontSize="18"
                     FontWeight="SemiBold" 
@@ -1081,11 +1195,11 @@
                     Stroke="Gray" 
                     Margin="0"/>
                                                     <TextBox 
-                                                        Text="{Binding pricegood,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                        Text="{Binding pricegood,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, StringFormat= {}{0:N0}}"
                                                         
                     x:Name="txtUnitPrice"
                     Cursor="IBeam"
-                    materialDesign:HintAssist.Hint="Đơn giá"
+                    materialDesign:HintAssist.Hint="Price"
                     HorizontalAlignment="Right"
                     Height="40"  
                     Width="210" 
@@ -1103,60 +1217,21 @@
 
                                                     </TextBox>
                                                 </Grid>
-                                                <Grid 
-                Margin="0,240,0,0" 
-                VerticalAlignment="Top" 
-                Width="420" 
-                Height="40">
-                                                    <Label 
-                    Content="Số lượng"
-                    HorizontalAlignment="Left"
-                    FontSize="18"
-                    FontWeight="SemiBold" 
-                    Foreground="Black" 
-                    Height="32" 
-                    Margin="0" 
-                    VerticalAlignment="Center"/>
-                                                    <Rectangle 
-                    HorizontalAlignment="Right" 
-                    Height="40" 
-                    Width="230" 
-                    RadiusY="6" 
-                    RadiusX="6"
-                    Stroke="Gray" 
-                    Margin="0"/>
-                                                    <TextBox 
-                                                        Text="{Binding quantitygood,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
-                    x:Name="txt"
-                    Cursor="IBeam"
-                    materialDesign:HintAssist.Hint="Số lượng"
-                    Height="40"  
-                    Width="210" 
-                    FontSize="14" 
-                    BorderThickness="0" 
-                    MaxLines="1"
-                    Padding="0" 
-                    
-                    Foreground="Gray" 
-                    Margin="0,0,10,0" 
-                    HorizontalContentAlignment="Left" 
-                    VerticalContentAlignment="Center"
-                    FontWeight="SemiBold" HorizontalAlignment="Right"/>
-                                                </Grid>
+
                                             </Grid>
 
                                             <Grid Grid.Row="2"
-            Margin="-40"
+            
             VerticalAlignment="Top"  
-            Height="40" 
-            Width="500" 
-            HorizontalAlignment="Center">
+            Height="40" Margin="0,2.2,-0.2,0" 
+           
+           >
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="1*"/>
-                                                    <ColumnDefinition Width="1*"/>
-                                                    <ColumnDefinition Width="1*"/>
+                                                    <ColumnDefinition Width="2*" />
+                                                    <ColumnDefinition Width="2*"/>
+                                                    <ColumnDefinition Width="2*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Grid Grid.Column="0">
+                                                <Grid Grid.Column="0"   >
                                                     <Button
                 x:Name="btnAdd"
                 Command="{Binding addCommand}"
@@ -1166,10 +1241,10 @@
                 Height="40" 
                 Width="100"
                 ToolTip="Thêm" 
-                Margin="0" 
-                HorizontalAlignment="Left"
+               
+                
                 FocusVisualStyle="{x:Null}"
-                Content="Thêm" 
+                Content="Add" 
                 FontSize="18" 
                 VerticalAlignment="Center"
                 Padding="0" />
@@ -1187,7 +1262,7 @@
                 Margin="0" 
                 HorizontalAlignment="Center"
                 FocusVisualStyle="{x:Null}"
-                Content="Sửa" 
+                Content="Edit" 
                 FontSize="18" 
                 VerticalAlignment="Center"
                 Padding="0" />
@@ -1204,9 +1279,9 @@
                 Background="#5C0DAC"
                 
                 Margin="0" 
-                HorizontalAlignment="Right"
+                
                 FocusVisualStyle="{x:Null}"
-                Content="Xóa" 
+                Content="Delete" 
                 FontSize="18"
                 VerticalAlignment="Center"
                 Padding="0"  />
