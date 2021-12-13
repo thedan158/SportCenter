@@ -669,9 +669,9 @@
                                         <RowDefinition Height="auto"></RowDefinition>
                                         <RowDefinition></RowDefinition>
                                     </Grid.RowDefinitions>
-                                    <materialDesign:PackIcon Grid.Row="0" FontWeight="ExtraBold" Kind="Soccer" FontSize="200" Height="109" Width="81" Grid.ColumnSpan="2" Margin="0,0,-0.2,0" Grid.RowSpan="2"/>
+                                    <materialDesign:PackIcon Kind="Basketball" Height="87" Width="82" Margin="0,10,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2" />
                                     <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="13,105,13.8,3.4" Grid.RowSpan="2" Grid.ColumnSpan="2">
-                       Football
+                       Baseball
                                     </TextBlock>
                                 </Grid>
 
@@ -706,15 +706,15 @@
                                         <RowDefinition Height="auto"></RowDefinition>
                                         <RowDefinition></RowDefinition>
                                     </Grid.RowDefinitions>
-                                    <materialDesign:PackIcon Kind="Basketball" Height="87" Width="82" Margin="0,10,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2" />
-                                    <TextBlock   FontWeight="Bold" HorizontalAlignment="Center" Margin="15,96,14.708,-0.277" Grid.RowSpan="2" Grid.ColumnSpan="2" FontSize="10">
-                       Basketball
+                                    <materialDesign:PackIcon Grid.Row="0" FontWeight="ExtraBold" Kind="Soccer" FontSize="200" Height="109" Width="81" Grid.ColumnSpan="2" Margin="0,0,-0.2,0" Grid.RowSpan="2"/>
+                                    <TextBlock   FontWeight="Bold" HorizontalAlignment="Center" Margin="15,96,14.708,-0.277" Grid.RowSpan="2" Grid.ColumnSpan="2" FontSize="14">
+                       Football
                                     </TextBlock>
                                 </Grid>
                             </Button>
                         </Grid>
                         <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="3" Margin="0,20,20,20" >
-                            <Border Margin="20,60,20,20" Background="#E2E5DE" Grid.Column="0" Height="auto" Width="auto" CornerRadius="20">
+                            <Border Margin="20,60,20,20" Background="Snow" Grid.Column="0" Height="auto" Width="auto" CornerRadius="20">
                                 <Border.BitmapEffect>
                                     <DropShadowBitmapEffect Opacity="0.6" Color="#FFFF0303" Softness="0.3"/>
                                 </Border.BitmapEffect>
