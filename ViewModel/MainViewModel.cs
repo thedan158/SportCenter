@@ -33,7 +33,8 @@ namespace SportCenter.ViewModel
         private ObservableCollection<buyingInfo> _Listorder;
         public ObservableCollection<buyingInfo> Listorder { get => _Listorder; set { _Listorder = value; OnPropertyChanged(); } }
 
-
+        private ObservableCollection<BaseCustomerInfo> _ListCustomerInfo;
+        public ObservableCollection<BaseCustomerInfo> ListCustomerInfo { get => _ListCustomerInfo; set { _ListCustomerInfo = value; OnPropertyChanged(); } }
 
         public bool Isloaded = false;
         public ICommand LoadedWindowCommand { get; set; }
@@ -307,6 +308,79 @@ namespace SportCenter.ViewModel
             });
         }
         
+        private void LoadListCustomerInfo()
+{
+    ListCustomerInfo = new ObservableCollection<BaseCustomerInfo>();
+    var temp_bookingInfo = DataProvider.Ins.DB.bookingInfoes;
+    var temp_billInfo = DataProvider.Ins.DB.bills;
+    ObservableCollection<BaseCustomerInfo> temp_listCusInfo = new ObservableCollection<BaseCustomerInfo>();
+    if(temp_billInfo == null)
+    {
+        return;
+    }
+    //Adding Customer info in to ListCustomerInfo
+    foreach (var item_bill in temp_billInfo) 
+    {
+        var temp_Cusinfo = new BaseCustomerInfo();
+        temp_Cusinfo.Baseinfo_SumCusMoneyAmount = Decimal.ToInt32(item_bill.totalmoney.Value);
+        foreach(var item_booking in temp_bookingInfo)
+        {
+            if (item_booking.id == item_bill.idBookingInfo)
+            {
+                temp_Cusinfo.Baseinfo_CusName = item_booking.Customer_name;
+                temp_Cusinfo.Baseinfo_CusPhoneNum = item_booking.Customer_PhoneNum.ToString();
+                temp_Cusinfo.Baseinfo_SumBillAmount = 1;
+                temp_Cusinfo.Baseinfo_SumCusMoneyAmount = Decimal.ToInt32(item_bill.totalmoney.Value);
+                temp_Cusinfo.Baseinfo_TypeCus = "Lever1";
+                temp_listCusInfo.Add(temp_Cusinfo);
+            }
+        }
+    }
+    // Bill count 
+    foreach(var item in temp_listCusInfo)
+    {
+        foreach(var item_booking in temp_bookingInfo)
+        {
+            if (item_booking.Status == "Pay")
+            {
+                if (item.Baseinfo_CusName == item_booking.Customer_name)
+                {
+                    if (item.Baseinfo_CusPhoneNum == item_booking.Customer_PhoneNum.ToString())
+                    {
+                        item.Baseinfo_SumBillAmount++;
+                    }
+                }
+            }
+            
+        }
+    }
+    List<BaseCustomerInfo> temp_list1 = new List<BaseCustomerInfo>();
+    List<BaseCustomerInfo> temp_list2 = new List<BaseCustomerInfo>();
+    temp_list1 = temp_listCusInfo.ToList();
+    temp_list2 = temp_listCusInfo.ToList();
+    for (int i = 0; i < temp_list1.Count(); i++)
+    {
+        for(int j = 0;j < temp_list1.Count(); j++)
+        {
+            if (i == j)
+            {
+                continue;
+            }
+            else
+            {
+                if(temp_list1[i].Baseinfo_CusName == temp_list1[j].Baseinfo_CusName)
+                {
+                    if (temp_list1[i].Baseinfo_CusPhoneNum == temp_list1[j].Baseinfo_CusPhoneNum)
+                    {
+                        temp_list1[i].Baseinfo_SumBillAmount++;
+                        temp_list1[i].Baseinfo_SumCusMoneyAmount += temp_list1[j].Baseinfo_SumCusMoneyAmount;
+                    }
+                }
+            }
+        }
+        
+    }
+}
         private void f_Open_Bill_Report()
         {
             Bill_Report rp = new Bill_Report();

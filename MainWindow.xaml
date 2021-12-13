@@ -646,62 +646,99 @@
                     <Grid x:Name="Grid_Button">
 
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="40*"></RowDefinition>
-                            <RowDefinition Height="70*"/>
-                            <RowDefinition Height="250*"/>
-                            <RowDefinition Height="100*"/>
+                            <RowDefinition Height="60*"></RowDefinition>
+                            <RowDefinition Height="220*"/>
+                            <RowDefinition Height="220*"/>
+                            <RowDefinition Height="220*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="133*" />
                             <ColumnDefinition Width="133*"/>
                             <ColumnDefinition Width="133*"/>
                         </Grid.ColumnDefinitions>
-                        <Button x:Name="FB_button"
-                            Style="{DynamicResource MaterialDesignRaisedButton}"
-                            materialDesign:ShadowAssist.ShadowDepth="Depth4"
-                            Content="BASKETBALL COURT"
-                            Width="150" Height="40"
-                            Grid.Column="0" Grid.Row="3"
-                            ToolTip="Resource name: MaterialDesignRaisedLightButton"
-                            Command="{Binding _ShowWindowCommand_FB}"
-                            CommandParameter="{Binding ElementName=FB_button}"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="12" />
-                        <Button x:Name="BKB_button"
-                            Style="{DynamicResource MaterialDesignRaisedButton}"
-                            materialDesign:ShadowAssist.ShadowDepth="Depth4"
-                            Content="FOOTBALL FIELD" FontSize="10"
-                            Width="150" Height="40"            
-                            Grid.Column="1" Grid.Row="3"
-                            Command="{Binding ShowWindowCommand_BK}"
-                            ToolTip="Resource name: MaterialDesignRaisedLightButton"            
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Center" VerticalAlignment="Top" />
-                        <Button x:Name="VLB_button"
-                            Style="{DynamicResource MaterialDesignRaisedButton}"
-                            materialDesign:ShadowAssist.ShadowDepth="Depth4"
-                            Content="VOLLEYBALL COURT"  FontSize="10"
-                            Width="150" Height="40" 
-                            Grid.Column="2" Grid.Row="3"
-                            Command="{Binding ShowWindowCommand_VL}"
-                            ToolTip="Resource name: MaterialDesignRaisedLightButton"            
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                        <Grid Grid.Column="0" Grid.Row="1">
+                            <Button x:Name="FB_Billbtb" HorizontalAlignment="Center" Height="auto" VerticalAlignment="Center" Width="120"
+                                        Command="{Binding _ShowWindowCommand_FB}">
 
-                        <Image Source="image/7042198.png" 
-               Grid.Row="2"
-               Grid.Column="0"
-               HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="150" RenderTransformOrigin="0.557,0.517"
-               ></Image>
-                        <Image Source="image/5854088.png"
-               Grid.Column="1"
-               Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="150"
-               ></Image>
-                        <Image Source="image/5854089.png" 
-               Grid.Column="2"
-               Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="150"
-               ></Image>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="16*"/>
+                                        <ColumnDefinition Width="65*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <materialDesign:PackIcon Grid.Row="0" FontWeight="ExtraBold" Kind="Soccer" FontSize="200" Height="109" Width="81" Grid.ColumnSpan="2" Margin="0,0,-0.2,0" Grid.RowSpan="2"/>
+                                    <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="13,105,13.8,3.4" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                       Football
+                                    </TextBlock>
+                                </Grid>
+
+                            </Button>
+                        </Grid>
+                        <Grid Grid.Column="0" Grid.Row="2">
+                            <Button x:Name="VL_billbtb" HorizontalAlignment="Center" Height="auto" VerticalAlignment="Center" Width="120"
+                                        Command="{Binding ShowWindowCommand_VL}"
+                            >
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <materialDesign:PackIcon Kind="Volleyball" FontSize="200" Height="109" Width="79" />
+                                    <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="0,105,-0.338,4.277" Grid.RowSpan="2">
+                       Volleyball
+                                    </TextBlock>
+                                </Grid>
+                            </Button>
+                        </Grid>
+                        <Grid Grid.Row="3" Grid.Column="0">
+                            <Button x:Name="Bk_billbtb" HorizontalAlignment="Center" Height="130" VerticalAlignment="Center" Width="120"
+                                        Command="{Binding ShowWindowCommand_BK}"
+                            >
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="27*"/>
+                                        <ColumnDefinition Width="56*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <materialDesign:PackIcon Kind="Basketball" Height="87" Width="82" Margin="0,10,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2" />
+                                    <TextBlock   FontWeight="Bold" HorizontalAlignment="Center" Margin="15,96,14.708,-0.277" Grid.RowSpan="2" Grid.ColumnSpan="2" FontSize="10">
+                       Basketball
+                                    </TextBlock>
+                                </Grid>
+                            </Button>
+                        </Grid>
+                        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="3" Margin="0,20,20,20" >
+                            <Border Margin="20,60,20,20" Background="#E2E5DE" Grid.Column="0" Height="auto" Width="auto" CornerRadius="20">
+                                <Border.BitmapEffect>
+                                    <DropShadowBitmapEffect Opacity="0.6" Color="#FFFF0303" Softness="0.3"/>
+                                </Border.BitmapEffect>
+
+
+                                <DataGrid AlternatingRowBackground="LightGray" IsReadOnly="True" HeadersVisibility="Column" BorderBrush="{x:Null}" Background="Transparent" ItemsSource="{Binding ListCustomerInfo}" AutoGenerateColumns="False" FontSize="16" Margin="0,0,0,0" >
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="  No" Binding="{Binding STT}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Customer Name" Binding="{Binding Baseinfo_CusName}"/>
+                                    <DataGridTextColumn Header="Customer Phone" Binding="{Binding Baseinfo_CusPhoneNum}"/>
+                                    <DataGridTextColumn Header="Money Achive" Binding="{Binding Baseinfo_SumCusMoneyAmount}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Bill Achive" Binding="{Binding Baseinfo_SumBillAmount}"/>
+                                    <DataGridTextColumn Header="Member type" Binding="{Binding Baseinfo_TypeCus}"/>
+                                    
+                                </DataGrid.Columns>
+
+                            </DataGrid>
+                            </Border>
+                        </Grid>
+                            
 
                         <TextBlock
-            Text="PAYMENT" FontWeight="Bold" FontSize="25"
-            Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Bungee Inline"
+            Text="PAYMENT" FontWeight="Bold" FontSize="25" Margin="0,0,0,-20"
+            Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Bungee Inline"
             ></TextBlock>
                     </Grid>
                 </TabItem>
@@ -739,12 +776,16 @@
                                         Command="{Binding ShowFootballFieldCommand}"
                             CommandParameter="{Binding ElementName=FB}">
                                     <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="16*"/>
+                                            <ColumnDefinition Width="65*"/>
+                                        </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="auto"></RowDefinition>
                                             <RowDefinition></RowDefinition>
                                         </Grid.RowDefinitions>
-                                        <materialDesign:PackIcon Grid.Row="0" FontWeight="ExtraBold" Kind="Soccer" FontSize="200" Height="109" Width="81"/>
-                                        <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="13,105,13.231,4.277" Grid.RowSpan="2">
+                                        <materialDesign:PackIcon Grid.Row="0" FontWeight="ExtraBold" Kind="Soccer" FontSize="200" Height="109" Width="81" Grid.ColumnSpan="2" Margin="0,0,-0.2,0" Grid.RowSpan="2"/>
+                                        <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="13,105,13.8,3.4" Grid.RowSpan="2" Grid.ColumnSpan="2">
                        Football
                                         </TextBlock>
                                     </Grid>
