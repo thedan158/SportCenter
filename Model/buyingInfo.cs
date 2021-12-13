@@ -18,6 +18,7 @@ namespace SportCenter.Model
         public Nullable<int> idGood { get; set; }
         public Nullable<int> quantity { get; set; }
         public int idBookingInfo { get; set; }
+        public Nullable<int> orderprice { get; set; }
     
         public virtual bookingInfo bookingInfo { get; set; }
         public virtual good good { get; set; }

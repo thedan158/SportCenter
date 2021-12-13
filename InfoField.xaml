@@ -1,0 +1,97 @@
+﻿<Window x:Class="SportCenter.InfoField"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SportCenter"
+        mc:Ignorable="d"
+        xmlns:uc="clr-namespace:SportCenter.UserControlKteam"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="#FFEEE9FA"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        DataContext="{StaticResource BookingVM}"
+        x:Name="InfoFiled"
+        Title="InfoField" Height="800" Width="1300">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}" Grid.ColumnSpan="2"></uc:ControlBarUC>
+        </Grid>
+        <Grid Grid.Row="1">
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding }"></TextBlock>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <materialDesign:Card Grid.Row="0" Margin="5">
+                <WrapPanel Margin="0 0 0 10">
+                    <TextBox Text="{Binding addcustomername, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Customer name" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Text="{Binding addcustomerphone, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Phone number" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <DatePicker 
+                SelectedDateFormat="Short"
+                materialDesign:TextFieldAssist.TextFieldCornerRadius="0"
+                materialDesign:TextFieldAssist.HasFilledTextField="False"
+                materialDesign:HintAssist.IsFloating="True"
+                materialDesign:HintAssist.Hint="Date play"                     
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center"  
+                BorderBrush="Gray"         
+                FontWeight="Medium" FirstDayOfWeek="Monday" IsDropDownOpen="True" IsEnabled="True" />
+                    <materialDesign:TimePicker
+                        Margin="5,5,5,0"
+                        HorizontalAlignment="Center"         
+                VerticalAlignment="Center"
+                        materialDesign:HintAssist.Hint="Start time" 
+                        ></materialDesign:TimePicker>
+                    <materialDesign:TimePicker
+                        HorizontalAlignment="Center"         
+                VerticalAlignment="Center"
+                        materialDesign:HintAssist.Hint="End time" 
+                        ></materialDesign:TimePicker>
+                </WrapPanel>
+            </materialDesign:Card>
+
+            <materialDesign:Card Grid.Row="1" Margin="5">
+                <WrapPanel>
+                    <Button Command="{Binding AddCommand}" Content="Thêm" Margin="20" Width="100"></Button>
+                    <Button Command="{Binding EditCommand}" Content="Sửa" Margin="20" Width="100"></Button>
+                    <Button Command="{Binding DeleteCommand}" Content="Xóa" Margin="20" Width="100"></Button>
+                </WrapPanel>
+            </materialDesign:Card>
+
+            <materialDesign:Card Grid.Row="2" Margin="5" VerticalAlignment="Stretch">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ListView ItemsSource="{Binding ListbookingInfo}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding id}"></GridViewColumn>
+                                <GridViewColumn Header="Date play" DisplayMemberBinding="{Binding datePlay }"></GridViewColumn>
+                                <GridViewColumn Header="Start time" DisplayMemberBinding="{Binding start_time}"></GridViewColumn>
+                                <GridViewColumn Header="End time" DisplayMemberBinding="{Binding end_time}"></GridViewColumn>
+                                <GridViewColumn Header="Customer name" DisplayMemberBinding="{Binding Customer_name}"></GridViewColumn>
+                                <GridViewColumn Header="Customer phone number" DisplayMemberBinding="{Binding Customer_PhoneNum}"></GridViewColumn>
+                                <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
+            </materialDesign:Card>
+        </Grid>
+    </Grid>
+</Window>

@@ -15,59 +15,76 @@
         Background="#FFEEE9FA"
         FontFamily="{DynamicResource MaterialDesignFont}"
         ResizeMode="NoResize"
+        DataContext="{StaticResource AddFieldVM}"
         WindowStyle="None"
         x:Name="Add_Filed"
         Title="Add_Field" Height="300" Width="600">
     <Grid>
-        <GroupBox Height="auto" VerticalAlignment="Top">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="70"></RowDefinition>
-                    <RowDefinition Height="150"></RowDefinition>
-                    <RowDefinition Height="150"></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0"
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="130"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}" Grid.ColumnSpan="2"></uc:ControlBarUC>
+            </Grid>
+            <TextBlock Grid.Row="1"
             x:Name="txbSetField" 
-	        Margin="191,10,159.908,0.154" 
             TextWrapping="Wrap" 
             Text="Thêm sân" 
             FontSize="40"
             HorizontalAlignment="Center" 
-            FontWeight="Bold" Width="231" />
-                <Grid Grid.Row="1">
-                    <StackPanel Margin="40,25,40.631,-25.092">
-                        <WrapPanel>
-                            <Label Content="Tên sân:" Width="87"/>
-                            <TextBox   Width="402"/>
-                        </WrapPanel>
-                        <WrapPanel >
-                            <Label Content="Loại sân:" Width="96"/>
-                            <ComboBox   Width="391" Name="txbPgDXs" RenderTransformOrigin="0.434,0.517"/>
-                        </WrapPanel>
-                        <WrapPanel >
-                            <Label Content="Tình trạng:" Width="88"/>
-                            <ComboBox   Width="400" x:Name="txboosgDXs"/>
-                        </WrapPanel>
-                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="30">
-                            <Button Background="Green" Opacity="0.7" Name="btnXacNhan" 
-                            Margin="10" Width="150">
-                                <WrapPanel>
-                                    <materialDesign:PackIcon Kind="Tick" Margin="-10 0 10 0" Width="20" Height="20"/>
-                                    <TextBlock>Xác nhận</TextBlock>
-                                </WrapPanel>
-                            </Button>
-                            <Button Background="red" Opacity="0.7" Name="btnThoat" 
-                             Margin="10" Width="150">
-                                <WrapPanel>
-                                    <materialDesign:PackIcon Kind="No" Margin="-10 0 10 0" Width="20" Height="20"/>
-                                    <TextBlock>Hủy</TextBlock>
-                                </WrapPanel>
-                            </Button>
-                        </WrapPanel>
-                    </StackPanel>
-                </Grid>
+            FontWeight="Bold" Width="231"/>
+            <Grid Grid.Row="2"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <WrapPanel Grid.Row="0" HorizontalAlignment="Center">
+                    <Label Content="Tên sân:" Width="87"/>
+                    <TextBox x:Name="addname" Text="{Binding addfieldname}" Width="300"/>
+                </WrapPanel>
+                <WrapPanel Grid.Row="1" HorizontalAlignment="Center">
+                    <Label Content="Loại sân:" Width="96"/>
+                    <ComboBox IsReadOnly="False" ItemsSource="{Binding Listfieldtype}" SelectedItem="{Binding selecttedype, Mode=TwoWay}" x:Name="addtype" Width="300">
+
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding name}"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </WrapPanel>
+                <WrapPanel Grid.Row="2" HorizontalAlignment="Center">
+                    <Label Content="Tình trạng:" Width="88"/>
+
+                    <ComboBox IsReadOnly="True" SelectedValue="{Binding selectcondition}" SelectedValuePath="Content" Width="300" x:Name="addcondition" >
+                        <ComboBoxItem>Good</ComboBoxItem>
+                        <ComboBoxItem>Normal</ComboBoxItem>
+                        <ComboBoxItem>Repairing</ComboBoxItem>
+                    </ComboBox>
+                </WrapPanel>
+
             </Grid>
-        </GroupBox>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150*"></ColumnDefinition>
+                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                    <ColumnDefinition Width="143*"/>
+                </Grid.ColumnDefinitions>
+                <Button Command="{Binding AddFieldCommand}" Grid.Column="0"  HorizontalAlignment="Center"  materialDesign:ButtonAssist.CornerRadius="5" Margin="93,19,79,19.4" HorizontalContentAlignment="Stretch" VerticalAlignment="Center" Width="128">
+                    <TextBlock Margin="5 0 0 0" Text="Add" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Button>
+                <Button Click="btnThoat_Click" Grid.Column="2"   HorizontalAlignment="Center"  materialDesign:ButtonAssist.CornerRadius="5" Margin="79.4,19,79,19.4" HorizontalContentAlignment="Stretch" VerticalAlignment="Center" Width="128">
+                    <TextBlock Margin="5 0 0 0" Text="Cancel" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Button>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

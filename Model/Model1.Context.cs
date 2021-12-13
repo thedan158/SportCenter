@@ -13,10 +13,10 @@ namespace SportCenter.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class sportcenterEntities7 : DbContext
+    public partial class sportcenterEntities9 : DbContext
     {
-        public sportcenterEntities7()
-            : base("name=sportcenterEntities7")
+        public sportcenterEntities9()
+            : base("name=sportcenterEntities9")
         {
         }
     

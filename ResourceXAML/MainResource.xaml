@@ -12,4 +12,6 @@
     <viewmodel:BillViewModel_BasketBall x:Key="BillVM_BKB"></viewmodel:BillViewModel_BasketBall>
     <viewmodel:BillViewModel_VolleyBall x:Key="BillVM_VLB"></viewmodel:BillViewModel_VolleyBall>
     <viewmodel:BillReportViewModel x:Key="BillReportVM"></viewmodel:BillReportViewModel>
+    <viewmodel:AddFieldViewModel x:Key="AddFieldVM"></viewmodel:AddFieldViewModel>
+    <viewmodel:BookingViewModel x:Key="BookingVM"></viewmodel:BookingViewModel>
 </ResourceDictionary>

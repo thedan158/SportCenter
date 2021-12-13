@@ -10,22 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SportCenter
+namespace SportCenter.UserControlKteam
 {
     /// <summary>
-    /// Interaction logic for Add_Field.xaml
+    /// Interaction logic for FieldControl.xaml
     /// </summary>
-    public partial class Add_Field : Window
+    public partial class FieldControl : UserControl
     {
-        public Add_Field()
+        public FieldControl()
         {
             InitializeComponent();
-        }
-        private void btnThoat_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 }

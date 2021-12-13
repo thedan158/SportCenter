@@ -31,42 +31,73 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
-            <RowDefinition/>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <uc:ControlBarUC Tag="{Binding Title, ElementName=ChooseSportWindow}" Height="32" Margin="0,0,0.046,-0.246" VerticalAlignment="Top"></uc:ControlBarUC>
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=ChooseSportWindow}" Height="32"  VerticalAlignment="Top"></uc:ControlBarUC>
         </Grid>
-        <TextBlock Grid.Row="1" FontFamily="Bungee Inline" FontSize="30" Margin="194,11.246,194.046,391.938" Grid.RowSpan="2"  ><Run Text="Bóng đá"/></TextBlock>
-        <Grid Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="10,50,10,0">
-            <DockPanel Height="310">
-                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                    <ItemsControl x:Name="IC_football" ItemsSource="{Binding _List_field_sc}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <materialDesign:Card Grid.Row="0" Width="463" Padding="8" UniformCornerRadius="6" Height="113" Margin="7" Grid.RowSpan="3" Grid.ColumnSpan="3">
-                                        <Grid>
-                                            <materialDesign:Card  Margin="9,3,337.769,7.738" Background="Cyan">
-                                                <materialDesign:PackIcon Kind="SoccerField" Height="auto" Width="100" Margin="0,-13,-0.308,-10.338" VerticalAlignment="Stretch" />
-                                            </materialDesign:Card>
-                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="160,10,76.508,60.738" Width="211" Height="26"
-                         Foreground="#8c9aa1" FontSize="25" FontWeight="ExtraBold"       
-                                   ><Run Text="{Binding List_FieldSoccer.name}"/></TextBlock>
-                                            <Grid>
-                                                <Button Margin="144,55,210.769,9.738" Content="Thông tin"/>
-                                            </Grid>
-                                            <Grid>
-                                                <Button Margin="264,55,91.508,9.738" Content="Đặt sân" />
-                                            </Grid>
-                                        </Grid>
-                                    </materialDesign:Card>
-                                </Grid>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ScrollViewer>
-            </DockPanel>
+        <TextBlock Grid.Row="1" FontFamily="Bungee Inline" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"  ><Run Text="Soccer"/></TextBlock>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Command="{Binding ShowAddCommand}" HorizontalAlignment="Center"  materialDesign:ButtonAssist.CornerRadius="5"  HorizontalContentAlignment="Stretch" VerticalAlignment="Center" Width="128">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Grid.Column="0" Kind="Add" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" Height="Auto"/>
+                    <TextBlock Grid.Column="1" Margin="5 0 0 0" Text="Add" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Grid>
+            </Button>
+            <Button Grid.Column="1"  HorizontalAlignment="Center"  materialDesign:ButtonAssist.CornerRadius="5"  HorizontalContentAlignment="Stretch" VerticalAlignment="Center" Width="128">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Grid.Column="0" Kind="Minus" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" Height="Auto"/>
+                    <TextBlock Grid.Column="1" Margin="5 0 0 0" Text="Delete" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Grid>
+            </Button>
+            <Button Grid.Column="2" Command="{Binding ShowEditFieldCommand}"  HorizontalAlignment="Center"  materialDesign:ButtonAssist.CornerRadius="5" HorizontalContentAlignment="Stretch" VerticalAlignment="Center" Width="128">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Grid.Column="0" Kind="Adjust" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" Height="Auto" Grid.ColumnSpan="2" Margin="0,0,72,-0.369" Grid.RowSpan="2"/>
+                    <TextBlock Grid.Column="1" Margin="18.369,3,13,3.631" Text="Adjust" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.RowSpan="2"/>
+                </Grid>
+            </Button>
         </Grid>
+        <DockPanel Grid.Row="3">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <ItemsControl x:Name="IC_football" ItemsSource="{Binding _List_field_sc}">
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <uc:FieldControl></uc:FieldControl>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.Template>
+                        <ControlTemplate>
+                            <ItemsPresenter/>
+                        </ControlTemplate>
+                    </ItemsControl.Template>
+                </ItemsControl>
+
+            </ScrollViewer>
+        </DockPanel>
     </Grid>
 
 </Window>
