@@ -24,10 +24,10 @@ namespace SportCenter.Model
         }
 
 
-        public sportcenterEntities9 DB { get; set; }
+        public sportcenterEntities11 DB { get; set; }
         private DataProvider()
         {
-            DB = new sportcenterEntities9();
+            DB = new sportcenterEntities11();
 
 
         }

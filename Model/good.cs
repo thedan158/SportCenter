@@ -24,6 +24,7 @@ namespace SportCenter.Model
         public string name { get; set; }
         public string unit { get; set; }
         public Nullable<decimal> price { get; set; }
+        public byte[] imageFile { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<buyingInfo> buyingInfoes { get; set; }

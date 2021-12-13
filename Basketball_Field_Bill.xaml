@@ -114,11 +114,6 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-                <Border Background="Snow" CornerRadius="20" Grid.Column="0" Width="350" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top">
-                    
-                    
-                </Border>
-
                     <Border Margin="20,60,0,0" Background="Snow" Grid.Column="0" Height="auto" Width="auto" CornerRadius="20">
                 <Border.BitmapEffect>
                     <DropShadowBitmapEffect Opacity="0.6" Color="#FFFF0303" Softness="0.3"/>
