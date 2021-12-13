@@ -142,21 +142,21 @@ namespace SportCenter.ViewModel
                 Isloaded = true;
                 p.Hide();
                 LoginWindow loginWindow = new LoginWindow();
-                //loginWindow.ShowDialog();
+                loginWindow.ShowDialog();
                 p.Show();
                 LoadStorageData();
-                //if (loginWindow.DataContext == null)
-                //    return;
-                //var loginVM = loginWindow.DataContext as LoginViewModel;
+                if (loginWindow.DataContext == null)
+                    return;
+                var loginVM = loginWindow.DataContext as LoginViewModel;
 
-                //if (loginVM.IsLogin)
-                //{
-                    
-                //}
-                //else
-                //{
-                //    p.Close();
-                //}
+                if (loginVM.IsLogin)
+                {
+
+                }
+                else
+                {
+                    p.Close();
+                }
 
             }); 
             _ShowWindowCommand_FB = new RelayCommand<object>((parameter) => true, (parameter) => _ShowWindowFuntion_FB());
