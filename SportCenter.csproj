@@ -61,6 +61,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -151,14 +152,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ProductDetailsControl.xaml.cs">
+      <DependentUpon>ProductDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SellGoodsControl.xaml.cs">
+      <DependentUpon>SellGoodsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControlKteam\Expander_Bill.xaml.cs">
       <DependentUpon>Expander_Bill.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\BaseBill2.cs" />
+    <Compile Include="ViewModel\BaseGood.cs" />
     <Compile Include="ViewModel\BillReportViewModel.cs" />
     <Compile Include="ViewModel\BillViewModel_BasketBall.cs" />
     <Compile Include="ViewModel\BillViewModel_Football2.cs" />
     <Compile Include="ViewModel\BillViewModel_VolleyBall.cs" />
+    <Compile Include="ViewModel\Converter.cs" />
     <Compile Include="ViewModel\FormatDisplayGoodsBill.cs" />
     <Compile Include="ViewModel\BaseFieldBasketball.cs" />
     <Compile Include="ViewModel\BaseFieldSoccer.cs" />
@@ -232,6 +241,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PayMent_tem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductDetailsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SellGoodsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

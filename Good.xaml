@@ -75,9 +75,11 @@
           HorizontalAlignment="Center" />
                             </StackPanel>
                         </TabItem.Header>
+                       
                         <ScrollViewer >
                             <ScrollViewer.Background>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White" Offset="0.328"/>
 
                                 </LinearGradientBrush>
                             </ScrollViewer.Background>
