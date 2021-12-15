@@ -1,4 +1,6 @@
-﻿using Microsoft.Win32;
+﻿using LiveCharts;
+using LiveCharts.Wpf;
+using Microsoft.Win32;
 using SportCenter.Model;
 using System;
 using System.Collections.Generic;
@@ -18,6 +20,12 @@ namespace SportCenter.ViewModel
     public class MainViewModel : BaseViewModel
         
     {
+        //ListBill
+        private ObservableCollection<bill> _Listbills;
+        public ObservableCollection<bill> Listbill { get => _Listbills; set { _Listbills = value; OnPropertyChanged(); } }
+
+        //PieChart
+        public Func<ChartPoint, string> PointLabel { get; set; }
         //List fields which was booked
         private ObservableCollection<bookingInfo> _Listbooking;
         public ObservableCollection<bookingInfo> Listbooking { get => _Listbooking; set { _Listbooking = value; OnPropertyChanged(); } }
@@ -145,16 +153,16 @@ namespace SportCenter.ViewModel
                 p.Hide();
                 LoginWindow loginWindow = new LoginWindow();
                 loginWindow.ShowDialog();
-                p.Show();
-                LoadStorageData();
-                LoadListCustomerInfo();
                 if (loginWindow.DataContext == null)
                     return;
                 var loginVM = loginWindow.DataContext as LoginViewModel;
 
                 if (loginVM.IsLogin)
                 {
-
+                    p.Show();
+                    LoadStorageData();
+                    LoadListCustomerInfo();
+                    PieChart();
                 }
                 else
                 {
@@ -185,6 +193,7 @@ namespace SportCenter.ViewModel
                     p.Show();
                     LoadStorageData();
                     LoadListCustomerInfo();
+                    PieChart();
                 }
                 else
                 {
@@ -311,6 +320,11 @@ namespace SportCenter.ViewModel
                 Listorder.Clear();
                 total = 0;
             });
+        }
+        ///Initialize Piechart
+        public void PieChart()
+        {
+            PointLabel = ChartPoint => string.Format("{0}({1:P})", ChartPoint.Y, ChartPoint.Participation);
         }
         
         private void LoadListCustomerInfo()

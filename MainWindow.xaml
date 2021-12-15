@@ -103,7 +103,7 @@
                                     </Label.Background>
                                 </Label>
                                 <Label x:Name="label_income" Content="ALL INCOME IN VND" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="39" FontWeight="Bold" Margin="26,39,0,0" VerticalAlignment="Top" Width="346" FontSize="24" Foreground="#DDF9F9F9"/>
-                                <Label x:Name="income" Content="1,000,000 VND" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="31" Margin="28,105,0,0" VerticalAlignment="Top" Width="344" FontSize="18" Foreground="#DDF9F9F9" FontWeight="Bold" />
+                                <Label x:Name="income" Content="{Binding AllIncome}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="31" Margin="28,105,0,0" VerticalAlignment="Top" Width="344" FontSize="18" Foreground="#DDF9F9F9" FontWeight="Bold" />
                             </Grid>
                             <Grid Grid.Column="1">
                                 <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth5"
@@ -164,7 +164,7 @@
                                 <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" UniformCornerRadius="10"
             Padding="8"  Foreground="{x:Null}">
                                 </materialDesign:Card>
-                                <!--<Wpf:PieChart LegendLocation="Bottom" Hoverable="False" DataTooltip="{x:Null}" >
+                                <Wpf:PieChart LegendLocation="Bottom" Hoverable="True" InnerRadius="10" DataTooltip="{x:Null}" >
                                     <Wpf:PieChart.Series>
                                         <Wpf:PieSeries Title="Football" Values="50" DataLabels="True"
                                LabelPoint="{Binding PointLabel}"/>
@@ -176,7 +176,7 @@
                                     </Wpf:PieChart.Series>
 
 
-                                </Wpf:PieChart>-->
+                                </Wpf:PieChart>
                             </Grid>
                             <Grid Grid.Column="1" Margin="25">
                                 <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" UniformCornerRadius="10"
