@@ -9,6 +9,7 @@
 
 namespace SportCenter.Model
 {
+    using SportCenter.ViewModel;
     using System;
     using System.Collections.Generic;
     
