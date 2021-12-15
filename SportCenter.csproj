@@ -97,6 +97,12 @@
     <Compile Include="Bill_Report.xaml.cs">
       <DependentUpon>Bill_Report.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DeleteField.xaml.cs">
+      <DependentUpon>DeleteField.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditField.xaml.cs">
+      <DependentUpon>EditField.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Football_Field_Bill.xaml.cs">
       <DependentUpon>Football_Field_Bill.xaml</DependentUpon>
     </Compile>
@@ -111,6 +117,9 @@
     </Compile>
     <Compile Include="Basketball_Field_Bill.xaml.cs">
       <DependentUpon>Basketball_Field_Bill.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoField.xaml.cs">
+      <DependentUpon>InfoField.xaml</DependentUpon>
     </Compile>
     <Compile Include="List_Good.xaml.cs">
       <DependentUpon>List_Good.xaml</DependentUpon>
@@ -161,12 +170,18 @@
     <Compile Include="UserControlKteam\Expander_Bill.xaml.cs">
       <DependentUpon>Expander_Bill.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControlKteam\FieldControl.xaml.cs">
+      <DependentUpon>FieldControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\AddFieldViewModel.cs" />
     <Compile Include="ViewModel\BaseBill2.cs" />
+    <Compile Include="ViewModel\BaseCustomerInfo.cs" />
     <Compile Include="ViewModel\BaseGood.cs" />
     <Compile Include="ViewModel\BillReportViewModel.cs" />
     <Compile Include="ViewModel\BillViewModel_BasketBall.cs" />
     <Compile Include="ViewModel\BillViewModel_Football2.cs" />
     <Compile Include="ViewModel\BillViewModel_VolleyBall.cs" />
+    <Compile Include="ViewModel\BookingViewModel.cs" />
     <Compile Include="ViewModel\Converter.cs" />
     <Compile Include="ViewModel\FormatDisplayGoodsBill.cs" />
     <Compile Include="ViewModel\BaseFieldBasketball.cs" />
@@ -216,6 +231,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DeleteField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Football_Field_Bill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -233,6 +256,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Basketball_Field_Bill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoField.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -257,6 +284,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControlKteam\Expander_Bill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlKteam\FieldControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

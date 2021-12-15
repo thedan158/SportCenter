@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="SportCenter.UserControlKteam.FieldControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SportCenter.UserControlKteam"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             
+           >
+    <Grid>
+        <Button Height="150" Command="{Binding Path=DataContext.ShowInfoCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}"  CommandParameter="{Binding}">
+            <materialDesign:Card Grid.Row="0" Width="auto" Padding="8" UniformCornerRadius="6" Height="150" Margin="7" Grid.RowSpan="3" Grid.ColumnSpan="3">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Button
+            Grid.Column="5"
+            Height="26" 
+            Margin="0" 
+            Width="24" 
+            Command="{Binding Path=DataContext.DelfieldCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}"
+            
+            Background="{x:Null}" 
+            BorderBrush="{x:Null}" 
+            Padding="0">
+                            <materialDesign:PackIcon 
+                Kind="DeleteOutline" 
+                Height="24"
+                Width="24"
+                Foreground="Red" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center" />
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <TextBlock Margin="30,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="211" Height="26"
+                         Foreground="#8c9aa1" FontSize="25" FontWeight="ExtraBold"  Text="{Binding List_FieldSoccer.name}" TextWrapping="WrapWithOverflow" 
+                                   ></TextBlock>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <TextBlock Margin="30,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="211" Height="26"
+                         Foreground="#8c9aa1" FontSize="25" FontWeight="ExtraBold"  Text="{Binding List_FieldSoccer.condition}" TextWrapping="WrapWithOverflow" 
+                                   ></TextBlock>
+
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+
+            </materialDesign:Card>
+        </Button>
+    </Grid>
+</UserControl>

@@ -33,7 +33,8 @@ namespace SportCenter.ViewModel
         private ObservableCollection<buyingInfo> _Listorder;
         public ObservableCollection<buyingInfo> Listorder { get => _Listorder; set { _Listorder = value; OnPropertyChanged(); } }
 
-
+        private ObservableCollection<BaseCustomerInfo> _ListCustomerInfo;
+        public ObservableCollection<BaseCustomerInfo> ListCustomerInfo { get => _ListCustomerInfo; set { _ListCustomerInfo = value; OnPropertyChanged(); } }
 
         public bool Isloaded = false;
         public ICommand LoadedWindowCommand { get; set; }
@@ -136,6 +137,7 @@ namespace SportCenter.ViewModel
             _Listbuying = new ObservableCollection<buyingInfo>(DataProvider.Ins.DB.buyingInfoes);
             _Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
             _Listorder = new ObservableCollection<buyingInfo>();
+            _ListCustomerInfo = new ObservableCollection<BaseCustomerInfo>();
 
             LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
@@ -145,6 +147,7 @@ namespace SportCenter.ViewModel
                 loginWindow.ShowDialog();
                 p.Show();
                 LoadStorageData();
+                LoadListCustomerInfo();
                 if (loginWindow.DataContext == null)
                     return;
                 var loginVM = loginWindow.DataContext as LoginViewModel;
@@ -181,6 +184,7 @@ namespace SportCenter.ViewModel
                 {
                     p.Show();
                     LoadStorageData();
+                    LoadListCustomerInfo();
                 }
                 else
                 {
@@ -309,6 +313,110 @@ namespace SportCenter.ViewModel
             });
         }
         
+        private void LoadListCustomerInfo()
+        {
+            
+            var temp_bookingInfo = DataProvider.Ins.DB.bookingInfoes;
+            var temp_billInfo = DataProvider.Ins.DB.bills;
+            ObservableCollection<BaseCustomerInfo> temp_listCusInfo = new ObservableCollection<BaseCustomerInfo>();
+            if(temp_billInfo == null)
+            {
+                return;
+            }
+            //Adding Customer info in to ListCustomerInfo
+            foreach (var item_bill in temp_billInfo) 
+            {
+                var temp_Cusinfo = new BaseCustomerInfo();
+                foreach(var item_booking in temp_bookingInfo)
+                {
+                    if (item_booking.id == item_bill.idBookingInfo)
+                    {
+                        temp_Cusinfo.Baseinfo_CusName = item_booking.Customer_name;
+                        temp_Cusinfo.Baseinfo_CusPhoneNum = item_booking.Customer_PhoneNum.ToString();
+                        temp_Cusinfo.Baseinfo_SumBillAmount = 1;
+                        temp_Cusinfo.Baseinfo_SumCusMoneyAmount = Decimal.ToInt32(item_bill.totalmoney.Value);
+                        temp_Cusinfo.Baseinfo_TypeCus = "Lever1";
+                        temp_listCusInfo.Add(temp_Cusinfo);
+                    }
+                }
+            }
+            // Bill count 
+            
+            List<BaseCustomerInfo> temp_list1 = new List<BaseCustomerInfo>();
+            List<BaseCustomerInfo> temp_list2 = new List<BaseCustomerInfo>();
+            List<BaseCustomerInfo> temp_list3 = new List<BaseCustomerInfo>();
+
+            temp_list2 = temp_listCusInfo.ToList();
+            temp_list1 = temp_listCusInfo.ToList();
+            
+            for(int i = 0; i < temp_list1.Count(); i++)
+            {
+                int total1 = temp_list1[i].Baseinfo_SumCusMoneyAmount;
+                int billnum = 1;
+                for(int j = i; j < temp_list2.Count(); j++)
+                {
+                    if (i == j)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        if (temp_list1[i].Baseinfo_CusName == temp_list2[j].Baseinfo_CusName && temp_list1[i].Baseinfo_CusPhoneNum == temp_list2[j].Baseinfo_CusPhoneNum)
+                        {
+                            total1 += temp_list2[j].Baseinfo_SumCusMoneyAmount;
+                            billnum++;
+                            temp_list2.RemoveAt(j);
+                        }
+                    }
+                }
+                BaseCustomerInfo adding = new BaseCustomerInfo();
+                adding = temp_list1[i];
+                adding.Baseinfo_SumCusMoneyAmount = total1;
+                adding.Baseinfo_SumBillAmount = billnum;
+                temp_list3.Add(adding);
+            }
+            foreach(var item in temp_list2)
+            {
+                _ListCustomerInfo.Add(item);
+            }
+            
+            
+            
+            //Setting STT, member lv
+            foreach(var item in _ListCustomerInfo.ToList())
+            {
+                if (item.Baseinfo_SumCusMoneyAmount >= 1000000)
+                {
+                    item.Baseinfo_TypeCus = "Level 2";
+                }
+                if (item.Baseinfo_SumCusMoneyAmount >= 3000000)
+                {
+                    item.Baseinfo_TypeCus = "Level 3";
+                }
+                if (item.Baseinfo_SumCusMoneyAmount >= 5000000)
+                {
+                    item.Baseinfo_TypeCus = "VIP";
+                }
+            }
+            for(int i = 0;i < _ListCustomerInfo.ToList().Count(); i++)
+            {
+                _ListCustomerInfo[i].STT = i + 1;
+            }
+        }
+
+        private void Update_ListCustomerInfo()
+        {
+            if(_ListCustomerInfo == null)
+            {
+                return;
+            }
+            foreach(var item in _ListCustomerInfo.ToList())
+            {
+                _ListCustomerInfo.Remove(item);
+            }
+        }
+
+
         private void f_Open_Bill_Report()
         {
             Bill_Report rp = new Bill_Report();
@@ -464,18 +572,24 @@ namespace SportCenter.ViewModel
         {
             Volleyball_Court_Bill Volleyball_Bill = new Volleyball_Court_Bill();
             Volleyball_Bill.ShowDialog();
+            Update_ListCustomerInfo();
+            LoadListCustomerInfo();
         }
 
         private void ShowWindowFuntion_BK()
         {
             Basketball_Field_Bill basketball_bill = new Basketball_Field_Bill();
             basketball_bill.ShowDialog();
+            Update_ListCustomerInfo();
+            LoadListCustomerInfo();
         }
 
         public void _ShowWindowFuntion_FB()
         {
             Football_Field_Bill football_bill = new Football_Field_Bill();
             football_bill.ShowDialog();
+            Update_ListCustomerInfo();
+            LoadListCustomerInfo();
         }
         public void ShowFootballFieldFunction()
         {

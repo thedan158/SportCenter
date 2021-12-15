@@ -22,21 +22,22 @@
         
         Name="BookingWindow"
       
-        Title="Phoenix Sport Center Managament" Height="418.062" Width="393.899">
+        Title="Phoenix Sport Center Managament" Height="450" Width="400">
     <Grid>
-        <GroupBox Height="auto" VerticalAlignment="Top">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <TextBlock 
-            x:Name="txbSetField" 
-	        Margin="128,13,104.877,-12.908" 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="55"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=goodWindow}" Loaded="ControlBarUC_Loaded"></uc:ControlBarUC>
+        </Grid>
+        <Grid Grid.Row="1">
+            <TextBlock Margin="10"
             TextWrapping="Wrap" 
             Text="Đặt sân" 
             VerticalAlignment="Top" 
@@ -44,114 +45,147 @@
             HorizontalAlignment="Center" 
             Height="42" 
             FontWeight="Bold" Width="143" />
-                </Grid>
-                <Grid Grid.Row="1" Margin="0,0,0.323,403.985" Grid.RowSpan="5" RenderTransformOrigin="0.883,1.678">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="149*"/>
-                        <ColumnDefinition Width="358*"/>
-                    </Grid.ColumnDefinitions>
-                    <DatePicker 
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="1*"/>
+                <ColumnDefinition  Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <DatePicker Grid.Column="0"
                 x:Name="dpSetDate"
                 SelectedDateFormat="Short"
                 materialDesign:TextFieldAssist.TextFieldCornerRadius="0"
                 materialDesign:TextFieldAssist.HasFilledTextField="False"
                 materialDesign:HintAssist.IsFloating="True"
-                materialDesign:HintAssist.Hint="Chọn ngày"
-                Width="155"
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Bottom"  
+                materialDesign:HintAssist.Hint="Chọn ngày"            
+               Width="155"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center"  
                 BorderBrush="Gray" 
                 Height="48" 
                 FontSize="16"
-                FontWeight="Medium" Grid.ColumnSpan="2" Margin="25,0,0,-62" FirstDayOfWeek="Monday" IsDropDownOpen="True" IsEnabled="False" />
-                    <ComboBox 
+                FontWeight="Medium" FirstDayOfWeek="Monday" IsDropDownOpen="True" IsEnabled="True" />
+            <ComboBox Grid.Column="1"
                 x:Name="cboTypeField"
                 Style="{StaticResource MaterialDesignFloatingHintComboBox}"    
                 materialDesign:HintAssist.Hint="Chọn loại sân"
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Top" 
-                Margin="89.231,14,0,-62" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
                 Width="140" 
                 FontSize="16" 
                 FontWeight="SemiBold" 
-                IsEnabled="False" 
-                Height="48" Grid.Column="1"/>
-                    <ComboBox 
+                IsEnabled="True" 
+                Height="48">
+                <ComboBoxItem Content="Soccer"></ComboBoxItem>
+                <ComboBoxItem Content="Volleyball"></ComboBoxItem>
+                <ComboBoxItem Content="Basketball"></ComboBoxItem>
+            </ComboBox>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="1*"/>
+                <ColumnDefinition  Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0"
                 x:Name="cboTime"
                 Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                 materialDesign:ComboBoxAssist.ClassicMode="true"
                 materialDesign:HintAssist.Hint="Chọn khung giờ"   
-                HorizontalAlignment="Left" 
+                HorizontalAlignment="Center"
                 VerticalAlignment="Center" 
-                Margin="25,78,0,-124" 
                 Width="155" 
                 FontSize="16" 
                 Height="46" 
                 FontWeight="SemiBold" 
-                IsEnabled="False" Grid.ColumnSpan="2"></ComboBox>
-                    <ComboBox 
-                x:Name="cboPickField"
-                Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                materialDesign:ComboBoxAssist.ClassicMode="true"
-                materialDesign:HintAssist.Hint="Chọn sân" 
-                VerticalAlignment="Center" 
-                Margin="89.231,78,35.877,-124" 
-                FontSize="16" 
-                Height="46" 
-                FontWeight="SemiBold" 
-                IsEnabled="False" Grid.Column="1"/>
-                    <materialDesign:PackIcon 
+                IsEnabled="True" ></ComboBox>
+            
+   
+
+        </Grid>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="2*"/>
+                <ColumnDefinition  Width="8*"/>
+            </Grid.ColumnDefinitions>
+            <materialDesign:PackIcon Grid.Column="0"
                 x:Name="icnUserName" 
                 Kind="AccountMultiple" 
-                Margin="9,0,0,-187" 
                 Width="25" 
                 Height="25" 
-                VerticalAlignment="Bottom" />
-                    <TextBox
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1"
                 x:Name="txtUserName"
                 materialDesign:HintAssist.Hint="Tên khách hàng"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 Height="48" 
-                Margin="0,139,24.877,-187" 
-                HorizontalAlignment="Right" 
-                VerticalAlignment="Top" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center" 
                 Width="299" 
                 FontSize="16"
-                FontWeight="SemiBold" Grid.ColumnSpan="2"></TextBox>
-                    <materialDesign:PackIcon 
+                FontWeight="SemiBold"/>
+        </Grid>
+        <Grid Grid.Row="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="2*"/>
+                <ColumnDefinition  Width="8*"/>
+            </Grid.ColumnDefinitions>
+            <materialDesign:PackIcon Grid.Column="0"
                 x:Name="icnPhone" 
                 Kind="Phone" 
-                Margin="9,0,0,-239" 
                 Width="25" 
                 Height="25" 
-                VerticalAlignment="Bottom" RenderTransformOrigin="0.726,-1.079" />
-                    <TextBox
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1"
                 x:Name="txtPhoneNumber"
                 materialDesign:HintAssist.Hint="Số điện thoại"
                 MaxLength="11"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 Height="48" 
-                Margin="0,192,24.877,-240" 
-                HorizontalAlignment="Right" 
-                VerticalAlignment="Top" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center"
                 Width="299" 
                 FontSize="16"
-                FontWeight="SemiBold" Grid.ColumnSpan="2"></TextBox>
-                    <Button 
-            x:Name="btnSetField"
+                FontWeight="SemiBold"  ></TextBox>
+        </Grid>
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="1*"/>
+                <ColumnDefinition  Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0"
+            x:Name="btnSetField" 
             Content="Đặt sân"
             Height="40"
             materialDesign:ButtonAssist.CornerRadius="4"
-            ToolTip="Xác nhận đặt sân" 
-            Margin="52,0,63.877,-307" 
             FontSize="20" 
             FontWeight="SemiBold"
-            VerticalAlignment="Bottom" 
+            VerticalAlignment="Center" 
             HorizontalAlignment="Center" 
-            Width="260"
-            FocusVisualStyle="{x:Null}" Grid.ColumnSpan="2"/>
-                </Grid>
-            </Grid>
-        </GroupBox>
+            Width="130"
+            FocusVisualStyle="{x:Null}" RenderTransformOrigin="0.5,0.5" >
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="0.447"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="0.585"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button  Grid.Column="1"
+            Name ="btn_cancelbooking"
+           
+            Content="Hủy"
+            Height="40"
+            materialDesign:ButtonAssist.CornerRadius="4"
+            FontSize="20" 
+            FontWeight="SemiBold"
+            VerticalAlignment="Center" 
+            HorizontalAlignment="Center" 
+            Width="130"
+            FocusVisualStyle="{x:Null}"/>
+        </Grid>
     </Grid>
 </Window>

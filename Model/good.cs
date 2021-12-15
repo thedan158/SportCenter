@@ -9,7 +9,6 @@
 
 namespace SportCenter.Model
 {
-    using SportCenter.ViewModel;
     using System;
     using System.Collections.Generic;
     
@@ -20,6 +19,7 @@ namespace SportCenter.Model
         {
             this.buyingInfoes = new HashSet<buyingInfo>();
         }
+
 
         private int _id;
         public int id { get => _id; set { _id = value; OnPropertyChanged(); } }
@@ -36,6 +36,7 @@ namespace SportCenter.Model
 
         private byte[] _imageFile;
         public byte[] imageFile { get => _imageFile; set { _imageFile = value; OnPropertyChanged(); } }
+
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<buyingInfo> buyingInfoes { get; set; }
