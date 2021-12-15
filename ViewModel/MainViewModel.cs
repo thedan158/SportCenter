@@ -238,17 +238,19 @@ namespace SportCenter.ViewModel
             {
                 MessageBoxResult result = MessageBox.Show("Xác nhận sửa hàng hóa?", "Thông báo", MessageBoxButton.YesNo);
                 Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
-                //if (result == MessageBoxResult.Yes)
-                //{
-                //    var good = DataProvider.Ins.DB.goods.Where(x => x.id == SelectedItem.id).SingleOrDefault();
-                //    good.name = namegood;
-                //    good.price = pricegood;
-                //    good.quantity = quantitygood;
-                //    good.unit = unitgood;
+                if (result == MessageBoxResult.Yes)
+                {
+                    byte[] imgByteArr;
+                    imgByteArr = Converter.Instance.ConvertImageToBytes(imageFileName);
+                    var good = DataProvider.Ins.DB.goods.Where(x => x.id == SelectedItem.id).SingleOrDefault();
+                    good.name = namegood;
+                    good.price = pricegood;
+                    good.unit = unitgood;
+                    good.imageFile = imgByteArr;
 
-                //    DataProvider.Ins.DB.SaveChanges();
-                //}
-                
+                    DataProvider.Ins.DB.SaveChanges();
+                }
+
             });
 
             //Delete goods

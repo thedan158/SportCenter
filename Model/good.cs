@@ -31,7 +31,8 @@ namespace SportCenter.Model
         public string unit { get => _unit; set { _unit = value; OnPropertyChanged(); } }
 
         private Nullable<Decimal> _price;
-        public Nullable<Decimal> price { get => _price; set { _price = value; OnPropertyChanged(); } }
+        public Nullable <Decimal> price
+        { get => _price; set { _price = value; OnPropertyChanged(); } }
 
         private byte[] _imageFile;
         public byte[] imageFile { get => _imageFile; set { _imageFile = value; OnPropertyChanged(); } }
