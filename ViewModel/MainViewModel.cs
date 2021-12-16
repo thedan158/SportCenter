@@ -35,8 +35,11 @@ namespace SportCenter.ViewModel
         //ListFields
         private ObservableCollection<field> _Listfields;
         private ObservableCollection<fieldtype> _Listfieldtypes;
-        
-
+        //CartesianChart
+        public Func<double, string> yFormatter { get; set; }
+        private SeriesCollection _SeriesCollection1;
+        public SeriesCollection SeriesCollection1 { get => _SeriesCollection1; set { _SeriesCollection1 = value; OnPropertyChanged(); } }
+        public string[] Labels { get; set; }
         //PieChart
         public Func<ChartPoint, string> PointLabel { get; set; }
         private SeriesCollection _SeriesCollection;
@@ -167,6 +170,7 @@ namespace SportCenter.ViewModel
             _Listfields = new ObservableCollection<field>(DataProvider.Ins.DB.fields);
             _Listfieldtypes = new ObservableCollection<fieldtype>(DataProvider.Ins.DB.fieldtypes);
             _SeriesCollection = new SeriesCollection();
+            _SeriesCollection1 = new SeriesCollection();
             
             LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
@@ -390,8 +394,122 @@ namespace SportCenter.ViewModel
                                                 where d.name == monbongro
                                                 select a;
             decimal allincomebasketball = _Listbasketball.Select(y => y.totalmoney).Sum();
+            ///Imcome for football quarter 1 of the year
+            var quart1 = new[] { "01", "02", "03"};
+            IEnumerable<bill> _ListfootballQ1 = from a in _Listbills
+                                                join b in _Listbooking on a.idBookingInfo equals b.id
+                                                join c in _Listfields on b.idField equals c.id
+                                                join d in _Listfieldtypes on c.idType equals d.id
+                                                where d.name == monbongda
+                                                where quart1.Contains(b.datePlay.ToString("MM"))                         
+                                                select a;
+            decimal incomefootballQ1 = _ListfootballQ1.Select(y => y.totalmoney).Sum();
+            ///Imcome for football quarter 2 of the year
+            var quart2 = new[] { "04", "05", "06" };
+            IEnumerable<bill> _ListfootballQ2 = from a in _Listbills
+                                                join b in _Listbooking on a.idBookingInfo equals b.id
+                                                join c in _Listfields on b.idField equals c.id
+                                                join d in _Listfieldtypes on c.idType equals d.id
+                                                where d.name == monbongda
+                                                where quart2.Contains(b.datePlay.ToString("MM"))
+                                                select a;
+            decimal incomefootballQ2 = _ListfootballQ2.Select(y => y.totalmoney).Sum();
+            ///Imcome for football quarter 3 of the year
+            var quart3 = new[] { "07", "08", "09"};
+            IEnumerable<bill> _ListfootballQ3 = from a in _Listbills
+                                                join b in _Listbooking on a.idBookingInfo equals b.id
+                                                join c in _Listfields on b.idField equals c.id
+                                                join d in _Listfieldtypes on c.idType equals d.id
+                                                where d.name == monbongda
+                                                where quart3.Contains(b.datePlay.ToString("MM"))
+                                                select a;
+            decimal incomefootballQ3 = _ListfootballQ3.Select(y => y.totalmoney).Sum();
+            ///Imcome for football quarter 4 of the year
+            var quart4 = new[] { "10", "11", "12" };
+            IEnumerable<bill> _ListfootballQ4 = from a in _Listbills
+                                                join b in _Listbooking on a.idBookingInfo equals b.id
+                                                join c in _Listfields on b.idField equals c.id
+                                                join d in _Listfieldtypes on c.idType equals d.id
+                                                where d.name == monbongda
+                                                where quart4.Contains(b.datePlay.ToString("MM"))
+                                                select a;
+            decimal incomefootballQ4 = _ListfootballQ4.Select(y => y.totalmoney).Sum();
+            ///Imcome for VOLLEYBALL quarter 1 of the year          
+            IEnumerable<bill> _ListVolleyballQ1 = from a in _Listbills
+                                                join b in _Listbooking on a.idBookingInfo equals b.id
+                                                join c in _Listfields on b.idField equals c.id
+                                                join d in _Listfieldtypes on c.idType equals d.id
+                                                where d.name == monbongchuyen
+                                                where quart1.Contains(b.datePlay.ToString("MM"))
+                                                select a;
+            decimal incomevolleyballQ1 = _ListVolleyballQ1.Select(y => y.totalmoney).Sum();
+            ///Imcome for VOLLEYBALL quarter 2 of the year
+            IEnumerable<bill> _ListVolleyballQ2 = from a in _Listbills
+                                                  join b in _Listbooking on a.idBookingInfo equals b.id
+                                                  join c in _Listfields on b.idField equals c.id
+                                                  join d in _Listfieldtypes on c.idType equals d.id
+                                                  where d.name == monbongchuyen
+                                                  where quart2.Contains(b.datePlay.ToString("MM"))
+                                                  select a;
+            decimal incomevolleyballQ2 = _ListVolleyballQ2.Select(y => y.totalmoney).Sum();
+            ///Imcome for VOLLEYBALL quarter 3 of the year
+            IEnumerable<bill> _ListVolleyballQ3 = from a in _Listbills
+                                                  join b in _Listbooking on a.idBookingInfo equals b.id
+                                                  join c in _Listfields on b.idField equals c.id
+                                                  join d in _Listfieldtypes on c.idType equals d.id
+                                                  where d.name == monbongchuyen
+                                                  where quart3.Contains(b.datePlay.ToString("MM"))
+                                                  select a;
+            decimal incomevolleyballQ3 = _ListVolleyballQ3.Select(y => y.totalmoney).Sum();
+            ///Imcome for VOLLEYBALL quarter 4 of the year
+            IEnumerable<bill> _ListVolleyballQ4 = from a in _Listbills
+                                                  join b in _Listbooking on a.idBookingInfo equals b.id
+                                                  join c in _Listfields on b.idField equals c.id
+                                                  join d in _Listfieldtypes on c.idType equals d.id
+                                                  where d.name == monbongchuyen
+                                                  where quart4.Contains(b.datePlay.ToString("MM"))
+                                                  select a;
+            decimal incomevolleyballQ4 = _ListVolleyballQ4.Select(y => y.totalmoney).Sum();
+            ///Imcome for BASKETBALL quarter 1 of the year
+            IEnumerable<bill> _ListBasketballQ1 = from a in _Listbills
+                                                  join b in _Listbooking on a.idBookingInfo equals b.id
+                                                  join c in _Listfields on b.idField equals c.id
+                                                  join d in _Listfieldtypes on c.idType equals d.id
+                                                  where d.name == monbongchuyen
+                                                  where quart1.Contains(b.datePlay.ToString("MM"))
+                                                  select a;
+            decimal incomebasketballQ1 = _ListBasketballQ1.Select(y => y.totalmoney).Sum();
+            ///Imcome for BASKETBALL quarter 2 of the year
+            IEnumerable<bill> _ListBasketballQ2 = from a in _Listbills
+                                                  join b in _Listbooking on a.idBookingInfo equals b.id
+                                                  join c in _Listfields on b.idField equals c.id
+                                                  join d in _Listfieldtypes on c.idType equals d.id
+                                                  where d.name == monbongchuyen
+                                                  where quart2.Contains(b.datePlay.ToString("MM"))
+                                                  select a;
+            decimal incomebasketballQ2 = _ListBasketballQ2.Select(y => y.totalmoney).Sum();
+            ///Imcome for BASKETBALL quarter 3 of the year
+            IEnumerable<bill> _ListBasketballQ3 = from a in _Listbills
+                                                  join b in _Listbooking on a.idBookingInfo equals b.id
+                                                  join c in _Listfields on b.idField equals c.id
+                                                  join d in _Listfieldtypes on c.idType equals d.id
+                                                  where d.name == monbongchuyen
+                                                  where quart3.Contains(b.datePlay.ToString("MM"))
+                                                  select a;
+            decimal incomebasketballQ3 = _ListBasketballQ3.Select(y => y.totalmoney).Sum();
+            ///Imcome for BASKETBALL quarter 4 of the year
+            IEnumerable<bill> _ListBasketballQ4 = from a in _Listbills
+                                                  join b in _Listbooking on a.idBookingInfo equals b.id
+                                                  join c in _Listfields on b.idField equals c.id
+                                                  join d in _Listfieldtypes on c.idType equals d.id
+                                                  where d.name == monbongchuyen
+                                                  where quart4.Contains(b.datePlay.ToString("MM"))
+                                                  select a;
+            decimal incomebasketballQ4 = _ListBasketballQ4.Select(y => y.totalmoney).Sum();
+
 
             _SeriesCollection.Clear();
+            _SeriesCollection1.Clear();
             //Add Football Stactictisc to PieChart
             var footballseries = new PieSeries
             {
@@ -425,7 +543,31 @@ namespace SportCenter.ViewModel
                 LabelPoint = ChartPoint => string.Format("{0} ({1:P})", ChartPoint.Y, ChartPoint.Participation)
             };
             _SeriesCollection.Add(basketballseries);
+
+
+            var footballline = new LineSeries
+            {
+                Title="Football",
+                Values= new ChartValues<double> { decimal.ToDouble(incomefootballQ1), decimal.ToDouble(incomefootballQ2), decimal.ToDouble(incomefootballQ3), decimal.ToDouble(incomefootballQ4) }
+            };
+            _SeriesCollection1.Add(footballline);
+            var volleyballline = new LineSeries {
+                Title = "Volleyball",
+                Values = new ChartValues<double> { decimal.ToDouble(incomevolleyballQ1), decimal.ToDouble(incomevolleyballQ2), decimal.ToDouble(incomevolleyballQ3), decimal.ToDouble(incomevolleyballQ4) }
+            };
+            _SeriesCollection1.Add(volleyballline);
+            var basketballline = new LineSeries
+            {
+                Title = "Basketball",
+                Values = new ChartValues<double> { decimal.ToDouble(incomebasketballQ1), decimal.ToDouble(incomebasketballQ2), decimal.ToDouble(incomebasketballQ3), decimal.ToDouble(incomebasketballQ4) }
+            };
+            _SeriesCollection1.Add(basketballline);
+            Labels = new[] { "Quarter1", "Quarter2", "Quarter3", "Quarter4" };
+            yFormatter = value => value.ToString("C");
+
+            
         }
+
         
         private void LoadListCustomerInfo()
         {

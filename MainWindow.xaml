@@ -167,21 +167,21 @@
                                 <Wpf:PieChart LegendLocation="Bottom" Series="{Binding SeriesCollection}" Hoverable="True" InnerRadius="10" DataTooltip="{x:Null}" >
                                
                                 </Wpf:PieChart>
-                                
+                                <Button Command="{Binding ReloadStatictics}" Content="RELOAD" Margin="100,0,100.4,331.6" Width="100"></Button>
                             </Grid>
                             <Grid Grid.Column="1" Margin="25">
                                 <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" UniformCornerRadius="10"
             Padding="8"  Foreground="{x:Null}">
                                 </materialDesign:Card>
-                                <!--<Wpf:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Right" >
+                                <Wpf:CartesianChart Series="{Binding SeriesCollection1}" LegendLocation="Right" >
                                 <Wpf:CartesianChart.AxisY>
                                     <Wpf:Axis Title="Income" LabelFormatter="{Binding YFormatter}"/>
                                 </Wpf:CartesianChart.AxisY>
                                 <Wpf:CartesianChart.AxisX>
                                     <Wpf:Axis Title="Month" Labels="{Binding Labels}"/>
                                 </Wpf:CartesianChart.AxisX>
-                            </Wpf:CartesianChart>-->
-                                <Button Command="{Binding ReloadStatictics}" Content="Thêm" Margin="20" Width="100"></Button>
+                            </Wpf:CartesianChart>
+                                
                             </Grid>
                         </Grid>
                     </Grid>
