@@ -1,4 +1,5 @@
 ﻿using LiveCharts;
+using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using Microsoft.Win32;
 using SportCenter.Model;
@@ -22,10 +23,25 @@ namespace SportCenter.ViewModel
     {
         //ListBill
         private ObservableCollection<bill> _Listbills;
-        public ObservableCollection<bill> Listbill { get => _Listbills; set { _Listbills = value; OnPropertyChanged(); } }
+        public ObservableCollection<bill> Listbills { get => _Listbills; set { _Listbills = value; OnPropertyChanged(); } }
+        //Statictis
+        private string alltimerevenue = "0";
+        public string Alltimerevenue { get => alltimerevenue; set { alltimerevenue = value; OnPropertyChanged(); } }
+        private string alltimerevenueUSD = "0";
+        public string AlltimerevenueUSD { get => alltimerevenueUSD; set { alltimerevenueUSD = value; OnPropertyChanged(); } }
+        private string thisMonthRevenue = "0";
+        public string ThisMonthRevenue { get => thisMonthRevenue; set { thisMonthRevenue = value; OnPropertyChanged(); } }
+
+        //ListFields
+        private ObservableCollection<field> _Listfields;
+        private ObservableCollection<fieldtype> _Listfieldtypes;
+        
 
         //PieChart
         public Func<ChartPoint, string> PointLabel { get; set; }
+        private SeriesCollection _SeriesCollection;
+        public SeriesCollection SeriesCollection { get => _SeriesCollection; set { _SeriesCollection = value; OnPropertyChanged(); } }
+
         //List fields which was booked
         private ObservableCollection<bookingInfo> _Listbooking;
         public ObservableCollection<bookingInfo> Listbooking { get => _Listbooking; set { _Listbooking = value; OnPropertyChanged(); } }
@@ -46,13 +62,14 @@ namespace SportCenter.ViewModel
 
         public bool Isloaded = false;
         public ICommand LoadedWindowCommand { get; set; }
-        public ICommand _ShowWindowCommand_FB { get; set; }
+        public ICommand ShowWindowCommand_FB { get; set; }
         public ICommand ShowWindowCommand_BK { get; set; }
         public ICommand ShowWindowCommand_VL { get; set; }
         public ICommand ShowFootballFieldCommand { get; set; }
         public ICommand ShowVolleyballFieldCommand { get; set; }
         public ICommand ShowBasketballFieldCommand { get; set; }
         public ICommand LogoutCommand { get; set; }
+        public ICommand ReloadStatictics { get; set; }
 
 
         //Storage VM
@@ -146,7 +163,11 @@ namespace SportCenter.ViewModel
             _Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
             _Listorder = new ObservableCollection<buyingInfo>();
             _ListCustomerInfo = new ObservableCollection<BaseCustomerInfo>();
-
+            
+            _Listfields = new ObservableCollection<field>(DataProvider.Ins.DB.fields);
+            _Listfieldtypes = new ObservableCollection<fieldtype>(DataProvider.Ins.DB.fieldtypes);
+            _SeriesCollection = new SeriesCollection();
+            
             LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
                 Isloaded = true;
@@ -162,7 +183,7 @@ namespace SportCenter.ViewModel
                     p.Show();
                     LoadStorageData();
                     LoadListCustomerInfo();
-                    PieChart();
+                    LoadStatictics();
                 }
                 else
                 {
@@ -170,7 +191,7 @@ namespace SportCenter.ViewModel
                 }
 
             }); 
-            _ShowWindowCommand_FB = new RelayCommand<object>((parameter) => true, (parameter) => _ShowWindowFuntion_FB());
+            ShowWindowCommand_FB = new RelayCommand<object>((parameter) => true, (parameter) => ShowWindowFuntion_FB());
             ShowWindowCommand_BK = new RelayCommand<object>((parameter) => true, (parameter) => ShowWindowFuntion_BK());
             ShowWindowCommand_VL = new RelayCommand<object>((parameter) => true, (parameter) => ShowWindowFuntion_VL());
             ShowFootballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowFootballFieldFunction());
@@ -178,6 +199,7 @@ namespace SportCenter.ViewModel
             ShowBasketballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowBasketballFieldFuction());
             SelectImageCommand = new RelayCommand<Grid>((parameter) => true, (parameter) => ChooseImage(parameter));
             OpenBillReportWindow = new RelayCommand<object>((parameter) => true, (parameter) => f_Open_Bill_Report());
+            ReloadStatictics = new RelayCommand<object>((parameter) => true, (parameter) => LoadStatictics());
             LogoutCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
 
@@ -193,7 +215,7 @@ namespace SportCenter.ViewModel
                     p.Show();
                     LoadStorageData();
                     LoadListCustomerInfo();
-                    PieChart();
+                    //LoadStatictics();
                 }
                 else
                 {
@@ -321,10 +343,88 @@ namespace SportCenter.ViewModel
                 total = 0;
             });
         }
-        ///Initialize Piechart
-        public void PieChart()
+
+        public void LoadStatictics()
         {
-            PointLabel = ChartPoint => string.Format("{0}({1:P})", ChartPoint.Y, ChartPoint.Participation);
+            DateTime moment = DateTime.Now;
+            _Listbills = new ObservableCollection<bill>(DataProvider.Ins.DB.bills);
+            string monbongda = "bongda";
+            string monbongchuyen = "bongchuyen";
+            string monbongro = "bongro";
+            ///Income For every sport all time
+            decimal allincome = _Listbills.Select(x => x.totalmoney).Sum();
+            Alltimerevenue = allincome.ToString("F");
+            AlltimerevenueUSD = (allincome / 23035).ToString("F");
+            ///Income for every sport this month
+            IEnumerable<bill> _ListBillThisMonth = from a in _Listbills
+                                                   join b in _Listbooking on a.idBookingInfo equals b.id
+                                                   where b.datePlay.ToString("MM") == moment.ToString("MM")
+                                                   select a;
+            decimal thismonth = _ListBillThisMonth.Select(y => y.totalmoney).Sum();
+            ThisMonthRevenue = thismonth.ToString("F");
+            /////Income for football
+            IEnumerable<bill> _Listfootball = from a in _Listbills
+                                              join b in _Listbooking on a.idBookingInfo equals b.id
+                                              join c in _Listfields on b.idField equals c.id
+                                              join d in _Listfieldtypes on c.idType equals d.id
+                                              where d.name == monbongda
+                                              select a;
+            decimal allincomefootball = _Listfootball.Select(y => y.totalmoney).Sum();
+
+
+            ///Income for volleyball
+            IEnumerable<bill> _Listvolleyball = from a in _Listbills
+                                                join b in _Listbooking on a.idBookingInfo equals b.id
+                                                join c in _Listfields on b.idField equals c.id
+                                                join d in _Listfieldtypes on c.idType equals d.id
+                                                where d.name == monbongchuyen
+                                                select a;
+            decimal allincomevolleyball = _Listvolleyball.Select(y => y.totalmoney).Sum();
+
+
+            ///Income for basketball
+            IEnumerable<bill> _Listbasketball = from a in _Listbills
+                                                join b in _Listbooking on a.idBookingInfo equals b.id
+                                                join c in _Listfields on b.idField equals c.id
+                                                join d in _Listfieldtypes on c.idType equals d.id
+                                                where d.name == monbongro
+                                                select a;
+            decimal allincomebasketball = _Listbasketball.Select(y => y.totalmoney).Sum();
+
+            _SeriesCollection.Clear();
+            //Add Football Stactictisc to PieChart
+            var footballseries = new PieSeries
+            {
+                Title = "Football",
+                Values = new ChartValues<ObservableValue> { new ObservableValue(decimal.ToDouble(allincomefootball)) },
+                DataLabels = true,
+                FontSize = 16,
+                LabelPoint = ChartPoint => string.Format("{0} ({1:P})", ChartPoint.Y, ChartPoint.Participation)
+            };
+            _SeriesCollection.Add(footballseries);
+
+
+            //Add Volleyball Stactictisc to PieChart
+            var volleyballseries = new PieSeries
+            {
+                Title = "Volleyball",
+                Values = new ChartValues<ObservableValue> { new ObservableValue(decimal.ToDouble(allincomevolleyball)) },
+                DataLabels = true,
+                FontSize = 16,
+                LabelPoint = ChartPoint => string.Format("{0} ({1:P})", ChartPoint.Y, ChartPoint.Participation)
+        };
+            _SeriesCollection.Add(volleyballseries);
+
+            //Add basketball Stactictisc to PieChart
+            var basketballseries = new PieSeries
+            {
+                Title = "Basketball",
+                Values = new ChartValues<ObservableValue> { new ObservableValue(decimal.ToDouble(allincomebasketball)) },
+                DataLabels = true,
+                FontSize = 16,
+                LabelPoint = ChartPoint => string.Format("{0} ({1:P})", ChartPoint.Y, ChartPoint.Participation)
+            };
+            _SeriesCollection.Add(basketballseries);
         }
         
         private void LoadListCustomerInfo()
@@ -348,7 +448,7 @@ namespace SportCenter.ViewModel
                         temp_Cusinfo.Baseinfo_CusName = item_booking.Customer_name;
                         temp_Cusinfo.Baseinfo_CusPhoneNum = item_booking.Customer_PhoneNum.ToString();
                         temp_Cusinfo.Baseinfo_SumBillAmount = 1;
-                        temp_Cusinfo.Baseinfo_SumCusMoneyAmount = Decimal.ToInt32(item_bill.totalmoney.Value);
+                        temp_Cusinfo.Baseinfo_SumCusMoneyAmount = decimal.ToInt32(item_bill.totalmoney);
                         temp_Cusinfo.Baseinfo_TypeCus = "Lever1";
                         temp_listCusInfo.Add(temp_Cusinfo);
                     }
@@ -598,7 +698,7 @@ namespace SportCenter.ViewModel
             LoadListCustomerInfo();
         }
 
-        public void _ShowWindowFuntion_FB()
+        public void ShowWindowFuntion_FB()
         {
             Football_Field_Bill football_bill = new Football_Field_Bill();
             football_bill.ShowDialog();

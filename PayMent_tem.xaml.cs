@@ -125,12 +125,12 @@ namespace SportCenter
         {
             this.Close();
         }
-        private void Confirm_Click(object sender, RoutedEventArgs e)
+        private async void Confirm_Click(object sender, RoutedEventArgs e)
         {
             bill adding_DB = new bill();
             {
                 adding_DB.idBookingInfo = idbooking_DB_add;
-                adding_DB.totalmoney = totalmoney_DB_add;
+                adding_DB.totalmoney = (decimal)totalmoney_DB_add;
             }
             List<bookingInfo> Update_bookigStatus = new List<bookingInfo>(DataProvider.Ins.DB.bookingInfoes);
             foreach (var item in Update_bookigStatus)
@@ -142,7 +142,7 @@ namespace SportCenter
             }
             
             DataProvider.Ins.DB.bills.Add(adding_DB);
-            DataProvider.Ins.DB.SaveChanges();
+            await DataProvider.Ins.DB.SaveChangesAsync();
             this.Close();
         }
     }

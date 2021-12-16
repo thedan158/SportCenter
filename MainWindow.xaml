@@ -8,7 +8,7 @@
          xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         
         xmlns:uc="clr-namespace:SportCenter.UserControlKteam"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" xmlns:DVC="clr-namespace:LiveCharts.Wpf.Charts.Base;assembly=LiveCharts.Wpf"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
      TextElement.FontWeight="Regular"
      TextElement.FontSize="13"
@@ -103,7 +103,7 @@
                                     </Label.Background>
                                 </Label>
                                 <Label x:Name="label_income" Content="ALL INCOME IN VND" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="39" FontWeight="Bold" Margin="26,39,0,0" VerticalAlignment="Top" Width="346" FontSize="24" Foreground="#DDF9F9F9"/>
-                                <Label x:Name="income" Content="{Binding AllIncome}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="31" Margin="28,105,0,0" VerticalAlignment="Top" Width="344" FontSize="18" Foreground="#DDF9F9F9" FontWeight="Bold" />
+                                <Label x:Name="income" Content="{Binding Alltimerevenue}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="31" Margin="28,105,0,0" VerticalAlignment="Top" Width="344" FontSize="22" Foreground="#DDF9F9F9" FontWeight="Bold" />
                             </Grid>
                             <Grid Grid.Column="1">
                                 <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth5"
@@ -118,12 +118,12 @@
 
                                 </materialDesign:Card>
                                 <Label x:Name="label_guesttext" Content="THIS MONTH" HorizontalAlignment="Left" Height="39" Margin="27,39,0,0" VerticalAlignment="Top" Width="347" FontSize="24" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="#DDF9F9F9"/>
-                                <Label x:Name="label_guest" Content="" HorizontalAlignment="Left" Height="64" VerticalAlignment="Top" Width="93" Margin="147,149,0,0">
+                                <Label x:Name="label_guest" Content="" HorizontalAlignment="Left" Height="64" VerticalAlignment="Top" Width="93" Margin="147,149,0,0" >
                                     <Label.Background>
                                         <ImageBrush ImageSource="image/tags.png" Stretch="Uniform"/>
                                     </Label.Background>
                                 </Label>
-                                <Label x:Name="guest" HorizontalContentAlignment="Center" Content="500,000 VND" HorizontalAlignment="Left" Height="33" Margin="29,104,0,0" VerticalAlignment="Top" Width="344" FontSize="18" Foreground="#DDF9F9F9" FontWeight="Bold"/>
+                                <Label x:Name="guest" HorizontalContentAlignment="Center" Content="{Binding ThisMonthRevenue}" HorizontalAlignment="Left" Height="33" Margin="29,104,0,0" VerticalAlignment="Top" Width="344" FontSize="22" Foreground="#DDF9F9F9" FontWeight="Bold"/>
                             </Grid>
                             <Grid Grid.Column="2">
                                 <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth5"
@@ -143,7 +143,7 @@
                                     </Label.Background>
                                 </Label>
                                 <Label x:Name="label_Copy4" Content="ALL INCOME IN $" HorizontalAlignment="Left" Height="39" Margin="30,39,0,0" VerticalAlignment="Top" Width="342" FontSize="24" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="#DDF9F9F9"/>
-                                <Label x:Name="usd" HorizontalContentAlignment="Center" Content="546 $" HorizontalAlignment="Left" Height="33" Margin="29,104,0,0" VerticalAlignment="Top" Width="344" FontSize="18" Foreground="#DDF9F9F9" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
+                                <Label x:Name="usd" HorizontalContentAlignment="Center" Content="{Binding AlltimerevenueUSD}" HorizontalAlignment="Left" Height="33" Margin="29,104,0,0" VerticalAlignment="Top" Width="344" FontSize="22" Foreground="#DDF9F9F9" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
                                     <Label.RenderTransform>
                                         <TransformGroup>
                                             <ScaleTransform/>
@@ -164,19 +164,10 @@
                                 <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" UniformCornerRadius="10"
             Padding="8"  Foreground="{x:Null}">
                                 </materialDesign:Card>
-                                <Wpf:PieChart LegendLocation="Bottom" Hoverable="True" InnerRadius="10" DataTooltip="{x:Null}" >
-                                    <Wpf:PieChart.Series>
-                                        <Wpf:PieSeries Title="Football" Values="50" DataLabels="True"
-                               LabelPoint="{Binding PointLabel}"/>
-                                        <Wpf:PieSeries Title="Volleyball" Values="35" DataLabels="True" 
-                               LabelPoint="{Binding PointLabel}"/>
-                                        <Wpf:PieSeries Title="Basketball" Values="15" DataLabels="True" 
-                               LabelPoint="{Binding PointLabel}"/>
-     
-                                    </Wpf:PieChart.Series>
-
-
+                                <Wpf:PieChart LegendLocation="Bottom" Series="{Binding SeriesCollection}" Hoverable="True" InnerRadius="10" DataTooltip="{x:Null}" >
+                               
                                 </Wpf:PieChart>
+                                
                             </Grid>
                             <Grid Grid.Column="1" Margin="25">
                                 <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" UniformCornerRadius="10"
@@ -190,6 +181,7 @@
                                     <Wpf:Axis Title="Month" Labels="{Binding Labels}"/>
                                 </Wpf:CartesianChart.AxisX>
                             </Wpf:CartesianChart>-->
+                                <Button Command="{Binding ReloadStatictics}" Content="Thêm" Margin="20" Width="100"></Button>
                             </Grid>
                         </Grid>
                     </Grid>

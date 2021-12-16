@@ -85,7 +85,7 @@ namespace SportCenter.ViewModel
                     {
                         if (item.id == item2.idBookingInfo)
                         {
-                            Adding._TotalMoney = item2.totalmoney.Value;
+                            Adding._TotalMoney = item2.totalmoney;
                             Adding.b_bookinginfo = item;
                         }
                     }

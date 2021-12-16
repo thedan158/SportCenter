@@ -22,10 +22,10 @@ namespace SportCenter.Model
         }
     
         public int id { get; set; }
-        public Nullable<int> idField { get; set; }
-        public Nullable<System.DateTime> datePlay { get; set; }
-        public Nullable<System.DateTime> start_time { get; set; }
-        public Nullable<System.DateTime> end_time { get; set; }
+        public int idField { get; set; }
+        public System.DateTime datePlay { get; set; }
+        public System.DateTime start_time { get; set; }
+        public System.DateTime end_time { get; set; }
         public string Status { get; set; }
         public string Customer_name { get; set; }
         public Nullable<int> Customer_PhoneNum { get; set; }
