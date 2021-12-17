@@ -1310,7 +1310,8 @@
           HorizontalAlignment="Center" />
                         </StackPanel>
                     </TabItem.Header>
-                    <Grid HorizontalAlignment="Left" Margin="0,0,0,-0.4" Width="578">
+                    <!--Setting UI Start Here-->
+                    <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40*"></RowDefinition>
                             <RowDefinition Height="70*"/>
@@ -1327,77 +1328,7 @@
 
                         </Grid>
                         <Grid Grid.Row="2">
-                            <materialDesign:Card
-  Width="578">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition
-        Height="140" />
-                                        <RowDefinition
-        Height="150" />
-                                        <RowDefinition
-        Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Image
-      Source="Image/football.png"
-      Height="140"
-      Width="578"
-      Stretch="UniformToFill" />
-                                    <ToggleButton
-  Content="{materialDesign:PackIcon Kind=Heart, Size=21}"
-  Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
-                                        HorizontalAlignment="Right"
-                                        VerticalAlignment="Bottom"
-  ToolTip="MaterialDesignFlatPrimaryToggleButton"
-  IsChecked="True" />
-                                    <StackPanel
-      Grid.Row="1"
-      Margin="8 24 8 0">
-                                        <TextBlock
-        FontWeight="Bold">
-      Sport Center Management Application
-                                        </TextBlock>
-                                        <TextBlock
-        TextWrapping="Wrap"
-        VerticalAlignment="Center"
-        ><Run Text="Developped in 2021, SCMA helps solving business problem for sport center around the world including making reservation, selling, making invoice, revenue statistics reviewing and to be update continously.                "/><Run Text="                                                                                                              "/><LineBreak/><Run Text="For more infomation please contact us :                                                                 thedanfbdev@gmail.com                                                                                                                                       "/></TextBlock>
-                                    </StackPanel>
-                                    <StackPanel
-      Grid.Row="2"
-      Orientation="Horizontal"
-      HorizontalAlignment="Center"                              
-      Margin="10">
-
-                                        <Grid
-  Width="150"
-                                            Margin="10">
-                                            <Button
-    Style="{StaticResource MaterialDesignRaisedButton}"
-    Height="30"
-    materialDesign:ButtonAssist.CornerRadius="10"
-    ToolTip="MaterialDesignRaisedButton with Round Corners"
-    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
-                                                <TextBlock
-      Text="CLEAR DATA" />
-                                            </Button>
-                                        </Grid>
-                                        <Grid
-  Width="150"
-                                            Margin="10">
-                                            <Button
-    Style="{StaticResource MaterialDesignRaisedButton}"
-    Height="30"
-    materialDesign:ButtonAssist.CornerRadius="10"
-    ToolTip="MaterialDesignRaisedButton with Round Corners"
-    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
-                                                <TextBlock
-      Text="CHANGE PASSWORD" />
-                                            </Button>
-                                        </Grid>
-                                        <Grid
-  Width="150"
-                                            Margin="10">
-                                            <Button
+                        <Button
                                                 Command="{Binding LogoutCommand}"
                                                 CommandParameter="{Binding ElementName=mainWindow}"
     Style="{StaticResource MaterialDesignRaisedButton}"
@@ -1405,24 +1336,9 @@
     materialDesign:ButtonAssist.CornerRadius="10"
     ToolTip="MaterialDesignRaisedButton with Round Corners"
     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
-                                                <TextBlock
-      Text="LOG OUT" />
-                                            </Button>
-                                        </Grid>
-                                    </StackPanel>
-                                </Grid>
-                            </materialDesign:Card>
-
-                        </Grid>
-                        <Grid Grid.Row="3">
                             <TextBlock
-                                        Text="SINCE 2021" 
-                                      
-                                
-                                        FontSize="15"
-                                VerticalAlignment="Center"
-                                        FontFamily="Bungee Inline"
-                                        HorizontalAlignment="Center"></TextBlock>
+      Text="LOG OUT" />
+                        </Button>
                         </Grid>
                     </Grid>
                 </TabItem>

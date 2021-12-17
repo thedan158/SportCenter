@@ -36,7 +36,7 @@ namespace SportCenter.ViewModel
         private ObservableCollection<field> _Listfields;
         private ObservableCollection<fieldtype> _Listfieldtypes;
         //CartesianChart
-        public Func<double, string> yFormatter { get; set; }
+        public Func<double, string> YFormatter { get; set; }
         private SeriesCollection _SeriesCollection1;
         public SeriesCollection SeriesCollection1 { get => _SeriesCollection1; set { _SeriesCollection1 = value; OnPropertyChanged(); } }
         public string[] Labels { get; set; }
@@ -549,22 +549,22 @@ namespace SportCenter.ViewModel
             var footballline = new LineSeries
             {
                 Title="Football",
-                Values= new ChartValues<double> { decimal.ToDouble(incomefootballQ1), decimal.ToDouble(incomefootballQ2), decimal.ToDouble(incomefootballQ3), decimal.ToDouble(incomefootballQ4) }
+                Values= new ChartValues<double> { decimal.ToDouble(incomefootballQ1 / 23035), decimal.ToDouble(incomefootballQ2 / 23035), decimal.ToDouble(incomefootballQ3 / 23035), decimal.ToDouble(incomefootballQ4 / 23035) }
             };
             _SeriesCollection1.Add(footballline);
             var volleyballline = new LineSeries {
                 Title = "Volleyball",
-                Values = new ChartValues<double> { decimal.ToDouble(incomevolleyballQ1), decimal.ToDouble(incomevolleyballQ2), decimal.ToDouble(incomevolleyballQ3), decimal.ToDouble(incomevolleyballQ4) }
+                Values = new ChartValues<double> { decimal.ToDouble(incomevolleyballQ1 / 23035), decimal.ToDouble(incomevolleyballQ2 / 23035), decimal.ToDouble(incomevolleyballQ3 / 23035), decimal.ToDouble(incomevolleyballQ4 / 23035) }
             };
             _SeriesCollection1.Add(volleyballline);
             var basketballline = new LineSeries
             {
                 Title = "Basketball",
-                Values = new ChartValues<double> { decimal.ToDouble(incomebasketballQ1), decimal.ToDouble(incomebasketballQ2), decimal.ToDouble(incomebasketballQ3), decimal.ToDouble(incomebasketballQ4) }
+                Values = new ChartValues<double> { decimal.ToDouble(incomebasketballQ1 / 23035), decimal.ToDouble(incomebasketballQ2 / 23035), decimal.ToDouble(incomebasketballQ3 / 23035), decimal.ToDouble(incomebasketballQ4 / 23035) }
             };
             _SeriesCollection1.Add(basketballline);
             Labels = new[] { "Quarter1", "Quarter2", "Quarter3", "Quarter4" };
-            yFormatter = value => value.ToString("C");
+            YFormatter = value => value.ToString("C");
 
             
         }
