@@ -392,6 +392,8 @@
     <Resource Include="Image\dollar.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Image\bg.jpg" />
+    <Resource Include="Image\bg1.jpg" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

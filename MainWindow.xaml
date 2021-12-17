@@ -14,15 +14,18 @@
      TextElement.FontSize="13"
      TextOptions.TextFormattingMode="Ideal"
      TextOptions.TextRenderingMode="Auto"
-     Background="{DynamicResource MaterialDesignPaper}"
      FontFamily="{DynamicResource MaterialDesignFont}"
         ResizeMode="NoResize"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
-        
         Name="mainWindow"
         DataContext="{StaticResource MainVM}"
         Title="Phoenix Sport Center Management" Height="700" Width="1300">
+    <Window.Background>
+
+        <ImageBrush ImageSource="Image/bg.jpg"/>
+
+    </Window.Background>
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -51,7 +54,7 @@
   Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
   BorderThickness="0"
   BorderBrush="Transparent"
-               Background="#FFF5EDF7"
+               Background="Transparent"
   TabStripPlacement="Left"
   materialDesign:ShadowAssist.ShadowDepth="Depth0"
   materialDesign:ColorZoneAssist.Mode="PrimaryMid"
@@ -854,7 +857,7 @@
                     <Grid>
 
 
-                        <Grid Background="#FFF5EDF7">
+                        <Grid Background="Transparent">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="6*"/>
                                 <ColumnDefinition Width="4*"/>

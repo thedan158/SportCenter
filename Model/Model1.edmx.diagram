@@ -5,13 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="be68925b8c3442028eb6c056caaea514" Name="Diagram1">
-        <EntityTypeShape EntityType="sportcenterModel.account" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="sportcenterModel.bill" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="sportcenterModel.bookingInfo" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="sportcenterModel.buyingInfo" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="sportcenterModel.field" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="sportcenterModel.fieldtype" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="sportcenterModel.good" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportcenterModel.account" Width="1.5" PointX="9.5" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportcenterModel.bill" Width="1.5" PointX="7.5" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportcenterModel.bookingInfo" Width="1.5" PointX="5.125" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportcenterModel.buyingInfo" Width="1.5" PointX="3.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportcenterModel.field" Width="1.5" PointX="2.625" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportcenterModel.fieldtype" Width="1.5" PointX="0.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportcenterModel.good" Width="1.5" PointX="0.5" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="sportcenterModel.fk01_idBooking" ManuallyRouted="false" />
         <AssociationConnector Association="sportcenterModel.fk01_bi" ManuallyRouted="false" />
         <AssociationConnector Association="sportcenterModel.fk02_idBooking" ManuallyRouted="false" />

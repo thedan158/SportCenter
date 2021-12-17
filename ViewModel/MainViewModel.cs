@@ -359,7 +359,7 @@ namespace SportCenter.ViewModel
                 DataProvider.Ins.DB.bills.Remove(itemBill);
                 DataProvider.Ins.DB.SaveChangesAsync();              
             }
-            MessageBox.Show("Clear all data!");
+            MessageBox.Show("Cleared all data!");
         }
 
         public void LoadStatictics()
