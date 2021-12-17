@@ -73,6 +73,8 @@ namespace SportCenter.ViewModel
         public ICommand ShowBasketballFieldCommand { get; set; }
         public ICommand LogoutCommand { get; set; }
         public ICommand ReloadStatictics { get; set; }
+        public ICommand DeleteAllBillCommand { get; set; }
+
 
 
         //Storage VM
@@ -204,6 +206,7 @@ namespace SportCenter.ViewModel
             SelectImageCommand = new RelayCommand<Grid>((parameter) => true, (parameter) => ChooseImage(parameter));
             OpenBillReportWindow = new RelayCommand<object>((parameter) => true, (parameter) => f_Open_Bill_Report());
             ReloadStatictics = new RelayCommand<object>((parameter) => true, (parameter) => LoadStatictics());
+            DeleteAllBillCommand = new RelayCommand<object>((parameter) => true, (parameter) => DeleteAllBillFunction());
             LogoutCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
 
@@ -346,6 +349,17 @@ namespace SportCenter.ViewModel
                 Listorder.Clear();
                 total = 0;
             });
+        }
+
+        public void DeleteAllBillFunction()
+        {
+            _Listbills = new ObservableCollection<bill>(DataProvider.Ins.DB.bills);
+            foreach (var itemBill in _Listbills)
+            {
+                DataProvider.Ins.DB.bills.Remove(itemBill);
+                DataProvider.Ins.DB.SaveChangesAsync();              
+            }
+            MessageBox.Show("Clear all data!");
         }
 
         public void LoadStatictics()

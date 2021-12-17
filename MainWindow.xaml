@@ -23,7 +23,7 @@
         Name="mainWindow"
         DataContext="{StaticResource MainVM}"
         Title="Phoenix Sport Center Management" Height="700" Width="1300">
-    
+
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName=mainWindow}"/>
@@ -1320,12 +1320,12 @@
                             <RowDefinition Height="100*"/>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="1">
-                            <TextBlock
-                                        Text="SPORT CENTER MANGEMENT" 
+                            <!--<TextBlock
+                                        Text="SETTINGS" 
                                         FontWeight="Bold" 
                                         FontSize="25"
                                         FontFamily="Bungee Inline"
-                                        HorizontalAlignment="Center"></TextBlock>
+                                        HorizontalAlignment="Center"></TextBlock>-->
 
                         </Grid>
                         <Grid Grid.Row="2">
@@ -1333,25 +1333,25 @@
                                 <ColumnDefinition Width="400"></ColumnDefinition>
                                 <ColumnDefinition Width="400"></ColumnDefinition>
                                 <ColumnDefinition Width="400"></ColumnDefinition>
-                                
+
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0" Margin="35">
-                                <Button HorizontalAlignment="Center" Height="auto" VerticalAlignment="Center" Width="120"
+                                <Button HorizontalAlignment="Center" Height="170" VerticalAlignment="Center" Width="200"
                                         Command="{Binding LogoutCommand}"
                                                 CommandParameter="{Binding ElementName=mainWindow}">
 
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="16*"/>
+                                            <ColumnDefinition Width="20"/>
                                             <ColumnDefinition Width="65*"/>
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="auto"></RowDefinition>
                                             <RowDefinition></RowDefinition>
                                         </Grid.RowDefinitions>
-                                        <materialDesign:PackIcon Kind="Logout" Height="87" Width="82"  Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="8,5,-2,0" />
-                                        <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="13,105,13.8,3.4" Grid.RowSpan="2" Grid.ColumnSpan="2">
-                       LOGOUT
+                                        <materialDesign:PackIcon Kind="Logout" Height="138" Width="153"  Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="-20,-18,-45,-27.2" />
+                                        <TextBlock FontWeight="Bold" HorizontalAlignment="Center"  Grid.RowSpan="2" Grid.ColumnSpan="2" FontSize="24" Margin="-7,-36,-13,-0.2" Width="108">
+                       LOG OUT
                                         </TextBlock>
                                     </Grid>
 
@@ -1449,13 +1449,44 @@
                                 </materialDesign:Flipper>
                             </Grid>
                             <Grid Grid.Column="2" Margin="35">
-                                
+                                <materialDesign:Flipper>
+                                    <materialDesign:Flipper.FrontContent>
+                                        <Button HorizontalAlignment="Center" Height="auto" VerticalAlignment="Center" Width="120"
+                                        Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                                >
+
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="16*"/>
+                                                    <ColumnDefinition Width="65*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="auto"></RowDefinition>
+                                                    <RowDefinition></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <materialDesign:PackIcon Kind="DeleteAlert" Height="87" Width="82"  Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="8,5,-2,0" />
+                                                <TextBlock FontWeight="Bold" HorizontalAlignment="Center"  Grid.RowSpan="2" Grid.ColumnSpan="2">
+                       CLEAR DATA
+                                                </TextBlock>
+                                            </Grid>
+
+                                        </Button>
+                                    </materialDesign:Flipper.FrontContent>
+                                    <materialDesign:Flipper.BackContent>
+                                        <Button
+      Style="{StaticResource MaterialDesignFlatButton}"
+      Command="{Binding DeleteAllBillCommand}"
+      Margin="8"
+      Width="184"
+      Content="CONFIRM DELETE" />
+                                    </materialDesign:Flipper.BackContent>
+                                </materialDesign:Flipper>
                             </Grid>
-                           
+
                         </Grid>
                     </Grid>
                 </TabItem>
-                
+
             </TabControl>
         </Grid>
     </Grid>
