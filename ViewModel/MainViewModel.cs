@@ -475,7 +475,7 @@ namespace SportCenter.ViewModel
                                                   join b in _Listbooking on a.idBookingInfo equals b.id
                                                   join c in _Listfields on b.idField equals c.id
                                                   join d in _Listfieldtypes on c.idType equals d.id
-                                                  where d.name == monbongchuyen
+                                                  where d.name == monbongro
                                                   where quart1.Contains(b.datePlay.ToString("MM"))
                                                   select a;
             decimal incomebasketballQ1 = _ListBasketballQ1.Select(y => y.totalmoney).Sum();
@@ -484,7 +484,7 @@ namespace SportCenter.ViewModel
                                                   join b in _Listbooking on a.idBookingInfo equals b.id
                                                   join c in _Listfields on b.idField equals c.id
                                                   join d in _Listfieldtypes on c.idType equals d.id
-                                                  where d.name == monbongchuyen
+                                                  where d.name == monbongro
                                                   where quart2.Contains(b.datePlay.ToString("MM"))
                                                   select a;
             decimal incomebasketballQ2 = _ListBasketballQ2.Select(y => y.totalmoney).Sum();
@@ -493,7 +493,7 @@ namespace SportCenter.ViewModel
                                                   join b in _Listbooking on a.idBookingInfo equals b.id
                                                   join c in _Listfields on b.idField equals c.id
                                                   join d in _Listfieldtypes on c.idType equals d.id
-                                                  where d.name == monbongchuyen
+                                                  where d.name == monbongro
                                                   where quart3.Contains(b.datePlay.ToString("MM"))
                                                   select a;
             decimal incomebasketballQ3 = _ListBasketballQ3.Select(y => y.totalmoney).Sum();
@@ -502,9 +502,10 @@ namespace SportCenter.ViewModel
                                                   join b in _Listbooking on a.idBookingInfo equals b.id
                                                   join c in _Listfields on b.idField equals c.id
                                                   join d in _Listfieldtypes on c.idType equals d.id
-                                                  where d.name == monbongchuyen
+                                                  where d.name == monbongro
                                                   where quart4.Contains(b.datePlay.ToString("MM"))
                                                   select a;
+            
             decimal incomebasketballQ4 = _ListBasketballQ4.Select(y => y.totalmoney).Sum();
 
 

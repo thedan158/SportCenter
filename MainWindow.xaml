@@ -156,32 +156,36 @@
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="74*"/>
+                                <RowDefinition Height="133*"/>
+                            </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="350"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0" Margin="25">
+                            <Grid Grid.Column="0" Margin="25,25,25.4,24.6" Grid.RowSpan="2">
                                 <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" UniformCornerRadius="10"
             Padding="8"  Foreground="{x:Null}">
                                 </materialDesign:Card>
                                 <Wpf:PieChart LegendLocation="Bottom" Series="{Binding SeriesCollection}" Hoverable="True" InnerRadius="10" DataTooltip="{x:Null}" >
-                               
+
                                 </Wpf:PieChart>
                                 <Button Command="{Binding ReloadStatictics}" Content="RELOAD" Margin="100,0,100.4,331.6" Width="100"></Button>
                             </Grid>
-                            <Grid Grid.Column="1" Margin="25">
+                            <Grid Grid.Column="1" Margin="24.6,25,25,24.6" Grid.RowSpan="2">
                                 <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" UniformCornerRadius="10"
             Padding="8"  Foreground="{x:Null}">
                                 </materialDesign:Card>
                                 <Wpf:CartesianChart Series="{Binding SeriesCollection1}" LegendLocation="Right" >
-                                <Wpf:CartesianChart.AxisY>
-                                    <Wpf:Axis Title="Income" LabelFormatter="{Binding YFormatter}"/>
-                                </Wpf:CartesianChart.AxisY>
-                                <Wpf:CartesianChart.AxisX>
-                                    <Wpf:Axis Title="Month" Labels="{Binding Labels}"/>
-                                </Wpf:CartesianChart.AxisX>
-                            </Wpf:CartesianChart>
-                                
+                                    <Wpf:CartesianChart.AxisY>
+                                        <Wpf:Axis Title="Income" LabelFormatter="{Binding YFormatter}"/>
+                                    </Wpf:CartesianChart.AxisY>
+                                    <Wpf:CartesianChart.AxisX>
+                                        <Wpf:Axis Title="Month" Labels="{Binding Labels}"/>
+                                    </Wpf:CartesianChart.AxisX>
+                                </Wpf:CartesianChart>
+
                             </Grid>
                         </Grid>
                     </Grid>
@@ -401,7 +405,7 @@
                                                     <TextBlock FontWeight="DemiBold" FontSize="20" Text="Current Order" VerticalAlignment="Center" Margin="20 10 10 10"/>
                                                 </Grid>
                                                 <Grid Grid.Column="1">
-                                                   
+
                                                     <Button
   
   Width="100"
@@ -558,8 +562,8 @@
 
                                 </Grid>
                                 <Grid Grid.Row="3">
-                                    
-                                   
+
+
                                     <Button
                                         
                                            Grid.Column="0"
@@ -577,7 +581,7 @@
 
                                         </StackPanel>
                                     </Button>
-                                    
+
                                     <!--<Button 
                     x:Name="btnPay"
                     Grid.Column="0"
@@ -650,7 +654,7 @@
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0" Grid.Row="1">
                             <Button x:Name="FB_Billbtb" HorizontalAlignment="Center" Height="auto" VerticalAlignment="Center" Width="120"
-                                        Command="{Binding _ShowWindowCommand_FB}">
+                                        Command="{Binding ShowWindowCommand_FB}">
 
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -663,7 +667,7 @@
                                     </Grid.RowDefinitions>
                                     <materialDesign:PackIcon Kind="Basketball" Height="87" Width="82" Margin="0,10,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2" />
                                     <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="13,105,13.8,3.4" Grid.RowSpan="2" Grid.ColumnSpan="2">
-                       Baseball
+                       Basketball
                                     </TextBlock>
                                 </Grid>
 
@@ -713,20 +717,20 @@
 
 
                                 <DataGrid AlternatingRowBackground="LightGray" IsReadOnly="True" HeadersVisibility="Column" BorderBrush="{x:Null}" Background="Transparent" ItemsSource="{Binding ListCustomerInfo}" AutoGenerateColumns="False" FontSize="16" Margin="0,0,0,0" >
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="  No" Binding="{Binding STT}"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Customer Name" Binding="{Binding Baseinfo_CusName}"/>
-                                    <DataGridTextColumn Header="Customer Phone" Binding="{Binding Baseinfo_CusPhoneNum}"/>
-                                    <DataGridTextColumn Header="Money Achive" Binding="{Binding Baseinfo_SumCusMoneyAmount}"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Bill Achive" Binding="{Binding Baseinfo_SumBillAmount}"/>
-                                    <DataGridTextColumn Header="Member type" Binding="{Binding Baseinfo_TypeCus}"/>
-                                    
-                                </DataGrid.Columns>
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="  No" Binding="{Binding STT}"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Customer Name" Binding="{Binding Baseinfo_CusName}"/>
+                                        <DataGridTextColumn Header="Customer Phone" Binding="{Binding Baseinfo_CusPhoneNum}"/>
+                                        <DataGridTextColumn Header="Money Achive" Binding="{Binding Baseinfo_SumCusMoneyAmount}"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Bill Achive" Binding="{Binding Baseinfo_SumBillAmount}"/>
+                                        <DataGridTextColumn Header="Member type" Binding="{Binding Baseinfo_TypeCus}"/>
 
-                            </DataGrid>
+                                    </DataGrid.Columns>
+
+                                </DataGrid>
                             </Border>
                         </Grid>
-                            
+
 
                         <TextBlock
             Text="PAYMENT" FontWeight="Bold" FontSize="25" Margin="0,0,0,-20"
