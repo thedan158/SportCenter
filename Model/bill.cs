@@ -15,7 +15,7 @@ namespace SportCenter.Model
     public partial class bill
     {
         public int id { get; set; }
-        public Nullable<decimal> totalmoney { get; set; }
+        public decimal totalmoney { get; set; }
         public int idBookingInfo { get; set; }
     
         public virtual bookingInfo bookingInfo { get; set; }

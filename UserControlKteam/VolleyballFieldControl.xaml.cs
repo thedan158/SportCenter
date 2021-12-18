@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SportCenter
+namespace SportCenter.UserControlKteam
 {
     /// <summary>
-    /// Interaction logic for InfoField.xaml
+    /// Interaction logic for VolleyballFieldControl.xaml
     /// </summary>
-    public partial class InfoField : Window
+    public partial class VolleyballFieldControl : UserControl
     {
-        public InfoField()
+        public VolleyballFieldControl()
         {
             InitializeComponent();
         }

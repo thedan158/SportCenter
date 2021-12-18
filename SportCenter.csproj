@@ -100,8 +100,14 @@
     <Compile Include="DeleteField.xaml.cs">
       <DependentUpon>DeleteField.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EditField.xaml.cs">
-      <DependentUpon>EditField.xaml</DependentUpon>
+    <Compile Include="EditBkField.xaml.cs">
+      <DependentUpon>EditBkField.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditScField.xaml.cs">
+      <DependentUpon>EditScField.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditVlField.xaml.cs">
+      <DependentUpon>EditVlField.xaml</DependentUpon>
     </Compile>
     <Compile Include="Football_Field_Bill.xaml.cs">
       <DependentUpon>Football_Field_Bill.xaml</DependentUpon>
@@ -118,8 +124,14 @@
     <Compile Include="Basketball_Field_Bill.xaml.cs">
       <DependentUpon>Basketball_Field_Bill.xaml</DependentUpon>
     </Compile>
-    <Compile Include="InfoField.xaml.cs">
-      <DependentUpon>InfoField.xaml</DependentUpon>
+    <Compile Include="InfoFieldBk.xaml.cs">
+      <DependentUpon>InfoFieldBk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoFieldSc.xaml.cs">
+      <DependentUpon>InfoFieldSc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoFieldVl.xaml.cs">
+      <DependentUpon>InfoFieldVl.xaml</DependentUpon>
     </Compile>
     <Compile Include="List_Good.xaml.cs">
       <DependentUpon>List_Good.xaml</DependentUpon>
@@ -152,9 +164,9 @@
       <DependentUpon>Model1.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>Model1.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Model\Model1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -167,11 +179,17 @@
     <Compile Include="SellGoodsControl.xaml.cs">
       <DependentUpon>SellGoodsControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControlKteam\BasketballFieldControl.xaml.cs">
+      <DependentUpon>BasketballFieldControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControlKteam\Expander_Bill.xaml.cs">
       <DependentUpon>Expander_Bill.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControlKteam\FieldControl.xaml.cs">
-      <DependentUpon>FieldControl.xaml</DependentUpon>
+    <Compile Include="UserControlKteam\SoccerFieldControl.xaml.cs">
+      <DependentUpon>SoccerFieldControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlKteam\VolleyballFieldControl.xaml.cs">
+      <DependentUpon>VolleyballFieldControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AddFieldViewModel.cs" />
     <Compile Include="ViewModel\BaseBill2.cs" />
@@ -181,6 +199,7 @@
     <Compile Include="ViewModel\BillViewModel_BasketBall.cs" />
     <Compile Include="ViewModel\BillViewModel_Football2.cs" />
     <Compile Include="ViewModel\BillViewModel_VolleyBall.cs" />
+    <Compile Include="ViewModel\BkBookingViewModel.cs" />
     <Compile Include="ViewModel\BookingViewModel.cs" />
     <Compile Include="ViewModel\Converter.cs" />
     <Compile Include="ViewModel\FormatDisplayGoodsBill.cs" />
@@ -188,6 +207,7 @@
     <Compile Include="ViewModel\BaseFieldSoccer.cs" />
     <Compile Include="ViewModel\BaseFieldVolleyball.cs" />
     <Compile Include="ViewModel\BasketballFieldViewModel.cs" />
+    <Compile Include="ViewModel\ScBookingViewModel.cs" />
     <Compile Include="ViewModel\SoccerFieldViewModel.cs" />
     <Compile Include="PayMent_tem.xaml.cs">
       <DependentUpon>PayMent_tem.xaml</DependentUpon>
@@ -200,6 +220,7 @@
     <Compile Include="ViewModel\BillViewModel.cs" />
     <Compile Include="ViewModel\ListBillViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\VlBookingViewModel.cs" />
     <Compile Include="ViewModel\VolleyballFieldViewModel.cs" />
     <Compile Include="VolleyballField.xaml.cs">
       <DependentUpon>VolleyballField.xaml</DependentUpon>
@@ -235,7 +256,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="EditField.xaml">
+    <Page Include="EditBkField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditScField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditVlField.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -259,7 +288,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="InfoField.xaml">
+    <Page Include="InfoFieldBk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoFieldSc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoFieldVl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -283,11 +320,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControlKteam\BasketballFieldControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControlKteam\Expander_Bill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControlKteam\FieldControl.xaml">
+    <Page Include="UserControlKteam\SoccerFieldControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlKteam\VolleyballFieldControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -399,8 +444,8 @@
     </Content>
     <Content Include="Model\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

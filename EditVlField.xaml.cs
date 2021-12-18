@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace SportCenter
 {
     /// <summary>
-    /// Interaction logic for EditField.xaml
+    /// Interaction logic for EditVlField.xaml
     /// </summary>
-    public partial class EditField : Window
+    public partial class EditVlField : Window
     {
-        public EditField()
+        public EditVlField()
         {
             InitializeComponent();
         }

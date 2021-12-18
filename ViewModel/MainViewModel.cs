@@ -307,80 +307,98 @@ namespace SportCenter.ViewModel
                 total = 0;
             });
         }
-        
-        private void LoadListCustomerInfo()
-{
-    ListCustomerInfo = new ObservableCollection<BaseCustomerInfo>();
-    var temp_bookingInfo = DataProvider.Ins.DB.bookingInfoes;
-    var temp_billInfo = DataProvider.Ins.DB.bills;
-    ObservableCollection<BaseCustomerInfo> temp_listCusInfo = new ObservableCollection<BaseCustomerInfo>();
-    if(temp_billInfo == null)
-    {
-        return;
-    }
-    //Adding Customer info in to ListCustomerInfo
-    foreach (var item_bill in temp_billInfo) 
-    {
-        var temp_Cusinfo = new BaseCustomerInfo();
-        temp_Cusinfo.Baseinfo_SumCusMoneyAmount = Decimal.ToInt32(item_bill.totalmoney.Value);
-        foreach(var item_booking in temp_bookingInfo)
+
+private void LoadListCustomerInfo()
         {
-            if (item_booking.id == item_bill.idBookingInfo)
+
+            var temp_bookingInfo = DataProvider.Ins.DB.bookingInfoes;
+            var temp_billInfo = DataProvider.Ins.DB.bills;
+            ObservableCollection<BaseCustomerInfo> temp_listCusInfo = new ObservableCollection<BaseCustomerInfo>();
+            if (temp_billInfo == null)
             {
-                temp_Cusinfo.Baseinfo_CusName = item_booking.Customer_name;
-                temp_Cusinfo.Baseinfo_CusPhoneNum = item_booking.Customer_PhoneNum.ToString();
-                temp_Cusinfo.Baseinfo_SumBillAmount = 1;
-                temp_Cusinfo.Baseinfo_SumCusMoneyAmount = Decimal.ToInt32(item_bill.totalmoney.Value);
-                temp_Cusinfo.Baseinfo_TypeCus = "Lever1";
-                temp_listCusInfo.Add(temp_Cusinfo);
+                return;
             }
-        }
-    }
-    // Bill count 
-    foreach(var item in temp_listCusInfo)
-    {
-        foreach(var item_booking in temp_bookingInfo)
-        {
-            if (item_booking.Status == "Pay")
+            //Adding Customer info in to ListCustomerInfo
+            foreach (var item_bill in temp_billInfo)
             {
-                if (item.Baseinfo_CusName == item_booking.Customer_name)
+                var temp_Cusinfo = new BaseCustomerInfo();
+                foreach (var item_booking in temp_bookingInfo)
                 {
-                    if (item.Baseinfo_CusPhoneNum == item_booking.Customer_PhoneNum.ToString())
+                    if (item_booking.id == item_bill.idBookingInfo)
                     {
-                        item.Baseinfo_SumBillAmount++;
+                        temp_Cusinfo.Baseinfo_CusName = item_booking.Customer_name;
+                        temp_Cusinfo.Baseinfo_CusPhoneNum = item_booking.Customer_PhoneNum.ToString();
+                        temp_Cusinfo.Baseinfo_SumBillAmount = 1;
+                        temp_Cusinfo.Baseinfo_SumCusMoneyAmount = decimal.ToInt32(item_bill.totalmoney);
+                        temp_Cusinfo.Baseinfo_TypeCus = "Lever1";
+                        temp_listCusInfo.Add(temp_Cusinfo);
                     }
                 }
             }
-            
-        }
-    }
-    List<BaseCustomerInfo> temp_list1 = new List<BaseCustomerInfo>();
-    List<BaseCustomerInfo> temp_list2 = new List<BaseCustomerInfo>();
-    temp_list1 = temp_listCusInfo.ToList();
-    temp_list2 = temp_listCusInfo.ToList();
-    for (int i = 0; i < temp_list1.Count(); i++)
-    {
-        for(int j = 0;j < temp_list1.Count(); j++)
-        {
-            if (i == j)
+            // Bill count 
+
+            List<BaseCustomerInfo> temp_list1 = new List<BaseCustomerInfo>();
+            List<BaseCustomerInfo> temp_list2 = new List<BaseCustomerInfo>();
+            List<BaseCustomerInfo> temp_list3 = new List<BaseCustomerInfo>();
+
+            temp_list2 = temp_listCusInfo.ToList();
+            temp_list1 = temp_listCusInfo.ToList();
+
+            for (int i = 0; i < temp_list1.Count(); i++)
             {
-                continue;
-            }
-            else
-            {
-                if(temp_list1[i].Baseinfo_CusName == temp_list1[j].Baseinfo_CusName)
+                int total1 = temp_list1[i].Baseinfo_SumCusMoneyAmount;
+                int billnum = 1;
+                for (int j = i; j < temp_list2.Count(); j++)
                 {
-                    if (temp_list1[i].Baseinfo_CusPhoneNum == temp_list1[j].Baseinfo_CusPhoneNum)
+                    if (i == j)
                     {
-                        temp_list1[i].Baseinfo_SumBillAmount++;
-                        temp_list1[i].Baseinfo_SumCusMoneyAmount += temp_list1[j].Baseinfo_SumCusMoneyAmount;
+                        continue;
+                    }
+                    else
+                    {
+                        if (temp_list1[i].Baseinfo_CusName == temp_list2[j].Baseinfo_CusName && temp_list1[i].Baseinfo_CusPhoneNum == temp_list2[j].Baseinfo_CusPhoneNum)
+                        {
+                            total1 += temp_list2[j].Baseinfo_SumCusMoneyAmount;
+                            billnum++;
+                            temp_list2.RemoveAt(j);
+                        }
                     }
                 }
+                BaseCustomerInfo adding = new BaseCustomerInfo();
+                adding = temp_list1[i];
+                adding.Baseinfo_SumCusMoneyAmount = total1;
+                adding.Baseinfo_SumBillAmount = billnum;
+                temp_list3.Add(adding);
+            }
+            foreach (var item in temp_list2)
+            {
+                _ListCustomerInfo.Add(item);
+            }
+
+
+
+            //Setting STT, member lv
+            foreach (var item in _ListCustomerInfo.ToList())
+            {
+                if (item.Baseinfo_SumCusMoneyAmount >= 1000000)
+                {
+                    item.Baseinfo_TypeCus = "Level 2";
+                }
+                if (item.Baseinfo_SumCusMoneyAmount >= 3000000)
+                {
+                    item.Baseinfo_TypeCus = "Level 3";
+                }
+                if (item.Baseinfo_SumCusMoneyAmount >= 5000000)
+                {
+                    item.Baseinfo_TypeCus = "VIP";
+                }
+            }
+            for (int i = 0; i < _ListCustomerInfo.ToList().Count(); i++)
+            {
+                _ListCustomerInfo[i].STT = i + 1;
             }
         }
-        
-    }
-}
+
         private void f_Open_Bill_Report()
         {
             Bill_Report rp = new Bill_Report();
