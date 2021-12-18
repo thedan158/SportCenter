@@ -188,6 +188,7 @@ namespace SportCenter.ViewModel
                 {
                     p.Show();
                     LoadStorageData();
+                    Update_ListCustomerInfo();
                     LoadListCustomerInfo();
                     LoadStatictics();
                 }
@@ -221,6 +222,7 @@ namespace SportCenter.ViewModel
                 {
                     p.Show();
                     LoadStorageData();
+                    Update_ListCustomerInfo();
                     LoadListCustomerInfo();
                     //LoadStatictics();
                 }

@@ -714,9 +714,9 @@
                             </Button>
                         </Grid>
                         <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="3" Margin="0,20,20,20" >
-                            <Border Margin="20,60,20,20" Background="Snow" Grid.Column="0" Height="auto" Width="auto" CornerRadius="20">
+                            <Border Margin="20,60,20,20" BorderBrush="Black" Background="Snow" Grid.Column="0" Height="auto" Width="auto" CornerRadius="20">
                                 <Border.BitmapEffect>
-                                    <DropShadowBitmapEffect Opacity="0.6" Color="#FFFF0303" Softness="0.3"/>
+                                    <DropShadowBitmapEffect Opacity="0.6" Color="Black" ShadowDepth="10" Softness="0.3"/>
                                 </Border.BitmapEffect>
 
 
