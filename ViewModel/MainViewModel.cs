@@ -612,39 +612,9 @@ namespace SportCenter.ViewModel
                         temp_listCusInfo.Add(temp_Cusinfo);
                     }
                 }
-                BaseCustomerInfo adding = new BaseCustomerInfo();
-                adding = temp_list1[i];
-                adding.Baseinfo_SumCusMoneyAmount = total1;
-                adding.Baseinfo_SumBillAmount = billnum;
-                temp_list3.Add(adding);
-            }
-            foreach (var item in temp_list2)
-            {
-                _ListCustomerInfo.Add(item);
+                
             }
 
-
-
-            //Setting STT, member lv
-            foreach (var item in _ListCustomerInfo.ToList())
-            {
-                if (item.Baseinfo_SumCusMoneyAmount >= 1000000)
-                {
-                    item.Baseinfo_TypeCus = "Level 2";
-                }
-                if (item.Baseinfo_SumCusMoneyAmount >= 3000000)
-                {
-                    item.Baseinfo_TypeCus = "Level 3";
-                }
-                if (item.Baseinfo_SumCusMoneyAmount >= 5000000)
-                {
-                    item.Baseinfo_TypeCus = "VIP";
-                }
-            }
-            for (int i = 0; i < _ListCustomerInfo.ToList().Count(); i++)
-            {
-                _ListCustomerInfo[i].STT = i + 1;
-            }
             // Bill count 
             
             List<BaseCustomerInfo> temp_list1 = new List<BaseCustomerInfo>();
