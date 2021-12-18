@@ -99,7 +99,9 @@ namespace SportCenter.ViewModel
             }
             foreach(var item in _Listbooking)
             {
+#pragma warning disable CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
                 if (item.List_Booking.idField != null)
+#pragma warning restore CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
                 {
                     foreach(var item2 in Temp_field)
                     {

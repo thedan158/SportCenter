@@ -25,7 +25,6 @@ namespace SportCenter
     /// </summary>
     public partial class MainWindow : Window
     {
-        int? Total = 0;
 
         //http://materialdesigninxaml.net/home
        

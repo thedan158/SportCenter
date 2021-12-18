@@ -15,20 +15,54 @@ namespace SportCenter.ViewModel
         public bool IsLogin { get; set; }
         private string _UserName;
         public string UserName { get => _UserName; set { _UserName = value; OnPropertyChanged(); } }
+        private string _NewPassword;
+        public string NewPassword { get => _NewPassword; set { _NewPassword = value; OnPropertyChanged(); } }
         private string _Password;
         public string Password { get => _Password; set { _Password = value; OnPropertyChanged(); } }
+        public string ConfirmPassword { get => _ConfirmPassword; set { _ConfirmPassword = value; OnPropertyChanged(); } }
+        private string _ConfirmPassword;
+        public string CurrentPassword { get => _CurrentPassword; set { _CurrentPassword = value; OnPropertyChanged(); } }
+        private string _CurrentPassword;
         public ICommand LoginCommand { get; set; }
         public ICommand CloseCommand { get; set; }
         public ICommand PasswordChangedCommand { get; set; }
+        public ICommand ChangepasswordCommand { get; set; }
         public LoginViewModel()
         {
             IsLogin = false;
             Password = "";
             UserName = "";
             LoginCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { Login(p); });
+            ChangepasswordCommand = new RelayCommand<object>((parameter) => true, (parameter) => ChangePW());
             CloseCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { p.Close(); });
             PasswordChangedCommand = new RelayCommand<PasswordBox>((p) => { return true; }, (p) => { Password = p.Password; });
         }
+
+        private void ChangePW()
+        {
+            string currentpassEncode = CreateMD5(Base64Encode(CurrentPassword));
+            var accCount1 = DataProvider.Ins.DB.accounts.Where(x => x.username == UserName && x.password == currentpassEncode).SingleOrDefault();
+
+
+            if (accCount1 !=null)
+            {
+                if (NewPassword == ConfirmPassword) {
+                    accCount1.password = CreateMD5(Base64Encode(NewPassword));
+                MessageBox.Show("Password changed");
+                    DataProvider.Ins.DB.SaveChanges();
+                }
+                else
+                {
+                    MessageBox.Show("Confirm Password not match");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Wrong Password");
+            }
+        }
+
         void Login(Window p)
         {
             if (p == null)

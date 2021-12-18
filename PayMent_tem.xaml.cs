@@ -36,8 +36,8 @@ namespace SportCenter
             string _txtbookingdate = Booking_date;
             string _txtstarttime = start_time;
             string _txtendtime = end_time;
-            string _txtfieldprice = (Decimal.ToInt32(Field_price)).ToString();
-            ; string _txtidbooking = id_booking.ToString();
+            string _txtfieldprice = (decimal.ToInt32(Field_price)).ToString();
+;           string _txtidbooking = id_booking.ToString();
             int _goodtotalvalue = 0;
             idbooking_DB_add = id_booking;
 
@@ -125,7 +125,7 @@ namespace SportCenter
         {
             this.Close();
         }
-        private void Confirm_Click(object sender, RoutedEventArgs e)
+        private async void Confirm_Click(object sender, RoutedEventArgs e)
         {
             bill adding_DB = new bill();
             {
@@ -142,7 +142,7 @@ namespace SportCenter
             }
 
             DataProvider.Ins.DB.bills.Add(adding_DB);
-            DataProvider.Ins.DB.SaveChanges();
+            await DataProvider.Ins.DB.SaveChangesAsync();
             this.Close();
         }
     }

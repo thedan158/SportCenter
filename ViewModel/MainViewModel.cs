@@ -1,4 +1,7 @@
-﻿using Microsoft.Win32;
+﻿using LiveCharts;
+using LiveCharts.Defaults;
+using LiveCharts.Wpf;
+using Microsoft.Win32;
 using SportCenter.Model;
 using System;
 using System.Collections.Generic;
@@ -18,6 +21,30 @@ namespace SportCenter.ViewModel
     public class MainViewModel : BaseViewModel
         
     {
+        //ListBill
+        private ObservableCollection<bill> _Listbills;
+        public ObservableCollection<bill> Listbills { get => _Listbills; set { _Listbills = value; OnPropertyChanged(); } }
+        //Statictis
+        private string alltimerevenue = "0";
+        public string Alltimerevenue { get => alltimerevenue; set { alltimerevenue = value; OnPropertyChanged(); } }
+        private string alltimerevenueUSD = "0";
+        public string AlltimerevenueUSD { get => alltimerevenueUSD; set { alltimerevenueUSD = value; OnPropertyChanged(); } }
+        private string thisMonthRevenue = "0";
+        public string ThisMonthRevenue { get => thisMonthRevenue; set { thisMonthRevenue = value; OnPropertyChanged(); } }
+
+        //ListFields
+        private ObservableCollection<field> _Listfields;
+        private ObservableCollection<fieldtype> _Listfieldtypes;
+        //CartesianChart
+        public Func<double, string> YFormatter { get; set; }
+        private SeriesCollection _SeriesCollection1;
+        public SeriesCollection SeriesCollection1 { get => _SeriesCollection1; set { _SeriesCollection1 = value; OnPropertyChanged(); } }
+        public string[] Labels { get; set; }
+        //PieChart
+        public Func<ChartPoint, string> PointLabel { get; set; }
+        private SeriesCollection _SeriesCollection;
+        public SeriesCollection SeriesCollection { get => _SeriesCollection; set { _SeriesCollection = value; OnPropertyChanged(); } }
+
         //List fields which was booked
         private ObservableCollection<bookingInfo> _Listbooking;
         public ObservableCollection<bookingInfo> Listbooking { get => _Listbooking; set { _Listbooking = value; OnPropertyChanged(); } }
@@ -38,13 +65,16 @@ namespace SportCenter.ViewModel
 
         public bool Isloaded = false;
         public ICommand LoadedWindowCommand { get; set; }
-        public ICommand _ShowWindowCommand_FB { get; set; }
+        public ICommand ShowWindowCommand_FB { get; set; }
         public ICommand ShowWindowCommand_BK { get; set; }
         public ICommand ShowWindowCommand_VL { get; set; }
         public ICommand ShowFootballFieldCommand { get; set; }
         public ICommand ShowVolleyballFieldCommand { get; set; }
         public ICommand ShowBasketballFieldCommand { get; set; }
         public ICommand LogoutCommand { get; set; }
+        public ICommand ReloadStatictics { get; set; }
+        public ICommand DeleteAllBillCommand { get; set; }
+
 
 
         //Storage VM
@@ -137,22 +167,30 @@ namespace SportCenter.ViewModel
             _Listbuying = new ObservableCollection<buyingInfo>(DataProvider.Ins.DB.buyingInfoes);
             _Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
             _Listorder = new ObservableCollection<buyingInfo>();
-
+            _ListCustomerInfo = new ObservableCollection<BaseCustomerInfo>();
+            
+            _Listfields = new ObservableCollection<field>(DataProvider.Ins.DB.fields);
+            _Listfieldtypes = new ObservableCollection<fieldtype>(DataProvider.Ins.DB.fieldtypes);
+            _SeriesCollection = new SeriesCollection();
+            _SeriesCollection1 = new SeriesCollection();
+            
             LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
                 Isloaded = true;
                 p.Hide();
                 LoginWindow loginWindow = new LoginWindow();
                 loginWindow.ShowDialog();
-                p.Show();
-                LoadStorageData();
                 if (loginWindow.DataContext == null)
                     return;
                 var loginVM = loginWindow.DataContext as LoginViewModel;
 
                 if (loginVM.IsLogin)
                 {
-
+                    p.Show();
+                    LoadStorageData();
+                    Update_ListCustomerInfo();
+                    LoadListCustomerInfo();
+                    LoadStatictics();
                 }
                 else
                 {
@@ -160,7 +198,7 @@ namespace SportCenter.ViewModel
                 }
 
             }); 
-            _ShowWindowCommand_FB = new RelayCommand<object>((parameter) => true, (parameter) => _ShowWindowFuntion_FB());
+            ShowWindowCommand_FB = new RelayCommand<object>((parameter) => true, (parameter) => ShowWindowFuntion_FB());
             ShowWindowCommand_BK = new RelayCommand<object>((parameter) => true, (parameter) => ShowWindowFuntion_BK());
             ShowWindowCommand_VL = new RelayCommand<object>((parameter) => true, (parameter) => ShowWindowFuntion_VL());
             ShowFootballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowFootballFieldFunction());
@@ -168,6 +206,8 @@ namespace SportCenter.ViewModel
             ShowBasketballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowBasketballFieldFuction());
             SelectImageCommand = new RelayCommand<Grid>((parameter) => true, (parameter) => ChooseImage(parameter));
             OpenBillReportWindow = new RelayCommand<object>((parameter) => true, (parameter) => f_Open_Bill_Report());
+            ReloadStatictics = new RelayCommand<object>((parameter) => true, (parameter) => LoadStatictics());
+            DeleteAllBillCommand = new RelayCommand<object>((parameter) => true, (parameter) => DeleteAllBillFunction());
             LogoutCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
 
@@ -182,6 +222,9 @@ namespace SportCenter.ViewModel
                 {
                     p.Show();
                     LoadStorageData();
+                    Update_ListCustomerInfo();
+                    LoadListCustomerInfo();
+                    //LoadStatictics();
                 }
                 else
                 {
@@ -239,17 +282,19 @@ namespace SportCenter.ViewModel
             {
                 MessageBoxResult result = MessageBox.Show("Xác nhận sửa hàng hóa?", "Thông báo", MessageBoxButton.YesNo);
                 Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
-                //if (result == MessageBoxResult.Yes)
-                //{
-                //    var good = DataProvider.Ins.DB.goods.Where(x => x.id == SelectedItem.id).SingleOrDefault();
-                //    good.name = namegood;
-                //    good.price = pricegood;
-                //    good.quantity = quantitygood;
-                //    good.unit = unitgood;
+                if (result == MessageBoxResult.Yes)
+                {
+                    byte[] imgByteArr;
+                    imgByteArr = Converter.Instance.ConvertImageToBytes(imageFileName);
+                    var good = DataProvider.Ins.DB.goods.Where(x => x.id == SelectedItem.id).SingleOrDefault();
+                    good.name = namegood;
+                    good.price = pricegood;
+                    good.unit = unitgood;
+                    good.imageFile = imgByteArr;
 
-                //    DataProvider.Ins.DB.SaveChanges();
-                //}
-                
+                    DataProvider.Ins.DB.SaveChanges();
+                }
+
             });
 
             //Delete goods
@@ -308,21 +353,254 @@ namespace SportCenter.ViewModel
             });
         }
 
-private void LoadListCustomerInfo()
+        public void DeleteAllBillFunction()
         {
+            _Listbills = new ObservableCollection<bill>(DataProvider.Ins.DB.bills);
+            foreach (var itemBill in _Listbills)
+            {
+                DataProvider.Ins.DB.bills.Remove(itemBill);
+                DataProvider.Ins.DB.SaveChangesAsync();              
+            }
+            MessageBox.Show("Cleared all data!");
+        }
 
+        public void LoadStatictics()
+        {
+            DateTime moment = DateTime.Now;
+            _Listbills = new ObservableCollection<bill>(DataProvider.Ins.DB.bills);
+            string monbongda = "bongda";
+            string monbongchuyen = "bongchuyen";
+            string monbongro = "bongro";
+            ///Income For every sport all time
+            decimal allincome = _Listbills.Select(x => x.totalmoney).Sum();
+            Alltimerevenue = allincome.ToString("F");
+            AlltimerevenueUSD = (allincome / 23035).ToString("F");
+            ///Income for every sport this month
+            IEnumerable<bill> _ListBillThisMonth = from a in _Listbills
+                                                   join b in _Listbooking on a.idBookingInfo equals b.id
+                                                   where b.datePlay.ToString("MM") == moment.ToString("MM")
+                                                   select a;
+            decimal thismonth = _ListBillThisMonth.Select(y => y.totalmoney).Sum();
+            ThisMonthRevenue = thismonth.ToString("F");
+            /////Income for football
+            IEnumerable<bill> _Listfootball = from a in _Listbills
+                                              join b in _Listbooking on a.idBookingInfo equals b.id
+                                              join c in _Listfields on b.idField equals c.id
+                                              join d in _Listfieldtypes on c.idType equals d.id
+                                              where d.name == monbongda
+                                              select a;
+            decimal allincomefootball = _Listfootball.Select(y => y.totalmoney).Sum();
+
+
+            ///Income for volleyball
+            IEnumerable<bill> _Listvolleyball = from a in _Listbills
+                                                join b in _Listbooking on a.idBookingInfo equals b.id
+                                                join c in _Listfields on b.idField equals c.id
+                                                join d in _Listfieldtypes on c.idType equals d.id
+                                                where d.name == monbongchuyen
+                                                select a;
+            decimal allincomevolleyball = _Listvolleyball.Select(y => y.totalmoney).Sum();
+
+
+            ///Income for basketball
+            IEnumerable<bill> _Listbasketball = from a in _Listbills
+                                                join b in _Listbooking on a.idBookingInfo equals b.id
+                                                join c in _Listfields on b.idField equals c.id
+                                                join d in _Listfieldtypes on c.idType equals d.id
+                                                where d.name == monbongro
+                                                select a;
+            decimal allincomebasketball = _Listbasketball.Select(y => y.totalmoney).Sum();
+            ///Imcome for football quarter 1 of the year
+            var quart1 = new[] { "01", "02", "03"};
+            IEnumerable<bill> _ListfootballQ1 = from a in _Listbills
+                                                join b in _Listbooking on a.idBookingInfo equals b.id
+                                                join c in _Listfields on b.idField equals c.id
+                                                join d in _Listfieldtypes on c.idType equals d.id
+                                                where d.name == monbongda
+                                                where quart1.Contains(b.datePlay.ToString("MM"))                         
+                                                select a;
+            decimal incomefootballQ1 = _ListfootballQ1.Select(y => y.totalmoney).Sum();
+            ///Imcome for football quarter 2 of the year
+            var quart2 = new[] { "04", "05", "06" };
+            IEnumerable<bill> _ListfootballQ2 = from a in _Listbills
+                                                join b in _Listbooking on a.idBookingInfo equals b.id
+                                                join c in _Listfields on b.idField equals c.id
+                                                join d in _Listfieldtypes on c.idType equals d.id
+                                                where d.name == monbongda
+                                                where quart2.Contains(b.datePlay.ToString("MM"))
+                                                select a;
+            decimal incomefootballQ2 = _ListfootballQ2.Select(y => y.totalmoney).Sum();
+            ///Imcome for football quarter 3 of the year
+            var quart3 = new[] { "07", "08", "09"};
+            IEnumerable<bill> _ListfootballQ3 = from a in _Listbills
+                                                join b in _Listbooking on a.idBookingInfo equals b.id
+                                                join c in _Listfields on b.idField equals c.id
+                                                join d in _Listfieldtypes on c.idType equals d.id
+                                                where d.name == monbongda
+                                                where quart3.Contains(b.datePlay.ToString("MM"))
+                                                select a;
+            decimal incomefootballQ3 = _ListfootballQ3.Select(y => y.totalmoney).Sum();
+            ///Imcome for football quarter 4 of the year
+            var quart4 = new[] { "10", "11", "12" };
+            IEnumerable<bill> _ListfootballQ4 = from a in _Listbills
+                                                join b in _Listbooking on a.idBookingInfo equals b.id
+                                                join c in _Listfields on b.idField equals c.id
+                                                join d in _Listfieldtypes on c.idType equals d.id
+                                                where d.name == monbongda
+                                                where quart4.Contains(b.datePlay.ToString("MM"))
+                                                select a;
+            decimal incomefootballQ4 = _ListfootballQ4.Select(y => y.totalmoney).Sum();
+            ///Imcome for VOLLEYBALL quarter 1 of the year          
+            IEnumerable<bill> _ListVolleyballQ1 = from a in _Listbills
+                                                join b in _Listbooking on a.idBookingInfo equals b.id
+                                                join c in _Listfields on b.idField equals c.id
+                                                join d in _Listfieldtypes on c.idType equals d.id
+                                                where d.name == monbongchuyen
+                                                where quart1.Contains(b.datePlay.ToString("MM"))
+                                                select a;
+            decimal incomevolleyballQ1 = _ListVolleyballQ1.Select(y => y.totalmoney).Sum();
+            ///Imcome for VOLLEYBALL quarter 2 of the year
+            IEnumerable<bill> _ListVolleyballQ2 = from a in _Listbills
+                                                  join b in _Listbooking on a.idBookingInfo equals b.id
+                                                  join c in _Listfields on b.idField equals c.id
+                                                  join d in _Listfieldtypes on c.idType equals d.id
+                                                  where d.name == monbongchuyen
+                                                  where quart2.Contains(b.datePlay.ToString("MM"))
+                                                  select a;
+            decimal incomevolleyballQ2 = _ListVolleyballQ2.Select(y => y.totalmoney).Sum();
+            ///Imcome for VOLLEYBALL quarter 3 of the year
+            IEnumerable<bill> _ListVolleyballQ3 = from a in _Listbills
+                                                  join b in _Listbooking on a.idBookingInfo equals b.id
+                                                  join c in _Listfields on b.idField equals c.id
+                                                  join d in _Listfieldtypes on c.idType equals d.id
+                                                  where d.name == monbongchuyen
+                                                  where quart3.Contains(b.datePlay.ToString("MM"))
+                                                  select a;
+            decimal incomevolleyballQ3 = _ListVolleyballQ3.Select(y => y.totalmoney).Sum();
+            ///Imcome for VOLLEYBALL quarter 4 of the year
+            IEnumerable<bill> _ListVolleyballQ4 = from a in _Listbills
+                                                  join b in _Listbooking on a.idBookingInfo equals b.id
+                                                  join c in _Listfields on b.idField equals c.id
+                                                  join d in _Listfieldtypes on c.idType equals d.id
+                                                  where d.name == monbongchuyen
+                                                  where quart4.Contains(b.datePlay.ToString("MM"))
+                                                  select a;
+            decimal incomevolleyballQ4 = _ListVolleyballQ4.Select(y => y.totalmoney).Sum();
+            ///Imcome for BASKETBALL quarter 1 of the year
+            IEnumerable<bill> _ListBasketballQ1 = from a in _Listbills
+                                                  join b in _Listbooking on a.idBookingInfo equals b.id
+                                                  join c in _Listfields on b.idField equals c.id
+                                                  join d in _Listfieldtypes on c.idType equals d.id
+                                                  where d.name == monbongro
+                                                  where quart1.Contains(b.datePlay.ToString("MM"))
+                                                  select a;
+            decimal incomebasketballQ1 = _ListBasketballQ1.Select(y => y.totalmoney).Sum();
+            ///Imcome for BASKETBALL quarter 2 of the year
+            IEnumerable<bill> _ListBasketballQ2 = from a in _Listbills
+                                                  join b in _Listbooking on a.idBookingInfo equals b.id
+                                                  join c in _Listfields on b.idField equals c.id
+                                                  join d in _Listfieldtypes on c.idType equals d.id
+                                                  where d.name == monbongro
+                                                  where quart2.Contains(b.datePlay.ToString("MM"))
+                                                  select a;
+            decimal incomebasketballQ2 = _ListBasketballQ2.Select(y => y.totalmoney).Sum();
+            ///Imcome for BASKETBALL quarter 3 of the year
+            IEnumerable<bill> _ListBasketballQ3 = from a in _Listbills
+                                                  join b in _Listbooking on a.idBookingInfo equals b.id
+                                                  join c in _Listfields on b.idField equals c.id
+                                                  join d in _Listfieldtypes on c.idType equals d.id
+                                                  where d.name == monbongro
+                                                  where quart3.Contains(b.datePlay.ToString("MM"))
+                                                  select a;
+            decimal incomebasketballQ3 = _ListBasketballQ3.Select(y => y.totalmoney).Sum();
+            ///Imcome for BASKETBALL quarter 4 of the year
+            IEnumerable<bill> _ListBasketballQ4 = from a in _Listbills
+                                                  join b in _Listbooking on a.idBookingInfo equals b.id
+                                                  join c in _Listfields on b.idField equals c.id
+                                                  join d in _Listfieldtypes on c.idType equals d.id
+                                                  where d.name == monbongro
+                                                  where quart4.Contains(b.datePlay.ToString("MM"))
+                                                  select a;
+            
+            decimal incomebasketballQ4 = _ListBasketballQ4.Select(y => y.totalmoney).Sum();
+
+
+            _SeriesCollection.Clear();
+            _SeriesCollection1.Clear();
+            //Add Football Stactictisc to PieChart
+            var footballseries = new PieSeries
+            {
+                Title = "Football",
+                Values = new ChartValues<ObservableValue> { new ObservableValue(decimal.ToDouble(allincomefootball)) },
+                DataLabels = true,
+                FontSize = 16,
+                LabelPoint = ChartPoint => string.Format("{0} ({1:P})", ChartPoint.Y, ChartPoint.Participation)
+            };
+            _SeriesCollection.Add(footballseries);
+
+
+            //Add Volleyball Stactictisc to PieChart
+            var volleyballseries = new PieSeries
+            {
+                Title = "Volleyball",
+                Values = new ChartValues<ObservableValue> { new ObservableValue(decimal.ToDouble(allincomevolleyball)) },
+                DataLabels = true,
+                FontSize = 16,
+                LabelPoint = ChartPoint => string.Format("{0} ({1:P})", ChartPoint.Y, ChartPoint.Participation)
+        };
+            _SeriesCollection.Add(volleyballseries);
+
+            //Add basketball Stactictisc to PieChart
+            var basketballseries = new PieSeries
+            {
+                Title = "Basketball",
+                Values = new ChartValues<ObservableValue> { new ObservableValue(decimal.ToDouble(allincomebasketball)) },
+                DataLabels = true,
+                FontSize = 16,
+                LabelPoint = ChartPoint => string.Format("{0} ({1:P})", ChartPoint.Y, ChartPoint.Participation)
+            };
+            _SeriesCollection.Add(basketballseries);
+
+
+            var footballline = new LineSeries
+            {
+                Title="Football",
+                Values= new ChartValues<double> { decimal.ToDouble(incomefootballQ1 / 23035), decimal.ToDouble(incomefootballQ2 / 23035), decimal.ToDouble(incomefootballQ3 / 23035), decimal.ToDouble(incomefootballQ4 / 23035) }
+            };
+            _SeriesCollection1.Add(footballline);
+            var volleyballline = new LineSeries {
+                Title = "Volleyball",
+                Values = new ChartValues<double> { decimal.ToDouble(incomevolleyballQ1 / 23035), decimal.ToDouble(incomevolleyballQ2 / 23035), decimal.ToDouble(incomevolleyballQ3 / 23035), decimal.ToDouble(incomevolleyballQ4 / 23035) }
+            };
+            _SeriesCollection1.Add(volleyballline);
+            var basketballline = new LineSeries
+            {
+                Title = "Basketball",
+                Values = new ChartValues<double> { decimal.ToDouble(incomebasketballQ1 / 23035), decimal.ToDouble(incomebasketballQ2 / 23035), decimal.ToDouble(incomebasketballQ3 / 23035), decimal.ToDouble(incomebasketballQ4 / 23035) }
+            };
+            _SeriesCollection1.Add(basketballline);
+            Labels = new[] { "Quarter1", "Quarter2", "Quarter3", "Quarter4" };
+            YFormatter = value => value.ToString("C");
+
+            
+        }
+
+        
+        private void LoadListCustomerInfo()
+        {
+            
             var temp_bookingInfo = DataProvider.Ins.DB.bookingInfoes;
             var temp_billInfo = DataProvider.Ins.DB.bills;
             ObservableCollection<BaseCustomerInfo> temp_listCusInfo = new ObservableCollection<BaseCustomerInfo>();
-            if (temp_billInfo == null)
+            if(temp_billInfo == null)
             {
                 return;
             }
             //Adding Customer info in to ListCustomerInfo
-            foreach (var item_bill in temp_billInfo)
+            foreach (var item_bill in temp_billInfo) 
             {
                 var temp_Cusinfo = new BaseCustomerInfo();
-                foreach (var item_booking in temp_bookingInfo)
+                foreach(var item_booking in temp_bookingInfo)
                 {
                     if (item_booking.id == item_bill.idBookingInfo)
                     {
@@ -332,36 +610,6 @@ private void LoadListCustomerInfo()
                         temp_Cusinfo.Baseinfo_SumCusMoneyAmount = decimal.ToInt32(item_bill.totalmoney);
                         temp_Cusinfo.Baseinfo_TypeCus = "Lever1";
                         temp_listCusInfo.Add(temp_Cusinfo);
-                    }
-                }
-            }
-            // Bill count 
-
-            List<BaseCustomerInfo> temp_list1 = new List<BaseCustomerInfo>();
-            List<BaseCustomerInfo> temp_list2 = new List<BaseCustomerInfo>();
-            List<BaseCustomerInfo> temp_list3 = new List<BaseCustomerInfo>();
-
-            temp_list2 = temp_listCusInfo.ToList();
-            temp_list1 = temp_listCusInfo.ToList();
-
-            for (int i = 0; i < temp_list1.Count(); i++)
-            {
-                int total1 = temp_list1[i].Baseinfo_SumCusMoneyAmount;
-                int billnum = 1;
-                for (int j = i; j < temp_list2.Count(); j++)
-                {
-                    if (i == j)
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        if (temp_list1[i].Baseinfo_CusName == temp_list2[j].Baseinfo_CusName && temp_list1[i].Baseinfo_CusPhoneNum == temp_list2[j].Baseinfo_CusPhoneNum)
-                        {
-                            total1 += temp_list2[j].Baseinfo_SumCusMoneyAmount;
-                            billnum++;
-                            temp_list2.RemoveAt(j);
-                        }
                     }
                 }
                 BaseCustomerInfo adding = new BaseCustomerInfo();
@@ -397,7 +645,82 @@ private void LoadListCustomerInfo()
             {
                 _ListCustomerInfo[i].STT = i + 1;
             }
+            // Bill count 
+            
+            List<BaseCustomerInfo> temp_list1 = new List<BaseCustomerInfo>();
+            List<BaseCustomerInfo> temp_list2 = new List<BaseCustomerInfo>();
+            List<BaseCustomerInfo> temp_list3 = new List<BaseCustomerInfo>();
+
+            temp_list2 = temp_listCusInfo.ToList();
+            temp_list1 = temp_listCusInfo.ToList();
+            
+            for(int i = 0; i < temp_list1.Count(); i++)
+            {
+                int total1 = temp_list1[i].Baseinfo_SumCusMoneyAmount;
+                int billnum = 1;
+                for(int j = i; j < temp_list2.Count(); j++)
+                {
+                    if (i == j)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        if (temp_list1[i].Baseinfo_CusName == temp_list2[j].Baseinfo_CusName && temp_list1[i].Baseinfo_CusPhoneNum == temp_list2[j].Baseinfo_CusPhoneNum)
+                        {
+                            total1 += temp_list2[j].Baseinfo_SumCusMoneyAmount;
+                            billnum++;
+                            temp_list2.RemoveAt(j);
+                        }
+                    }
+                }
+                BaseCustomerInfo adding = new BaseCustomerInfo();
+                adding = temp_list1[i];
+                adding.Baseinfo_SumCusMoneyAmount = total1;
+                adding.Baseinfo_SumBillAmount = billnum;
+                temp_list3.Add(adding);
+            }
+            foreach(var item in temp_list2)
+            {
+                _ListCustomerInfo.Add(item);
+            }
+            
+            
+            
+            //Setting STT, member lv
+            foreach(var item in _ListCustomerInfo.ToList())
+            {
+                if (item.Baseinfo_SumCusMoneyAmount >= 1000000)
+                {
+                    item.Baseinfo_TypeCus = "Level 2";
+                }
+                if (item.Baseinfo_SumCusMoneyAmount >= 3000000)
+                {
+                    item.Baseinfo_TypeCus = "Level 3";
+                }
+                if (item.Baseinfo_SumCusMoneyAmount >= 5000000)
+                {
+                    item.Baseinfo_TypeCus = "VIP";
+                }
+            }
+            for(int i = 0;i < _ListCustomerInfo.ToList().Count(); i++)
+            {
+                _ListCustomerInfo[i].STT = i + 1;
+            }
         }
+
+        private void Update_ListCustomerInfo()
+        {
+            if(_ListCustomerInfo == null)
+            {
+                return;
+            }
+            foreach(var item in _ListCustomerInfo.ToList())
+            {
+                _ListCustomerInfo.Remove(item);
+            }
+        }
+
 
         private void f_Open_Bill_Report()
         {
@@ -485,9 +808,15 @@ private void LoadListCustomerInfo()
             buys.g_basebuying = new buyingInfo();
             buys.g_basegood = new good();
             buys.g_basebuying = order;
-            order.quantity = buys.g_basebuying.quantity--;
-            order.good.price = buys.g_basegood.price * buys.g_basebuying.quantity;
+            order.quantity--;
+            foreach (var item in Listgood)
+            {
+                if (item.id == order.idGood)
+                {
+                    order.orderprice = order.quantity * item.price;
+                }
 
+            }
 
             total = Calc();
         }
@@ -554,18 +883,24 @@ private void LoadListCustomerInfo()
         {
             Volleyball_Court_Bill Volleyball_Bill = new Volleyball_Court_Bill();
             Volleyball_Bill.ShowDialog();
+            Update_ListCustomerInfo();
+            LoadListCustomerInfo();
         }
 
         private void ShowWindowFuntion_BK()
         {
             Basketball_Field_Bill basketball_bill = new Basketball_Field_Bill();
             basketball_bill.ShowDialog();
+            Update_ListCustomerInfo();
+            LoadListCustomerInfo();
         }
 
-        public void _ShowWindowFuntion_FB()
+        public void ShowWindowFuntion_FB()
         {
             Football_Field_Bill football_bill = new Football_Field_Bill();
             football_bill.ShowDialog();
+            Update_ListCustomerInfo();
+            LoadListCustomerInfo();
         }
         public void ShowFootballFieldFunction()
         {

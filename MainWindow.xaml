@@ -8,21 +8,25 @@
          xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         
         xmlns:uc="clr-namespace:SportCenter.UserControlKteam"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" xmlns:DVC="clr-namespace:LiveCharts.Wpf.Charts.Base;assembly=LiveCharts.Wpf"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
      TextElement.FontWeight="Regular"
      TextElement.FontSize="13"
      TextOptions.TextFormattingMode="Ideal"
      TextOptions.TextRenderingMode="Auto"
-     Background="{DynamicResource MaterialDesignPaper}"
      FontFamily="{DynamicResource MaterialDesignFont}"
         ResizeMode="NoResize"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
-        
         Name="mainWindow"
         DataContext="{StaticResource MainVM}"
         Title="Phoenix Sport Center Management" Height="700" Width="1300">
+    <Window.Background>
+
+        <ImageBrush ImageSource="Image/bg.jpg"/>
+
+    </Window.Background>
+
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName=mainWindow}"/>
@@ -50,7 +54,7 @@
   Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
   BorderThickness="0"
   BorderBrush="Transparent"
-               Background="#FFF5EDF7"
+               Background="Transparent"
   TabStripPlacement="Left"
   materialDesign:ShadowAssist.ShadowDepth="Depth0"
   materialDesign:ColorZoneAssist.Mode="PrimaryMid"
@@ -103,7 +107,7 @@
                                     </Label.Background>
                                 </Label>
                                 <Label x:Name="label_income" Content="ALL INCOME IN VND" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="39" FontWeight="Bold" Margin="26,39,0,0" VerticalAlignment="Top" Width="346" FontSize="24" Foreground="#DDF9F9F9"/>
-                                <Label x:Name="income" Content="1,000,000 VND" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="31" Margin="28,105,0,0" VerticalAlignment="Top" Width="344" FontSize="18" Foreground="#DDF9F9F9" FontWeight="Bold" />
+                                <Label x:Name="income" Content="{Binding Alltimerevenue}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="31" Margin="28,105,0,0" VerticalAlignment="Top" Width="344" FontSize="22" Foreground="#DDF9F9F9" FontWeight="Bold" />
                             </Grid>
                             <Grid Grid.Column="1">
                                 <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth5"
@@ -118,12 +122,12 @@
 
                                 </materialDesign:Card>
                                 <Label x:Name="label_guesttext" Content="THIS MONTH" HorizontalAlignment="Left" Height="39" Margin="27,39,0,0" VerticalAlignment="Top" Width="347" FontSize="24" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="#DDF9F9F9"/>
-                                <Label x:Name="label_guest" Content="" HorizontalAlignment="Left" Height="64" VerticalAlignment="Top" Width="93" Margin="147,149,0,0">
+                                <Label x:Name="label_guest" Content="" HorizontalAlignment="Left" Height="64" VerticalAlignment="Top" Width="93" Margin="147,149,0,0" >
                                     <Label.Background>
                                         <ImageBrush ImageSource="image/tags.png" Stretch="Uniform"/>
                                     </Label.Background>
                                 </Label>
-                                <Label x:Name="guest" HorizontalContentAlignment="Center" Content="500,000 VND" HorizontalAlignment="Left" Height="33" Margin="29,104,0,0" VerticalAlignment="Top" Width="344" FontSize="18" Foreground="#DDF9F9F9" FontWeight="Bold"/>
+                                <Label x:Name="guest" HorizontalContentAlignment="Center" Content="{Binding ThisMonthRevenue}" HorizontalAlignment="Left" Height="33" Margin="29,104,0,0" VerticalAlignment="Top" Width="344" FontSize="22" Foreground="#DDF9F9F9" FontWeight="Bold"/>
                             </Grid>
                             <Grid Grid.Column="2">
                                 <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth5"
@@ -143,7 +147,7 @@
                                     </Label.Background>
                                 </Label>
                                 <Label x:Name="label_Copy4" Content="ALL INCOME IN $" HorizontalAlignment="Left" Height="39" Margin="30,39,0,0" VerticalAlignment="Top" Width="342" FontSize="24" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="#DDF9F9F9"/>
-                                <Label x:Name="usd" HorizontalContentAlignment="Center" Content="546 $" HorizontalAlignment="Left" Height="33" Margin="29,104,0,0" VerticalAlignment="Top" Width="344" FontSize="18" Foreground="#DDF9F9F9" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
+                                <Label x:Name="usd" HorizontalContentAlignment="Center" Content="{Binding AlltimerevenueUSD}" HorizontalAlignment="Left" Height="33" Margin="29,104,0,0" VerticalAlignment="Top" Width="344" FontSize="22" Foreground="#DDF9F9F9" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
                                     <Label.RenderTransform>
                                         <TransformGroup>
                                             <ScaleTransform/>
@@ -156,40 +160,36 @@
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="74*"/>
+                                <RowDefinition Height="133*"/>
+                            </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="350"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0" Margin="25">
+                            <Grid Grid.Column="0" Margin="25,25,25.4,24.6" Grid.RowSpan="2">
                                 <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" UniformCornerRadius="10"
             Padding="8"  Foreground="{x:Null}">
                                 </materialDesign:Card>
-                                <!--<Wpf:PieChart LegendLocation="Bottom" Hoverable="False" DataTooltip="{x:Null}" >
-                                    <Wpf:PieChart.Series>
-                                        <Wpf:PieSeries Title="Football" Values="50" DataLabels="True"
-                               LabelPoint="{Binding PointLabel}"/>
-                                        <Wpf:PieSeries Title="Volleyball" Values="35" DataLabels="True" 
-                               LabelPoint="{Binding PointLabel}"/>
-                                        <Wpf:PieSeries Title="Basketball" Values="15" DataLabels="True" 
-                               LabelPoint="{Binding PointLabel}"/>
-     
-                                    </Wpf:PieChart.Series>
+                                <Wpf:PieChart LegendLocation="Bottom" Series="{Binding SeriesCollection}" Hoverable="True" InnerRadius="10" DataTooltip="{x:Null}" >
 
-
-                                </Wpf:PieChart>-->
+                                </Wpf:PieChart>
+                                <Button Command="{Binding ReloadStatictics}" Content="RELOAD" Margin="100,0,100.4,331.6" Width="100"></Button>
                             </Grid>
-                            <Grid Grid.Column="1" Margin="25">
+                            <Grid Grid.Column="1" Margin="24.6,25,25,24.6" Grid.RowSpan="2">
                                 <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" UniformCornerRadius="10"
             Padding="8"  Foreground="{x:Null}">
                                 </materialDesign:Card>
-                                <!--<Wpf:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Right" >
-                                <Wpf:CartesianChart.AxisY>
-                                    <Wpf:Axis Title="Income" LabelFormatter="{Binding YFormatter}"/>
-                                </Wpf:CartesianChart.AxisY>
-                                <Wpf:CartesianChart.AxisX>
-                                    <Wpf:Axis Title="Month" Labels="{Binding Labels}"/>
-                                </Wpf:CartesianChart.AxisX>
-                            </Wpf:CartesianChart>-->
+                                <Wpf:CartesianChart Series="{Binding SeriesCollection1}" LegendLocation="Right" >
+                                    <Wpf:CartesianChart.AxisY>
+                                        <Wpf:Axis Title="Income" LabelFormatter="{Binding YFormatter}"/>
+                                    </Wpf:CartesianChart.AxisY>
+                                    <Wpf:CartesianChart.AxisX>
+                                        <Wpf:Axis Title="Month" Labels="{Binding Labels}"/>
+                                    </Wpf:CartesianChart.AxisX>
+                                </Wpf:CartesianChart>
+
                             </Grid>
                         </Grid>
                     </Grid>
@@ -409,7 +409,7 @@
                                                     <TextBlock FontWeight="DemiBold" FontSize="20" Text="Current Order" VerticalAlignment="Center" Margin="20 10 10 10"/>
                                                 </Grid>
                                                 <Grid Grid.Column="1">
-                                                   
+
                                                     <Button
   
   Width="100"
@@ -566,8 +566,8 @@
 
                                 </Grid>
                                 <Grid Grid.Row="3">
-                                    
-                                   
+
+
                                     <Button
                                         
                                            Grid.Column="0"
@@ -585,7 +585,7 @@
 
                                         </StackPanel>
                                     </Button>
-                                    
+
                                     <!--<Button 
                     x:Name="btnPay"
                     Grid.Column="0"
@@ -658,7 +658,7 @@
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0" Grid.Row="1">
                             <Button x:Name="FB_Billbtb" HorizontalAlignment="Center" Height="auto" VerticalAlignment="Center" Width="120"
-                                        Command="{Binding _ShowWindowCommand_FB}">
+                                        Command="{Binding ShowWindowCommand_FB}">
 
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -669,9 +669,9 @@
                                         <RowDefinition Height="auto"></RowDefinition>
                                         <RowDefinition></RowDefinition>
                                     </Grid.RowDefinitions>
-                                    <materialDesign:PackIcon Grid.Row="0" FontWeight="ExtraBold" Kind="Soccer" FontSize="200" Height="109" Width="81" Grid.ColumnSpan="2" Margin="0,0,-0.2,0" Grid.RowSpan="2"/>
+                                    <materialDesign:PackIcon Kind="Basketball" Height="87" Width="82" Margin="0,10,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2" />
                                     <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="13,105,13.8,3.4" Grid.RowSpan="2" Grid.ColumnSpan="2">
-                       Football
+                       Basketball
                                     </TextBlock>
                                 </Grid>
 
@@ -706,35 +706,35 @@
                                         <RowDefinition Height="auto"></RowDefinition>
                                         <RowDefinition></RowDefinition>
                                     </Grid.RowDefinitions>
-                                    <materialDesign:PackIcon Kind="Basketball" Height="87" Width="82" Margin="0,10,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2" />
-                                    <TextBlock   FontWeight="Bold" HorizontalAlignment="Center" Margin="15,96,14.708,-0.277" Grid.RowSpan="2" Grid.ColumnSpan="2" FontSize="10">
-                       Basketball
+                                    <materialDesign:PackIcon Grid.Row="0" FontWeight="ExtraBold" Kind="Soccer" FontSize="200" Height="109" Width="81" Grid.ColumnSpan="2" Margin="0,0,-0.2,0" Grid.RowSpan="2"/>
+                                    <TextBlock   FontWeight="Bold" HorizontalAlignment="Center" Margin="15,96,14.708,-0.277" Grid.RowSpan="2" Grid.ColumnSpan="2" FontSize="14">
+                       Football
                                     </TextBlock>
                                 </Grid>
                             </Button>
                         </Grid>
                         <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="3" Margin="0,20,20,20" >
-                            <Border Margin="20,60,20,20" Background="#E2E5DE" Grid.Column="0" Height="auto" Width="auto" CornerRadius="20">
+                            <Border Margin="20,60,20,20" BorderBrush="Black" Background="Snow" Grid.Column="0" Height="auto" Width="auto" CornerRadius="20">
                                 <Border.BitmapEffect>
-                                    <DropShadowBitmapEffect Opacity="0.6" Color="#FFFF0303" Softness="0.3"/>
+                                    <DropShadowBitmapEffect Opacity="0.6" Color="Black" ShadowDepth="10" Softness="0.3"/>
                                 </Border.BitmapEffect>
 
 
                                 <DataGrid AlternatingRowBackground="LightGray" IsReadOnly="True" HeadersVisibility="Column" BorderBrush="{x:Null}" Background="Transparent" ItemsSource="{Binding ListCustomerInfo}" AutoGenerateColumns="False" FontSize="16" Margin="0,0,0,0" >
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="  No" Binding="{Binding STT}"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Customer Name" Binding="{Binding Baseinfo_CusName}"/>
-                                    <DataGridTextColumn Header="Customer Phone" Binding="{Binding Baseinfo_CusPhoneNum}"/>
-                                    <DataGridTextColumn Header="Money Achive" Binding="{Binding Baseinfo_SumCusMoneyAmount}"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Bill Achive" Binding="{Binding Baseinfo_SumBillAmount}"/>
-                                    <DataGridTextColumn Header="Member type" Binding="{Binding Baseinfo_TypeCus}"/>
-                                    
-                                </DataGrid.Columns>
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="  No" Binding="{Binding STT}"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Customer Name" Binding="{Binding Baseinfo_CusName}"/>
+                                        <DataGridTextColumn Header="Customer Phone" Binding="{Binding Baseinfo_CusPhoneNum}"/>
+                                        <DataGridTextColumn Header="Money Achive" Binding="{Binding Baseinfo_SumCusMoneyAmount}"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Bill Achive" Binding="{Binding Baseinfo_SumBillAmount}"/>
+                                        <DataGridTextColumn Header="Member type" Binding="{Binding Baseinfo_TypeCus}"/>
 
-                            </DataGrid>
+                                    </DataGrid.Columns>
+
+                                </DataGrid>
                             </Border>
                         </Grid>
-                            
+
 
                         <TextBlock
             Text="PAYMENT" FontWeight="Bold" FontSize="25" Margin="0,0,0,-20"
@@ -857,7 +857,7 @@
                     <Grid>
 
 
-                        <Grid Background="#FFF5EDF7">
+                        <Grid Background="Transparent">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="6*"/>
                                 <ColumnDefinition Width="4*"/>
@@ -1314,7 +1314,8 @@
           HorizontalAlignment="Center" />
                         </StackPanel>
                     </TabItem.Header>
-                    <Grid HorizontalAlignment="Left" Margin="0,0,0,-0.4" Width="578">
+                    <!--Setting UI Start Here-->
+                    <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40*"></RowDefinition>
                             <RowDefinition Height="70*"/>
@@ -1322,114 +1323,173 @@
                             <RowDefinition Height="100*"/>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="1">
-                            <TextBlock
-                                        Text="SPORT CENTER MANGEMENT" 
+                            <!--<TextBlock
+                                        Text="SETTINGS" 
                                         FontWeight="Bold" 
                                         FontSize="25"
                                         FontFamily="Bungee Inline"
-                                        HorizontalAlignment="Center"></TextBlock>
+                                        HorizontalAlignment="Center"></TextBlock>-->
 
                         </Grid>
                         <Grid Grid.Row="2">
-                            <materialDesign:Card
-  Width="578">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition
-        Height="140" />
-                                        <RowDefinition
-        Height="150" />
-                                        <RowDefinition
-        Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Image
-      Source="Image/football.png"
-      Height="140"
-      Width="578"
-      Stretch="UniformToFill" />
-                                    <ToggleButton
-  Content="{materialDesign:PackIcon Kind=Heart, Size=21}"
-  Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
-                                        HorizontalAlignment="Right"
-                                        VerticalAlignment="Bottom"
-  ToolTip="MaterialDesignFlatPrimaryToggleButton"
-  IsChecked="True" />
-                                    <StackPanel
-      Grid.Row="1"
-      Margin="8 24 8 0">
-                                        <TextBlock
-        FontWeight="Bold">
-      Sport Center Management Application
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="400"></ColumnDefinition>
+                                <ColumnDefinition Width="400"></ColumnDefinition>
+                                <ColumnDefinition Width="400"></ColumnDefinition>
+
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" Margin="35">
+                                <Button HorizontalAlignment="Center" Height="170" VerticalAlignment="Center" Width="200"
+                                        Command="{Binding LogoutCommand}"
+                                                CommandParameter="{Binding ElementName=mainWindow}">
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="20"/>
+                                            <ColumnDefinition Width="65*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <materialDesign:PackIcon Kind="Logout" Height="138" Width="153"  Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="-20,-18,-45,-27.2" />
+                                        <TextBlock FontWeight="Bold" HorizontalAlignment="Center"  Grid.RowSpan="2" Grid.ColumnSpan="2" FontSize="24" Margin="-7,-36,-13,-0.2" Width="108">
+                       LOG OUT
                                         </TextBlock>
-                                        <TextBlock
-        TextWrapping="Wrap"
-        VerticalAlignment="Center"
-        ><Run Text="Developped in 2021, SCMA helps solving business problem for sport center around the world including making reservation, selling, making invoice, revenue statistics reviewing and to be update continously.                "/><Run Text="                                                                                                              "/><LineBreak/><Run Text="For more infomation please contact us :                                                                 thedanfbdev@gmail.com                                                                                                                                       "/></TextBlock>
-                                    </StackPanel>
-                                    <StackPanel
-      Grid.Row="2"
-      Orientation="Horizontal"
-      HorizontalAlignment="Center"                              
-      Margin="10">
+                                    </Grid>
 
+                                </Button>
+                            </Grid>
+                            <Grid Grid.Column="1" Margin="35">
+                                <materialDesign:Flipper
+  
+  VerticalAlignment="Center">
+                                    <materialDesign:Flipper.FrontContent>
+                                        <Button
+      Style="{StaticResource MaterialDesignFlatButton}"
+      Background="{DynamicResource PrimaryHueDarkBrush}"
+  Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+      Command="{x:Static materialDesign:Flipper.FlipCommand}"
+      Margin="8"
+      Width="192"
+      Content="CHANGE PASSWORD" />
+                                    </materialDesign:Flipper.FrontContent>
+                                    <materialDesign:Flipper.BackContent>
                                         <Grid
-  Width="150"
-                                            Margin="10">
-                                            <Button
-    Style="{StaticResource MaterialDesignRaisedButton}"
-    Height="30"
-    materialDesign:ButtonAssist.CornerRadius="10"
-    ToolTip="MaterialDesignRaisedButton with Round Corners"
-    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
-                                                <TextBlock
-      Text="CLEAR DATA" />
-                                            </Button>
+      Height="256"
+      Width="200">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition
+          Height="Auto" />
+                                                <RowDefinition
+          Height="*" />
+                                            </Grid.RowDefinitions>
+                                            <materialDesign:ColorZone
+        Mode="PrimaryDark"
+        Padding="6">
+                                                <StackPanel
+          Orientation="Horizontal">
+                                                    <Button
+            Style="{StaticResource MaterialDesignToolButton}"                                        
+            Command="{x:Static materialDesign:Flipper.FlipCommand}"
+            HorizontalAlignment="Left">
+                                                        <materialDesign:PackIcon
+              Kind="ArrowLeft"
+              HorizontalAlignment="Right" />
+                                                    </Button>
+                                                    <TextBlock
+            Margin="8 0 0 0"
+            VerticalAlignment="Center"
+            Text="CHANGE PASSWORD" />
+                                                </StackPanel>
+                                            </materialDesign:ColorZone>
+                                            <Grid
+                                                DataContext="{StaticResource LoginVM}"
+        Grid.Row="1"
+        Margin="0 6 0 0"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        Width="172">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition />
+                                                    <RowDefinition />
+                                                    <RowDefinition />
+                                                    <RowDefinition />
+                                                </Grid.RowDefinitions>
+                                                <TextBox
+          materialDesign:HintAssist.Hint="Enter current password"
+          materialDesign:HintAssist.IsFloating="True"
+          Margin="0 12 0 0"
+                                                    Text="{Binding CurrentPassword}"
+                                                    
+           />
+                                                <TextBox
+          Grid.Row="1"
+          materialDesign:HintAssist.Hint="Enter new password"
+          materialDesign:HintAssist.IsFloating="True"
+          Margin="0 12 0 0"
+                                                    Text="{Binding NewPassword}"
+           />
+                                                <TextBox
+                                                    Grid.Row="2"
+          materialDesign:HintAssist.Hint="Confirm new password"
+          materialDesign:HintAssist.IsFloating="True"
+          Margin="0 12 0 0"
+                                                    Text="{Binding ConfirmPassword}"
+           />
+                                                <Button
+                                                    Grid.Row="3"
+  Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+  ToolTip="MaterialDesignFlatDarkButton"
+  Content="CONFIRM"
+                                                    
+                                                    Command="{Binding ChangepasswordCommand}"
+                                                    Margin="0 12 0 0"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                                            </Grid>
                                         </Grid>
-                                        <Grid
-  Width="150"
-                                            Margin="10">
-                                            <Button
-    Style="{StaticResource MaterialDesignRaisedButton}"
-    Height="30"
-    materialDesign:ButtonAssist.CornerRadius="10"
-    ToolTip="MaterialDesignRaisedButton with Round Corners"
-    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
-                                                <TextBlock
-      Text="CHANGE PASSWORD" />
-                                            </Button>
-                                        </Grid>
-                                        <Grid
-  Width="150"
-                                            Margin="10">
-                                            <Button
-                                                Command="{Binding LogoutCommand}"
-                                                CommandParameter="{Binding ElementName=mainWindow}"
-    Style="{StaticResource MaterialDesignRaisedButton}"
-    Height="30"
-    materialDesign:ButtonAssist.CornerRadius="10"
-    ToolTip="MaterialDesignRaisedButton with Round Corners"
-    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
-                                                <TextBlock
-      Text="LOG OUT" />
-                                            </Button>
-                                        </Grid>
-                                    </StackPanel>
-                                </Grid>
-                            </materialDesign:Card>
+                                    </materialDesign:Flipper.BackContent>
+                                </materialDesign:Flipper>
+                            </Grid>
+                            <Grid Grid.Column="2" Margin="35">
+                                <materialDesign:Flipper>
+                                    <materialDesign:Flipper.FrontContent>
+                                        <Button HorizontalAlignment="Center" Height="auto" VerticalAlignment="Center" Width="120"
+                                        Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                                >
 
-                        </Grid>
-                        <Grid Grid.Row="3">
-                            <TextBlock
-                                        Text="SINCE 2021" 
-                                      
-                                
-                                        FontSize="15"
-                                VerticalAlignment="Center"
-                                        FontFamily="Bungee Inline"
-                                        HorizontalAlignment="Center"></TextBlock>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="16*"/>
+                                                    <ColumnDefinition Width="65*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="auto"></RowDefinition>
+                                                    <RowDefinition></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <materialDesign:PackIcon Kind="DeleteAlert" Height="87" Width="82"  Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="8,5,-2,0" />
+                                                <TextBlock FontWeight="Bold" HorizontalAlignment="Center"  Grid.RowSpan="2" Grid.ColumnSpan="2">
+                       CLEAR DATA
+                                                </TextBlock>
+                                            </Grid>
+
+                                        </Button>
+                                    </materialDesign:Flipper.FrontContent>
+                                    <materialDesign:Flipper.BackContent>
+                                        <Button
+      Style="{StaticResource MaterialDesignFlatButton}"
+      Command="{Binding DeleteAllBillCommand}"
+      Margin="8"
+      Width="184"
+      Content="CONFIRM DELETE" />
+                                    </materialDesign:Flipper.BackContent>
+                                </materialDesign:Flipper>
+                            </Grid>
+
                         </Grid>
                     </Grid>
                 </TabItem>
+
             </TabControl>
         </Grid>
     </Grid>
