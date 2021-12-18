@@ -612,7 +612,9 @@ namespace SportCenter.ViewModel
                         temp_listCusInfo.Add(temp_Cusinfo);
                     }
                 }
+                
             }
+
             // Bill count 
             
             List<BaseCustomerInfo> temp_list1 = new List<BaseCustomerInfo>();

@@ -14,4 +14,7 @@
     <viewmodel:BillReportViewModel x:Key="BillReportVM"></viewmodel:BillReportViewModel>
     <viewmodel:AddFieldViewModel x:Key="AddFieldVM"></viewmodel:AddFieldViewModel>
     <viewmodel:BookingViewModel x:Key="BookingVM"></viewmodel:BookingViewModel>
+    <viewmodel:ScBookingViewModel x:Key="ScBookingVM"></viewmodel:ScBookingViewModel>
+    <viewmodel:BkBookingViewModel x:Key="BkBookingVM"></viewmodel:BkBookingViewModel>
+    <viewmodel:VlBookingViewModel x:Key="VlBookingVM"></viewmodel:VlBookingViewModel>
 </ResourceDictionary>

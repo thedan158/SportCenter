@@ -11,7 +11,7 @@ namespace SportCenter.ViewModel
     class BillReportViewModel : BaseViewModel
     {
         protected ObservableCollection<bookingInfo> _bookingList; //Main 
-        public ObservableCollection<bookingInfo> bookinglist 
+        public ObservableCollection<bookingInfo> bookinglist
         {
             get => _bookingList;
             set
@@ -60,14 +60,14 @@ namespace SportCenter.ViewModel
             _bookingList = new ObservableCollection<bookingInfo>(DataProvider.Ins.DB.bookingInfoes);
             _billList = new ObservableCollection<bill>(DataProvider.Ins.DB.bills);
             _fieldList = new ObservableCollection<field>(DataProvider.Ins.DB.fields);
-            
+
             Load_DatagridView();
             Update_DatagridView();
         }
 
         private void Update_DatagridView()
         {
-            foreach(var item in _DatagridListView.ToList())
+            foreach (var item in _DatagridListView.ToList())
             {
                 _DatagridListView.Remove(item);
             }
@@ -75,13 +75,13 @@ namespace SportCenter.ViewModel
 
         private void Load_DatagridView()
         {
-            foreach(var item2 in _billList)   // take list booking out of DB
+            foreach (var item2 in _billList)   // take list booking out of DB
             {
                 BaseBill2 Adding = new BaseBill2();
                 foreach (var item in _bookingList)     // take bill 
                 {
-                    
-                    if(item.Status == "Pay")
+
+                    if (item.Status == "Pay")
                     {
                         if (item.id == item2.idBookingInfo)
                         {
@@ -89,9 +89,9 @@ namespace SportCenter.ViewModel
                             Adding.b_bookinginfo = item;
                         }
                     }
-                    foreach(var item3 in _fieldList)    // take field info
+                    foreach (var item3 in _fieldList)    // take field info
                     {
-                        if(item.idField == item3.id)
+                        if (item.idField == item3.id)
                         {
                             Adding.b_field = item3;
                         }

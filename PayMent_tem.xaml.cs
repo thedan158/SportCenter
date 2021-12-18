@@ -27,7 +27,7 @@ namespace SportCenter
         //global para for adding to DB
         int idbooking_DB_add;
         decimal totalmoney_DB_add;
-        public PayMent_tem(int id_booking, string CustomerName, string CustomerPhone , string Booking_date, string start_time, string end_time, decimal Field_price) 
+        public PayMent_tem(int id_booking, string CustomerName, string CustomerPhone, string Booking_date, string start_time, string end_time, decimal Field_price)
         {
             InitializeComponent();
             // Generate
@@ -40,7 +40,7 @@ namespace SportCenter
 ;           string _txtidbooking = id_booking.ToString();
             int _goodtotalvalue = 0;
             idbooking_DB_add = id_booking;
-            
+
             // Calculate goods total and bill total
             List<buyingInfo> _Listbuying = new List<buyingInfo>(DataProvider.Ins.DB.buyingInfoes);
             List<good> _Listgood = new List<good>(DataProvider.Ins.DB.goods);
@@ -54,7 +54,7 @@ namespace SportCenter
                     int _quantity = item.quantity.Value;
                     int _good_price = Decimal.ToInt32(item.good.price.Value);
                     _goodtotalvalue += (_quantity * _good_price);
-                    foreach(var item_goodInfoBuying in _Listgood)
+                    foreach (var item_goodInfoBuying in _Listgood)
                     {
                         if (item.good.id == item_goodInfoBuying.id)
                         {
@@ -68,10 +68,10 @@ namespace SportCenter
             }
             int _totalbillvalue = (Decimal.ToInt32(Field_price) + _goodtotalvalue);
             totalmoney_DB_add = _totalbillvalue;
-            foreach(var item in _Listgoodbooking)
+            foreach (var item in _Listgoodbooking)
             {
                 FormatDisplayGoodsBill temp = new FormatDisplayGoodsBill();
-                
+
                 temp.Name = item.Good_info_base.name;
                 temp.Price = Decimal.ToInt32(item.Good_info_base.price.Value);
                 temp.Quantity = item.List_Buying.quantity;
@@ -102,10 +102,10 @@ namespace SportCenter
             {
                 if (i % 2 == 0)
                 {
-                    
+
                 }
             }
-            
+
         }
         public event PropertyChangedEventHandler PropertyChanged;
         /// <summary>
@@ -140,7 +140,7 @@ namespace SportCenter
                     item.Status = "Pay";
                 }
             }
-            
+
             DataProvider.Ins.DB.bills.Add(adding_DB);
             await DataProvider.Ins.DB.SaveChangesAsync();
             this.Close();

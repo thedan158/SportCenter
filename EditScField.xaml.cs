@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SportCenter.UserControlKteam
+namespace SportCenter
 {
     /// <summary>
-    /// Interaction logic for FieldControl.xaml
+    /// Interaction logic for EditScField.xaml
     /// </summary>
-    public partial class FieldControl : UserControl
+    public partial class EditScField : Window
     {
-        public FieldControl()
+        public EditScField()
         {
             InitializeComponent();
         }

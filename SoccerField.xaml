@@ -14,7 +14,7 @@
      TextElement.FontSize="13"
      TextOptions.TextFormattingMode="Ideal"
      TextOptions.TextRenderingMode="Auto"
-     Background="{DynamicResource MaterialDesignPaper}"
+        Background="#222831"
      FontFamily="{DynamicResource MaterialDesignFont}"
         ResizeMode="NoResize"
         WindowStyle="None"
@@ -31,21 +31,20 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="70"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <uc:ControlBarUC Tag="{Binding Title, ElementName=ChooseSportWindow}" Height="32"  VerticalAlignment="Top"></uc:ControlBarUC>
         </Grid>
-        <TextBlock Grid.Row="1" FontFamily="Bungee Inline" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"  ><Run Text="Soccer"/></TextBlock>
+        <TextBlock Grid.Row="1" FontWeight="ExtraBold" Foreground="LightYellow" FontFamily="Bungee Inline" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"  ><Run Text="SOCCER"/></TextBlock>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Command="{Binding ShowAddCommand}" HorizontalAlignment="Center"  materialDesign:ButtonAssist.CornerRadius="5"  HorizontalContentAlignment="Stretch" VerticalAlignment="Center" Width="128">
+            <Button Grid.Column="0" Background="#00ADB5" Command="{Binding ShowAddCommand}" HorizontalAlignment="Center"  materialDesign:ButtonAssist.CornerRadius="5"  HorizontalContentAlignment="Stretch" VerticalAlignment="Center" Width="128">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -55,17 +54,7 @@
                     <TextBlock Grid.Column="1" Margin="5 0 0 0" Text="Add" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Grid>
             </Button>
-            <Button Grid.Column="1"  HorizontalAlignment="Center"  materialDesign:ButtonAssist.CornerRadius="5"  HorizontalContentAlignment="Stretch" VerticalAlignment="Center" Width="128">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="3*"/>
-                    </Grid.ColumnDefinitions>
-                    <materialDesign:PackIcon Grid.Column="0" Kind="Minus" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" Height="Auto"/>
-                    <TextBlock Grid.Column="1" Margin="5 0 0 0" Text="Delete" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Grid>
-            </Button>
-            <Button Grid.Column="2" Command="{Binding ShowEditFieldCommand}"  HorizontalAlignment="Center"  materialDesign:ButtonAssist.CornerRadius="5" HorizontalContentAlignment="Stretch" VerticalAlignment="Center" Width="128">
+            <Button Grid.Column="2" Background="#00ADB5" Command="{Binding ShowEditFieldCommand}"  HorizontalAlignment="Left"  materialDesign:ButtonAssist.CornerRadius="5" HorizontalContentAlignment="Stretch" VerticalAlignment="Center" Width="128">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="5*"/>
@@ -86,7 +75,7 @@
 
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <uc:FieldControl></uc:FieldControl>
+                            <uc:SoccerFieldControl></uc:SoccerFieldControl>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                     <ItemsControl.Template>
