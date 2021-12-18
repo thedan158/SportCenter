@@ -9,18 +9,22 @@
 
 namespace SportCenter.Model
 {
+    using SportCenter.ViewModel;
     using System;
     using System.Collections.Generic;
-    
-    public partial class buyingInfo
+
+    public partial class buyingInfo : BaseViewModel
     {
-        public int id { get; set; }
-        public Nullable<int> idGood { get; set; }
-        public Nullable<int> quantity { get; set; }
-        public int idBookingInfo { get; set; }
-        public Nullable<decimal> orderprice { get; set; }
-    
+        private int _id;
+        public int id { get => _id; set { _id = value; OnPropertyChanged(); } }
+        private Nullable<int> _idGood;
+        public Nullable<int> idGood { get => _idGood; set { _idGood = value; OnPropertyChanged(); } }
+        private Nullable<int> _quantity;
+        public Nullable<int> quantity { get => _quantity; set { _quantity = value; OnPropertyChanged(); } }
+        private int _idBookingInfo;
+        public int idBookingInfo { get => _idBookingInfo; set { _idBookingInfo = value; OnPropertyChanged(); } }
+        private Nullable<decimal> _orderprice;
+        public Nullable<decimal> orderprice { get => _orderprice; set { _orderprice = value; OnPropertyChanged(); } }
         public virtual bookingInfo bookingInfo { get; set; }
         public virtual good good { get; set; }
-    }
-}
+    }}

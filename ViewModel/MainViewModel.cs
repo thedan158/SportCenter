@@ -776,9 +776,15 @@ namespace SportCenter.ViewModel
             buys.g_basebuying = new buyingInfo();
             buys.g_basegood = new good();
             buys.g_basebuying = order;
-            order.quantity = buys.g_basebuying.quantity--;
-            order.good.price = buys.g_basegood.price * buys.g_basebuying.quantity;
+            order.quantity--;
+            foreach (var item in Listgood)
+            {
+                if (item.id == order.idGood)
+                {
+                    order.orderprice = order.quantity * item.price;
+                }
 
+            }
 
             total = Calc();
         }

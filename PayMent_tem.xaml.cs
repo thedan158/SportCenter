@@ -26,7 +26,7 @@ namespace SportCenter
     {
         //global para for adding to DB
         int idbooking_DB_add;
-        decimal? totalmoney_DB_add;
+        decimal totalmoney_DB_add;
         public PayMent_tem(int id_booking, string CustomerName, string CustomerPhone , string Booking_date, string start_time, string end_time, decimal Field_price) 
         {
             InitializeComponent();
@@ -36,7 +36,7 @@ namespace SportCenter
             string _txtbookingdate = Booking_date;
             string _txtstarttime = start_time;
             string _txtendtime = end_time;
-            string _txtfieldprice = (Decimal.ToInt32(Field_price)).ToString();
+            string _txtfieldprice = (decimal.ToInt32(Field_price)).ToString();
 ;           string _txtidbooking = id_booking.ToString();
             int _goodtotalvalue = 0;
             idbooking_DB_add = id_booking;
@@ -130,7 +130,7 @@ namespace SportCenter
             bill adding_DB = new bill();
             {
                 adding_DB.idBookingInfo = idbooking_DB_add;
-                adding_DB.totalmoney = (decimal)totalmoney_DB_add;
+                adding_DB.totalmoney = totalmoney_DB_add;
             }
             List<bookingInfo> Update_bookigStatus = new List<bookingInfo>(DataProvider.Ins.DB.bookingInfoes);
             foreach (var item in Update_bookigStatus)
