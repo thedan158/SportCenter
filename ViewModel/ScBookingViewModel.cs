@@ -53,10 +53,10 @@ namespace SportCenter.ViewModel
         }
         public ScBookingViewModel()
         {
-            _bookingInfo = new ObservableCollection<bookingInfo>(DataProvider.Ins.DB.bookingInfoes.Where( x => x.field.idType == 1));
+            _bookingInfo = new ObservableCollection<bookingInfo>(DataProvider.Ins.DB.bookingInfoes.Where(x => x.field.idType == 1));
             Update_Listbookingsoccer();
             Load_Listbookingsoccer();
-            EditCommand = new RelayCommand<object>((p) => 
+            EditCommand = new RelayCommand<object>((p) =>
             {
                 //if (string.IsNullOrEmpty(FieldName) || string.IsNullOrEmpty(FieldCondition))
                 //    return false;
@@ -91,12 +91,12 @@ namespace SportCenter.ViewModel
                 //var displayListname = DataProvider.Ins.DB.fields.Where(x => x.name == FieldName);
                 //if (displayListname == null || displayListname.Count() != 0)
                 //    return false;
-                           
-                
+
+
                 return true;
             }, (p) =>
             {
-                
+
                 var booking = DataProvider.Ins.DB.bookingInfoes.Where(x => x.id == SelectedItemBooking.id).SingleOrDefault();
                 var bookingstatus = DataProvider.Ins.DB.bookingInfoes;
                 foreach (var item in bookingstatus)
@@ -136,3 +136,6 @@ namespace SportCenter.ViewModel
         }
     }
 }
+
+
+

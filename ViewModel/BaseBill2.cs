@@ -16,6 +16,6 @@ namespace SportCenter.ViewModel
         public List<buyingInfo> b_ListBuying { get; set; }
         public bookingInfo b_bookinginfo { get; set; }
         public Decimal _TotalMoney { get; set; }
-        
+        public Decimal _GoodMoney { get; set; }
     }
 }

@@ -96,6 +96,11 @@ namespace SportCenter.ViewModel
                 return true;
             }, (p) =>
             {
+                if(SelectedItemBooking == null)
+                {
+                    MessageBox.Show("Cannot delete");
+                    return;
+                }
 
                 var booking = DataProvider.Ins.DB.bookingInfoes.Where(x => x.id == SelectedItemBooking.id).SingleOrDefault();
                 var bookingstatus = DataProvider.Ins.DB.bookingInfoes;

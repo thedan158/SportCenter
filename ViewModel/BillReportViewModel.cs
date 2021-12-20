@@ -11,7 +11,7 @@ namespace SportCenter.ViewModel
     class BillReportViewModel : BaseViewModel
     {
         protected ObservableCollection<bookingInfo> _bookingList; //Main 
-        public ObservableCollection<bookingInfo> bookinglist
+        protected ObservableCollection<bookingInfo> bookinglist
         {
             get => _bookingList;
             set
@@ -22,7 +22,7 @@ namespace SportCenter.ViewModel
         }
 
         private ObservableCollection<bill> _billList;  //sup
-        public ObservableCollection<bill> billList
+        protected ObservableCollection<bill> billList
         {
             get => _billList;
             set
@@ -33,7 +33,7 @@ namespace SportCenter.ViewModel
         }
 
         private ObservableCollection<field> _fieldList;
-        public ObservableCollection<field> fieldList
+        protected ObservableCollection<field> fieldList
         {
             get => _fieldList;
             set
@@ -60,16 +60,17 @@ namespace SportCenter.ViewModel
             _bookingList = new ObservableCollection<bookingInfo>(DataProvider.Ins.DB.bookingInfoes);
             _billList = new ObservableCollection<bill>(DataProvider.Ins.DB.bills);
             _fieldList = new ObservableCollection<field>(DataProvider.Ins.DB.fields);
-
-            Load_DatagridView();
+            _DatagridListView = new ObservableCollection<BaseBill2>();
             Update_DatagridView();
+            Load_DatagridView();
+            
         }
 
         private void Update_DatagridView()
         {
-            foreach (var item in _DatagridListView.ToList())
+            foreach (var item in DatagridListView.ToList())
             {
-                _DatagridListView.Remove(item);
+                DatagridListView.Remove(item);
             }
         }
 
@@ -78,9 +79,12 @@ namespace SportCenter.ViewModel
             foreach (var item2 in _billList)   // take list booking out of DB
             {
                 BaseBill2 Adding = new BaseBill2();
+                Adding._TotalMoney = item2.totalmoney;
                 foreach (var item in _bookingList)     // take bill 
                 {
-
+                    String.Format("{0:DD-MM-yyyy}", item.datePlay);
+                    String.Format("{0:hh:mm tt}", item.start_time);
+                    String.Format("{0:hh:mm tt}", item.end_time);
                     if (item.Status == "Pay")
                     {
                         if (item.id == item2.idBookingInfo)
@@ -97,7 +101,8 @@ namespace SportCenter.ViewModel
                         }
                     }
                 }
-                _DatagridListView.Add(Adding);
+                Adding._GoodMoney = Adding._TotalMoney - Adding.b_field.fieldtype.price.Value;
+                DatagridListView.Add(Adding);
 
             }
 

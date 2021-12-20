@@ -1,0 +1,301 @@
+﻿<UserControl x:Class="SportCenter.UserControlKteam.BillShortCut"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SportCenter.UserControlKteam" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             Height="300"
+             Width="250"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Border Background="#FFFF"
+            BorderThickness="1"
+            Margin="0,5,0,5"
+        CornerRadius="4">
+        <Border.Effect>
+            <DropShadowEffect Color="#FF007AFF" BlurRadius="30" ShadowDepth="1" Opacity="0.8" RenderingBias="Quality">
+                
+            </DropShadowEffect>
+        </Border.Effect>
+        <Grid Cursor="Hand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="170*"></RowDefinition>
+                <RowDefinition Height="80*"></RowDefinition>
+                <RowDefinition Height="50*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            
+            
+            <Border BorderBrush="Purple" Grid.Row="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock 
+                Text="BILL REPORT" 
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                FontWeight="Black"
+                HorizontalAlignment="Right" 
+                Margin="0,0,10,0"
+                TextWrapping="Wrap" 
+                VerticalAlignment="Top" 
+                FontSize="20" 
+                FontStretch="UltraExpanded" 
+                FontFamily="Segoe UI Black"
+                Foreground="Black"/>
+                    
+                    <Grid Margin="5,30,5,0" Grid.Column="0">
+                        <TextBlock 
+                HorizontalAlignment="Left"
+                Margin="5,0,0,0"
+                TextWrapping="Wrap"
+                Text="Customer info" 
+                FontWeight="Bold"
+                            FontSize="15"
+                Foreground="Black"/>
+                        <TextBlock 
+                x:Name="txbCustomerName"
+                TextWrapping="Wrap"
+                FontWeight="Bold" 
+                            Margin="0,20,0,0"
+                            Text="{Binding b_bookinginfo.Customer_name}"
+                FontSize="10" 
+                Foreground="#FFA659EB"/>
+                        <TextBlock 
+                x:Name="txbCustomerPhoneNumber"
+                TextWrapping="Wrap" 
+                FontWeight="SemiBold" 
+                            Text="{Binding b_bookinginfo.Customer_PhoneNum}"
+                            
+                Margin="0,50,0,0"
+                FontSize="11" 
+                Foreground="#FFA659EB"/>
+                    </Grid>
+                    
+                    <StackPanel Margin="5,30,5,0" Grid.Column="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Height="100" Grid.Column="0">
+
+                                <TextBlock
+                        Margin="0,0,5,0" 
+                        TextWrapping="Wrap" 
+                        Text="Date: " 
+                        
+                        Foreground="Black"
+                        FontWeight="SemiBold"
+                        
+                        FontSize="10"/>
+                                <TextBlock
+                        
+                        TextWrapping="Wrap" 
+                        Text="Check-in:" 
+                                    Margin="0,20,5,0"
+                        
+                        Foreground="Black"
+                        FontWeight="SemiBold" 
+                        FontSize="10"/>
+                                <TextBlock
+                        Margin="0,40,5,0" 
+                        TextWrapping="Wrap" 
+                        Text="Check-out:" 
+                         
+                        Foreground="Black" 
+                        FontWeight="SemiBold" 
+                        FontSize="10"/>
+                            </Grid>
+                            <Grid Height="100" Grid.Column="1">
+                                <TextBlock
+                                x:Name="txbDateBooking"
+                                
+                                    TextWrapping="Wrap" 
+                        Margin="0,0,0,0"
+                                    Text="{Binding b_bookinginfo.datePlay, StringFormat={}{0:MM-dd-yyyy}}"
+                                    HorizontalAlignment="Left"
+                        FontWeight="SemiBold" 
+                        Foreground="Black"
+                        TextAlignment="Right" 
+                        FontSize="10"/>
+                                <TextBlock
+                        x:Name="txbCheckInTime"
+                        Margin="0,20,0,0" 
+                        TextWrapping="Wrap" 
+                                    Text="{Binding b_bookinginfo.start_time, StringFormat={}{0:HH:mm}}"
+                                    HorizontalAlignment="Left"
+                                    FontWeight="SemiBold" 
+                        Foreground="Black" 
+                        TextAlignment="Right"
+                        FontSize="10"/>
+                                <TextBlock
+                        x:Name="txbCheckOutTime"
+                        Margin="0,40,0,0" 
+                        TextWrapping="Wrap"  
+                                    Text="{Binding b_bookinginfo.end_time, StringFormat={}{0:HH:mm}}"
+                                    HorizontalAlignment="Left"
+                        FontWeight="SemiBold" 
+                        Foreground="Black"
+                        TextAlignment="Right"
+                        FontSize="10"/>
+                                
+                            </Grid>
+                        </Grid>
+                        
+                    </StackPanel>
+                </Grid>
+                
+            </Border>
+            <Grid Grid.Row="0"
+                  HorizontalAlignment="Left"
+                  Margin="10,0,10,5"
+                  VerticalAlignment="Bottom"
+                  Height="120">
+                
+
+                <Grid Grid.ColumnSpan="2" Grid.Column="0" Height="auto" Margin="0,60,0,0">
+                    <TextBlock 
+                        
+                        Grid.Column="1"
+                        HorizontalAlignment="Left" 
+                        Margin="0,5,0,0"
+                        TextWrapping="Wrap"
+                        Text="Field name booked" 
+                        FontSize="13" 
+                        FontWeight="Bold" 
+                        FontFamily="Microsoft PhagsPa"
+                        Foreground="Black"/>
+                    <TextBlock 
+                        x:Name="txbFieldName"
+                        Grid.Column="1"
+                        Height="30"
+                        HorizontalAlignment="Left" 
+                        Margin="-5,20,0,0"
+                        TextWrapping="Wrap"
+                        Text="{Binding b_field.name}" 
+                        FontSize="10" 
+                        FontWeight="Bold" 
+                        FontFamily="Microsoft PhagsPa"
+                        Foreground="#FFA659EB"/>
+                   
+                </Grid>
+                
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid 
+                HorizontalAlignment="Right"
+                Margin="0,5,0,0" 
+                VerticalAlignment="Top"
+                Width="235">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    
+                    <StackPanel 
+                    Grid.Column="0" 
+                    Width="100"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top" >
+                        <TextBlock 
+                        Width="auto"
+                        HorizontalAlignment="Left"
+                        Margin="0" 
+                        TextWrapping="Wrap" 
+                        Text="Good total" 
+                        VerticalAlignment="Top"
+                        FontSize="14" 
+                        FontWeight="SemiBold" 
+                        Foreground="Black" 
+                        TextAlignment="Right"/>
+                        <TextBlock 
+                        HorizontalAlignment="Left"
+                        Margin="0" 
+                        TextWrapping="Wrap" 
+                        Text="Field price" 
+                        VerticalAlignment="Top"
+                        FontSize="14" 
+                        FontWeight="SemiBold" 
+                        Foreground="Black" 
+                        TextAlignment="Right"/>
+                        
+                    </StackPanel>
+                    <StackPanel 
+                    Grid.Column="1" 
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top" >
+                        <TextBlock 
+                        x:Name="txbgoodspricetotal"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,10,0" 
+                        Text="{Binding _GoodMoney, StringFormat={}{0:.}}"
+                        TextWrapping="Wrap" 
+                        VerticalAlignment="Top"
+                        FontSize="14" 
+                        FontWeight="SemiBold" 
+                        Foreground="Black" 
+                        TextAlignment="Right"/>
+                        <TextBlock 
+                        x:Name="txbfieldprice"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,10,0" 
+                        Text="{Binding b_field.fieldtype.price, StringFormat={}{0:.}}"
+                        TextWrapping="Wrap" 
+                        VerticalAlignment="Top"
+                        FontSize="14" 
+                        FontWeight="SemiBold" 
+                        Foreground="Black" 
+                        TextAlignment="Right"/>
+                    </StackPanel>
+                </Grid>
+                <StackPanel VerticalAlignment="Bottom" Margin="5,0,5,5" Height="20" >
+                    <TextBlock 
+                        Width="auto"
+                        HorizontalAlignment="Left"
+                        Margin="50,0,0,0" 
+                        TextWrapping="Wrap" 
+                        Text="Total Bill" 
+                        VerticalAlignment="Top"
+                        FontSize="14" 
+                        FontWeight="SemiBold" 
+                        Foreground="#FF4712A9" 
+                        TextAlignment="Right" FontFamily="Ubuntu Mono"/>
+                    <TextBlock 
+                        Width="auto"
+                        HorizontalAlignment="Right"
+                        Margin="0,-14,10,0" 
+                        TextWrapping="Wrap" 
+                        Text="{Binding  _TotalMoney, StringFormat={}{0:.}}" 
+                        VerticalAlignment="Top"
+                        FontSize="14" 
+                        FontWeight="SemiBold" 
+                        Foreground="Red" 
+                        TextAlignment="Right" FontFamily="Ubuntu Mono"/>
+                </StackPanel>
+            </Grid>
+
+            <Border BorderBrush="Purple" Grid.Row="2">
+                <Grid>
+                <Button
+                    Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                    ToolTip="MaterialDesignFloatingActionLightButton"
+                    Height="auto"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    HorizontalAlignment="Right"
+                    Margin="0,0,10,0"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                    <materialDesign:PackIcon Background="Transparent" BorderThickness="0"  Kind="InformationOutline" FontSize="14" />
+                </Button>
+            </Grid>
+            </Border>
+        </Grid>
+        
+    </Border>
+</UserControl>

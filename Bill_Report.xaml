@@ -17,7 +17,7 @@
         WindowStyle="None"
         x:Name="Bill_report"
         DataContext="{StaticResource BillReportVM}"
-        Title="Bill_Report" Height="700" Width="800">
+        Title="Bill_Report" Height="800" Width="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -35,20 +35,19 @@
         </Grid>
         
         <Grid Grid.Row="2">
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden">
-                    <ItemsControl ItemsSource="{Binding DatagridListView}" Margin="10,10,10,10" Width="250" Height="350" Background="Snow">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <UniformGrid Columns="2"></UniformGrid>
-                            </ItemsPanelTemplate>
-                            
-                        </ItemsControl.ItemsPanel>
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <ItemsControl x:Name="IcUCbillreport" ItemsSource="{Binding DatagridListView}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            
+                            <uc:BillShortCut></uc:BillShortCut>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
+                    
+                    
+                    
                 </ItemsControl>
+                
+                
             </ScrollViewer>
             
             

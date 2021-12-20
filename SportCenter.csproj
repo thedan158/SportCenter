@@ -164,9 +164,9 @@
       <DependentUpon>Model1.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Model1.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Model1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -181,6 +181,9 @@
     </Compile>
     <Compile Include="UserControlKteam\BasketballFieldControl.xaml.cs">
       <DependentUpon>BasketballFieldControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlKteam\BillShortCut.xaml.cs">
+      <DependentUpon>BillShortCut.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControlKteam\Expander_Bill.xaml.cs">
       <DependentUpon>Expander_Bill.xaml</DependentUpon>
@@ -324,6 +327,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControlKteam\BillShortCut.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControlKteam\Expander_Bill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -448,8 +455,8 @@
     </Content>
     <Content Include="Model\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

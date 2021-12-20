@@ -1339,6 +1339,15 @@
 
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0" Margin="35">
+                                <Button
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Bottom"
+  Style="{StaticResource MaterialDesignRaisedButton}"
+  Width="150"
+  ToolTip="Resource name: MaterialDesignRaisedButton"
+  Content="Bill Report"
+                                    Command="{Binding OpenBillReportWindow}"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
                                 <Button HorizontalAlignment="Center" Height="170" VerticalAlignment="Center" Width="200"
                                         Command="{Binding LogoutCommand}"
                                                 CommandParameter="{Binding ElementName=mainWindow}">

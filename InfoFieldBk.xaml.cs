@@ -26,6 +26,7 @@ namespace SportCenter
         public InfoFieldBk(int id_field)
         {
             InitializeComponent();
+            dp.SelectedDate = DateTime.Today;
             var temp_fieldlist = DataProvider.Ins.DB.fields;
             foreach (var item in temp_fieldlist)
             {

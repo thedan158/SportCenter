@@ -26,6 +26,7 @@ namespace SportCenter
         public InfoFieldSc(int id_field)
         {
             InitializeComponent();
+            dp.SelectedDate = DateTime.Today;
             var temp_fieldlist = DataProvider.Ins.DB.fields;
             foreach (var item in temp_fieldlist)
             {
@@ -98,7 +99,7 @@ namespace SportCenter
             if (dp.SelectedDate < now)
             {
                 MessageBox.Show("Please select another date!!!");
-                dp.SelectedDate = null;
+                return;
             }
             //Adding item to list booking in Database
             adding_element.idField = _idFieldadding;

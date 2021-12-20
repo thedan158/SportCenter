@@ -71,6 +71,8 @@ namespace SportCenter.ViewModel
                 field.name = FieldName;
                 field.condition = FieldCondition;
                 DataProvider.Ins.DB.SaveChanges();
+                FieldName = null;
+                FieldCondition = null;
                 Update_ListfieldBasketball();
                 Load_ListfieldBasketball();
                 Update_ListeditBasketball();
