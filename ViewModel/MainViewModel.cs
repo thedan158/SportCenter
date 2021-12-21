@@ -359,8 +359,9 @@ namespace SportCenter.ViewModel
             foreach (var itemBill in _Listbills)
             {
                 DataProvider.Ins.DB.bills.Remove(itemBill);
-                DataProvider.Ins.DB.SaveChangesAsync();              
+                         
             }
+            DataProvider.Ins.DB.SaveChangesAsync();
             MessageBox.Show("Cleared all data!");
         }
 
