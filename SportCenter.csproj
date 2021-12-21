@@ -88,17 +88,11 @@
     <Compile Include="Add_Field.xaml.cs">
       <DependentUpon>Add_Field.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Add_Good.xaml.cs">
-      <DependentUpon>Add_Good.xaml</DependentUpon>
-    </Compile>
     <Compile Include="BasketballField.xaml.cs">
       <DependentUpon>BasketballField.xaml</DependentUpon>
     </Compile>
     <Compile Include="Bill_Report.xaml.cs">
       <DependentUpon>Bill_Report.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="DeleteField.xaml.cs">
-      <DependentUpon>DeleteField.xaml</DependentUpon>
     </Compile>
     <Compile Include="EditBkField.xaml.cs">
       <DependentUpon>EditBkField.xaml</DependentUpon>
@@ -121,15 +115,6 @@
     <Compile Include="Football_Field_Bill.xaml.cs">
       <DependentUpon>Football_Field_Bill.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Bill.xaml.cs">
-      <DependentUpon>Bill.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Booking.xaml.cs">
-      <DependentUpon>Booking.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ChooseSport.xaml.cs">
-      <DependentUpon>ChooseSport.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Basketball_Field_Bill.xaml.cs">
       <DependentUpon>Basketball_Field_Bill.xaml</DependentUpon>
     </Compile>
@@ -141,9 +126,6 @@
     </Compile>
     <Compile Include="InfoFieldVl.xaml.cs">
       <DependentUpon>InfoFieldVl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="List_Good.xaml.cs">
-      <DependentUpon>List_Good.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\account.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -240,9 +222,6 @@
     <Compile Include="Volleyball_Court_Bill.xaml.cs">
       <DependentUpon>Volleyball_Court_Bill.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Good.xaml.cs">
-      <DependentUpon>Good.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControlKteam\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
     </Compile>
@@ -252,19 +231,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Add_Good.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="BasketballField.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Bill_Report.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="DeleteField.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -296,18 +267,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Bill.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Booking.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ChooseSport.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Basketball_Field_Bill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -321,10 +280,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="InfoFieldVl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="List_Good.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -369,10 +324,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Volleyball_Court_Bill.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Good.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -454,19 +405,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image\football.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="a5ff21dc78b136b321e4e7a6e0f161aa.jpg_684x684q90.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Image\money.png" />
     <Resource Include="Image\tags.png" />
     <Resource Include="Image\dollar.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Image\bg.jpg" />
-    <Resource Include="Image\bg1.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Model\Model1.Context.tt">

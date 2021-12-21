@@ -161,14 +161,6 @@ namespace SportCenter.ViewModel
 
         }
 
-
-        private void Show_Booking()
-        {
-            Booking b = new Booking();
-            
-            b.Show();
-        }
-
         private void Load_Field()
 
         {

@@ -53,7 +53,7 @@ namespace SportCenter
         private void Button_Add(object sender, RoutedEventArgs e)
         {
 
-            if (dp.SelectedDate == null || startT_picker.SelectedTime == null || endT_picker.SelectedTime == null || txbCusName == null || txbCusPhone == null)
+            if (dp.SelectedDate == null || startT_picker.SelectedTime == null || endT_picker.SelectedTime == null || txbCusName.Text == "" || txbCusPhone.Text == "")
             {
                 MessageBox.Show("Please insert all value!!!");
                 return;
