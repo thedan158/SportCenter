@@ -25,8 +25,11 @@ namespace SportCenter
         int _idFieldadding;
         public InfoFieldVl(int id_field)
         {
+
             InitializeComponent();
+            txbIdfield.Text = id_field.ToString();
             dp.SelectedDate = DateTime.Today;
+
             var temp_fieldlist = DataProvider.Ins.DB.fields;
             foreach (var item in temp_fieldlist)
             {
@@ -35,22 +38,15 @@ namespace SportCenter
                     TitleTxt.Text = item.name.ToString();
                 }
             }
-            List<field> List_volleyballField = new List<field>();
+            List<field> List_VolleyballField = new List<field>();
             foreach (var item in temp_fieldlist)
             {
                 if (item.fieldtype.id == 2)
                 {
-                    List_volleyballField.Add(item);
+                    List_VolleyballField.Add(item);
                 }
             }
             _idFieldadding = id_field;
-
-            // Display list booking with confirm idField
-
-            ObservableCollection<bookingInfo> ListBookinginfo = new ObservableCollection<bookingInfo>();
-            var temp_booking_list = DataProvider.Ins.DB.bookingInfoes;
-
-
 
         }
 
@@ -63,8 +59,11 @@ namespace SportCenter
                 return;
             }
             DateTime selectedDate = dp.SelectedDate.Value;
+            String.Format("{0:MM-dd-yyyy}", selectedDate);
             DateTime selectedStarttime = startT_picker.SelectedTime.Value;
+            String.Format("{0:h:mm:ss}", selectedStarttime);
             DateTime selectedEndtime = endT_picker.SelectedTime.Value;
+            String.Format("{0:h:mm:ss}", selectedEndtime);
             string Cusname = txbCusName.Text;
             string Cusphone = txbCusPhone.Text;
             string m_seletDate = dp.SelectedDate.Value.ToString("dddd, dd MMMM yyyy");
@@ -73,20 +72,20 @@ namespace SportCenter
 
 
             var temp_listBooking = DataProvider.Ins.DB.bookingInfoes;
-            List<bookingInfo> temp_listvolleyballlistbooking = new List<bookingInfo>();
+            List<bookingInfo> temp_listVolleyballlistbooking = new List<bookingInfo>();
             bookingInfo adding_element = new bookingInfo();     //parameter to adding to DB
 
-            //Adding list volleyball booking.
+            //Adding list Volleyball booking.
             foreach (var item in temp_listBooking)
             {
-                if (item.field.idType == 1)
+                if (item.field.idType == 2)
                 {
-                    temp_listvolleyballlistbooking.Add(item);
+                    temp_listVolleyballlistbooking.Add(item);
                 }
             }
 
             //Checking condition for adding stament.
-            foreach (var item in temp_listvolleyballlistbooking)
+            foreach (var item in temp_listVolleyballlistbooking)
             {
                 if (item.Status == "unpay" && item.datePlay == selectedDate && item.start_time == selectedStarttime && item.end_time == selectedEndtime)
                 {
@@ -95,11 +94,15 @@ namespace SportCenter
                 }
 
             }
-            DateTime now = DateTime.Now;
-            if (dp.SelectedDate < now)
+            if (dp.SelectedDate < DateTime.Today)
             {
-                MessageBox.Show("Please select another date!!!");
-                dp.SelectedDate = null;
+                MessageBox.Show("Cannot choose a time before now!!");
+                return;
+            }
+            if (selectedStarttime > selectedEndtime)
+            {
+                MessageBox.Show("Start time must be early than endtime!!");
+                return;
             }
             //Adding item to list booking in Database
             adding_element.idField = _idFieldadding;
@@ -109,19 +112,35 @@ namespace SportCenter
             adding_element.Status = "unpay";
             adding_element.Customer_name = Cusname;
             adding_element.Customer_PhoneNum = int.Parse(Cusphone);
-
+            adding_element.end_time = adding_element.end_time.AddYears(-(adding_element.end_time.Year - 1));
+            adding_element.end_time = adding_element.end_time.AddMonths(-(adding_element.end_time.Month - 1));
+            adding_element.end_time = adding_element.end_time.AddDays(-(adding_element.end_time.Day - 1));
+            adding_element.start_time = adding_element.start_time.AddYears(-(adding_element.start_time.Year - 1));
+            adding_element.start_time = adding_element.start_time.AddMonths(-(adding_element.start_time.Month - 1));
+            adding_element.start_time = adding_element.start_time.AddDays(-(adding_element.start_time.Day - 1));
+            adding_element.end_time = adding_element.end_time.AddYears(adding_element.datePlay.Year - 1);
+            adding_element.end_time = adding_element.end_time.AddMonths(adding_element.datePlay.Month - 1);
+            adding_element.end_time = adding_element.end_time.AddDays(adding_element.datePlay.Day - 1);
+            adding_element.start_time = adding_element.start_time.AddYears(adding_element.datePlay.Year - 1);
+            adding_element.start_time = adding_element.start_time.AddMonths(adding_element.datePlay.Month - 1);
+            adding_element.start_time = adding_element.start_time.AddDays(adding_element.datePlay.Day - 1);
+            if (adding_element.start_time < DateTime.Now)
+            {
+                MessageBox.Show("Cannot choose a time before now!!");
+                return;
+            }
             DataProvider.Ins.DB.bookingInfoes.Add(adding_element);
             DataProvider.Ins.DB.SaveChanges();
             string message = "Booking success \nBooking infomation: " + Cusname + " " + Cusphone + "\n" + "Timezone: " + m_seletStarttime + " " + m_seletEndtime;
             MessageBox.Show(message);
-            dp.SelectedDate = null;
+            dp.SelectedDate = DateTime.Today;
             txbCusName.Text = null;
             txbCusPhone.Text = null;
-            startT_picker.SelectedTime = null;
-            endT_picker.SelectedTime = null;
+            startT_picker.SelectedTime = DateTime.Now;
+            endT_picker.SelectedTime = DateTime.Now;
             var VlBookingVM = this.DataContext;
-            (this.DataContext as VlBookingViewModel).Update_ListbookingVolleyball();
-            (this.DataContext as VlBookingViewModel).Load_ListbookingVolleyball();
+            (this.DataContext as VolleyballFieldViewModel).Update_ListbookingVolleyball();
+            (this.DataContext as VolleyballFieldViewModel).Load_ListbookingVolleyball();
 
 
         }

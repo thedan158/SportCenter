@@ -109,6 +109,15 @@
     <Compile Include="EditVlField.xaml.cs">
       <DependentUpon>EditVlField.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FastBookingBk.xaml.cs">
+      <DependentUpon>FastBookingBk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FastBookingSc.xaml.cs">
+      <DependentUpon>FastBookingSc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FastBookingVl.xaml.cs">
+      <DependentUpon>FastBookingVl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Football_Field_Bill.xaml.cs">
       <DependentUpon>Football_Field_Bill.xaml</DependentUpon>
     </Compile>
@@ -202,15 +211,16 @@
     <Compile Include="ViewModel\BillViewModel_BasketBall.cs" />
     <Compile Include="ViewModel\BillViewModel_Football2.cs" />
     <Compile Include="ViewModel\BillViewModel_VolleyBall.cs" />
-    <Compile Include="ViewModel\BkBookingViewModel.cs" />
     <Compile Include="ViewModel\BookingViewModel.cs" />
     <Compile Include="ViewModel\Converter.cs" />
+    <Compile Include="ViewModel\FastBookingBasketballViewModel.cs" />
+    <Compile Include="ViewModel\FastBookingSoccerViewModel.cs" />
+    <Compile Include="ViewModel\FastBookingVolleyballViewModel.cs" />
     <Compile Include="ViewModel\FormatDisplayGoodsBill.cs" />
     <Compile Include="ViewModel\BaseFieldBasketball.cs" />
     <Compile Include="ViewModel\BaseFieldSoccer.cs" />
     <Compile Include="ViewModel\BaseFieldVolleyball.cs" />
     <Compile Include="ViewModel\BasketballFieldViewModel.cs" />
-    <Compile Include="ViewModel\ScBookingViewModel.cs" />
     <Compile Include="ViewModel\SoccerFieldViewModel.cs" />
     <Compile Include="PayMent_tem.xaml.cs">
       <DependentUpon>PayMent_tem.xaml</DependentUpon>
@@ -223,7 +233,6 @@
     <Compile Include="ViewModel\BillViewModel.cs" />
     <Compile Include="ViewModel\ListBillViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
-    <Compile Include="ViewModel\VlBookingViewModel.cs" />
     <Compile Include="ViewModel\VolleyballFieldViewModel.cs" />
     <Compile Include="VolleyballField.xaml.cs">
       <DependentUpon>VolleyballField.xaml</DependentUpon>
@@ -268,6 +277,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditVlField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FastBookingBk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FastBookingSc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FastBookingVl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

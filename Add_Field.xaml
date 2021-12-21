@@ -31,10 +31,10 @@
             <Grid Grid.Row="0">
                 <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}" Grid.ColumnSpan="2"></uc:ControlBarUC>
             </Grid>
-            <TextBlock Grid.Row="1"
+            <TextBlock Grid.Row="1" VerticalAlignment="Center"
             x:Name="txbSetField" 
             TextWrapping="Wrap" 
-            Text="Thêm sân" 
+            Text="Add field" 
             FontSize="40"
             HorizontalAlignment="Center" 
             FontWeight="Bold" Width="231"/>

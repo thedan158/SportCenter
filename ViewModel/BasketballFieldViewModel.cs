@@ -13,6 +13,10 @@ namespace SportCenter.ViewModel
 
     public class BasketballFieldViewModel : BaseViewModel
     {
+        public ICommand FastBookingCommand { get; set; }
+        public ICommand AddBookingCommand { get; set; }
+        public ICommand EditBookingCommand { get; set; }
+        public ICommand DeleteBookingCommand { get; set; }
         public ICommand ShowAddCommand { get; set; }
         public ICommand ShowDeleteCommand { get; set; }
         public ICommand ShowBookingCommand { get; set; }
@@ -25,12 +29,14 @@ namespace SportCenter.ViewModel
         public int idField { get => _idField; set { _idField = value; OnPropertyChanged(); } }
         private ObservableCollection<ListFieldBasketball> _ListField;
         public ObservableCollection<ListFieldBasketball> ListField { get => _ListField; set { _ListField = value; OnPropertyChanged(); } }
-        private ObservableCollection<ListFieldBasketball> List_field_bk;
-        public ObservableCollection<ListFieldBasketball> _List_field_bk { get => List_field_bk; set { List_field_bk = value; OnPropertyChanged(); } }
-        private ObservableCollection<field> List_bk;
-        public ObservableCollection<field> _List_bk { get => List_bk; set { List_bk = value; OnPropertyChanged(); } }
+        private ObservableCollection<ListFieldBasketball> List_field_Bk;
+        public ObservableCollection<ListFieldBasketball> _List_field_Bk { get => List_field_Bk; set { List_field_Bk = value; OnPropertyChanged(); } }
+        private ObservableCollection<field> List_Bk;
+        public ObservableCollection<field> _List_Bk { get => List_Bk; set { List_Bk = value; OnPropertyChanged(); } }
         private ObservableCollection<field> _List;
         public ObservableCollection<field> List { get => _List; set { _List = value; OnPropertyChanged(); } }
+        private IEnumerable<bookingInfo> _Listbooking;
+        public IEnumerable<bookingInfo> Listbooking { get => _Listbooking; set { _Listbooking = value; OnPropertyChanged(); } }
         private field _SelectedItem;
 
         public field SelectedItem
@@ -47,16 +53,62 @@ namespace SportCenter.ViewModel
             }
         }
 
+
+        private string _addcustomername;
+        public string addcustomername { get => _addcustomername; set { _addcustomername = value; OnPropertyChanged(); } }
+        private int? _addcustomerphone;
+        public int? addcustomerphone { get => _addcustomerphone; set { _addcustomerphone = value; OnPropertyChanged(); } }
+        private DateTime _addstarttime;
+        public DateTime addstarttime { get => _addstarttime; set { _addstarttime = value; OnPropertyChanged(); } }
+        private DateTime _addendtime;
+        public DateTime addendtime { get => _addendtime; set { _addendtime = value; OnPropertyChanged(); } }
+        private DateTime _adddateplay;
+        public DateTime adddateplay { get => _adddateplay; set { _adddateplay = value; OnPropertyChanged(); } }
+        private string _addstatus;
+        public string addstatus { get => _addstatus; set { _addstatus = value; OnPropertyChanged(); } }
+
+        private bookingInfo _SelectedItemBooking;
+        public bookingInfo SelectedItemBooking
+        {
+            get => _SelectedItemBooking;
+            set
+            {
+                _SelectedItemBooking = value;
+                OnPropertyChanged();
+                if (_SelectedItemBooking != null)
+                {
+                    addcustomername = _SelectedItemBooking.Customer_name;
+                    addcustomerphone = _SelectedItemBooking.Customer_PhoneNum;
+                    addstatus = _SelectedItemBooking.Status;
+                    addstarttime = _SelectedItemBooking.start_time;
+                    addendtime = _SelectedItemBooking.end_time;
+                    adddateplay = _SelectedItemBooking.datePlay;
+                }
+            }
+        }
+
         private string _FieldName;
         public string FieldName { get => _FieldName; set { _FieldName = value; OnPropertyChanged(); } }
         private string _FieldCondition;
         public string FieldCondition { get => _FieldCondition; set { _FieldCondition = value; OnPropertyChanged(); } }
+        private ObservableCollection<string> _ListName;
+        public ObservableCollection<string> ListName { get => _ListName; set { _ListName = value; OnPropertyChanged(); } }
+        private ObservableCollection<bookingInfo> _ListbookingInfo;
+        public ObservableCollection<bookingInfo> ListbookingInfoBk { get => _ListbookingInfo; set { _ListbookingInfo = value; OnPropertyChanged(); } }
+
+        private ObservableCollection<bookingInfo> _list_with_id;
+        public ObservableCollection<bookingInfo> list_with_id { get => _list_with_id; set { _list_with_id = value; OnPropertyChanged(); } }
         public BasketballFieldViewModel()
         {
+            _ListbookingInfo = new ObservableCollection<bookingInfo>(DataProvider.Ins.DB.bookingInfoes.Where(x => x.field.idType == 3));
             _ListField = new ObservableCollection<ListFieldBasketball>();
-            List_field_bk = new ObservableCollection<ListFieldBasketball>();
+            List_field_Bk = new ObservableCollection<ListFieldBasketball>();
+            _list_with_id = new ObservableCollection<bookingInfo>();
             _List = new ObservableCollection<field>(DataProvider.Ins.DB.fields.Where(x => x.idType == 3));
+            Update_ListbookingBasketball();
+            Load_ListbookingBasketball();
             Load_ListfieldBasketball();
+            FastBookingCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowFastBookingFunction());
             ShowAddCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowAddFunction());
             ShowEditFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowEditFieldFunction());
             EditField = new RelayCommand<object>((p) =>
@@ -67,6 +119,14 @@ namespace SportCenter.ViewModel
                 return true;
             }, (p) =>
             {
+                foreach (var item in List)
+                {
+                    if (item.name == FieldName)
+                    {
+                        MessageBox.Show("This name already exists, please choose another name!");
+                        return;
+                    }
+                }
                 var field = DataProvider.Ins.DB.fields.Where(x => x.id == SelectedItem.id).SingleOrDefault();
                 field.name = FieldName;
                 field.condition = FieldCondition;
@@ -78,7 +138,66 @@ namespace SportCenter.ViewModel
                 Update_ListeditBasketball();
                 Load_ListeditBasketball();
             });
+            //AddBookingCommand = new RelayCommand<object>((p) =>
+            //{
+            //    if (string.IsNullOrEmpty(addcustomername) || string.IsNullOrEmpty(addcustomerphone.ToString()) || string.IsNullOrEmpty(adddateplay.ToString()) || string.IsNullOrEmpty(addstarttime.ToString()) || string.IsNullOrEmpty(addendtime.ToString()))
+            //        return false;
+            //    return true;
+            //}, (p) =>
+            //{
+            //    var Booking = new bookingInfo() { Customer_name = addcustomername, Customer_PhoneNum = addcustomerphone, datePlay = adddateplay, start_time = addstarttime, Status = "unpay", idField = addidfield};
+            //    DataProvider.Ins.DB.bookingInfoes.Add(Booking);
+            //    DataProvider.Ins.DB.SaveChanges();
+            //    Update_ListbookingBasketball();
+            //    Load_ListbookingBasketball();
+            //});
+            EditBookingCommand = new RelayCommand<object>((p) =>
+            {
+                if (string.IsNullOrEmpty(addcustomername) || string.IsNullOrEmpty(addcustomerphone.ToString()) || string.IsNullOrEmpty(adddateplay.ToString()) || string.IsNullOrEmpty(addstarttime.ToString()) || string.IsNullOrEmpty(addendtime.ToString()))
+                    return false;
+                return true;
+            }, (p) =>
+            {
+                var booking = DataProvider.Ins.DB.bookingInfoes.Where(x => x.id == SelectedItemBooking.id).SingleOrDefault();
+                booking.Customer_name = addcustomername;
+                booking.Customer_PhoneNum = addcustomerphone;
+                booking.datePlay = adddateplay;
+                booking.start_time = addstarttime;
+                booking.end_time = addendtime;
+                booking.Status = addstatus;
+                DataProvider.Ins.DB.SaveChanges();
+                SelectedItemBooking.Customer_name = addcustomername;
+                SelectedItemBooking.Customer_PhoneNum = addcustomerphone;
+                SelectedItemBooking.datePlay = adddateplay;
+                SelectedItemBooking.start_time = addstarttime;
+                SelectedItemBooking.end_time = addendtime;
+                SelectedItemBooking.Status = addstatus;
+                addcustomername = null;
+                addstatus = null;
+                addcustomerphone = null;
+                Update_ListbookingBasketball();
+                Load_ListbookingBasketball();
+            });
+            DeleteBookingCommand = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+
+                var booking = DataProvider.Ins.DB.bookingInfoes.Where(x => x.id == SelectedItemBooking.id).SingleOrDefault();
+                DataProvider.Ins.DB.bookingInfoes.Remove(booking);
+                DataProvider.Ins.DB.SaveChanges();
+                Update_ListbookingBasketball();
+                Load_ListbookingBasketball();
+            });
         }
+
+        private void ShowFastBookingFunction()
+        {
+            FastBookingBk fastBookingBk = new FastBookingBk();
+            fastBookingBk.ShowDialog();
+        }
+
         private void Open(object obj)
         {
             if (CanOpen(obj) == true)
@@ -87,6 +206,8 @@ namespace SportCenter.ViewModel
                 var temp_field = temp_obj.List_FieldBasketball;
                 idField = temp_field.id;
                 _idfieldbooking = idField;
+                Update_ListbookingBasketball();
+                Load_ListbookingBasketball();
                 InfoFieldBk info = new InfoFieldBk(idField);
                 info.ShowDialog();
             }
@@ -113,11 +234,13 @@ namespace SportCenter.ViewModel
                 MessageBoxResult result = MessageBox.Show("Xác nhận xóa sân?", "Thông báo", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    List_field_bk.Remove(obj as ListFieldBasketball);
+                    List_field_Bk.Remove(obj as ListFieldBasketball);
                     var abc = obj as ListFieldBasketball;
                     field xyz = abc.List_FieldBasketball;
                     DataProvider.Ins.DB.fields.Remove(xyz);
                     DataProvider.Ins.DB.SaveChanges();
+                    Update_ListeditBasketball();
+                    Load_ListeditBasketball();
                 }
             }
         }
@@ -131,7 +254,7 @@ namespace SportCenter.ViewModel
             Basketball = _field.List_FieldBasketball;
 
             var _booking = new ObservableCollection<bookingInfo>(DataProvider.Ins.DB.bookingInfoes);
-            foreach (var item in List_field_bk)
+            foreach (var item in List_field_Bk)
             {
                 if (item.List_FieldBasketball.id == _field.List_FieldBasketball.id)
                 {
@@ -156,9 +279,9 @@ namespace SportCenter.ViewModel
 
         private void Update_ListfieldBasketball()
         {
-            foreach (var item in List_field_bk.ToList())
+            foreach (var item in List_field_Bk.ToList())
             {
-                List_field_bk.Remove(item);
+                List_field_Bk.Remove(item);
             }
         }
         private void ShowAddFunction()
@@ -179,7 +302,7 @@ namespace SportCenter.ViewModel
                 {
                     ListFieldBasketball temp = new ListFieldBasketball();
                     temp.List_FieldBasketball = item;
-                    List_field_bk.Add(temp);
+                    List_field_Bk.Add(temp);
                 }
             }
         }
@@ -200,6 +323,26 @@ namespace SportCenter.ViewModel
             foreach (var item in List.ToList())
             {
                 List.Remove(item);
+            }
+        }
+        public void Load_ListbookingBasketball()
+        {
+            var Temp_booking = DataProvider.Ins.DB.bookingInfoes.Where(x => x.field.idType == 3);
+            foreach (var item in Temp_booking)
+            {
+                if (item.idField == idField)
+                    list_with_id.Add(item);
+            }
+        }
+        public void Update_ListbookingBasketball()
+        {
+            if (list_with_id == null)
+            {
+                return;
+            }
+            foreach (var item in list_with_id.ToList())
+            {
+                list_with_id.Remove(item);
             }
         }
     }
