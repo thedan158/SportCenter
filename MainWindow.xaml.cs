@@ -123,5 +123,10 @@ namespace SportCenter
         {
 
         }
+
+        private void TabItem_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

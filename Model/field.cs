@@ -9,22 +9,29 @@
 
 namespace SportCenter.Model
 {
+    using SportCenter.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class field
+    public partial class field : BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public field()
         {
             this.bookingInfoes = new HashSet<bookingInfo>();
         }
-    
-        public int id { get; set; }
-        public Nullable<int> idType { get; set; }
-        public string name { get; set; }
-        public string condition { get; set; }
-    
+
+        private int _id;
+        public int id { get => _id; set { _id = value; OnPropertyChanged(); } }
+
+        private Nullable<int> _idType;
+        public Nullable<int> idType { get => _idType; set { _idType = value; OnPropertyChanged(); } }
+
+        private string _name;
+        public string name { get => _name; set { _name = value; OnPropertyChanged(); } }
+        private string _condition;
+        public string condition { get => _condition; set { _condition = value; OnPropertyChanged(); } }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<bookingInfo> bookingInfoes { get; set; }
         public virtual fieldtype fieldtype { get; set; }

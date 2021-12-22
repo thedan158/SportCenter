@@ -194,7 +194,12 @@
                         </Grid>
                     </Grid>
                 </TabItem>
-                <TabItem>
+                <TabItem >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding Path=ReloadCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                     <TabItem.Header>
                         <StackPanel
         Height="auto"
@@ -373,7 +378,7 @@
                     
                     Stroke="Gray" 
                     />
-                                    <ComboBox Width="300" Height="25" ItemsSource="{Binding Listbooking}" SelectedItem="{Binding FieldSelectedItem}" materialDesign:HintAssist.Hint="Field Name">
+                                    <ComboBox Width="300" Height="25" ItemsSource="{Binding ListbookingCombobox}" SelectedItem="{Binding FieldSelectedItem}" materialDesign:HintAssist.Hint="Field Name">
 
 
 
@@ -984,8 +989,6 @@
                             </Grid>
 
 
-
-
                             <Grid Grid.Column="1">
                                 <Border Background="Transparent" Visibility="{Binding Visibility}">
                                     <Border Background="White" CornerRadius="20" Margin="10 20 20 20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -1010,7 +1013,7 @@
                 x:Name="recImage"
                 StrokeDashArray="4 2" 
                 Stroke="#5C0DAC" 
-                StrokeThickness="4" 
+                StrokeThickness="4"
                 RadiusX="4" 
                 RadiusY="4"
                 Width="150"
@@ -1033,6 +1036,7 @@
                 VerticalAlignment="Bottom"
                 FocusVisualStyle="{x:Null}"
                 Padding="0"/>
+
                                                     <materialDesign:PackIcon 
                 x:Name="iconImage" 
                 Kind="FileImageOutline" 
@@ -1041,6 +1045,7 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"  
                 Margin="43,49,43,0" RenderTransformOrigin="0.444,1.03"/>
+
 
                                                 </Grid>
                                             </Grid>
@@ -1235,7 +1240,7 @@
                                                     <Button
                 x:Name="btnAdd"
                 Command="{Binding addCommand}"
-                
+                CommandParameter="{Binding ElementName=grdSelectImg}"
                 IsDefault="True"
                 Background="#5C0DAC"
                 Height="40" 
@@ -1253,7 +1258,7 @@
                                                     <Button
                 x:Name="btnEdit"
                 Command="{Binding editCommand}"
-                CommandParameter="{Binding ElementName=wdAddGoods}"
+                CommandParameter="{Binding ElementName=grdSelectImg}"
                 IsDefault="True"
                 Background="#5C0DAC"
                 Height="40" 
@@ -1271,7 +1276,7 @@
                                                     <Button
                 x:Name="btnDelete"
                 Command="{Binding deleteCommand}"
-                CommandParameter="{Binding ElementName=wdAddGoods}"
+                CommandParameter="{Binding ElementName=grdSelectImg}"
                 Style="{StaticResource MaterialDesignRaisedButton}"
                 Height="40"
                 Width="100"

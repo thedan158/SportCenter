@@ -9,23 +9,33 @@
 
 namespace SportCenter.Model
 {
+    using SportCenter.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class good
+    public partial class good : BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public good()
         {
             this.buyingInfoes = new HashSet<buyingInfo>();
         }
-    
-        public int id { get; set; }
-        public string name { get; set; }
-        public string unit { get; set; }
-        public Nullable<decimal> price { get; set; }
-        public byte[] imageFile { get; set; }
-    
+
+        private int _id;
+        public int id { get => _id; set { _id = value; OnPropertyChanged(); } }
+
+        private string _name;
+        public string name { get => _name; set { _name = value; OnPropertyChanged(); } }
+
+        private string _unit;
+        public string unit { get => _unit; set { _unit = value; OnPropertyChanged(); } }
+
+        private Nullable<decimal> _price;
+        public Nullable<decimal> price { get => _price; set { _price = value; OnPropertyChanged(); } }
+
+        private byte[] _imageFile;
+        public byte[] imageFile { get => _imageFile; set { _imageFile = value; OnPropertyChanged(); } }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<buyingInfo> buyingInfoes { get; set; }
     }

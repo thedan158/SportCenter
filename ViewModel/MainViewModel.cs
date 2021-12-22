@@ -19,7 +19,7 @@ using System.Windows.Media.Imaging;
 namespace SportCenter.ViewModel
 {
     public class MainViewModel : BaseViewModel
-        
+
     {
         //ListBill
         private ObservableCollection<bill> _Listbills;
@@ -63,7 +63,8 @@ namespace SportCenter.ViewModel
         private ObservableCollection<BaseCustomerInfo> _ListCustomerInfo;
         public ObservableCollection<BaseCustomerInfo> ListCustomerInfo { get => _ListCustomerInfo; set { _ListCustomerInfo = value; OnPropertyChanged(); } }
 
-
+        private ObservableCollection<bookingInfo> _ListbookingCombobox;
+        public ObservableCollection<bookingInfo> ListbookingCombobox { get => _ListbookingCombobox; set { _ListbookingCombobox = value; OnPropertyChanged(); } }
 
         public bool Isloaded = false;
         public ICommand LoadedWindowCommand { get; set; }
@@ -94,20 +95,20 @@ namespace SportCenter.ViewModel
 
         private string _unitgood;
         public string unitgood { get => _unitgood; set { _unitgood = value; OnPropertyChanged(); } }
-        
-      
 
-       
-        
+
+
+
+
         public ICommand OpenBillReportWindow { get; set; }
 
-        
+
 
         // Good VM
-        public ICommand addCommand { get; set; } 
+        public ICommand addCommand { get; set; }
         public ICommand editCommand { get; set; }
         public ICommand deleteCommand { get; set; }
-       
+
         public ICommand SelectImageCommand { get; set; }
 
         private good _SelectedItem;
@@ -131,18 +132,19 @@ namespace SportCenter.ViewModel
 
 
         //Order VM
-     
+
 
         private decimal? _total = 0;
         public decimal? total { get => _total; set { _total = value; OnPropertyChanged(); } }
 
-        
+
         public ICommand AddbuyingCommand => new RelayCommand<object>(CanExecuted, AddExecuted);
         public ICommand DelbuyingCommand => new RelayCommand<object>(CanExecuted, DelExecuted);
-        public ICommand PlusCommand => new RelayCommand<object>(Plus_CanExecuted, Plus_Executed);      
+        public ICommand PlusCommand => new RelayCommand<object>(Plus_CanExecuted, Plus_Executed);
         public ICommand MinusCommand => new RelayCommand<object>(Minus_CanExecuted, Minus_Executed);
         public ICommand ClearAllCommand { get; set; }
         public ICommand OrderCommand { get; set; }
+        public ICommand ReloadCommand { get; set; }
 
         private int _Selectedidbooking;
         public int Selectedidbooking { get => _Selectedidbooking; set { _Selectedidbooking = value; OnPropertyChanged(); } }
@@ -162,20 +164,24 @@ namespace SportCenter.ViewModel
 
             }
         }
+        private MainWindow mainWindow;
+        public MainWindow MainWindow { get => mainWindow; set => mainWindow = value; }
 
         public MainViewModel()
         {
+
+            _ListbookingCombobox = new ObservableCollection<bookingInfo>();
             _Listbooking = new ObservableCollection<bookingInfo>(DataProvider.Ins.DB.bookingInfoes);
             _Listbuying = new ObservableCollection<buyingInfo>(DataProvider.Ins.DB.buyingInfoes);
             _Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
             _Listorder = new ObservableCollection<buyingInfo>();
             _ListCustomerInfo = new ObservableCollection<BaseCustomerInfo>();
-            
+
             _Listfields = new ObservableCollection<field>(DataProvider.Ins.DB.fields);
             _Listfieldtypes = new ObservableCollection<fieldtype>(DataProvider.Ins.DB.fieldtypes);
             _SeriesCollection = new SeriesCollection();
             _SeriesCollection1 = new SeriesCollection();
-            
+
             LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
                 Isloaded = true;
@@ -199,7 +205,7 @@ namespace SportCenter.ViewModel
                     p.Close();
                 }
 
-            }); 
+            });
             ShowWindowCommand_FB = new RelayCommand<object>((parameter) => true, (parameter) => ShowWindowFuntion_FB());
             ShowWindowCommand_BK = new RelayCommand<object>((parameter) => true, (parameter) => ShowWindowFuntion_BK());
             ShowWindowCommand_VL = new RelayCommand<object>((parameter) => true, (parameter) => ShowWindowFuntion_VL());
@@ -207,6 +213,7 @@ namespace SportCenter.ViewModel
             ShowVolleyballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowVolleyballFieldFunction());
             ShowBasketballFieldCommand = new RelayCommand<object>((parameter) => true, (parameter) => ShowBasketballFieldFuction());
             SelectImageCommand = new RelayCommand<Grid>((parameter) => true, (parameter) => ChooseImage(parameter));
+            ReloadCommand = new RelayCommand<object>((parameter) => true, (parameter) => ReloadBookingFunction());
             OpenBillReportWindow = new RelayCommand<object>((parameter) => true, (parameter) => f_Open_Bill_Report());
             ReloadStatictics = new RelayCommand<object>((parameter) => true, (parameter) => LoadStatictics());
             DeleteAllBillCommand = new RelayCommand<object>((parameter) => true, (parameter) => DeleteAllBillFunction());
@@ -234,15 +241,15 @@ namespace SportCenter.ViewModel
                 }
             });
 
-            
-        
 
-        
 
- 
-            
+
+
+
+
+
             // Add goods
-            addCommand = new RelayCommand<object>((parameter) =>
+            addCommand = new RelayCommand<Grid>((parameter) =>
             {
                 if (string.IsNullOrEmpty(namegood))
                 {
@@ -258,23 +265,15 @@ namespace SportCenter.ViewModel
                 {
                     return true;
                 }
-            }, (parameter) =>
-            {
-                Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
-                byte[] imgByteArr;
-                imgByteArr = Converter.Instance.ConvertImageToBytes(imageFileName);
-                var good = new good() { name = namegood, id = idgood, price = pricegood,unit=unitgood,imageFile=imgByteArr };
-                DataProvider.Ins.DB.goods.Add(good);
-                DataProvider.Ins.DB.SaveChanges();
-                Listgood.Add(good);
+            },
+            (parameter) => AddGoods(parameter));
 
-            });
 
             //Edit goods
-            editCommand = new RelayCommand<object>((parameter) =>
+            editCommand = new RelayCommand<Grid>((parameter) =>
             {
 
-                if (string.IsNullOrEmpty(namegood)/*||SelectedItem==null*/)
+                if (string.IsNullOrEmpty(namegood) || SelectedItem == null)
                     return false;
                 var nameList = DataProvider.Ins.DB.goods.Where(p => p.id == idgood);
                 if (nameList != null && nameList.Count() != 0)
@@ -284,23 +283,42 @@ namespace SportCenter.ViewModel
             {
                 MessageBoxResult result = MessageBox.Show("Xác nhận sửa hàng hóa?", "Thông báo", MessageBoxButton.YesNo);
                 Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
+
                 if (result == MessageBoxResult.Yes)
                 {
-                    byte[] imgByteArr;
-                    imgByteArr = Converter.Instance.ConvertImageToBytes(imageFileName);
-                    var good = DataProvider.Ins.DB.goods.Where(x => x.id == SelectedItem.id).SingleOrDefault();
-                    good.name = namegood;
-                    good.price = pricegood;
-                    good.unit = unitgood;
-                    good.imageFile = imgByteArr;
+                    if (imageFileName != null)
+                    {
+                        byte[] imgByteArr;
+                        imgByteArr = Converter.Instance.ConvertImageToBytes(imageFileName);
+                        var good = DataProvider.Ins.DB.goods.Where(x => x.id == SelectedItem.id).SingleOrDefault();
+                        good.name = namegood;
+                        good.price = pricegood;
+                        good.unit = unitgood;
+                        good.imageFile = imgByteArr;
 
-                    DataProvider.Ins.DB.SaveChanges();
+                        DataProvider.Ins.DB.SaveChanges();
+                        parameter.Background = null;
+                        parameter.Children[0].Visibility = Visibility.Visible;
+                        parameter.Children[2].Visibility = Visibility.Visible;
+                        MessageBox.Show("Sua hang thanh cong");
+                    }
+                    else
+                    {
+                        var good = DataProvider.Ins.DB.goods.Where(x => x.id == SelectedItem.id).SingleOrDefault();
+                        good.name = namegood;
+                        good.price = pricegood;
+                        good.unit = unitgood;
+
+
+                        DataProvider.Ins.DB.SaveChanges();
+                        MessageBox.Show("Sua hang thanh cong");
+                    }
                 }
 
             });
 
             //Delete goods
-            deleteCommand = new RelayCommand<object>((parameter) => true,
+            deleteCommand = new RelayCommand<Grid>((parameter) => true,
             (parameter) =>
             {
                 MessageBoxResult result = MessageBox.Show("Xác nhận xóa hàng hóa?", "Thông báo", MessageBoxButton.YesNo);
@@ -312,18 +330,24 @@ namespace SportCenter.ViewModel
                     DataProvider.Ins.DB.goods.Remove(good);
                     DataProvider.Ins.DB.SaveChanges();
                     Listgood.Remove(good);
+                    idgood = 0;
+                    namegood = null;
+                    pricegood = null;
+                    unitgood = null;
+                    MessageBox.Show("Xoa hang thanh cong");
                 }
             });
 
             OrderCommand = new RelayCommand<object>((parameter) => true,
             (parameter) =>
             {
-                if(FieldSelectedItem==null)
+                if (FieldSelectedItem == null)
                 {
                     MessageBox.Show("Vui lòng chọn sân!!");
                 }
-                else { 
-                MessageBoxResult result = MessageBox.Show("Xác nhận đặt hàng?", "Thông báo", MessageBoxButton.YesNo);
+                else
+                {
+                    MessageBoxResult result = MessageBox.Show("Xác nhận đặt hàng?", "Thông báo", MessageBoxButton.YesNo);
 
 
                     if (result == MessageBoxResult.Yes)
@@ -355,18 +379,63 @@ namespace SportCenter.ViewModel
             });
         }
 
+        private void ReloadBookingFunction()
+        {
+            var tempbooking = DataProvider.Ins.DB.bookingInfoes;
+            if (ListbookingCombobox != null)
+            {
+                ListbookingCombobox.Clear();
+            }
+                foreach (var item in tempbooking)
+                {
+                    ListbookingCombobox.Add(item);
+                }
+            
+        }
+
+        public void AddGoods(Grid parameter)
+        {
+            {
+
+
+
+                Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
+                if (imageFileName == null)
+                {
+                    MessageBox.Show("Vui long chon anh");
+                }
+                else
+                {
+
+                    byte[] imgByteArr;
+                    imgByteArr = Converter.Instance.ConvertImageToBytes(imageFileName);
+                    var good = new good() { name = namegood, id = idgood, price = pricegood, unit = unitgood, imageFile = imgByteArr };
+                    DataProvider.Ins.DB.goods.Add(good);
+                    DataProvider.Ins.DB.SaveChanges();
+                    Listgood.Add(good);
+                    idgood = 0;
+                    namegood = null;
+                    pricegood = null;
+                    unitgood = null;
+                    parameter.Background = null;
+                    parameter.Children[0].Visibility = Visibility.Visible;
+                    parameter.Children[2].Visibility = Visibility.Visible;
+                    MessageBox.Show("Them hang thanh cong");
+                }
+
+            }
+        }
+
         public void DeleteAllBillFunction()
         {
             _Listbills = new ObservableCollection<bill>(DataProvider.Ins.DB.bills);
             foreach (var itemBill in _Listbills)
             {
                 DataProvider.Ins.DB.bills.Remove(itemBill);
-                         
+
             }
             DataProvider.Ins.DB.SaveChangesAsync();
             MessageBox.Show("Cleared all data!");
-            Update_ListCustomerInfo();
-            LoadListCustomerInfo();
         }
 
         public void LoadStatictics()
@@ -416,13 +485,13 @@ namespace SportCenter.ViewModel
                                                 select a;
             decimal allincomebasketball = _Listbasketball.Select(y => y.totalmoney).Sum();
             ///Imcome for football quarter 1 of the year
-            var quart1 = new[] { "01", "02", "03"};
+            var quart1 = new[] { "01", "02", "03" };
             IEnumerable<bill> _ListfootballQ1 = from a in _Listbills
                                                 join b in _Listbooking on a.idBookingInfo equals b.id
                                                 join c in _Listfields on b.idField equals c.id
                                                 join d in _Listfieldtypes on c.idType equals d.id
                                                 where d.name == monbongda
-                                                where quart1.Contains(b.datePlay.ToString("MM"))                         
+                                                where quart1.Contains(b.datePlay.ToString("MM"))
                                                 select a;
             decimal incomefootballQ1 = _ListfootballQ1.Select(y => y.totalmoney).Sum();
             ///Imcome for football quarter 2 of the year
@@ -436,7 +505,7 @@ namespace SportCenter.ViewModel
                                                 select a;
             decimal incomefootballQ2 = _ListfootballQ2.Select(y => y.totalmoney).Sum();
             ///Imcome for football quarter 3 of the year
-            var quart3 = new[] { "07", "08", "09"};
+            var quart3 = new[] { "07", "08", "09" };
             IEnumerable<bill> _ListfootballQ3 = from a in _Listbills
                                                 join b in _Listbooking on a.idBookingInfo equals b.id
                                                 join c in _Listfields on b.idField equals c.id
@@ -457,12 +526,12 @@ namespace SportCenter.ViewModel
             decimal incomefootballQ4 = _ListfootballQ4.Select(y => y.totalmoney).Sum();
             ///Imcome for VOLLEYBALL quarter 1 of the year          
             IEnumerable<bill> _ListVolleyballQ1 = from a in _Listbills
-                                                join b in _Listbooking on a.idBookingInfo equals b.id
-                                                join c in _Listfields on b.idField equals c.id
-                                                join d in _Listfieldtypes on c.idType equals d.id
-                                                where d.name == monbongchuyen
-                                                where quart1.Contains(b.datePlay.ToString("MM"))
-                                                select a;
+                                                  join b in _Listbooking on a.idBookingInfo equals b.id
+                                                  join c in _Listfields on b.idField equals c.id
+                                                  join d in _Listfieldtypes on c.idType equals d.id
+                                                  where d.name == monbongchuyen
+                                                  where quart1.Contains(b.datePlay.ToString("MM"))
+                                                  select a;
             decimal incomevolleyballQ1 = _ListVolleyballQ1.Select(y => y.totalmoney).Sum();
             ///Imcome for VOLLEYBALL quarter 2 of the year
             IEnumerable<bill> _ListVolleyballQ2 = from a in _Listbills
@@ -526,7 +595,7 @@ namespace SportCenter.ViewModel
                                                   where d.name == monbongro
                                                   where quart4.Contains(b.datePlay.ToString("MM"))
                                                   select a;
-            
+
             decimal incomebasketballQ4 = _ListBasketballQ4.Select(y => y.totalmoney).Sum();
 
 
@@ -552,7 +621,7 @@ namespace SportCenter.ViewModel
                 DataLabels = true,
                 FontSize = 16,
                 LabelPoint = ChartPoint => string.Format("{0} ({1:P})", ChartPoint.Y, ChartPoint.Participation)
-        };
+            };
             _SeriesCollection.Add(volleyballseries);
 
             //Add basketball Stactictisc to PieChart
@@ -569,11 +638,12 @@ namespace SportCenter.ViewModel
 
             var footballline = new LineSeries
             {
-                Title="Football",
-                Values= new ChartValues<double> { decimal.ToDouble(incomefootballQ1 / 23035), decimal.ToDouble(incomefootballQ2 / 23035), decimal.ToDouble(incomefootballQ3 / 23035), decimal.ToDouble(incomefootballQ4 / 23035) }
+                Title = "Football",
+                Values = new ChartValues<double> { decimal.ToDouble(incomefootballQ1 / 23035), decimal.ToDouble(incomefootballQ2 / 23035), decimal.ToDouble(incomefootballQ3 / 23035), decimal.ToDouble(incomefootballQ4 / 23035) }
             };
             _SeriesCollection1.Add(footballline);
-            var volleyballline = new LineSeries {
+            var volleyballline = new LineSeries
+            {
                 Title = "Volleyball",
                 Values = new ChartValues<double> { decimal.ToDouble(incomevolleyballQ1 / 23035), decimal.ToDouble(incomevolleyballQ2 / 23035), decimal.ToDouble(incomevolleyballQ3 / 23035), decimal.ToDouble(incomevolleyballQ4 / 23035) }
             };
@@ -587,25 +657,25 @@ namespace SportCenter.ViewModel
             Labels = new[] { "Quarter1", "Quarter2", "Quarter3", "Quarter4" };
             YFormatter = value => value.ToString("C");
 
-            
+
         }
 
-        
+
         private void LoadListCustomerInfo()
         {
-            
+
             var temp_bookingInfo = DataProvider.Ins.DB.bookingInfoes;
             var temp_billInfo = DataProvider.Ins.DB.bills;
             ObservableCollection<BaseCustomerInfo> temp_listCusInfo = new ObservableCollection<BaseCustomerInfo>();
-            if(temp_billInfo == null)
+            if (temp_billInfo == null)
             {
                 return;
             }
             //Adding Customer info in to ListCustomerInfo
-            foreach (var item_bill in temp_billInfo) 
+            foreach (var item_bill in temp_billInfo)
             {
                 var temp_Cusinfo = new BaseCustomerInfo();
-                foreach(var item_booking in temp_bookingInfo)
+                foreach (var item_booking in temp_bookingInfo)
                 {
                     if (item_booking.id == item_bill.idBookingInfo)
                     {
@@ -613,27 +683,27 @@ namespace SportCenter.ViewModel
                         temp_Cusinfo.Baseinfo_CusPhoneNum = item_booking.Customer_PhoneNum.ToString();
                         temp_Cusinfo.Baseinfo_SumBillAmount = 1;
                         temp_Cusinfo.Baseinfo_SumCusMoneyAmount = decimal.ToInt32(item_bill.totalmoney);
-                        temp_Cusinfo.Baseinfo_TypeCus = "Level1";
+                        temp_Cusinfo.Baseinfo_TypeCus = "Lever1";
                         temp_listCusInfo.Add(temp_Cusinfo);
                     }
                 }
-                
+
             }
 
             // Bill count 
-            
+
             List<BaseCustomerInfo> temp_list1 = new List<BaseCustomerInfo>();
             List<BaseCustomerInfo> temp_list2 = new List<BaseCustomerInfo>();
             List<BaseCustomerInfo> temp_list3 = new List<BaseCustomerInfo>();
 
             temp_list2 = temp_listCusInfo.ToList();
             temp_list1 = temp_listCusInfo.ToList();
-            
-            for(int i = 0; i < temp_list1.Count(); i++)
+
+            for (int i = 0; i < temp_list1.Count(); i++)
             {
                 int total1 = temp_list1[i].Baseinfo_SumCusMoneyAmount;
                 int billnum = 1;
-                for(int j = i; j < temp_list2.Count(); j++)
+                for (int j = i; j < temp_list2.Count(); j++)
                 {
                     if (i == j)
                     {
@@ -655,15 +725,15 @@ namespace SportCenter.ViewModel
                 adding.Baseinfo_SumBillAmount = billnum;
                 temp_list3.Add(adding);
             }
-            foreach(var item in temp_list2)
+            foreach (var item in temp_list2)
             {
                 _ListCustomerInfo.Add(item);
             }
-            
-            
-            
+
+
+
             //Setting STT, member lv
-            foreach(var item in _ListCustomerInfo.ToList())
+            foreach (var item in _ListCustomerInfo.ToList())
             {
                 if (item.Baseinfo_SumCusMoneyAmount >= 1000000)
                 {
@@ -678,7 +748,7 @@ namespace SportCenter.ViewModel
                     item.Baseinfo_TypeCus = "VIP";
                 }
             }
-            for(int i = 0;i < _ListCustomerInfo.ToList().Count(); i++)
+            for (int i = 0; i < _ListCustomerInfo.ToList().Count(); i++)
             {
                 _ListCustomerInfo[i].STT = i + 1;
             }
@@ -686,11 +756,11 @@ namespace SportCenter.ViewModel
 
         private void Update_ListCustomerInfo()
         {
-            if(_ListCustomerInfo == null)
+            if (_ListCustomerInfo == null)
             {
                 return;
             }
-            foreach(var item in _ListCustomerInfo.ToList())
+            foreach (var item in _ListCustomerInfo.ToList())
             {
                 _ListCustomerInfo.Remove(item);
             }
@@ -700,14 +770,12 @@ namespace SportCenter.ViewModel
         private void f_Open_Bill_Report()
         {
             Bill_Report rp = new Bill_Report();
-            var temp_billRp = rp.DataContext as BillReportViewModel;
-            rp.ShowDialog();
-            temp_billRp.Update_DatagridView();
-            temp_billRp.Load_DatagridView();
+            rp.Show();
         }
 
         private void ChooseImage(Grid parameter)
         {
+
             OpenFileDialog op = new OpenFileDialog();
             op.Title = "Chọn ảnh";
             op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" + "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" + "Portable Network Graphic (*.png)|*.png";
@@ -724,8 +792,9 @@ namespace SportCenter.ViewModel
                 parameter.Background = imageBrush;
                 if (parameter.Children.Count > 1)
                 {
-                    parameter.Children.Remove(parameter.Children[0]);
-                    parameter.Children.Remove(parameter.Children[1]);
+                    parameter.Children[0].Visibility = Visibility.Hidden;
+                    parameter.Children[2].Visibility = Visibility.Hidden;
+
                 }
             }
         }
@@ -736,22 +805,22 @@ namespace SportCenter.ViewModel
         private bool CanExecuted(object sender)
         {
             return true;
-            
+
         }
 
         private void AddExecuted(object sender)
         {
-            
-                
-                good good = sender as good;
+
+
+            good good = sender as good;
             buyingInfo buys = new buyingInfo();
             buys.good = new good();
             buys.good = good;
-            
+
             buys.idGood = good.id;
-            foreach(var item in Listgood)
+            foreach (var item in Listgood)
             {
-                if(item.id==buys.idGood)
+                if (item.id == buys.idGood)
                 {
                     buys.orderprice = item.price;
                 }
@@ -759,7 +828,7 @@ namespace SportCenter.ViewModel
             buys.quantity = 1;
             Listorder.Add(buys);
 
-            total = Calc() ;
+            total = Calc();
 
 
 
@@ -767,7 +836,7 @@ namespace SportCenter.ViewModel
         }
         private void DelExecuted(object sender)
         {
-            
+
             if (sender is buyingInfo)
             {
                 Listorder.Remove(sender as buyingInfo);
@@ -800,7 +869,7 @@ namespace SportCenter.ViewModel
         }
         private void Plus_Executed(object sender)
         {
-           
+
             buyingInfo order = sender as buyingInfo;
             BaseGood buys = new BaseGood();
             buys.g_basebuying = new buyingInfo();
@@ -809,15 +878,15 @@ namespace SportCenter.ViewModel
             order.quantity++;
             foreach (var item in Listgood)
             {
-                if(item.id==order.idGood)
+                if (item.id == order.idGood)
                 {
                     order.orderprice = order.quantity * item.price;
                 }
 
             }
-            
-            
-            
+
+
+
             total = Calc();
         }
 
@@ -855,7 +924,7 @@ namespace SportCenter.ViewModel
 
         }
 
-       
+
 
         private void ShowWindowFuntion_VL()
         {
@@ -897,12 +966,12 @@ namespace SportCenter.ViewModel
         }
 
 
-      
 
-      
-        
+
+
+
     }
 
 
-   
+
 }
