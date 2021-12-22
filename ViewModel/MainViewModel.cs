@@ -367,12 +367,14 @@ namespace SportCenter.ViewModel
             MessageBox.Show("Cleared all data!");
             Update_ListCustomerInfo();
             LoadListCustomerInfo();
+            LoadStatictics();
         }
 
         public void LoadStatictics()
         {
             DateTime moment = DateTime.Now;
             _Listbills = new ObservableCollection<bill>(DataProvider.Ins.DB.bills);
+            _Listbooking = new ObservableCollection<bookingInfo>(DataProvider.Ins.DB.bookingInfoes);
             string monbongda = "bongda";
             string monbongchuyen = "bongchuyen";
             string monbongro = "bongro";
@@ -552,7 +554,7 @@ namespace SportCenter.ViewModel
                 DataLabels = true,
                 FontSize = 16,
                 LabelPoint = ChartPoint => string.Format("{0} ({1:P})", ChartPoint.Y, ChartPoint.Participation)
-        };
+            };
             _SeriesCollection.Add(volleyballseries);
 
             //Add basketball Stactictisc to PieChart
@@ -569,11 +571,12 @@ namespace SportCenter.ViewModel
 
             var footballline = new LineSeries
             {
-                Title="Football",
-                Values= new ChartValues<double> { decimal.ToDouble(incomefootballQ1 / 23035), decimal.ToDouble(incomefootballQ2 / 23035), decimal.ToDouble(incomefootballQ3 / 23035), decimal.ToDouble(incomefootballQ4 / 23035) }
+                Title = "Football",
+                Values = new ChartValues<double> { decimal.ToDouble(incomefootballQ1 / 23035), decimal.ToDouble(incomefootballQ2 / 23035), decimal.ToDouble(incomefootballQ3 / 23035), decimal.ToDouble(incomefootballQ4 / 23035) }
             };
             _SeriesCollection1.Add(footballline);
-            var volleyballline = new LineSeries {
+            var volleyballline = new LineSeries
+            {
                 Title = "Volleyball",
                 Values = new ChartValues<double> { decimal.ToDouble(incomevolleyballQ1 / 23035), decimal.ToDouble(incomevolleyballQ2 / 23035), decimal.ToDouble(incomevolleyballQ3 / 23035), decimal.ToDouble(incomevolleyballQ4 / 23035) }
             };
@@ -587,7 +590,7 @@ namespace SportCenter.ViewModel
             Labels = new[] { "Quarter1", "Quarter2", "Quarter3", "Quarter4" };
             YFormatter = value => value.ToString("C");
 
-            
+
         }
 
         
