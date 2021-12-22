@@ -128,5 +128,15 @@ namespace SportCenter
         {
 
         }
+
+        private void TabItem_MouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+            (this.DataContext as MainViewModel).ReloadBookingFunction();
+        }
+
+        private void TabItem_MouseDown_2(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

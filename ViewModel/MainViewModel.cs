@@ -281,7 +281,7 @@ namespace SportCenter.ViewModel
                 return false;
             }, (parameter) =>
             {
-                MessageBoxResult result = MessageBox.Show("Xác nhận sửa hàng hóa?", "Thông báo", MessageBoxButton.YesNo);
+                MessageBoxResult result = MessageBox.Show("Confirm edit?", "Note", MessageBoxButton.YesNo);
                 Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
 
                 if (result == MessageBoxResult.Yes)
@@ -300,7 +300,7 @@ namespace SportCenter.ViewModel
                         parameter.Background = null;
                         parameter.Children[0].Visibility = Visibility.Visible;
                         parameter.Children[2].Visibility = Visibility.Visible;
-                        MessageBox.Show("Sua hang thanh cong");
+                        MessageBox.Show("Edit good successfully!!");
                     }
                     else
                     {
@@ -311,7 +311,7 @@ namespace SportCenter.ViewModel
 
 
                         DataProvider.Ins.DB.SaveChanges();
-                        MessageBox.Show("Sua hang thanh cong");
+                        MessageBox.Show("Edit good successfully!!");
                     }
                 }
 
@@ -321,7 +321,7 @@ namespace SportCenter.ViewModel
             deleteCommand = new RelayCommand<Grid>((parameter) => true,
             (parameter) =>
             {
-                MessageBoxResult result = MessageBox.Show("Xác nhận xóa hàng hóa?", "Thông báo", MessageBoxButton.YesNo);
+                MessageBoxResult result = MessageBox.Show("Confirm delete?", "Note", MessageBoxButton.YesNo);
 
                 Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
                 if (result == MessageBoxResult.Yes)
@@ -334,7 +334,7 @@ namespace SportCenter.ViewModel
                     namegood = null;
                     pricegood = null;
                     unitgood = null;
-                    MessageBox.Show("Xoa hang thanh cong");
+                    MessageBox.Show("Delete good successfully!!");
                 }
             });
 
@@ -343,11 +343,11 @@ namespace SportCenter.ViewModel
             {
                 if (FieldSelectedItem == null)
                 {
-                    MessageBox.Show("Vui lòng chọn sân!!");
+                    MessageBox.Show("Please choose field!!");
                 }
                 else
                 {
-                    MessageBoxResult result = MessageBox.Show("Xác nhận đặt hàng?", "Thông báo", MessageBoxButton.YesNo);
+                    MessageBoxResult result = MessageBox.Show("Confirm?", "Note", MessageBoxButton.YesNo);
 
 
                     if (result == MessageBoxResult.Yes)
@@ -365,7 +365,7 @@ namespace SportCenter.ViewModel
                             DataProvider.Ins.DB.buyingInfoes.Add(buying);
                             DataProvider.Ins.DB.SaveChanges();
                         }
-
+                        MessageBox.Show("Order successfully!!!");
 
                         Listorder.Clear();
                     }
@@ -379,7 +379,7 @@ namespace SportCenter.ViewModel
             });
         }
 
-        private void ReloadBookingFunction()
+        public void ReloadBookingFunction()
         {
             var tempbooking = DataProvider.Ins.DB.bookingInfoes;
             if (ListbookingCombobox != null)
@@ -387,9 +387,12 @@ namespace SportCenter.ViewModel
                 ListbookingCombobox.Clear();
             }
                 foreach (var item in tempbooking)
+            {
+                if (item.Status == "unpay")
                 {
                     ListbookingCombobox.Add(item);
                 }
+            }
             
         }
 
@@ -402,7 +405,7 @@ namespace SportCenter.ViewModel
                 Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
                 if (imageFileName == null)
                 {
-                    MessageBox.Show("Vui long chon anh");
+                    MessageBox.Show("Please choose image!!");
                 }
                 else
                 {
@@ -420,7 +423,7 @@ namespace SportCenter.ViewModel
                     parameter.Background = null;
                     parameter.Children[0].Visibility = Visibility.Visible;
                     parameter.Children[2].Visibility = Visibility.Visible;
-                    MessageBox.Show("Them hang thanh cong");
+                    MessageBox.Show("Add good successfully!!");
                 }
 
             }

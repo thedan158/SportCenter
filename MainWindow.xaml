@@ -194,22 +194,27 @@
                         </Grid>
                     </Grid>
                 </TabItem>
-                <TabItem >
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
-                            <i:InvokeCommandAction Command="{Binding Path=ReloadCommand}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                    <TabItem.Header>
+                <TabItem>
+                    
+
+                    <TabItem.Header  >
+                        
                         <StackPanel
+                            
         Height="auto"
         Width="auto">
-                            <materialDesign:PackIcon
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding Path=ReloadCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <materialDesign:PackIcon 
           Kind="FoodForkDrink"
           Width="30"
           Height="30"
+                                
           HorizontalAlignment="Center" />
-                            <TextBlock
+                            <TextBlock 
           Text="Order"
           HorizontalAlignment="Center" />
                         </StackPanel>
@@ -364,7 +369,7 @@
 
                                 </Grid.RowDefinitions>
                                 <!--Tên sân-->
-                                <Grid Grid.Row="0" >
+                                <Grid Grid.Row="0" Height="58" Margin="0,0,0.2,461.2" Grid.RowSpan="2" VerticalAlignment="Bottom" >
 
 
 
@@ -378,7 +383,7 @@
                     
                     Stroke="Gray" 
                     />
-                                    <ComboBox Width="300" Height="25" ItemsSource="{Binding ListbookingCombobox}" SelectedItem="{Binding FieldSelectedItem}" materialDesign:HintAssist.Hint="Field Name">
+                                    <ComboBox Width="300" Height="25" ItemsSource="{Binding ListbookingCombobox}" SelectedItem="{Binding FieldSelectedItem}"  materialDesign:HintAssist.Hint="Field Name">
 
 
 
