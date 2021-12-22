@@ -73,11 +73,16 @@ namespace SportCenter.ViewModel
 
         public void Load_DatagridView()
         {
-            foreach (var item2 in _billList)   // take list booking out of DB
+
+            var temp_booking = DataProvider.Ins.DB.bookingInfoes;
+            var temp_bill = DataProvider.Ins.DB.bills;
+            var temp_field = DataProvider.Ins.DB.fields;
+
+            foreach (var item2 in temp_bill)   // take list booking out of DB
             {
                 BaseBill2 Adding = new BaseBill2();
                 Adding._TotalMoney = item2.totalmoney;
-                foreach (var item in _bookingList)     // take bill 
+                foreach (var item in temp_booking)     // take bill 
                 {
                     String.Format("{0:DD-MM-yyyy}", item.datePlay);
                     String.Format("{0:hh:mm tt}", item.start_time);
@@ -90,7 +95,7 @@ namespace SportCenter.ViewModel
                             Adding.b_bookinginfo = item;
                         }
                     }
-                    foreach (var item3 in _fieldList)    // take field info
+                    foreach (var item3 in temp_field)    // take field info
                     {
                         if (item.idField == item3.id)
                         {
