@@ -439,12 +439,16 @@ namespace SportCenter.ViewModel
             }
             DataProvider.Ins.DB.SaveChangesAsync();
             MessageBox.Show("Cleared all data!");
+            Update_ListCustomerInfo();
+            LoadListCustomerInfo();
+            LoadStatictics();
         }
 
         public void LoadStatictics()
         {
             DateTime moment = DateTime.Now;
             _Listbills = new ObservableCollection<bill>(DataProvider.Ins.DB.bills);
+            _Listbooking = new ObservableCollection<bookingInfo>(DataProvider.Ins.DB.bookingInfoes);
             string monbongda = "bongda";
             string monbongchuyen = "bongchuyen";
             string monbongro = "bongro";

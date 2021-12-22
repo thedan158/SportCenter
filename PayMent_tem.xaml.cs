@@ -143,7 +143,9 @@ namespace SportCenter
 
             DataProvider.Ins.DB.bills.Add(adding_DB);
             await DataProvider.Ins.DB.SaveChangesAsync();
-            
+            //MainWindow mainWindow = new MainWindow();
+            //MainViewModel mainVM = mainWindow.DataContext as MainViewModel;
+            //mainVM.LoadStatictics();
             this.Close();
         }
     }
