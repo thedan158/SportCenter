@@ -17,7 +17,7 @@
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
                         <materialDesign:Card Background="Pink" Height="80">
-                            <materialDesign:PackIcon Kind="SoccerField" Height="auto" Width="100" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <materialDesign:PackIcon Kind="Soccer" Height="auto" Width="100" VerticalAlignment="Center" HorizontalAlignment="Center" />
                         </materialDesign:Card>
                     </Grid>
                     <Grid Grid.Column="2">
@@ -46,7 +46,7 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0">
-                            <TextBlock Margin="30,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="211" Height="26"
+                            <TextBlock Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"
                          Foreground="#8c9aa1" FontSize="25" FontWeight="ExtraBold"  Text="{Binding List_FieldSoccer.name}" TextWrapping="WrapWithOverflow" 
                                    ></TextBlock>
                         </Grid>
@@ -55,9 +55,9 @@
                                 <ColumnDefinition Width="3*"></ColumnDefinition>
                                 <ColumnDefinition Width="3*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Margin="0,21,5,20.2" Text="Condition: " HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Black" Width="71" Height="26"></TextBlock>
-                            <TextBlock Grid.Column="1" Margin="30,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"
-                         Foreground="Black"  FontSize="20"  Text="{Binding List_FieldSoccer.condition}" TextWrapping="WrapWithOverflow" 
+                            <TextBlock Grid.Column="0" Margin="10" Text="Condition: " HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Black" FontSize="15"></TextBlock>
+                            <TextBlock Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center"
+                         Foreground="Black"  FontSize="15"  Text="{Binding List_FieldSoccer.condition}" TextWrapping="WrapWithOverflow" 
                                    ></TextBlock>
                         </Grid>
                     </Grid>

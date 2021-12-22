@@ -16,9 +16,10 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         ResizeMode="NoResize"
         WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
         DataContext="{StaticResource VolleyballFieldVM}"
         x:Name="EditBkFiled"
-        Title="EditBkField" Height="800" Width="1300">
+        Title="EditBkField" Height="600" Width="800">
 
     <Grid>
         <Grid.RowDefinitions>

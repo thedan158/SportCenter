@@ -22,7 +22,7 @@ namespace SportCenter
     /// </summary>
     public partial class InfoFieldSc : Window
     {
-        int _idFieldadding;
+        public int _idFieldadding;
         public InfoFieldSc(int id_field)
         {
 
@@ -37,14 +37,6 @@ namespace SportCenter
                     TitleTxt.Text = item.name.ToString();
                 }
             }
-            List<field> List_SoccerField = new List<field>();
-            foreach (var item in temp_fieldlist)
-            {
-                if (item.fieldtype.id == 1)
-                {
-                    List_SoccerField.Add(item);
-                }
-            }
             _idFieldadding = id_field;
 
         }
@@ -52,7 +44,7 @@ namespace SportCenter
         private void Button_Add(object sender, RoutedEventArgs e)
         {
 
-            if (dp.SelectedDate == null || startT_picker.SelectedTime == null || endT_picker.SelectedTime == null || txbCusName == null || txbCusPhone == null)
+            if (dp.SelectedDate == null || startT_picker.SelectedTime == null || endT_picker.SelectedTime == null || txbCusName.Text == "" || txbCusPhone.Text == "")
             {
                 MessageBox.Show("Please insert all value!!!");
                 return;
@@ -70,29 +62,20 @@ namespace SportCenter
             string m_seletEndtime = endT_picker.SelectedTime.Value.ToString("hh:mm tt");
 
 
-            var temp_listBooking = DataProvider.Ins.DB.bookingInfoes;
+            var temp_listBooking = DataProvider.Ins.DB.bookingInfoes.Where(x => x.field.idType==1);
             List<bookingInfo> temp_listSoccerlistbooking = new List<bookingInfo>();
             bookingInfo adding_element = new bookingInfo();     //parameter to adding to DB
 
             //Adding list Soccer booking.
             foreach (var item in temp_listBooking)
             {
-                if (item.field.idType == 1)
+                if (item.field.id == _idFieldadding)
                 {
                     temp_listSoccerlistbooking.Add(item);
                 }
             }
 
-            //Checking condition for adding stament.
-            foreach (var item in temp_listSoccerlistbooking)
-            {
-                if (item.Status == "unpay" && item.datePlay == selectedDate && item.start_time == selectedStarttime && item.end_time == selectedEndtime)
-                {
-                    MessageBox.Show("Already booking time zone!!!");
-                    return;
-                }
-
-            }
+          
             if (dp.SelectedDate < DateTime.Today)
             {
                 MessageBox.Show("Cannot choose a time before now!!");
@@ -123,6 +106,15 @@ namespace SportCenter
             adding_element.start_time = adding_element.start_time.AddYears(adding_element.datePlay.Year - 1);
             adding_element.start_time = adding_element.start_time.AddMonths(adding_element.datePlay.Month - 1);
             adding_element.start_time = adding_element.start_time.AddDays(adding_element.datePlay.Day - 1);
+            //Checking condition for adding stament.
+            foreach (var item in temp_listSoccerlistbooking)
+            {
+                if ((adding_element.start_time >= item.start_time)  && (adding_element.start_time <= item.end_time) || (adding_element.end_time >= item.start_time) && (adding_element.end_time <= item.end_time) || (adding_element.start_time < item.start_time && adding_element.end_time > item.start_time))
+                {
+                    MessageBox.Show("Already booking time zone!!!");
+                    return;
+                }
+            }
             if (adding_element.start_time < DateTime.Now)
             {
                 MessageBox.Show("Cannot choose a time before now!!");

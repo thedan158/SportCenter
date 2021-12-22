@@ -62,9 +62,9 @@
    SelectionChanged="TabControl_SelectionChanged" Grid.ColumnSpan="2" Margin="0,0,0,0.2">
 
                 <TabItem>
-                    
+
                     <TabItem.Header>
-                        
+
                         <StackPanel                      
                  Height="auto"
                  Width="auto">
@@ -198,10 +198,10 @@
                     </Grid>
                 </TabItem>
                 <TabItem>
-                    
+
 
                     <TabItem.Header  >
-                        
+
                         <StackPanel
                             
         Height="auto"
@@ -772,33 +772,27 @@
                     </TabItem.Header>
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="14*"></RowDefinition>
-                            <RowDefinition Height="13*"/>
+                            <RowDefinition ></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
                         </Grid.RowDefinitions>
 
-                        <Grid Grid.Row="1" Margin="0,0,-0.4,56.2" Grid.RowSpan="2">
+                        <Grid Grid.Row="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="50*"/>
-                                <ColumnDefinition Width="50*"/>
-                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
-                                <Button x:Name="FB" HorizontalAlignment="Center" Height="200" VerticalAlignment="Center" Width="120"
+                                <Button materialDesign:ButtonAssist.CornerRadius="100" x:Name="FB" HorizontalAlignment="Center" Height="450" VerticalAlignment="Center" Width="300"
                                         Command="{Binding ShowFootballFieldCommand}"
                             CommandParameter="{Binding ElementName=FB}">
                                     <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="16*"/>
-                                            <ColumnDefinition Width="65*"/>
-                                        </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="auto"></RowDefinition>
                                             <RowDefinition></RowDefinition>
                                         </Grid.RowDefinitions>
-                                        <materialDesign:PackIcon Grid.Row="0" FontWeight="ExtraBold" Kind="Soccer" FontSize="200" Height="109" Width="81" Grid.ColumnSpan="2" Margin="0,0,-0.2,0" Grid.RowSpan="2"/>
-                                        <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="13,105,13.8,3.4" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                                        <materialDesign:PackIcon Grid.Row="0" FontWeight="ExtraBold" Kind="Soccer" FontSize="400" Height="250" Width="200" />
+                                        <TextBlock FontWeight="Bold" Grid.Row="1" FontSize="30" HorizontalAlignment="Center" >
                        Football
                                         </TextBlock>
                                     </Grid>
@@ -807,7 +801,7 @@
                             </Grid>
                             <Grid Grid.Column="1">
 
-                                <Button x:Name="VL" HorizontalAlignment="Center" Height="200" VerticalAlignment="Center" Width="120" 
+                                <Button materialDesign:ButtonAssist.CornerRadius="130" x:Name="VL" HorizontalAlignment="Center" Height="325" VerticalAlignment="Center" Width="250" 
                                         Command="{Binding ShowVolleyballFieldCommand}"
                             CommandParameter="{Binding ElementName=VL}">
                                     <Grid>
@@ -815,28 +809,24 @@
                                             <RowDefinition Height="auto"></RowDefinition>
                                             <RowDefinition></RowDefinition>
                                         </Grid.RowDefinitions>
-                                        <materialDesign:PackIcon Kind="Volleyball" FontSize="200" Height="109" Width="79" />
-                                        <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="0,105,-0.338,4.277" Grid.RowSpan="2">
+                                        <materialDesign:PackIcon Grid.Row="0" Kind="Volleyball" FontSize="250" Height="200" Width="150" />
+                                        <TextBlock FontWeight="Bold" Grid.Row="1" HorizontalAlignment="Center"  FontSize="20"     >                                 
                        Volleyball
                                         </TextBlock>
                                     </Grid>
                                 </Button>
                             </Grid>
                             <Grid Grid.Column="2">
-                                <Button x:Name="BS" HorizontalAlignment="Center" Height="200" VerticalAlignment="Center" Width="120"
+                                <Button Margin="0 0 100 0" materialDesign:ButtonAssist.CornerRadius="120" x:Name="BS" Height="250" VerticalAlignment="Center" Width="200"
                                         Command="{Binding ShowBasketballFieldCommand}"
                             CommandParameter="{Binding ElementName=BS}">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="27*"/>
-                                            <ColumnDefinition Width="56*"/>
-                                        </Grid.ColumnDefinitions>
+                                    <Grid>                                       
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="auto"></RowDefinition>
                                             <RowDefinition></RowDefinition>
                                         </Grid.RowDefinitions>
-                                        <materialDesign:PackIcon Kind="Basketball" Height="87" Width="82" Margin="0,10,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2" />
-                                        <TextBlock  FontWeight="Bold" HorizontalAlignment="Center" Margin="15,96,14.708,-0.277" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                                        <materialDesign:PackIcon Kind="Basketball" Grid.Row="0" Height="150" Width="100" />
+                                        <TextBlock Grid.Row="1" FontWeight="Bold" FontSize="17" HorizontalAlignment="Center">
                        Basketball
                                         </TextBlock>
                                     </Grid>
@@ -1330,7 +1320,7 @@
                     <!--Setting UI Start Here-->
                     <Grid>
                         <Grid.RowDefinitions>
-                            
+
                             <RowDefinition Height="70*"/>
                             <RowDefinition Height="500*"/>
                             <RowDefinition Height="100*"/>
@@ -1392,7 +1382,7 @@
                                     </materialDesign:Flipper>
                                 </Grid>
                                 <Grid Grid.Row="1">
-                                   
+
                                     <Button HorizontalAlignment="Center" Height="105" VerticalAlignment="Center" Width="225"
                                         Command="{Binding OpenBillReportWindow}"
                                                 materialDesign:ButtonAssist.CornerRadius="5">
@@ -1419,25 +1409,25 @@
                                         Command="{Binding LogoutCommand}"
                                                 CommandParameter="{Binding ElementName=mainWindow}">
 
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="20"/>
-                                            <ColumnDefinition Width="65*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="60"></RowDefinition>
-                                            <RowDefinition></RowDefinition>
-                                        </Grid.RowDefinitions>
-                                        <materialDesign:PackIcon Kind="Logout" FontWeight="Bold" Height="65" Width="65"  Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom"  />
-                                        <TextBlock FontWeight="Bold" HorizontalAlignment="Center"  Grid.RowSpan="2" Grid.ColumnSpan="2" FontSize="25" VerticalAlignment="Top" Width="108">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="65*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="60"></RowDefinition>
+                                                <RowDefinition></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <materialDesign:PackIcon Kind="Logout" FontWeight="Bold" Height="65" Width="65"  Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom"  />
+                                            <TextBlock FontWeight="Bold" HorizontalAlignment="Center"  Grid.RowSpan="2" Grid.ColumnSpan="2" FontSize="25" VerticalAlignment="Top" Width="108">
                        LOG OUT
-                                        </TextBlock>
-                                    </Grid>
+                                            </TextBlock>
+                                        </Grid>
 
-                                </Button>
+                                    </Button>
                                 </Grid>
-                                
-                                
+
+
                             </Grid>
                             <Grid Grid.Column="1">
                                 <materialDesign:Flipper
@@ -1532,7 +1522,7 @@
                                 </materialDesign:Flipper>
                             </Grid>
                             <Grid Grid.Column="2" Margin="35">
-                                
+
                             </Grid>
 
                         </Grid>

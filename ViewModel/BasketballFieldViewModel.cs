@@ -242,6 +242,8 @@ namespace SportCenter.ViewModel
             });
             DeleteBookingCommand = new RelayCommand<object>((p) =>
             {
+                if (SelectedItemBooking == null)
+                    return false;
                 return true;
             }, (p) =>
             {
@@ -363,13 +365,30 @@ namespace SportCenter.ViewModel
 
             if (CanDel(obj) == true)
             {
-
                 MessageBoxResult result = MessageBox.Show("Xác nhận xóa sân?", "Thông báo", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
                     List_field_Bk.Remove(obj as ListFieldBasketball);
                     var abc = obj as ListFieldBasketball;
                     field xyz = abc.List_FieldBasketball;
+                    ObservableCollection<bill> Listbill = new ObservableCollection<bill>(DataProvider.Ins.DB.bills.Where(x => x.bookingInfo.idField == xyz.id));
+                    foreach (var item in Listbill.ToList())
+                    {
+                        Listbill.Remove(item);
+                        DataProvider.Ins.DB.bills.Remove(item);
+                    }
+                    ObservableCollection<buyingInfo> Listbuying = new ObservableCollection<buyingInfo>(DataProvider.Ins.DB.buyingInfoes.Where(x => x.bookingInfo.idField == xyz.id));
+                    foreach (var item in Listbuying.ToList())
+                    {
+                        Listbuying.Remove(item);
+                        DataProvider.Ins.DB.buyingInfoes.Remove(item);
+                    }
+                    ObservableCollection<bookingInfo> Listbooking = new ObservableCollection<bookingInfo>(DataProvider.Ins.DB.bookingInfoes.Where(x => x.idField == xyz.id));
+                    foreach (var item in Listbooking.ToList())
+                    {
+                        Listbooking.Remove(item);
+                        DataProvider.Ins.DB.bookingInfoes.Remove(item);
+                    }
                     DataProvider.Ins.DB.fields.Remove(xyz);
                     DataProvider.Ins.DB.SaveChanges();
                     Update_ListeditBasketball();
@@ -463,7 +482,7 @@ namespace SportCenter.ViewModel
             var Temp_booking = DataProvider.Ins.DB.bookingInfoes.Where(x => x.field.idType == 3);
             foreach (var item in Temp_booking)
             {
-                if (item.idField == idField)
+                if (item.idField == idField && item.Status == "unpay")
                     list_with_id.Add(item);
             }
         }
