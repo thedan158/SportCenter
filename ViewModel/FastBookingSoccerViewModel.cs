@@ -34,7 +34,12 @@ namespace SportCenter.ViewModel
             
             FastbookingCommand = new RelayCommand<object>((parameter) => true, (parameter) =>
             {
-                if (FBcustomername != null && FBcustomerphone != null && FBdateplay != null && FBstarttime != null && FBendtime != null)
+                if (FBcustomername == "" || FBcustomerphone.ToString() == "")
+                {
+                    MessageBox.Show("Please insert all value!!!");
+                    return;
+                }
+                if (FBcustomername != "" && FBcustomerphone.ToString() != "")
                 {
                     bookingInfo temp = new bookingInfo();
                     temp.Customer_name = FBcustomername;
@@ -55,7 +60,7 @@ namespace SportCenter.ViewModel
                     temp.start_time = temp.start_time.AddYears(temp.datePlay.Year - 1);
                     temp.start_time = temp.start_time.AddMonths(temp.datePlay.Month - 1);
                     temp.start_time = temp.start_time.AddDays(temp.datePlay.Day - 1);
-                    if (temp.start_time > temp.end_time)
+                    if (temp.start_time >= temp.end_time)
                     {
                         MessageBox.Show("Start time must be early than endtime!!");
                         return;
@@ -117,11 +122,6 @@ namespace SportCenter.ViewModel
                     temp.start_time = temp.start_time.AddYears(-(temp.start_time.Year - 1));
                     temp.start_time = temp.start_time.AddMonths(-(temp.start_time.Month - 1));
                     temp.start_time = temp.start_time.AddDays(-(temp.start_time.Day - 1));
-                    return;
-                }
-                else
-                {
-                    MessageBox.Show("Fill all the blank");
                     return;
                 }
             }

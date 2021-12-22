@@ -22,28 +22,19 @@ namespace SportCenter
     /// </summary>
     public partial class InfoFieldVl : Window
     {
-        int _idFieldadding;
+        public int _idFieldadding;
         public InfoFieldVl(int id_field)
         {
 
             InitializeComponent();
             txbIdfield.Text = id_field.ToString();
             dp.SelectedDate = DateTime.Today;
-
             var temp_fieldlist = DataProvider.Ins.DB.fields;
             foreach (var item in temp_fieldlist)
             {
                 if (item.id == id_field)
                 {
                     TitleTxt.Text = item.name.ToString();
-                }
-            }
-            List<field> List_VolleyballField = new List<field>();
-            foreach (var item in temp_fieldlist)
-            {
-                if (item.fieldtype.id == 2)
-                {
-                    List_VolleyballField.Add(item);
                 }
             }
             _idFieldadding = id_field;
@@ -61,9 +52,9 @@ namespace SportCenter
             DateTime selectedDate = dp.SelectedDate.Value;
             String.Format("{0:MM-dd-yyyy}", selectedDate);
             DateTime selectedStarttime = startT_picker.SelectedTime.Value;
-            String.Format("{0:h:mm:ss}", selectedStarttime);
+            String.Format("{0:MM-dd-yyyy h:mm:ss}", selectedStarttime);
             DateTime selectedEndtime = endT_picker.SelectedTime.Value;
-            String.Format("{0:h:mm:ss}", selectedEndtime);
+            String.Format("{0:MM-dd-yyyy h:mm:ss}", selectedEndtime);
             string Cusname = txbCusName.Text;
             string Cusphone = txbCusPhone.Text;
             string m_seletDate = dp.SelectedDate.Value.ToString("dddd, dd MMMM yyyy");
@@ -71,29 +62,20 @@ namespace SportCenter
             string m_seletEndtime = endT_picker.SelectedTime.Value.ToString("hh:mm tt");
 
 
-            var temp_listBooking = DataProvider.Ins.DB.bookingInfoes;
+            var temp_listBooking = DataProvider.Ins.DB.bookingInfoes.Where(x => x.field.idType == 2);
             List<bookingInfo> temp_listVolleyballlistbooking = new List<bookingInfo>();
             bookingInfo adding_element = new bookingInfo();     //parameter to adding to DB
 
             //Adding list Volleyball booking.
             foreach (var item in temp_listBooking)
             {
-                if (item.field.idType == 2)
+                if (item.field.id == _idFieldadding)
                 {
                     temp_listVolleyballlistbooking.Add(item);
                 }
             }
 
-            //Checking condition for adding stament.
-            foreach (var item in temp_listVolleyballlistbooking)
-            {
-                if (item.Status == "unpay" && item.datePlay == selectedDate && item.start_time == selectedStarttime && item.end_time == selectedEndtime)
-                {
-                    MessageBox.Show("Already booking time zone!!!");
-                    return;
-                }
 
-            }
             if (dp.SelectedDate < DateTime.Today)
             {
                 MessageBox.Show("Cannot choose a time before now!!");
@@ -124,6 +106,15 @@ namespace SportCenter
             adding_element.start_time = adding_element.start_time.AddYears(adding_element.datePlay.Year - 1);
             adding_element.start_time = adding_element.start_time.AddMonths(adding_element.datePlay.Month - 1);
             adding_element.start_time = adding_element.start_time.AddDays(adding_element.datePlay.Day - 1);
+            //Checking condition for adding stament.
+            foreach (var item in temp_listVolleyballlistbooking)
+            {
+                if ((adding_element.start_time >= item.start_time) && (adding_element.start_time <= item.end_time) || (adding_element.end_time >= item.start_time) && (adding_element.end_time <= item.end_time) || (adding_element.start_time < item.start_time && adding_element.end_time > item.start_time))
+                {
+                    MessageBox.Show("Already booking time zone!!!");
+                    return;
+                }
+            }
             if (adding_element.start_time < DateTime.Now)
             {
                 MessageBox.Show("Cannot choose a time before now!!");
@@ -141,7 +132,8 @@ namespace SportCenter
             var VlBookingVM = this.DataContext;
             (this.DataContext as VolleyballFieldViewModel).Update_ListbookingVolleyball();
             (this.DataContext as VolleyballFieldViewModel).Load_ListbookingVolleyball();
-
+            (this.DataContext as VolleyballFieldViewModel).Update_DatagridView12();
+            (this.DataContext as VolleyballFieldViewModel).Load_List_footballPayment();
 
         }
     }

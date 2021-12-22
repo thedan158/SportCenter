@@ -98,21 +98,27 @@ namespace SportCenter.ViewModel
 
         private void AddFieldFunction()
         {
-            if (addfieldname != null)
+            field temp = new field();
+            temp.name = addfieldname;
+            temp.idType = Selectedidfieldtype;
+            temp.condition = SelectConditionField;
+            if (temp.name == null || temp.idType.ToString() == null || temp.condition == null)
             {
-                field temp = new field();
-                temp.name = addfieldname;
-                temp.idType = Selectedidfieldtype;
-                temp.condition = SelectConditionField;
-                DataProvider.Ins.DB.fields.Add(temp);
-                DataProvider.Ins.DB.SaveChanges();
-                MessageBox.Show("Added Done.");
-            }
-            else
-            {
-                MessageBox.Show("No field added.");
+                MessageBox.Show("Please filll all information!");
                 return;
             }
+            ObservableCollection<field> List = new ObservableCollection<field>(DataProvider.Ins.DB.fields.Where(x => x.idType == temp.idType));
+            foreach(var item in List)
+            {
+                if (item.name == temp.name)
+                {
+                    MessageBox.Show("This name is already exists");
+                    return;
+                }
+            }
+            DataProvider.Ins.DB.fields.Add(temp);
+            DataProvider.Ins.DB.SaveChanges();
+            MessageBox.Show("Added Done.");
         }
     }
 

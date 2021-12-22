@@ -16,6 +16,7 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         ResizeMode="NoResize"
         DataContext="{StaticResource AddFieldVM}"
+        WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         x:Name="Add_Filed"
         Title="Add_Field" Height="300" Width="600">
@@ -23,8 +24,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
-                <RowDefinition Height="50"></RowDefinition>
-                <RowDefinition Height="130"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
@@ -37,53 +37,56 @@
             Text="Add field" 
             FontSize="40"
             HorizontalAlignment="Center" 
-            FontWeight="Bold" Width="231"/>
-            <Grid Grid.Row="2"  >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50"></RowDefinition>
-                    <RowDefinition Height="50"></RowDefinition>
-                    <RowDefinition Height="50"></RowDefinition>
-                </Grid.RowDefinitions>
-                <WrapPanel Grid.Row="0" HorizontalAlignment="Center">
-                    <Label Content="Tên sân:" Width="87"/>
-                    <TextBox x:Name="addname" Text="{Binding addfieldname}" Width="300"/>
-                </WrapPanel>
-                <WrapPanel Grid.Row="1" HorizontalAlignment="Center">
-                    <Label Content="Loại sân:" Width="96"/>
-                    <ComboBox IsReadOnly="False" ItemsSource="{Binding Listfieldtype}" SelectedItem="{Binding selecttedype, Mode=TwoWay}" x:Name="addtype" Width="300">
+            FontWeight="Bold"/>
+            <Grid Grid.Row="2">
+                <WrapPanel Margin="73,0,-73,0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <WrapPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                            <Label Content="Field name: " Width="100"/>
+                            <TextBox x:Name="addname" Text="{Binding addfieldname}" Width="300"/>
+                        </WrapPanel>
+                        <WrapPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Label Content="Field type: " Width="100"/>
+                            <ComboBox IsReadOnly="False" ItemsSource="{Binding Listfieldtype}" SelectedItem="{Binding selecttedype, Mode=TwoWay}" x:Name="addtype" Width="300">
 
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding name}"></TextBlock>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                </WrapPanel>
-                <WrapPanel Grid.Row="2" HorizontalAlignment="Center">
-                    <Label Content="Tình trạng:" Width="88"/>
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding name}"></TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </WrapPanel>
+                        <WrapPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                            <Label Content="Field condition: " Width="100"/>
 
-                    <ComboBox IsReadOnly="True" SelectedValue="{Binding selectcondition}" SelectedValuePath="Content" Width="300" x:Name="addcondition" >
-                        <ComboBoxItem>Good</ComboBoxItem>
-                        <ComboBoxItem>Normal</ComboBoxItem>
-                        <ComboBoxItem>Repairing</ComboBoxItem>
-                    </ComboBox>
+                            <ComboBox IsReadOnly="True" SelectedValue="{Binding selectcondition}" SelectedValuePath="Content" Width="300" x:Name="addcondition" >
+                                <ComboBoxItem>Good</ComboBoxItem>
+                                <ComboBoxItem>Normal</ComboBoxItem>
+                                <ComboBoxItem>Repairing</ComboBoxItem>
+                            </ComboBox>
+                        </WrapPanel>
+                        <Grid Grid.Row="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Button Command="{Binding AddFieldCommand}" Grid.Column="0"  HorizontalAlignment="Center"  materialDesign:ButtonAssist.CornerRadius="5" HorizontalContentAlignment="Stretch" VerticalAlignment="Center" Width="128">
+                                <TextBlock Margin="5 0 0 0" Text="Add" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Button>
+                            <Button Click="btnThoat_Click" Grid.Column="2"   HorizontalAlignment="Center"  materialDesign:ButtonAssist.CornerRadius="5" HorizontalContentAlignment="Stretch" VerticalAlignment="Center" Width="128">
+                                <TextBlock Margin="5 0 0 0" Text="Cancel" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Button>
+                        </Grid>
+                    </Grid>
                 </WrapPanel>
-
-            </Grid>
-            <Grid Grid.Row="3">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150*"></ColumnDefinition>
-                    <ColumnDefinition Width="7*"></ColumnDefinition>
-                    <ColumnDefinition Width="143*"/>
-                </Grid.ColumnDefinitions>
-                <Button Command="{Binding AddFieldCommand}" Grid.Column="0"  HorizontalAlignment="Center"  materialDesign:ButtonAssist.CornerRadius="5" Margin="93,19,79,19.4" HorizontalContentAlignment="Stretch" VerticalAlignment="Center" Width="128">
-                    <TextBlock Margin="5 0 0 0" Text="Add" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Button>
-                <Button Click="btnThoat_Click" Grid.Column="2"   HorizontalAlignment="Center"  materialDesign:ButtonAssist.CornerRadius="5" Margin="79.4,19,79,19.4" HorizontalContentAlignment="Stretch" VerticalAlignment="Center" Width="128">
-                    <TextBlock Margin="5 0 0 0" Text="Cancel" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Button>
             </Grid>
         </Grid>
     </Grid>
