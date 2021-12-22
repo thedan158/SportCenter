@@ -157,32 +157,6 @@
                   Height="120">
                 
 
-                <Grid Grid.ColumnSpan="2" Grid.Column="0" Height="auto" Margin="0,60,0,0">
-                    <TextBlock 
-                        
-                        Grid.Column="1"
-                        HorizontalAlignment="Left" 
-                        Margin="0,5,0,0"
-                        TextWrapping="Wrap"
-                        Text="Field name booked" 
-                        FontSize="13" 
-                        FontWeight="Bold" 
-                        FontFamily="Microsoft PhagsPa"
-                        Foreground="Black"/>
-                    <TextBlock 
-                        x:Name="txbFieldName"
-                        Grid.Column="1"
-                        Height="30"
-                        HorizontalAlignment="Left" 
-                        Margin="-5,20,0,0"
-                        TextWrapping="Wrap"
-                        Text="{Binding b_field.name}" 
-                        FontSize="10" 
-                        FontWeight="Bold" 
-                        FontFamily="Microsoft PhagsPa"
-                        Foreground="#FFA659EB"/>
-                   
-                </Grid>
                 
             </Grid>
 

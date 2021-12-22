@@ -20,7 +20,7 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         x:Name="BillWindow_VL"
-        DataContext="{StaticResource BillVM_VLB}"
+        DataContext="{StaticResource VolleyballFieldVM}"
         Title="LOGIN" Height="770" Width="1000">
 
 
@@ -123,24 +123,26 @@
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Border Margin="20,60,0,0" Background="Snow" Grid.Column="0" Height="auto" Width="auto" CornerRadius="20">
+                <Border Margin="20,60,0,0" Background="Snow" Grid.Column="0" Height="auto" Width="750" CornerRadius="20">
                     <Border.BitmapEffect>
                         <DropShadowBitmapEffect Opacity="0.6" Color="#FFFF0303" Softness="0.3"/>
                     </Border.BitmapEffect>
 
-                    <DataGrid AlternatingRowBackground="LightGray" IsReadOnly="True" HeadersVisibility="Column" BorderBrush="{x:Null}" Background="Transparent" ItemsSource="{Binding DayList}" AutoGenerateColumns="False" SelectedValue="{Binding SelectedItem}" FontSize="12" Margin="0,0,0,0" >
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Customer Name" Binding="{Binding Customer_name}"/>
-                            <DataGridTextColumn Header="Phone" Binding="{Binding Customer_PhoneNum, StringFormat=0, Mode=OneTime}"/>
-                            <DataGridTextColumn Header="Booking id" Binding="{Binding id}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Field name" Binding="{Binding field.name}"/>
-                            <DataGridTextColumn Header="Day Booking" Binding="{Binding datePlay, StringFormat='{}{0:MM/dd/yyyy}', Mode=OneTime}"/>
-                            <DataGridTextColumn Header="Start time" Binding="{Binding start_time, StringFormat='{}{0:h:mm tt}', Mode=OneTime}"/>
-                            <DataGridTextColumn Header="End time" Binding="{Binding end_time, StringFormat='{}{0:h:mm tt}'}"/>
-                            <DataGridTextColumn Header="Field Price" Binding="{Binding field.fieldtype.price, StringFormat=0}"/>
-                        </DataGrid.Columns>
+                    <ListView BorderBrush="{x:Null}" Background="Transparent" ItemsSource="{Binding DayList}" SelectedValue="{Binding SelectedItemPayment}" FontSize="12" Margin="0,0,0,0" >
+                        <ListView.View>
 
-                    </DataGrid>
+                            <GridView>
+                                <GridViewColumn Header="Customer Name" DisplayMemberBinding="{Binding Customer_name, Mode=TwoWay}"/>
+                                <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding Customer_PhoneNum, StringFormat=0, Mode=TwoWay}"/>
+                                <GridViewColumn Header="Booking id" DisplayMemberBinding="{Binding id, Mode=TwoWay}"></GridViewColumn>
+                                <GridViewColumn Header="Field name" DisplayMemberBinding="{Binding field.name, Mode=TwoWay}"/>
+                                <GridViewColumn Header="Day Booking" DisplayMemberBinding="{Binding datePlay, StringFormat='{}{0:MM/dd/yyyy}', Mode=TwoWay}"/>
+                                <GridViewColumn Header="Start time" DisplayMemberBinding="{Binding start_time, StringFormat='{}{0:h:mm tt}', Mode=TwoWay}"/>
+                                <GridViewColumn Header="End time" DisplayMemberBinding="{Binding end_time, StringFormat='{}{0:h:mm tt}'}"/>
+                                <GridViewColumn Header="Field Price" DisplayMemberBinding="{Binding field.fieldtype.price, StringFormat=0, Mode=TwoWay}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </Border>
                 <Grid Width="auto" Grid.Column="1">
                     <Button VerticalAlignment="Bottom" Content="PAY" Foreground="White" Background="OrangeRed"   FontSize="20"  Margin="65,10,64.6,0"  Height="76" Command="{Binding PaymentCMD}"></Button>

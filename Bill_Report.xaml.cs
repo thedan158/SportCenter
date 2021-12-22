@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SportCenter.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,8 @@ namespace SportCenter
         public Bill_Report()
         {
             InitializeComponent();
+            (DataContext as BillReportViewModel).Update_DatagridView();
+            (DataContext as BillReportViewModel).Load_DatagridView();
         }
 
         private void TextBlock_SizeChanged(object sender, SizeChangedEventArgs e)

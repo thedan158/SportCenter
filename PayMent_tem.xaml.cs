@@ -143,6 +143,7 @@ namespace SportCenter
 
             DataProvider.Ins.DB.bills.Add(adding_DB);
             await DataProvider.Ins.DB.SaveChangesAsync();
+            
             this.Close();
         }
     }

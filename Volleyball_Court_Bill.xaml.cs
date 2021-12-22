@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SportCenter.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,8 @@ namespace SportCenter
         public Volleyball_Court_Bill()
         {
             InitializeComponent();
+            (this.DataContext as VolleyballFieldViewModel).Update_DatagridView12();
+            (this.DataContext as VolleyballFieldViewModel).Load_List_footballPayment();
         }
 
        

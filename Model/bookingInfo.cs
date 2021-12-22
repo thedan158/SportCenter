@@ -9,10 +9,11 @@
 
 namespace SportCenter.Model
 {
+    using SportCenter.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class bookingInfo
+    public partial class bookingInfo : BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public bookingInfo()
@@ -20,15 +21,30 @@ namespace SportCenter.Model
             this.bills = new HashSet<bill>();
             this.buyingInfoes = new HashSet<buyingInfo>();
         }
-    
-        public int id { get; set; }
-        public int idField { get; set; }
-        public System.DateTime datePlay { get; set; }
-        public System.DateTime start_time { get; set; }
-        public System.DateTime end_time { get; set; }
-        public string Status { get; set; }
-        public string Customer_name { get; set; }
-        public Nullable<int> Customer_PhoneNum { get; set; }
+        
+        private int _id { get; set; }
+        public int id { get => _id; set { _id = value; OnPropertyChanged(); } }
+
+        private int _idField { get; set; }
+        public int idField { get => _idField; set { _idField = value; OnPropertyChanged(); } }
+
+        private DateTime _datePlay;
+        public System.DateTime datePlay { get => _datePlay; set { _datePlay = value; OnPropertyChanged(); } }
+
+        private DateTime _starttime { get; set; }
+        public System.DateTime start_time { get => _starttime; set { _starttime = value;OnPropertyChanged(); } }
+
+        private DateTime _endtime { get; set; }
+        public System.DateTime end_time { get => _endtime; set { _endtime = value; OnPropertyChanged(); } }
+
+        private string _status { get; set; }
+        public string Status { get => _status; set { _status = value; OnPropertyChanged(); } }
+
+        private string _cusName { get; set; }
+        public string Customer_name { get => _cusName; set { _cusName = value;OnPropertyChanged(); } }
+
+        private Nullable<int> _cusPhone { get; set; }
+        public Nullable<int> Customer_PhoneNum { get => _cusPhone; set { _cusPhone = value; OnPropertyChanged(); } }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<bill> bills { get; set; }

@@ -13,6 +13,62 @@ namespace SportCenter.ViewModel
 
     public class VolleyballFieldViewModel : BaseViewModel
     {
+
+        //Payment info declare
+        public ICommand PaymentCMD { get; set; }
+        private ObservableCollection<bookingInfo> _BookigList;
+        public ObservableCollection<bookingInfo> BookingList_footballVM { get => _BookigList; set { _BookigList = value; OnPropertyChanged(); } }
+        private ObservableCollection<bookingInfo> _DayList;
+        public ObservableCollection<bookingInfo> DayList { get => _DayList; set { _DayList = value; OnPropertyChanged(); } }
+        public int _idbooking_Payment;
+        public int idbooking_Payment { get => _idbooking_Payment; set { _idbooking_Payment = value; OnPropertyChanged(); } }
+        private string _CustomerName;
+        public string CustomerName { get => _CustomerName; set { _CustomerName = value; OnPropertyChanged(); } }
+        private int _CustomerPhoneNum;
+        public int CustomerPhoneNum { get => _CustomerPhoneNum; set { _CustomerPhoneNum = value; OnPropertyChanged(); } }
+        private string _NameField;
+        public string NameField { get => _NameField; set { _NameField = value; OnPropertyChanged(); } }
+        private int? _Field_id;
+        public int? Field_id { get => _Field_id; set { _Field_id = value; OnPropertyChanged(); } }
+        public int _Booking_id;
+        public int Booking_id { get => _Booking_id; set { _Booking_id = value; OnPropertyChanged(); } }
+        private decimal? _FieldPrice;
+        public decimal? FieldPrice { get => _FieldPrice; set { _FieldPrice = value; OnPropertyChanged(); } }
+        private DateTime? _DateBooking;
+        public DateTime? DateBooking { get => _DateBooking; set { _DateBooking = value; OnPropertyChanged(); } }
+        private DateTime? _StartTime;
+        public DateTime? StartTime { get => _StartTime; set { _StartTime = value; OnPropertyChanged(); } }
+        private DateTime? _EndTime;
+        public DateTime? EndTime { get => _EndTime; set { _EndTime = value; OnPropertyChanged(); } }
+
+        private bookingInfo _SelectedItemPayment;
+        public bookingInfo SelectedItemPayment
+        {
+            get => _SelectedItemPayment;
+            set
+            {
+                _SelectedItemPayment = value;
+                OnPropertyChanged();
+                if (SelectedItemPayment != null)
+                {
+                    Booking_id = SelectedItemPayment.id;
+                    idbooking_Payment = SelectedItemPayment.id;
+                    NameField = SelectedItemPayment.field.name;
+                    FieldPrice = SelectedItemPayment.field.fieldtype.price;
+                    Field_id = SelectedItemPayment.idField;
+                    DateBooking = SelectedItemPayment.datePlay;
+                    StartTime = SelectedItemPayment.start_time;
+                    EndTime = SelectedItemPayment.end_time;
+                    CustomerName = SelectedItemPayment.Customer_name;
+                    CustomerPhoneNum = SelectedItemPayment.Customer_PhoneNum.Value;
+
+                }
+            }
+        }
+
+        //--------------------------- End Payment info declare
+
+
         public ICommand FastBookingCommand { get; set; }
         public ICommand AddBookingCommand { get; set; }
         public ICommand EditBookingCommand { get; set; }
@@ -103,6 +159,7 @@ namespace SportCenter.ViewModel
             _ListbookingInfo = new ObservableCollection<bookingInfo>(DataProvider.Ins.DB.bookingInfoes.Where(x => x.field.idType == 2));
             _ListField = new ObservableCollection<ListFieldVolleyball>();
             List_field_Vl = new ObservableCollection<ListFieldVolleyball>();
+            _DayList = new ObservableCollection<bookingInfo>();
             _list_with_id = new ObservableCollection<bookingInfo>();
             _List = new ObservableCollection<field>(DataProvider.Ins.DB.fields.Where(x => x.idType == 2));
             Update_ListbookingVolleyball();
@@ -190,7 +247,76 @@ namespace SportCenter.ViewModel
                 Update_ListbookingVolleyball();
                 Load_ListbookingVolleyball();
             });
+
+
+            // Payment contr --------------------------
+            PaymentCMD = new RelayCommand<Window>((p) => { return true; }, (p) => {
+                var temp_check = DataProvider.Ins.DB.bookingInfoes;
+                decimal fieldprice = 0;
+                foreach (var item in temp_check)
+                {
+                    if (item.id == Booking_id)
+                    {
+                        fieldprice = item.field.fieldtype.price.Value;
+                    }
+                }
+                if (DateBooking == null || StartTime == null || EndTime == null)
+                {
+                    MessageBox.Show("Select bill for Payment.");
+                    return;
+                }
+                string date = DateBooking.Value.ToString("MM/dd/yyyy");
+                string starttiem = StartTime.Value.ToString("hh:mm tt");
+                string endtiem = EndTime.Value.ToString("hh:mm tt");
+                PayMent_tem WD_pay = new PayMent_tem(Booking_id, CustomerName, CustomerPhoneNum.ToString(), date, starttiem, endtiem, fieldprice);
+                WD_pay.ShowDialog();
+                Update_DatagridView();
+                Load_List_footballPayment();
+            });
+            //-------------------------------------------- End Payment contr
+
         }
+
+        //Payment fuction ----------------------------
+        public void Update_DatagridView12()
+        {
+            if (DayList != null)
+                DayList.Clear();
+            return;
+        }
+
+        private void Update_DatagridView()
+        {
+            Booking_id = 0;
+            CustomerName = null;
+            CustomerPhoneNum = 0;
+            StartTime = null;
+            EndTime = null;
+            DateBooking = null;
+            FieldPrice = null;
+            DayList.Clear();
+
+        }
+        public void Load_List_footballPayment()
+        {
+
+            var temp_List = DataProvider.Ins.DB.bookingInfoes;
+            foreach (var info in temp_List)
+            {
+                if (info.field.idType == 2)
+                {
+                    int count = info.Status.Length;
+                    if (info.Status != "Pay")
+                    {
+                        _DayList.Add(info);
+                    }
+                }
+
+            }
+            return;
+        }
+
+        // ------------------------------------------ End Payment fuction
 
         private void ShowFastBookingFunction()
         {

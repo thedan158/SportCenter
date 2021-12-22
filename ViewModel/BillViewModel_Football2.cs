@@ -48,6 +48,7 @@ namespace SportCenter.ViewModel
         {
             _DayList = new ObservableCollection<bookingInfo>();
             _BookigList = new ObservableCollection<bookingInfo>(DataProvider.Ins.DB.bookingInfoes);
+            Update_DatagridView12();
             Load_List_footballPayment();
             PaymentCMD = new RelayCommand<Window>((p) => { return true; }, (p) => {
                 var temp_check = DataProvider.Ins.DB.bookingInfoes;
@@ -77,6 +78,11 @@ namespace SportCenter.ViewModel
 
         }
 
+        public void Update_DatagridView12()
+        {
+            DayList.Clear();
+        }
+
         private void Update_DatagridView()
         {
             Booking_id = 0;
@@ -86,13 +92,10 @@ namespace SportCenter.ViewModel
             EndTime = null;
             DateBooking = null;
             FieldPrice = null;
-            foreach (var item in _DayList.ToList())
-            {
-                _DayList.Remove(item);
-            }
+            DayList.Clear();
 
         }
-        private void Load_List_footballPayment()
+        public void Load_List_footballPayment()
         {
             foreach(var info in _BookigList)
             {

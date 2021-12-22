@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 
 namespace SportCenter.ViewModel
 {
-    class BillReportViewModel : BaseViewModel
+    public class BillReportViewModel : BaseViewModel
     {
         protected ObservableCollection<bookingInfo> _bookingList; //Main 
         protected ObservableCollection<bookingInfo> bookinglist
@@ -66,15 +66,12 @@ namespace SportCenter.ViewModel
             
         }
 
-        private void Update_DatagridView()
+        public void Update_DatagridView()
         {
-            foreach (var item in DatagridListView.ToList())
-            {
-                DatagridListView.Remove(item);
-            }
+            DatagridListView.Clear();
         }
 
-        private void Load_DatagridView()
+        public void Load_DatagridView()
         {
             foreach (var item2 in _billList)   // take list booking out of DB
             {

@@ -49,6 +49,7 @@ namespace SportCenter.ViewModel
         {
             _DayList = new ObservableCollection<bookingInfo>();
             _BookigList = new ObservableCollection<bookingInfo>(DataProvider.Ins.DB.bookingInfoes);
+            Update_DatagridView();
             Load_List_footballPayment();
 
             PaymentCMD = new RelayCommand<Window>((p) => { return true; }, (p) => {

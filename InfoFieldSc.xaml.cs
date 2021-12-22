@@ -140,7 +140,8 @@ namespace SportCenter
             var ScBookingVM = this.DataContext;
             (this.DataContext as SoccerFieldViewModel).Update_ListbookingSoccer();
             (this.DataContext as SoccerFieldViewModel).Load_ListbookingSoccer();
-
+            (this.DataContext as SoccerFieldViewModel).Update_DatagridView12();
+            (this.DataContext as SoccerFieldViewModel).Load_List_footballPayment();
 
         }
     }

@@ -141,7 +141,8 @@ namespace SportCenter
             var BkBookingVM = this.DataContext;
             (this.DataContext as BasketballFieldViewModel).Update_ListbookingBasketball();
             (this.DataContext as BasketballFieldViewModel).Load_ListbookingBasketball();
-
+            (this.DataContext as BasketballFieldViewModel).Update_DatagridView12();
+            (this.DataContext as BasketballFieldViewModel).Load_List_footballPayment();
 
         }
     }

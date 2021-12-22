@@ -63,6 +63,8 @@ namespace SportCenter.ViewModel
         private ObservableCollection<BaseCustomerInfo> _ListCustomerInfo;
         public ObservableCollection<BaseCustomerInfo> ListCustomerInfo { get => _ListCustomerInfo; set { _ListCustomerInfo = value; OnPropertyChanged(); } }
 
+
+
         public bool Isloaded = false;
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand ShowWindowCommand_FB { get; set; }
@@ -363,6 +365,8 @@ namespace SportCenter.ViewModel
             }
             DataProvider.Ins.DB.SaveChangesAsync();
             MessageBox.Show("Cleared all data!");
+            Update_ListCustomerInfo();
+            LoadListCustomerInfo();
         }
 
         public void LoadStatictics()
@@ -609,7 +613,7 @@ namespace SportCenter.ViewModel
                         temp_Cusinfo.Baseinfo_CusPhoneNum = item_booking.Customer_PhoneNum.ToString();
                         temp_Cusinfo.Baseinfo_SumBillAmount = 1;
                         temp_Cusinfo.Baseinfo_SumCusMoneyAmount = decimal.ToInt32(item_bill.totalmoney);
-                        temp_Cusinfo.Baseinfo_TypeCus = "Lever1";
+                        temp_Cusinfo.Baseinfo_TypeCus = "Level1";
                         temp_listCusInfo.Add(temp_Cusinfo);
                     }
                 }
@@ -696,7 +700,10 @@ namespace SportCenter.ViewModel
         private void f_Open_Bill_Report()
         {
             Bill_Report rp = new Bill_Report();
-            rp.Show();
+            var temp_billRp = rp.DataContext as BillReportViewModel;
+            rp.ShowDialog();
+            temp_billRp.Update_DatagridView();
+            temp_billRp.Load_DatagridView();
         }
 
         private void ChooseImage(Grid parameter)

@@ -9,7 +9,7 @@ using SportCenter.ViewModel;
 
 namespace SportCenter.ViewModel
 {
-    class BaseBill2 : BaseViewModel
+    public class BaseBill2 : BaseViewModel
     {
         public field b_field { get; set; }
         public List<bookingInfo> b_ListBooking { get; set; }

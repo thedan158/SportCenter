@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SportCenter.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,28 +23,12 @@ namespace SportCenter
         public Football_Field_Bill()
         {
             InitializeComponent();
+            (this.DataContext as BasketballFieldViewModel).Update_DatagridView12();
+            (this.DataContext as BasketballFieldViewModel).Load_List_footballPayment();
+
+
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-        //private void Button_Click_3(object sender, RoutedEventArgs e)
-        //{
-        //    int id_booking = int.Parse(Booking_id.Text);
-        //    string CustomerName = C_name.Text;
-        //    string CustomerPhone = C_phone.Text;
-        //    string datebooking = DateBooking.Text;
-        //    string starttime = Starttime.Text;
-        //    string endtime = EndTime.Text;
-        //    string fieldprice = txbTotalMoney.Text;
-        //    if (id_booking == 0)
-        //    {
-        //        MessageBox.Show("Select the section in list payment.");
-        //        return;
-        //    }
-        //    PayMent_tem P_window = new PayMent_tem(id_booking, CustomerName, CustomerPhone, datebooking, starttime, endtime, fieldprice);
-        //    P_window.Show();
-        //}
+       
     }
 }
