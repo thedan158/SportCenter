@@ -81,7 +81,7 @@ namespace SportCenter
                 MessageBox.Show("Cannot choose a time before now!!");
                 return;
             }
-            if (selectedStarttime > selectedEndtime)
+            if (selectedStarttime >= selectedEndtime)
             {
                 MessageBox.Show("Start time must be early than endtime!!");
                 return;
