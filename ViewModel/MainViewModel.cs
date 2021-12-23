@@ -172,6 +172,7 @@ namespace SportCenter.ViewModel
 
             _ListbookingCombobox = new ObservableCollection<bookingInfo>();
             _Listbooking = new ObservableCollection<bookingInfo>(DataProvider.Ins.DB.bookingInfoes);
+            _Listbooking = new ObservableCollection<bookingInfo>(DataProvider.Ins.DB.bookingInfoes);
             _Listbuying = new ObservableCollection<buyingInfo>(DataProvider.Ins.DB.buyingInfoes);
             _Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);
             _Listorder = new ObservableCollection<buyingInfo>();
@@ -690,7 +691,7 @@ namespace SportCenter.ViewModel
                         temp_Cusinfo.Baseinfo_CusPhoneNum = item_booking.Customer_PhoneNum.ToString();
                         temp_Cusinfo.Baseinfo_SumBillAmount = 1;
                         temp_Cusinfo.Baseinfo_SumCusMoneyAmount = decimal.ToInt32(item_bill.totalmoney);
-                        temp_Cusinfo.Baseinfo_TypeCus = "Lever1";
+                        temp_Cusinfo.Baseinfo_TypeCus = "Level1";
                         temp_listCusInfo.Add(temp_Cusinfo);
                     }
                 }

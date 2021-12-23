@@ -413,6 +413,7 @@
     <Resource Include="Image\bg.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Image\SCMA.png" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

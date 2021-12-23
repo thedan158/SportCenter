@@ -1522,7 +1522,33 @@
                                 </materialDesign:Flipper>
                             </Grid>
                             <Grid Grid.Column="2" Margin="35">
-
+                                <GroupBox
+  Header="SPORT CENTER MANAGEMENT"
+  Style="{DynamicResource MaterialDesignCardGroupBox}"
+  
+                                    Background="AliceBlue">
+                                    <GroupBox.HeaderTemplate>
+                                        <DataTemplate>
+                                            <StackPanel
+        Orientation="Horizontal">
+                                                <materialDesign:PackIcon
+          Kind="Soccer"
+          Height="32"
+          Width="32"
+          VerticalAlignment="Center" />
+                                                <TextBlock
+          Margin="8,0,0,0"
+          VerticalAlignment="Center"
+          Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+          Text="{Binding}" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GroupBox.HeaderTemplate>
+                                    <Image
+    Source="Image/SCMA.png"
+    VerticalAlignment="Center"
+    HorizontalAlignment="Center" />
+                                </GroupBox>
                             </Grid>
 
                         </Grid>
