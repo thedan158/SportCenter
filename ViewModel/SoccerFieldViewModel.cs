@@ -245,6 +245,8 @@ namespace SportCenter.ViewModel
             //});
             EditBookingCommand = new RelayCommand<object>((p) =>
             {
+                if (SelectedItemBooking == null)
+                    return false;
                 if (string.IsNullOrEmpty(addcustomername) || string.IsNullOrEmpty(addcustomerphone.ToString()) || string.IsNullOrEmpty(adddateplay.ToString()) || string.IsNullOrEmpty(addstarttime.ToString()) || string.IsNullOrEmpty(addendtime.ToString()))
                     return false;
                 return true;
