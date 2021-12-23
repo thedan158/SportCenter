@@ -176,24 +176,44 @@ namespace SportCenter.ViewModel
                 return true;
             }, (p) =>
             {
-                foreach (var item in List)
+                if (SelectedItem.name == FieldName)
                 {
-                    if (item.name == FieldName)
-                    {
-                        MessageBox.Show("This name already exists, please choose another name!");
-                        return;
-                    }
+                    var field = DataProvider.Ins.DB.fields.Where(x => x.id == SelectedItem.id).SingleOrDefault();
+                    field.name = FieldName;
+                    field.condition = FieldCondition;
+                    DataProvider.Ins.DB.SaveChanges();
+                    FieldName = null;
+                    FieldCondition = null;
+                    Update_ListfieldVolleyball();
+                    Load_ListfieldVolleyball();
+                    Update_ListeditVolleyball();
+                    Load_ListeditVolleyball();
+                    Update_DatagridView12();
+                    Load_List_footballPayment();
                 }
-                var field = DataProvider.Ins.DB.fields.Where(x => x.id == SelectedItem.id).SingleOrDefault();
-                field.name = FieldName;
-                field.condition = FieldCondition;
-                DataProvider.Ins.DB.SaveChanges();
-                FieldName = null;
-                FieldCondition = null;
-                Update_ListfieldVolleyball();
-                Load_ListfieldVolleyball();
-                Update_ListeditVolleyball();
-                Load_ListeditVolleyball();
+                else
+                {
+                    foreach (var item in List)
+                    {
+                        if (item.name == FieldName)
+                        {
+                            MessageBox.Show("This name already exists, please choose another name!");
+                            return;
+                        }
+                    }
+                    var field = DataProvider.Ins.DB.fields.Where(x => x.id == SelectedItem.id).SingleOrDefault();
+                    field.name = FieldName;
+                    field.condition = FieldCondition;
+                    DataProvider.Ins.DB.SaveChanges();
+                    FieldName = null;
+                    FieldCondition = null;
+                    Update_ListfieldVolleyball();
+                    Load_ListfieldVolleyball();
+                    Update_ListeditVolleyball();
+                    Load_ListeditVolleyball();
+                    Update_DatagridView12();
+                    Load_List_footballPayment();
+                }
             });
             //AddBookingCommand = new RelayCommand<object>((p) =>
             //{
