@@ -801,7 +801,7 @@
                             </Grid>
                             <Grid Grid.Column="1">
 
-                                <Button materialDesign:ButtonAssist.CornerRadius="130" x:Name="VL" HorizontalAlignment="Center" Height="325" VerticalAlignment="Center" Width="250" 
+                                <Button materialDesign:ButtonAssist.CornerRadius="100" x:Name="VL" HorizontalAlignment="Center" Height="450" VerticalAlignment="Center" Width="300" 
                                         Command="{Binding ShowVolleyballFieldCommand}"
                             CommandParameter="{Binding ElementName=VL}">
                                     <Grid>
@@ -809,24 +809,24 @@
                                             <RowDefinition Height="auto"></RowDefinition>
                                             <RowDefinition></RowDefinition>
                                         </Grid.RowDefinitions>
-                                        <materialDesign:PackIcon Grid.Row="0" Kind="Volleyball" FontSize="250" Height="200" Width="150" />
-                                        <TextBlock FontWeight="Bold" Grid.Row="1" HorizontalAlignment="Center"  FontSize="20"     >                                 
+                                        <materialDesign:PackIcon Grid.Row="0" FontWeight="ExtraBold" Kind="Volleyball" FontSize="400" Height="250" Width="200" />
+                                        <TextBlock FontWeight="Bold" Grid.Row="1" FontSize="30" HorizontalAlignment="Center" >
                        Volleyball
                                         </TextBlock>
                                     </Grid>
                                 </Button>
                             </Grid>
                             <Grid Grid.Column="2">
-                                <Button Margin="0 0 100 0" materialDesign:ButtonAssist.CornerRadius="120" x:Name="BS" Height="250" VerticalAlignment="Center" Width="200"
+                                <Button HorizontalAlignment="Center" materialDesign:ButtonAssist.CornerRadius="100" x:Name="BS" Height="450" VerticalAlignment="Center" Width="300"
                                         Command="{Binding ShowBasketballFieldCommand}"
                             CommandParameter="{Binding ElementName=BS}">
-                                    <Grid>                                       
+                                    <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="auto"></RowDefinition>
                                             <RowDefinition></RowDefinition>
                                         </Grid.RowDefinitions>
-                                        <materialDesign:PackIcon Kind="Basketball" Grid.Row="0" Height="150" Width="100" />
-                                        <TextBlock Grid.Row="1" FontWeight="Bold" FontSize="17" HorizontalAlignment="Center">
+                                        <materialDesign:PackIcon Grid.Row="0" FontWeight="ExtraBold" Kind="Volleyball" FontSize="400" Height="250" Width="200" />
+                                        <TextBlock FontWeight="Bold" Grid.Row="1" FontSize="30" HorizontalAlignment="Center" >
                        Basketball
                                         </TextBlock>
                                     </Grid>
