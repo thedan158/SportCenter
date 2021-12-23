@@ -107,12 +107,15 @@ namespace SportCenter
             adding_element.start_time = adding_element.start_time.AddMonths(adding_element.datePlay.Month - 1);
             adding_element.start_time = adding_element.start_time.AddDays(adding_element.datePlay.Day - 1);
             //Checking condition for adding stament.
-            foreach (var item in temp_listVolleyballlistbooking)
+            foreach (var item in temp_listVolleyballlistbooking.ToList())
             {
-                if ((adding_element.start_time >= item.start_time) && (adding_element.start_time <= item.end_time) || (adding_element.end_time >= item.start_time) && (adding_element.end_time <= item.end_time) || (adding_element.start_time < item.start_time && adding_element.end_time > item.start_time))
+                if (adding_element.idField == item.idField)
                 {
-                    MessageBox.Show("Already booking time zone!!!");
-                    return;
+                    if ((adding_element.start_time >= item.start_time) && (adding_element.start_time <= item.end_time) || (adding_element.end_time >= item.start_time) && (adding_element.end_time <= item.end_time) || (adding_element.start_time < item.start_time && adding_element.end_time > item.start_time))
+                    {
+                        MessageBox.Show("Already booking time zone!!!");
+                        return;
+                    }
                 }
             }
             if (adding_element.start_time < DateTime.Now)
