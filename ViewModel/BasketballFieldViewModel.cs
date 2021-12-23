@@ -275,6 +275,8 @@ namespace SportCenter.ViewModel
                 Load_ListbookingBasketball();
                 Update_DatagridView12();
                 Load_List_footballPayment();
+                addcustomername = null;
+                addcustomerphone = null;
             });
 
             // Payment contr --------------------------

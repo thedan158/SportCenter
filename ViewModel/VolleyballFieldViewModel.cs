@@ -270,6 +270,8 @@ namespace SportCenter.ViewModel
                 DataProvider.Ins.DB.SaveChanges();
                 Update_ListbookingVolleyball();
                 Load_ListbookingVolleyball();
+                addcustomername = null;
+                addcustomerphone = null;
             });
 
 

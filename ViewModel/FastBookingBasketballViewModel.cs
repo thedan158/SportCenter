@@ -79,7 +79,7 @@ namespace SportCenter.ViewModel
                         int count = 0;
                         foreach (var booking in tempbooking.ToList())
                         {
-                            if (booking.field.id == field.id)
+                            if (booking.field.id == field.id && booking.Status=="unpay")
                             {
                                 if ((temp.start_time >= booking.start_time && temp.start_time <= booking.end_time) || (temp.end_time >= booking.start_time && temp.end_time <= booking.end_time) || (temp.start_time <= booking.start_time && temp.end_time >= booking.end_time))
                                 {
