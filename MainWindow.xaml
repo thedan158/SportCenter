@@ -593,7 +593,7 @@
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                             <materialDesign:PackIcon  Kind="CurrencyUsd" Width="auto" Height="20" />
                                             <TextBlock
-      Text="PAY"  FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+      Text="ORDER"  FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
 
                                         </StackPanel>
