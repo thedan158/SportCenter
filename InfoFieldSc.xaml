@@ -30,7 +30,7 @@
             <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}" Grid.ColumnSpan="2"></uc:ControlBarUC>
         </Grid>
         <Grid Grid.Row="1">
-            <TextBlock Foreground="#8c9aa1" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="TitleTxt"></TextBlock>
+            <TextBlock Foreground="#8c9aa1" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="TitleTxt"></TextBlock>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
