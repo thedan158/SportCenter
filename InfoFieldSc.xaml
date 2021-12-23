@@ -41,7 +41,7 @@
 
             <materialDesign:Card Grid.Row="0" Margin="5">
                 <WrapPanel Margin="0 0 0 10">
-                    <TextBox x:Name="txbIdfield" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Id field" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox x:Name="txbIdfield" IsReadOnly="True" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Id field" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox x:Name="txbCusName" Text="{Binding addcustomername, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Customer name" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox x:Name="txbCusPhone" Text="{Binding addcustomerphone, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Phone number" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <DatePicker x:Name="dp" VerticalAlignment="Center" SelectedDate="{Binding adddateplay}" Width="100" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Date play" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />

@@ -163,6 +163,8 @@ namespace SportCenter.ViewModel
 
         private ObservableCollection<bookingInfo> _list_with_id;
         public ObservableCollection<bookingInfo> list_with_id { get => _list_with_id; set { _list_with_id = value; OnPropertyChanged(); } }
+      
+
         public SoccerFieldViewModel()
         {
             _ListbookingInfo = new ObservableCollection<bookingInfo>(DataProvider.Ins.DB.bookingInfoes.Where(x => x.field.idType == 1));
@@ -283,12 +285,21 @@ namespace SportCenter.ViewModel
             {
 
                 var booking = DataProvider.Ins.DB.bookingInfoes.Where(x => x.id == SelectedItemBooking.id).SingleOrDefault();
+                ObservableCollection<buyingInfo> Listbuying = new ObservableCollection<buyingInfo>(DataProvider.Ins.DB.buyingInfoes.Where(x => x.idBookingInfo == SelectedItemBooking.id));
+                if (Listbuying.Count > 0)
+                {
+                    MessageBox.Show("There's something you have to pay!");
+                    return;
+
+                }
                 DataProvider.Ins.DB.bookingInfoes.Remove(booking);
                 DataProvider.Ins.DB.SaveChanges();
                 Update_ListbookingSoccer();
                 Load_ListbookingSoccer();
                 Update_DatagridView12();
                 Load_List_footballPayment();
+                addcustomername = null;
+                addcustomerphone = null;                   
             });
 
 

@@ -266,10 +266,19 @@ namespace SportCenter.ViewModel
             {
 
                 var booking = DataProvider.Ins.DB.bookingInfoes.Where(x => x.id == SelectedItemBooking.id).SingleOrDefault();
+                ObservableCollection<buyingInfo> Listbuying = new ObservableCollection<buyingInfo>(DataProvider.Ins.DB.buyingInfoes.Where(x => x.idBookingInfo == SelectedItemBooking.id));
+                if (Listbuying.Count > 0)
+                {
+                    MessageBox.Show("There's something you have to pay!");
+                    return;
+
+                }
                 DataProvider.Ins.DB.bookingInfoes.Remove(booking);
                 DataProvider.Ins.DB.SaveChanges();
                 Update_ListbookingVolleyball();
                 Load_ListbookingVolleyball();
+                addcustomername = null;
+                addcustomerphone = null;
             });
 
 
