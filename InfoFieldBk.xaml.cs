@@ -69,7 +69,7 @@ namespace SportCenter
             //Adding list Basketball booking.
             foreach (var item in temp_listBooking.ToList())
             {
-                if (item.field.id == _idFieldadding)
+                if (item.field.id == _idFieldadding && item.Status == "unpay")
                 {
                     temp_listBasketballlistbooking.Add(item);
                 }
