@@ -12,7 +12,7 @@ namespace SportCenter.Model
     using SportCenter.ViewModel;
     using System;
     using System.Collections.Generic;
-    
+
     public partial class buyingInfo : BaseViewModel
     {
         private int _id;
@@ -32,5 +32,7 @@ namespace SportCenter.Model
 
         public virtual bookingInfo bookingInfo { get; set; }
         public virtual good good { get; set; }
+
+
     }
 }

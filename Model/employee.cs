@@ -12,35 +12,22 @@ namespace SportCenter.Model
     using SportCenter.ViewModel;
     using System;
     using System.Collections.Generic;
-
-
-    public partial class good : BaseViewModel
+    
+    public partial class employee : BaseViewModel
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public good()
-        {
-            this.buyingInfoes = new HashSet<buyingInfo>();
-        }
-
         private int _id;
         public int id { get => _id; set { _id = value; OnPropertyChanged(); } }
-
         private string _name;
         public string name { get => _name; set { _name = value; OnPropertyChanged(); } }
-
-
-
-        private Nullable<decimal> _price;
-
-        public Nullable<decimal> price { get => _price; set { _price = value; OnPropertyChanged(); } }
-
-        private string _unit;
-        public string unit { get => _unit; set { _unit = value; OnPropertyChanged(); } }
-
+        private Nullable<System.DateTime> _dateOfBirth;
+        public Nullable<System.DateTime> dateOfBirth { get => _dateOfBirth; set { _dateOfBirth = value; OnPropertyChanged(); } }
+        private string _role;
+        public string role { get => _role; set { _role = value; OnPropertyChanged(); } }
+        private Nullable<decimal> _salary;
+        public Nullable<decimal> salary { get => _salary; set { _salary = value; OnPropertyChanged(); } }
+        private string _phoneNumber;
+        public string phoneNumber { get => _phoneNumber; set { _phoneNumber = value; OnPropertyChanged(); } }
         private byte[] _imageFile;
         public byte[] imageFile { get => _imageFile; set { _imageFile = value; OnPropertyChanged(); } }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<buyingInfo> buyingInfoes { get; set; }
     }
 }

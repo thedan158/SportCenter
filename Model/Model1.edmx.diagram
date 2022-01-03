@@ -4,11 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="011fb5215d1c418b85ea57fbf152aa34" Name="Diagram1">
+      <Diagram DiagramId="ee1f347703cb4ef18f27cf5136052e8e" Name="Diagram1">
         <EntityTypeShape EntityType="sportcenterModel.account" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="sportcenterModel.bill" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="sportcenterModel.bookingInfo" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="sportcenterModel.buyingInfo" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportcenterModel.employee" Width="1.5" PointX="7.75" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="sportcenterModel.field" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="sportcenterModel.fieldtype" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="sportcenterModel.good" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />

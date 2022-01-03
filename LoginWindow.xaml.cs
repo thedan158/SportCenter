@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace SportCenter
 {
     /// <summary>
-    /// Interaction logic for LoginWindow.xaml
+    /// Interaction logic for Window1.xaml
     /// </summary>
     public partial class LoginWindow : Window
     {

@@ -5,22 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportCenter"
         mc:Ignorable="d"
-        
-        xmlns:uc="clr-namespace:SportCenter.UserControlKteam"
-         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-     TextElement.FontWeight="Regular"
-     TextElement.FontSize="13"
-     TextOptions.TextFormattingMode="Ideal"
-     TextOptions.TextRenderingMode="Auto"
-     Background="{DynamicResource MaterialDesignPaper}"
-     FontFamily="{DynamicResource MaterialDesignFont}"
-        ResizeMode="NoResize"
-        WindowStyle="None"
-        WindowStartupLocation="CenterScreen"
-        DataContext="{StaticResource LoginVM}"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:uc="clr-namespace:SportCenter.UserControlKteam" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        Title="Login" Height="450" Width="350" 
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None" 
         Name="loginWindow"
-        Title="LOGIN" Height="300" Width="400">
+        DataContext="{StaticResource LoginVM}"
+        FontFamily="Segoe UI Emoji">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -29,64 +22,53 @@
         <Grid Grid.Row="0">
             <uc:ControlBarUC Tag="{Binding Title, ElementName=loginWindow}"></uc:ControlBarUC>
         </Grid>
-        <materialDesign:Card  UniformCornerRadius="20"
-           Grid.Row="1" Width="330" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Grid>
-                <Grid.Resources>
-                    <Style TargetType="Grid">
-                        <Setter Property="Margin" Value="15 0 15 0"></Setter>
-                    </Style>
-                </Grid.Resources>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <TextBox materialDesign:HintAssist.Hint="Username"
-                             Text="{Binding UserName}"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                </Grid>
-                <Grid Grid.Row="1">
-                    <PasswordBox x:Name="FloatingPasswordBox"
-                             
-                                 materialDesign:HintAssist.Hint="Password"
-                                 Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" >
+        <Grid Grid.Row="1">
+
+            <Rectangle Height="230" VerticalAlignment="Top">
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#a04cbc"/>
+                        <GradientStop Color="#FF34268A" Offset="1"/>
+                        <GradientStop Color="#FF33288B" Offset="0.546"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <Rectangle Width="280" Height="240" VerticalAlignment="Bottom" Margin="0,80" RadiusY="10" RadiusX="10" Fill="White">
+                <Rectangle.Effect>
+                    <DropShadowEffect BlurRadius="15" Direction="0" RenderingBias="Quality" ShadowDepth="1" Color="#FFBBBBBB"/>
+                </Rectangle.Effect>
+            </Rectangle>
+            <Grid VerticalAlignment="Bottom" Margin="35,80" Height="240">
+                <Label Content="LOGIN" HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Top" Margin="5" Foreground="Gray" FontSize="18"/>
+                <StackPanel VerticalAlignment="Center" Margin="15">
+                    <TextBox Margin="0,10" Text="{Binding UserName}" materialDesign:HintAssist.Hint="Username" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                    <PasswordBox Name="FloatingPasswordBox" Margin="0,10" materialDesign:HintAssist.Hint="Password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" FontFamily="Champagne &amp; Limousines" FontSize="18">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="PasswordChanged">
                                 <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}" 
                                                        CommandParameter="{Binding ElementName=FloatingPasswordBox}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-
                     </PasswordBox>
-                </Grid>
-                <Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-
-                    <Button Grid.Column="0"
-                            Width="110" 
+                </StackPanel>
+            </Grid>
+            <Button 
+                            Width="150"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
                             Command="{Binding LoginCommand}"
                             CommandParameter="{Binding ElementName=loginWindow}"
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             materialDesign:ButtonProgressAssist.Value="-1"
                             materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                             materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+               
     Content="LOGIN"
                              IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" 
-    Margin="2,0"></Button>
-                    <Button Grid.Column="1"    
-                            Command="{Binding CloseCommand}"
-                            CommandParameter="{Binding ElementName=loginWindow}"
-                            Style="{StaticResource MaterialDesignRaisedButton}"    
-                            Width="110"    
-                            Background="OrangeRed"
-                            ToolTip="Resource name: MaterialDesignRaisedButton" Content="EXIT"></Button>
-                </Grid>
-            </Grid>
-        </materialDesign:Card>
+    Margin="100,0,100.4,69.8"></Button>
+            <TextBlock Text="SINCE 2021" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="30" Foreground="Gray" Cursor="Hand"/>
+            <Image Source="Image/Screenshot 2022-01-03 175325_ccexpress.png" Height="170" VerticalAlignment="Top" Margin="125,10,100.4,0" RenderTransformOrigin="0.553,0.288"/>
+        </Grid>
     </Grid>
 </Window>

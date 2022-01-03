@@ -20,7 +20,7 @@
         WindowStartupLocation="CenterScreen"
         Name="mainWindow"
         DataContext="{StaticResource MainVM}"
-        Title="Phoenix Sport Center Management" Height="700" Width="1300">
+        Title="Sport Center Management Application" Height="700" Width="1300">
     <Window.Background>
 
         <ImageBrush ImageSource="Image/bg.jpg"/>
@@ -1306,6 +1306,482 @@
                     <TabItem.Header>
                         <StackPanel
         Height="auto"
+        Width="auto"
+                            DataContext="{StaticResource EmployeeVM}">
+                            
+                            <materialDesign:PackIcon
+          Kind="Person"
+          Width="30"
+          Height="30"
+          HorizontalAlignment="Center" />
+                            <TextBlock
+          Text="Employee"
+          HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </TabItem.Header>
+
+                    <!--UI Employee Start Here-->
+
+                    <Grid Background="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="6*"/>
+                            <ColumnDefinition Width="4*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+
+                            <Border CornerRadius="20" Background="white" Visibility="{Binding Visibility}" Margin="20 20 10 20">
+                                <Border.Effect>
+                                    <DropShadowEffect ShadowDepth="1"/>
+                                </Border.Effect>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="9*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0">
+
+
+                                    </Grid>
+                                    <Grid Grid.Row="1">
+
+
+
+                                        <DataGrid
+                                            DataContext="{StaticResource EmployeeVM}"
+   AlternatingRowBackground="#FFF8EBF9"
+  ItemsSource="{Binding Listemployee}"
+  CanUserAddRows="False"
+  AutoGenerateColumns="False"
+  Name="DataGrid1"
+  SelectedItem="{Binding SelectedItem}"
+                Background="{x:Null}"
+                                               
+                                                IsReadOnly="True"
+                                Margin="10,10,10,10" SelectionChanged="DataGrid_SelectionChanged" IsSynchronizedWithCurrentItem="False" Focusable="False"  
+              >
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="SelectionChanged">
+                                                    <i:InvokeCommandAction Command="{Binding Path=ReloadCommand}" CommandParameter="{Binding ElementName=grdSelectImg1}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+
+
+
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn>
+                                                    <DataGridTextColumn.ElementStyle>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                                        </Style>
+                                                    </DataGridTextColumn.ElementStyle>
+                                                </DataGridTextColumn>
+                                                <materialDesign:DataGridTextColumn Width="1*"
+      Header="ID"
+      Binding="{Binding id}"
+      FontSize="15"
+      FontWeight="Bold"
+      
+      ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+      EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
+
+                                                </materialDesign:DataGridTextColumn>
+                                                <materialDesign:DataGridTextColumn Width="2*"
+      Header="Name"
+      Binding="{Binding name}"
+      ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+      EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
+
+                                                </materialDesign:DataGridTextColumn>
+                                                <materialDesign:DataGridTextColumn Width="1.5*"
+      Header="Role"
+      Binding="{Binding role}"
+      ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+      EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
+
+                                                </materialDesign:DataGridTextColumn>
+                                                <materialDesign:DataGridTextColumn Width="1.5*"
+      Header="Salary"
+      Binding="{Binding salary, StringFormat= {}{0:C}}"
+      ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+      EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
+
+                                                </materialDesign:DataGridTextColumn>
+                                                <materialDesign:DataGridTextColumn Width="1.5*"
+      Header="Phone"
+      Binding="{Binding phoneNumber}"
+      ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+      EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
+
+                                                </materialDesign:DataGridTextColumn>
+                                                <materialDesign:DataGridTextColumn Width="1.5*"
+      Header="Birthday"
+      Binding="{Binding dateOfBirth, StringFormat='dd/MM/yyyy'}"
+      ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+      EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
+
+                                                </materialDesign:DataGridTextColumn>
+
+
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+
+                                    </Grid>
+                                </Grid>
+
+
+
+                            </Border>
+                        </Grid>
+                        <Grid Grid.Column="1" DataContext="{StaticResource EmployeeVM}">
+                            <Border Background="Transparent" Visibility="{Binding Visibility}">
+                                <Border Background="White" CornerRadius="20" Margin="10 20 20 20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="1"/>
+                                    </Border.Effect>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="204*"/>
+                                            <RowDefinition Height="325*"/>
+                                            <RowDefinition Height="94*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid Grid.Row="0" Margin="0,0,-0.2,1">
+                                            <Grid
+            x:Name="grdSelectImg1"
+            Margin="10,30,0,0" 
+            VerticalAlignment="Top"
+            Width="150"
+            Height="150" 
+            HorizontalAlignment="Center">
+                                                <Grid.Background>
+                                                    <ImageBrush ImageSource="{Binding imageemployee, UpdateSourceTrigger=PropertyChanged}"></ImageBrush>
+                                                </Grid.Background>
+                                                <Rectangle 
+                x:Name="recImage1"
+                StrokeDashArray="4 2" 
+                Stroke="#5C0DAC" 
+                StrokeThickness="4"
+                RadiusX="4" 
+                RadiusY="4"
+                Width="150"
+                Height="153" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" Margin="0,0,0,-2"/>
+                                                <Button 
+                x:Name="btnSelectImage1"
+                Command="{Binding SelectImageCommand}"
+                CommandParameter="{Binding ElementName=grdSelectImg1}"
+                
+                Height="35" 
+                Width="120" 
+                Content="Select Avatar" 
+                FontSize="16"
+                FontWeight="SemiBold" 
+                ToolTip="Chọn ảnh"
+                Margin="0,0,0,-56" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Bottom"
+                FocusVisualStyle="{x:Null}"
+                Padding="0"/>
+
+                                            </Grid>
+                                        </Grid>
+                                        <Grid  Grid.Row="1"
+            x:Name="grdInfo1"
+            HorizontalAlignment="Center"
+            Height="290"
+            Margin="20,55,20.8,0"
+            VerticalAlignment="Top" 
+            Width="420" Grid.RowSpan="2">
+
+                                            <Grid 
+                Margin="0,0,0,0" 
+                VerticalAlignment="Top" 
+                Width="350" 
+                Height="40">
+                                                <Label 
+                    Content="Name"
+                    HorizontalAlignment="Left"
+                    FontSize="18"
+                    FontWeight="SemiBold" 
+                    Foreground="Black" 
+                    Height="32" 
+                    Margin="0" 
+                    VerticalAlignment="Center"/>
+                                                <Rectangle 
+                    HorizontalAlignment="Right" 
+                    Height="40" 
+                    Width="230" 
+                    RadiusY="6" 
+                    RadiusX="6"
+                    Stroke="Gray" 
+                    Margin="0"/>
+                                                <TextBox 
+                                                        Text="{Binding nameemployee, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                    x:Name="txtName1"
+                    Cursor="IBeam"
+                    materialDesign:HintAssist.Hint="Name"
+                    Height="40"  
+                    Width="210" 
+                    FontSize="14" 
+                    BorderThickness="0" 
+                    MaxLines="1"
+                    Padding="0" 
+                    
+                    Foreground="Gray" 
+                    Margin="0,0,10,0" 
+                    HorizontalContentAlignment="Left" 
+                    VerticalContentAlignment="Center"
+                    FontWeight="SemiBold" HorizontalAlignment="Right"/>
+                                            </Grid>
+                                            <Grid 
+                Margin="0,50,0,0"
+                VerticalAlignment="Top" 
+                Width="350" 
+                Height="40">
+                                                <Label 
+                    Content="Role"
+                    HorizontalAlignment="Left"  
+                    FontSize="18" 
+                    FontWeight="SemiBold" 
+                    Foreground="Black"
+                    Height="32" 
+                    Margin="0" 
+                    VerticalAlignment="Center"/>
+                                                <Rectangle 
+                    HorizontalAlignment="Right" 
+                    Height="40"
+                    Width="230"
+                    RadiusY="6" 
+                    RadiusX="6" 
+                    Stroke="Gray" 
+                    Margin="0" />
+                                                <TextBox 
+                                                        Text="{Binding roleemployee, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                    x:Name="txtUnit1"
+                    Cursor="IBeam"
+                    materialDesign:HintAssist.Hint="Role"
+                    Height="40"  
+                    Width="210" 
+                    FontSize="14" 
+                    BorderThickness="0" 
+                    MaxLines="1"
+                    Padding="0" 
+                    Foreground="Gray" 
+                    Margin="0,0,10,0" 
+                    HorizontalContentAlignment="Left" 
+                    VerticalContentAlignment="Center"
+                    FontWeight="SemiBold" HorizontalAlignment="Right"/>
+                                            </Grid>
+                                            <Grid 
+                Margin="0,100,0,0" 
+                VerticalAlignment="Top" 
+                Width="350" 
+                Height="40">
+                                                <Label 
+                    Content="Salary"
+                    HorizontalAlignment="Left"
+                    FontSize="18"
+                    FontWeight="SemiBold" 
+                    Foreground="Black" 
+                    Height="32" 
+                    Margin="0" 
+                    VerticalAlignment="Center"/>
+                                                <Rectangle 
+                    HorizontalAlignment="Right" 
+                    Height="40" 
+                    Width="230" 
+                    RadiusY="6" 
+                    RadiusX="6"
+                    Stroke="Gray" 
+                    Margin="0"/>
+                                                <TextBox 
+                                                        Text="{Binding salaryemployee,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, StringFormat= {}{0:C}}"
+                                                        
+                    x:Name="txtUnitPrice1"
+                    Cursor="IBeam"
+                    materialDesign:HintAssist.Hint="Salary"
+                    HorizontalAlignment="Right"
+                    Height="40"  
+                    Width="210" 
+                    FontSize="14" 
+                    BorderThickness="0"
+                    Padding="0" 
+                    Foreground="Gray"                    
+                    Margin="0,0,10,0" 
+                    HorizontalContentAlignment="Left" 
+                    VerticalContentAlignment="Center"
+                    FontWeight="SemiBold">
+
+
+                                                </TextBox>
+                                            </Grid>
+                                            <Grid 
+                Margin="0,150,0,0" 
+                VerticalAlignment="Top" 
+                Width="350" 
+                Height="40">
+                                                <Label 
+                    Content="Phone"
+                    HorizontalAlignment="Left"
+                    FontSize="18"
+                    FontWeight="SemiBold" 
+                    Foreground="Black" 
+                    Height="32" 
+                    Margin="0" 
+                    VerticalAlignment="Center"/>
+                                                <Rectangle 
+                    HorizontalAlignment="Right" 
+                    Height="40" 
+                    Width="230" 
+                    RadiusY="6" 
+                    RadiusX="6"
+                    Stroke="Gray" 
+                    Margin="0"/>
+                                                <TextBox 
+                                                        Text="{Binding phoneemployee,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                        
+                    x:Name="txtPhone"
+                    Cursor="IBeam"
+                    materialDesign:HintAssist.Hint="Phone"
+                    HorizontalAlignment="Right"
+                    Height="40"  
+                    Width="210" 
+                    FontSize="14" 
+                    BorderThickness="0"
+                    Padding="0" 
+                    Foreground="Gray"                    
+                    Margin="0,0,10,0" 
+                    HorizontalContentAlignment="Left" 
+                    VerticalContentAlignment="Center"
+                    FontWeight="SemiBold">
+
+
+                                                </TextBox>
+                                            </Grid>
+                                            <Grid 
+                Margin="0,200,0,0" 
+                VerticalAlignment="Top" 
+                Width="350" 
+                Height="40">
+                                                <Label 
+                    Content="Birthday"
+                    HorizontalAlignment="Left"
+                    FontSize="18"
+                    FontWeight="SemiBold" 
+                    Foreground="Black" 
+                    Height="32" 
+                    Margin="0" 
+                    VerticalAlignment="Center"/>
+                                                <Rectangle 
+                    HorizontalAlignment="Right" 
+                    Height="40" 
+                    Width="230" 
+                    RadiusY="6" 
+                    RadiusX="6"
+                    Stroke="Gray" 
+                    Margin="0"/>
+                                                <TextBox 
+                                                        Text="{Binding dateOfBirthemployee,StringFormat='dd/MM/yyyy',Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                        
+                    x:Name="txtBirth"
+                    Cursor="IBeam"
+                    materialDesign:HintAssist.Hint="Birthday"
+                    HorizontalAlignment="Right"
+                    Height="40"  
+                    Width="210" 
+                    FontSize="14" 
+                    BorderThickness="0"
+                    Padding="0" 
+                    Foreground="Gray"                    
+                    Margin="0,0,10,0" 
+                    HorizontalContentAlignment="Left" 
+                    VerticalContentAlignment="Center"
+                    FontWeight="SemiBold">
+
+
+                                                </TextBox>
+                                            </Grid>
+                                        </Grid>
+
+                                        <Grid Grid.Row="2"
+            
+            VerticalAlignment="Top"  
+            Height="40" Margin="0,2.2,-0.2,0" 
+           
+           >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*" />
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid Grid.Column="0"   >
+                                                <Button
+                x:Name="btnAdd1"
+                Command="{Binding addCommand}"
+                CommandParameter="{Binding ElementName=grdSelectImg1}"
+                IsDefault="True"
+                Background="#5C0DAC"
+                Height="40" 
+                Width="100"
+                ToolTip="Thêm" 
+               
+                
+                FocusVisualStyle="{x:Null}"
+                Content="Add" 
+                FontSize="18" 
+                VerticalAlignment="Center"
+                Padding="0" />
+                                            </Grid>
+                                            <Grid Grid.Column="1">
+                                                <Button
+                x:Name="btnEdit1"
+                Command="{Binding editCommand}"
+                CommandParameter="{Binding ElementName=grdSelectImg1}"
+                IsDefault="True"
+                Background="#5C0DAC"
+                Height="40" 
+                Width="100"
+                ToolTip="Sửa" 
+                Margin="0" 
+                HorizontalAlignment="Center"
+                FocusVisualStyle="{x:Null}"
+                Content="Edit" 
+                FontSize="18" 
+                VerticalAlignment="Center"
+                Padding="0" />
+                                            </Grid>
+                                            <Grid Grid.Column="2">
+                                                <Button
+                x:Name="btnDelete1"
+                Command="{Binding deleteCommand}"
+                CommandParameter="{Binding ElementName=grdSelectImg1}"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                Height="40"
+                Width="100"
+                ToolTip="Xóa"  
+                Background="#5C0DAC"
+                
+                Margin="0" 
+                
+                FocusVisualStyle="{x:Null}"
+                Content="Delete" 
+                FontSize="18"
+                VerticalAlignment="Center"
+                Padding="0"  />
+                                            </Grid>
+
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                            </Border>
+                        </Grid>
+                    </Grid>
+
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+        Height="auto"
         Width="auto">
                             <materialDesign:PackIcon
           Kind="Settings"
@@ -1545,7 +2021,7 @@
                                         </DataTemplate>
                                     </GroupBox.HeaderTemplate>
                                     <Image
-    Source="Image/SCMA.png"
+    Source="Image/Screenshot 2022-01-03 175325.png"
     VerticalAlignment="Center"
     HorizontalAlignment="Center" />
                                 </GroupBox>

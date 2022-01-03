@@ -17,4 +17,5 @@
     <viewmodel:FastBookingBasketballViewModel x:Key="FastBookingBasketballVM"></viewmodel:FastBookingBasketballViewModel>
     <viewmodel:FastBookingSoccerViewModel x:Key="FastBookingSoccerVM"></viewmodel:FastBookingSoccerViewModel>
     <viewmodel:FastBookingVolleyballViewModel x:Key="FastBookingVolleyballVM"></viewmodel:FastBookingVolleyballViewModel>
+    <viewmodel:EmployeeViewModel x:Key="EmployeeVM"></viewmodel:EmployeeViewModel>
 </ResourceDictionary>
