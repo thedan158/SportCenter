@@ -171,7 +171,7 @@ namespace SportCenter.ViewModel
         {
 
             _ListbookingCombobox = new ObservableCollection<bookingInfo>();
-            _Listbooking = new ObservableCollection<bookingInfo>(DataProvider.Ins.DB.bookingInfoes);
+            //_Listbooking = new ObservableCollection<bookingInfo>(DataProvider.Ins.DB.bookingInfoes);
             _Listbooking = new ObservableCollection<bookingInfo>(DataProvider.Ins.DB.bookingInfoes);
             _Listbuying = new ObservableCollection<buyingInfo>(DataProvider.Ins.DB.buyingInfoes);
             _Listgood = new ObservableCollection<good>(DataProvider.Ins.DB.goods);

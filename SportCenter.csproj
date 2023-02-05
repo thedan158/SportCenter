@@ -423,6 +423,8 @@
     <Resource Include="Image\Screenshot 2022-01-03 175325_ccexpress.png" />
     <Resource Include="Image\Screenshot 2022-01-03 175325.png" />
     <Resource Include="Image\SCMA1.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

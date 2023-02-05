@@ -9,25 +9,17 @@
 
 namespace SportCenter.Model
 {
-    using SportCenter.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class employee : BaseViewModel
+    public partial class employee
     {
-        private int _id;
-        public int id { get => _id; set { _id = value; OnPropertyChanged(); } }
-        private string _name;
-        public string name { get => _name; set { _name = value; OnPropertyChanged(); } }
-        private Nullable<System.DateTime> _dateOfBirth;
-        public Nullable<System.DateTime> dateOfBirth { get => _dateOfBirth; set { _dateOfBirth = value; OnPropertyChanged(); } }
-        private string _role;
-        public string role { get => _role; set { _role = value; OnPropertyChanged(); } }
-        private Nullable<decimal> _salary;
-        public Nullable<decimal> salary { get => _salary; set { _salary = value; OnPropertyChanged(); } }
-        private string _phoneNumber;
-        public string phoneNumber { get => _phoneNumber; set { _phoneNumber = value; OnPropertyChanged(); } }
-        private byte[] _imageFile;
-        public byte[] imageFile { get => _imageFile; set { _imageFile = value; OnPropertyChanged(); } }
+        public int id { get; set; }
+        public string name { get; set; }
+        public Nullable<System.DateTime> dateOfBirth { get; set; }
+        public string role { get; set; }
+        public Nullable<decimal> salary { get; set; }
+        public string phoneNumber { get; set; }
+        public byte[] imageFile { get; set; }
     }
 }
